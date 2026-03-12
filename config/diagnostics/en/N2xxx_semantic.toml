@@ -1,0 +1,185 @@
+[catalog]
+locale = "en"
+bucket = "N2xxx_semantic"
+display_name = "Semantic diagnostics"
+inherits_contract = "N2xxx_semantic"
+
+[contracts]
+allowed_exact_codes = ["NPP2001"]
+allowed_n_range = "2000-2499"
+allowed_w_range = "2000-2099"
+future_addition_rule = "Only N2000-N2499, W2000-W2099, and the exact legacy semantic code listed above may appear in this file."
+
+[messages.NPP2001]
+severity = "error"
+phase = "semantic"
+slug = "legacy_semantic_error"
+title = "Legacy semantic error"
+summary = "Compatibility bucket for semantic failures until finer semantic codes are wired."
+default_message = "The program is syntactically valid but semantically invalid."
+recovery = "Inspect types, names, generics, overloads, and value flow near the reported location."
+tags = ["legacy", "semantic", "fallback"]
+
+[messages.N2001]
+severity = "error"
+phase = "semantic"
+slug = "type_mismatch"
+title = "Type mismatch"
+summary = "A value of one type was used where another type was required."
+default_message = "Type mismatch between the required type and the provided value."
+recovery = "Change the source expression, add an explicit conversion, or adjust the destination type."
+tags = ["semantic", "types", "assignment"]
+
+[messages.N2002]
+severity = "error"
+phase = "semantic"
+slug = "invalid_operator_operand_pair"
+title = "Invalid operator operand pair"
+summary = "An operator was applied to operands that do not support it together."
+default_message = "Operator cannot be applied to the provided operand types."
+recovery = "Use compatible operand types or choose an operator defined for the current types."
+tags = ["semantic", "operator", "types"]
+
+[messages.N2003]
+severity = "error"
+phase = "semantic"
+slug = "invalid_return_type"
+title = "Invalid return type"
+summary = "A return statement produces a value that is incompatible with the declared return type."
+default_message = "Returned value does not match the declared return type."
+recovery = "Return a compatible value or change the declared return type."
+tags = ["semantic", "return", "types"]
+
+[messages.N2101]
+severity = "error"
+phase = "semantic"
+slug = "ambiguous_type_inference"
+title = "Ambiguous type inference"
+summary = "The compiler could not infer a unique type from the available context."
+default_message = "Type could not be inferred unambiguously."
+recovery = "Add an explicit type annotation or rewrite the expression to provide more context."
+tags = ["semantic", "inference", "ambiguity"]
+
+[messages.N2102]
+severity = "error"
+phase = "semantic"
+slug = "conflicting_branch_inference"
+title = "Conflicting branch inference"
+summary = "Different control-flow branches establish incompatible inferred types for the same value."
+default_message = "Type inference conflicts across control-flow branches."
+recovery = "Use a shared compatible type or introduce separate bindings per branch."
+tags = ["semantic", "inference", "control-flow"]
+
+
+[messages.N2201]
+severity = "error"
+phase = "semantic"
+slug = "unknown_identifier"
+title = "Unknown identifier"
+summary = "A referenced symbol is not visible in the current scope."
+default_message = "Referenced identifier is not defined in the current scope: {name}."
+parameters = ["name"]
+recovery = "Declare the identifier, import the required module, or fix the spelling."
+tags = ["semantic", "scope", "identifier"]
+[messages.N2202]
+severity = "error"
+phase = "semantic"
+slug = "duplicate_symbol"
+title = "Duplicate symbol"
+summary = "Two declarations in the same effective scope conflict with each other."
+default_message = "A symbol with the same name is already defined in this scope."
+recovery = "Rename one declaration or move it to a different scope."
+tags = ["semantic", "scope", "duplicate"]
+
+[messages.N2203]
+severity = "error"
+phase = "semantic"
+slug = "unknown_named_argument"
+title = "Unknown named argument"
+summary = "A call uses a named argument that does not match any parameter name on the selected callable."
+default_message = "Named argument does not match any declared parameter."
+recovery = "Use a valid parameter name or remove the label."
+tags = ["semantic", "call", "named-arguments"]
+
+[messages.N2301]
+severity = "error"
+phase = "semantic"
+slug = "generic_arity_mismatch"
+title = "Generic arity mismatch"
+summary = "A generic type or callable received the wrong number of type arguments."
+default_message = "Generic argument count does not match the declaration."
+recovery = "Provide the exact required number of generic arguments."
+tags = ["semantic", "generics", "arity"]
+
+[messages.N2302]
+severity = "error"
+phase = "semantic"
+slug = "unsatisfied_generic_constraint"
+title = "Unsatisfied generic constraint"
+summary = "A generic argument does not satisfy the constraint declared for its type parameter."
+default_message = "Generic argument does not satisfy the required constraint."
+recovery = "Use a type that satisfies the constraint or relax the generic declaration."
+tags = ["semantic", "generics", "constraint"]
+
+[messages.N2401]
+severity = "error"
+phase = "semantic"
+slug = "no_viable_overload"
+title = "No viable overload"
+summary = "No callable in the overload set accepts the provided argument list."
+default_message = "No overload matches the provided arguments."
+recovery = "Change the argument types, count, or labels, or add a matching overload."
+tags = ["semantic", "overload", "call"]
+
+[messages.N2402]
+severity = "error"
+phase = "semantic"
+slug = "ambiguous_overload"
+title = "Ambiguous overload"
+summary = "More than one callable matches the provided arguments equally well."
+default_message = "Call is ambiguous between multiple overloads."
+recovery = "Disambiguate the call with explicit types, casts, or a more specific argument list."
+tags = ["semantic", "overload", "ambiguity"]
+
+[messages.W2001]
+severity = "warning"
+phase = "semantic"
+slug = "unreachable_code"
+title = "Unreachable code"
+summary = "A statement cannot be executed because control flow has already terminated or bypassed it."
+default_message = "Code is unreachable."
+recovery = "Remove the dead code or rewrite the control flow so the statement is reachable."
+tags = ["warning", "semantic", "control-flow"]
+
+[messages.W2002]
+severity = "warning"
+phase = "semantic"
+slug = "redundant_cast"
+title = "Redundant cast"
+summary = "A cast or conversion step does not change the effective type."
+default_message = "Cast is redundant."
+recovery = "Remove the unnecessary cast unless it is kept for clarity by project convention."
+tags = ["warning", "semantic", "cast"]
+
+
+[messages.N2403]
+severity = "error"
+phase = "semantic"
+slug = "unknown_callable_target"
+title = "Unknown callable target"
+summary = "A call targets a symbol or member chain that cannot be resolved as callable."
+default_message = "Unknown callable target: {target}."
+parameters = ["target"]
+recovery = "Check that the target exists, is visible in scope, and refers to a callable symbol."
+tags = ["semantic", "call", "resolution"]
+
+[messages.N2204]
+severity = "error"
+phase = "semantic"
+slug = "use_before_initialization"
+title = "Use before initialization"
+summary = "A variable is read before it has been initialized."
+default_message = "Variable is used before it is initialized: {name}."
+parameters = ["name"]
+recovery = "Initialize the variable on every control-flow path before reading it."
+tags = ["semantic", "flow", "initialization"]

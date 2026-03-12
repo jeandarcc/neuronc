@@ -1,0 +1,67 @@
+#version 450
+
+layout(local_size_x = 256, local_size_y = 1, local_size_z = 1) in;
+
+layout(push_constant) uniform Params {
+  uint n;
+  uint op0;
+  uint op1;
+  uint temp_is_lhs;
+} params;
+
+layout(std430, set = 0, binding = 0) readonly buffer InA {
+  float a[];
+};
+layout(std430, set = 0, binding = 1) readonly buffer InB {
+  float b[];
+};
+layout(std430, set = 0, binding = 2) readonly buffer InC {
+  float c[];
+};
+layout(std430, set = 0, binding = 3) readonly buffer InD {
+  float d[];
+};
+layout(std430, set = 0, binding = 4) readonly buffer InE {
+  float e[];
+};
+layout(std430, set = 0, binding = 5) writeonly buffer OutTmp {
+  float tmp[];
+};
+layout(std430, set = 0, binding = 6) writeonly buffer OutMid {
+  float mid[];
+};
+layout(std430, set = 0, binding = 7) writeonly buffer OutFinal {
+  float outv[];
+};
+
+float apply_op(float lhs, float rhs, uint op) {
+  if (op == 0u) {
+    return lhs + rhs;
+  }
+  if (op == 1u) {
+    return lhs - rhs;
+  }
+  if (op == 2u) {
+    return lhs * rhs;
+  }
+  if (op == 3u) {
+    return lhs / rhs;
+  }
+  return lhs + rhs;
+}
+
+void main() {
+  uint i = gl_GlobalInvocationID.x;
+  if (i >= params.n) {
+    return;
+  }
+
+  float t0 = apply_op(a[i], b[i], params.op0);
+  tmp[i] = t0;
+
+  float cval = c[i];
+  float t1 = params.temp_is_lhs != 0u ? apply_op(t0, cval, params.op1)
+                                      : apply_op(cval, t0, params.op1);
+  mid[i] = t1;
+  outv[i] = fma(t1, d[i], e[i]);
+}

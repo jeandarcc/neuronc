@@ -1,0 +1,34 @@
+root = true
+
+[*]
+indent_style = space
+indent_size = 4
+end_of_line = lf
+charset = utf-8
+trim_trailing_whitespace = true
+insert_final_newline = true
+
+[*.{cpp,c,h}]
+indent_size = 4
+
+[*.{kt,kts}]
+indent_size = 4
+
+[*.{ts,js,json}]
+indent_size = 2
+
+[*.{toml,yml,yaml}]
+indent_size = 2
+
+[*.md]
+trim_trailing_whitespace = false
+
+[CMakeLists.txt,*.cmake]
+indent_size = 4
+
+[*.{bat,ps1}]
+end_of_line = crlf
+indent_size = 4
+
+[Makefile]
+indent_style = tab

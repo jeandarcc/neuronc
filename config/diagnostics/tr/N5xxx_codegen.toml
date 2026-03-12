@@ -1,0 +1,92 @@
+[catalog]
+locale = "tr"
+bucket = "N5xxx_codegen"
+display_name = "Codegen teshisleri"
+inherits_contract = "N5xxx_codegen"
+
+[contracts]
+allowed_exact_codes = []
+allowed_n_range = "5000-5099"
+allowed_w_range = "5000-5099"
+future_addition_rule = "Bu dosyada yalnizca N5000-N5099 ve W5000-W5099 yer alabilir."
+
+[messages.N5001]
+severity = "error"
+phase = "codegen"
+slug = "unsupported_lowering"
+title = "Desteklenmeyen lowering"
+summary = "Kaynak program semantik olarak gecerli, ancak mevcut backend yapilardan birini lower edemiyor."
+default_message = "Bu kaynak yapisi secilen backend tarafindan lower edilemiyor."
+recovery = "Yapiyi yeniden yazin, backend degistirin veya eksik ozellik icin lowering destegi ekleyin."
+tags = ["codegen", "lowering", "backend"]
+
+[messages.N5002]
+severity = "error"
+phase = "runtime"
+slug = "runtime_trap"
+title = "Runtime trap"
+summary = "Calisma, sessiz bir cokus yerine yapilandirilmis bir teshis olarak yuzeye cikmasi gereken bir hata noktasina ulasti."
+default_message = "Program runtime sirasinda trap verdi."
+recovery = "Basarisiz islemi inceleyin ve kaynak seviyesinde koruyucular ekleyin veya lowering hatasini duzeltin."
+tags = ["runtime", "trap", "execution"]
+
+[messages.N5003]
+severity = "error"
+phase = "codegen"
+slug = "target_backend_not_available"
+title = "Hedef backend kullanilabilir degil"
+summary = "Istenen kaynak ozelligi, mevcut arac zincirinde veya ortamda bulunmayan bir backend gerektiriyor."
+default_message = "Gerekli backend kullanilabilir degil."
+recovery = "Backend'i etkinlestirin, bagimliliklarini kurun veya desteklenen bir yurutme yolu secin."
+tags = ["codegen", "backend", "environment"]
+
+[messages.N5004]
+severity = "error"
+phase = "codegen"
+slug = "abi_layout_mismatch"
+title = "ABI veya yerlesim uyusmazligi"
+summary = "Uretilen kod ile runtime beklentileri bir degerin yerlesimi veya cagri sozlesmesinde anlasamiyor."
+default_message = "Uretilen ABI veya veri yerlesimi runtime beklentileri ile eslesmiyor."
+recovery = "Etkilenen tip icin kaynak sozlesmesini, runtime sozlesmesini ve backend lowering adimini hizalayin."
+tags = ["codegen", "abi", "layout"]
+
+[messages.N5005]
+severity = "error"
+phase = "link"
+slug = "external_symbol_not_resolved"
+title = "Harici sembol cozumlenemedi"
+summary = "Code generation basarili oldu, ancak calisma icin gerekli bir harici sembol cozumlenemedi."
+default_message = "Gerekli harici sembol cozumlenemedi."
+recovery = "Eksik kutuphaneyi baglayin, eksik sembolu export edin veya cozumlenemeyen bagimliligi kaldirin."
+tags = ["codegen", "link", "extern"]
+
+[messages.N5006]
+severity = "error"
+phase = "runtime"
+slug = "runtime_feature_contract_violated"
+title = "Runtime ozellik sozlesmesi ihlal edildi"
+summary = "Derlenmis program, kaynak seviyesindeki yurutme sozlesmesini ihlal eden bir runtime yetenek sinirina ulasti."
+default_message = "Runtime ortami bu programin gerektirdigi ozellik sozlesmesini saglamiyor."
+recovery = "Runtime ortamini ayarlayin veya ozelligi desteklenen bir yurutme yolunun arkasina alin."
+tags = ["runtime", "feature", "environment"]
+
+[messages.W5001]
+severity = "warning"
+phase = "codegen"
+slug = "backend_fallback_path_selected"
+title = "Backend fallback yolu secildi"
+summary = "Yurutme dogru kaldi, ancak tercih edilen backend yolu kullanilamadi ve fallback yolu secildi."
+default_message = "Tercih edilen backend yolu kullanilamadi; fallback yolu kullaniliyor."
+recovery = "Beklenen performans veya ozellik profili gerekiyorsa tercih edilen backend'i etkinlestirin."
+tags = ["warning", "codegen", "backend", "fallback"]
+
+[messages.W5002]
+severity = "warning"
+phase = "codegen"
+slug = "optimization_disabled_for_correctness"
+title = "Dogruluk icin optimizasyon kapatildi"
+summary = "Potansiyel olarak gecerli bir optimizasyon, program dogrulugunu korumak icin bilerek atlandi."
+default_message = "Dogrulugu korumak icin optimizasyon devre disi birakildi."
+recovery = "Performans incelemiyorsaniz islem gerekmez; gerekiyorsa optimizasyonu engelleyen yapiyi inceleyin."
+tags = ["warning", "codegen", "optimization"]
+

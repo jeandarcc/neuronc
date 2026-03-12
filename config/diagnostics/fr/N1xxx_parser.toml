@@ -1,0 +1,143 @@
+[catalog]
+locale = "fr"
+bucket = "N1xxx_parser"
+display_name = "Diagnostics de l'analyseur"
+inherits_contract = "N1xxx_parser"
+
+[contracts]
+allowed_exact_codes = ["NPP1001", "NPP1002"]
+allowed_n_range = "1000-1599"
+allowed_w_range = "1000-1099"
+future_addition_rule = "Seuls les codes N1000-N1599, W1000-W1099 et les codes d'analyseur hérités exacts listés ci-dessus peuvent apparaître dans ce fichier."
+
+[messages.NPP1001]
+severity = "error"
+phase = "lexer"
+slug = "legacy_lexer_error"
+title = "Erreur de l'analyseur lexical (héritée)"
+summary = "Bac de compatibilité pour les échecs de segmentation en jetons jusqu'à ce que des codes lexicaux plus précis soient connectés."
+default_message = "La source contient un jeton invalide, un littéral mal formé ou une séquence de caractères illégale."
+recovery = "Inspectez le premier caractère invalide ou le littéral mal formé près de l'emplacement rapporté."
+tags = ["legacy", "lexer", "fallback"]
+
+[messages.NPP1002]
+severity = "error"
+phase = "parser"
+slug = "legacy_parser_error"
+title = "Erreur de l'analyseur syntaxique (héritée)"
+summary = "Bac de compatibilité pour les échecs d'analyse jusqu'à ce que des codes d'analyseur plus précis soient connectés."
+default_message = "La source ne correspond pas à la grammaire Neuron++ attendue."
+recovery = "Inspectez la limite du jeton rapporté, l'appariement des délimiteurs et la forme de déclaration ou d'instruction attendue."
+tags = ["legacy", "parser", "fallback"]
+
+[messages.N1001]
+severity = "error"
+phase = "lexer"
+slug = "invalid_character"
+title = "Caractère invalide"
+summary = "L'analyseur lexical a rencontré un caractère qui n'est pas valide dans le contexte source actuel."
+default_message = "Un caractère invalide a été trouvé dans la source."
+recovery = "Supprimez le caractère ou remplacez-le par une syntaxe Neuron++ valide."
+tags = ["lexer", "character", "syntax"]
+
+[messages.N1002]
+severity = "error"
+phase = "lexer"
+slug = "unterminated_string_literal"
+title = "Littéral de chaîne non terminé"
+summary = "Un littéral de chaîne a commencé mais n'a pas été fermé avant la fin de la ligne ou du fichier."
+default_message = "Il manque la guillemet de fermeture au littéral de chaîne."
+recovery = "Ajoutez la guillemet manquante ou échappez correctement les guillemets imbriquées."
+tags = ["lexer", "string", "literal"]
+
+[messages.N1101]
+severity = "error"
+phase = "parser"
+slug = "missing_expression_operand"
+title = "Opérande d'expression manquant"
+summary = "Un opérateur ou une forme d'expression apparaît sans l'opérande gauche ou droit requis."
+default_message = "Il manque un opérande à l'expression."
+recovery = "Ajoutez l'opérande manquant ou supprimez l'opérateur incomplet."
+tags = ["parser", "expression", "operand"]
+
+[messages.N1102]
+severity = "error"
+phase = "parser"
+slug = "unexpected_token_in_expression"
+title = "Jeton inattendu dans l'expression"
+summary = "L'analyseur a trouvé un jeton qui ne peut pas continuer l'expression actuelle."
+default_message = "Jeton inattendu lors de l'analyse d'une expression."
+recovery = "Vérifiez le groupement, les séparateurs et la syntaxe postfixe près du jeton rapporté."
+tags = ["parser", "expression", "token"]
+
+[messages.N1201]
+severity = "error"
+phase = "parser"
+slug = "missing_statement_terminator"
+title = "Terminateur d'instruction manquant"
+summary = "Une limite d'instruction était attendue mais n'a pas été trouvée."
+default_message = "Il manque le terminateur attendu à l'instruction."
+recovery = "Ajoutez le point-virgule manquant ou réécrivez l'instruction dans une forme de bloc valide."
+tags = ["parser", "statement", "terminator"]
+
+[messages.N1301]
+severity = "error"
+phase = "parser"
+slug = "invalid_parameter_declaration"
+title = "Déclaration de paramètre invalide"
+summary = "Un paramètre de méthode ne correspond pas à la syntaxe de paramètre déclarée du langage."
+default_message = "La déclaration du paramètre est mal formée."
+recovery = "Utilisez la forme canonique `nom as Type` et séparez les paramètres par des virgules."
+tags = ["parser", "function", "parameter"]
+
+[messages.N1401]
+severity = "error"
+phase = "parser"
+slug = "malformed_type_annotation"
+title = "Annotation de type mal formée"
+summary = "Une annotation de type ou une liste d'arguments génériques est syntaxiquement incomplète ou mal formée."
+default_message = "L'annotation de type est mal formée."
+recovery = "Vérifiez les crochets génériques, les virgules, les deux-points et l'orthographe des types nullables ou pointeurs."
+tags = ["parser", "type", "generic"]
+
+[messages.N1501]
+severity = "error"
+phase = "parser"
+slug = "unexpected_end_of_file"
+title = "Fin de fichier inattendue"
+summary = "La source s'est terminée avant que l'analyseur ne puisse finir la construction actuelle."
+default_message = "La source s'est terminée avant que la construction actuelle ne soit fermée."
+recovery = "Ajoutez le délimiteur de fermeture manquant ou complétez la déclaration ou le bloc inachevé."
+tags = ["parser", "recovery", "eof"]
+
+[messages.W1001]
+severity = "warning"
+phase = "parser"
+slug = "recovered_missing_token"
+title = "L'analyseur a récupéré en insérant un jeton attendu"
+summary = "L'analyseur a continué après avoir supposé un jeton manquant."
+default_message = "L'analyseur a récupéré après avoir inféré un jeton manquant."
+recovery = "Fixez la syntaxe environnante pour qu'une récupération ne soit plus nécessaire."
+tags = ["warning", "parser", "recovery"]
+
+[messages.W1002]
+severity = "warning"
+phase = "parser"
+slug = "deprecated_syntax_accepted"
+title = "Syntaxe obsolète acceptée"
+summary = "L'analyseur a accepté une forme de syntaxe héritée qui devrait être migrée."
+default_message = "Une syntaxe obsolète a été acceptée pour des raisons de compatibilité."
+recovery = "Réécrivez la construction en utilisant la syntaxe canonique actuelle."
+tags = ["warning", "parser", "compatibility"]
+
+
+[messages.N1103]
+severity = "error"
+phase = "parser"
+slug = "unexpected_token"
+title = "Jeton inattendu"
+summary = "L'analyseur a rencontre un jeton non valide a cette position."
+default_message = "Jeton inattendu : '{token}'."
+parameters = ["token"]
+recovery = "Supprimez le jeton ou re ecrivez la syntaxe environnante pour qu'il soit valide a cette position."
+tags = ["parser", "token", "recovery"]

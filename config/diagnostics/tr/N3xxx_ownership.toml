@@ -1,0 +1,112 @@
+[catalog]
+locale = "tr"
+bucket = "N3xxx_ownership"
+display_name = "Sahiplik teshisleri"
+inherits_contract = "N3xxx_ownership"
+
+[contracts]
+allowed_exact_codes = []
+allowed_n_range = "3000-3299"
+allowed_w_range = "3000-3099"
+future_addition_rule = "Bu dosyada yalnizca N3000-N3299 ve W3000-W3099 yer alabilir."
+
+[messages.N3001]
+severity = "error"
+phase = "ownership"
+slug = "use_after_move"
+title = "Move sonrasi kullanim"
+summary = "Bir deger, sahipligi aktarildiktan sonra tekrar kullanildi."
+default_message = "Deger, sahipligi move edildikten sonra kullaniliyor."
+recovery = "Yeni sahibi kullanin, acik bir kopya olusturun veya ilk baglamayi tekrar baslatin."
+tags = ["ownership", "move", "lifetime"]
+
+[messages.N3002]
+severity = "error"
+phase = "ownership"
+slug = "double_move"
+title = "Cift move"
+summary = "Ayni sahip, yeniden baslatilmadan birden fazla kez move edildi."
+default_message = "Ayni deger durumundan sahiplik birden fazla kez move edilemez."
+recovery = "Degeri bir kez move edin veya ek move islemlerinden once yeniden baglayin."
+tags = ["ownership", "move", "duplicate"]
+
+[messages.N3003]
+severity = "error"
+phase = "ownership"
+slug = "invalid_move_source"
+title = "Gecersiz move kaynagi"
+summary = "Mevcut bicimde aktarimi desteklemeyen bir kaynaktan move deneniyor."
+default_message = "Sahiplik bu kaynaktan move edilemez."
+recovery = "Adlandirilmis bir sahipten move edin veya ifadeyi move destekleyen bir bicime cevirin."
+tags = ["ownership", "move", "source"]
+
+[messages.N3101]
+severity = "error"
+phase = "ownership"
+slug = "mutable_access_during_active_borrow"
+title = "Etkin borrow sirasinda yazilabilir erisim"
+summary = "Bir deger, cakisan bir borrow veya alias hala etkinken degistiriliyor."
+default_message = "Cakisan bir borrow etkinken deger degistirilemez."
+recovery = "Once borrow kapsamini sonlandirin veya cakisan erisimleri ortadan kaldiracak sekilde kodu yeniden duzenleyin."
+tags = ["ownership", "borrow", "mutation"]
+
+[messages.N3102]
+severity = "error"
+phase = "ownership"
+slug = "illegal_alias_use_after_transfer"
+title = "Aktarim sonrasi gecersiz alias kullanimi"
+summary = "Bir alias veya borrowed gorunum, bagli oldugu sahiplik durumundan daha uzun yasiyor."
+default_message = "Alias, ilk sahiplik durumu degistikten sonra kullanilamaz."
+recovery = "Bagimsiz bir kopya olusturun veya alias'i sahiplik aktarimindan once tuketin."
+tags = ["ownership", "alias", "move"]
+
+[messages.N3201]
+severity = "error"
+phase = "ownership"
+slug = "dangling_reference_return"
+title = "Sarkan referans dondurme"
+summary = "Bir fonksiyon, return aninda suresi bitecek bir depolamaya referans, alias veya pointer donduruyor."
+default_message = "Donen referans gosterdigi degerden daha uzun yasayacak."
+recovery = "Bunun yerine sahip olunan bir deger dondurun veya hala gecerli kalacak depolamaya referans dondurun."
+tags = ["ownership", "lifetime", "return"]
+
+[messages.N3202]
+severity = "error"
+phase = "ownership"
+slug = "escaping_borrow"
+title = "Kapsam disina kacmis borrow"
+summary = "Borrow edilen bir gorunum, sahip olunan depolamanin gecerli oldugu kapsamin disina cikiyor."
+default_message = "Borrow edilen deger gecerli yasam suresinin disina cikiyor."
+recovery = "Borrow'u gecerli kapsama lokal tutun veya sahip olunan bir kopya dondurun."
+tags = ["ownership", "borrow", "escape"]
+
+[messages.N3203]
+severity = "error"
+phase = "ownership"
+slug = "use_after_scope_end"
+title = "Kapsam sonu sonrasi kullanim"
+summary = "Referans benzeri bir deger, bagli oldugu depolama kapsam disina ciktiktan sonra kullaniliyor."
+default_message = "Deger, kaynak depolama omrunu tamamladiktan sonra kullaniliyor."
+recovery = "Referans omrunu kisaltin veya sahip olunan depolamanin omrunu uzatin."
+tags = ["ownership", "lifetime", "scope"]
+
+[messages.W3001]
+severity = "warning"
+phase = "ownership"
+slug = "needless_move"
+title = "Gereksiz move"
+summary = "Move islemi acikca yazilmis, ancak mevcut baglamda dogruluk veya performans kazanci getirmiyor."
+default_message = "Burada move gerekli degil."
+recovery = "Proje niyetini belirtmek icin korunmuyorsa move ifadesini kaldirin."
+tags = ["warning", "ownership", "move"]
+
+[messages.W3002]
+severity = "warning"
+phase = "ownership"
+slug = "suspicious_alias_chain"
+title = "Supheli alias zinciri"
+summary = "Uzun bir alias zinciri yasal olabilir, ancak sahiplik ve mutasyon davranisini anlamayi zorlastirir."
+default_message = "Alias zinciri yasal, ancak akil yurutmesi zor."
+recovery = "Okunabilirlik onemliyse daha kisa alias omurleri veya acik kopyalar tercih edin."
+tags = ["warning", "ownership", "alias"]
+

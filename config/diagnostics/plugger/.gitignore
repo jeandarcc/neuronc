@@ -1,0 +1,5 @@
+# Ignore temporary templates and backups for the diagnostics plugger
+pending/
+backups/
+__pycache__/
+*.done

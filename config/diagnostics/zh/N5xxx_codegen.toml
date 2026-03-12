@@ -1,0 +1,92 @@
+[catalog]
+locale = "zh"
+bucket = "N5xxx_codegen"
+display_name = "代码生成诊断"
+inherits_contract = "N5xxx_codegen"
+
+[contracts]
+allowed_exact_codes = []
+allowed_n_range = "5000-5099"
+allowed_w_range = "5000-5099"
+future_addition_rule = "Only N5000-N5099 and W5000-W5099 may appear in this file."
+
+[messages.N5001]
+severity = "error"
+phase = "codegen"
+slug = "unsupported_lowering"
+title = "不支持的降级 (Lowering)"
+summary = "源程序在语义上有效，但当前的后端无法降低其构造之一。"
+default_message = "所选后端无法降低此源构造。"
+recovery = "重写构造、更改后端或为缺少的功能实现降级支持。"
+tags = ["codegen", "lowering", "backend"]
+
+[messages.N5002]
+severity = "error"
+phase = "runtime"
+slug = "runtime_trap"
+title = "运行时陷阱"
+summary = "执行达到了应该以结构化诊断形式呈现而不是静默崩溃的运行时失败。"
+default_message = "程序在运行时触发了陷阱。"
+recovery = "检查失败的操作并添加源级防护或修复降级错误。"
+tags = ["runtime", "trap", "execution"]
+
+[messages.N5003]
+severity = "error"
+phase = "codegen"
+slug = "target_backend_not_available"
+title = "目标后端不可用"
+summary = "请求的源功能需要当前工具链或环境中不可用的后端。"
+default_message = "所需的后端不可用。"
+recovery = "启用后端、安装其依赖项或选择受支持的执行路径。"
+tags = ["codegen", "backend", "environment"]
+
+[messages.N5004]
+severity = "error"
+phase = "codegen"
+slug = "abi_layout_mismatch"
+title = "ABI 或布局不匹配"
+summary = "生成的代码和运行时预期在值的布局或调用契约上不一致。"
+default_message = "生成的 ABI 或数据布局与运行时预期不匹配。"
+recovery = "对齐受影响类型的源契约、运行时契约和后端降级。"
+tags = ["codegen", "abi", "layout"]
+
+[messages.N5005]
+severity = "error"
+phase = "link"
+slug = "external_symbol_not_resolved"
+title = "外部符号未解析"
+summary = "代码生成成功，但无法解析执行所需的外部符号。"
+default_message = "无法解析所需的外部符号。"
+recovery = "链接缺少的库、导出缺少的符号或移除未解析的依赖关系。"
+tags = ["codegen", "link", "extern"]
+
+[messages.N5006]
+severity = "error"
+phase = "runtime"
+slug = "runtime_feature_contract_violated"
+title = "运行时功能契约被违反"
+summary = "编译后的程序达到了违反源级执行契约的运行时能力边界。"
+default_message = "运行时环境不满足此程序所需的功能契约。"
+recovery = "调整运行时环境或将功能置于受支持的执行路径之后。"
+tags = ["runtime", "feature", "environment"]
+
+[messages.W5001]
+severity = "warning"
+phase = "codegen"
+slug = "backend_fallback_path_selected"
+title = "已选择后端备用路径"
+summary = "执行保持正确，但首选后端路径不可用，因此选择了备用路径。"
+default_message = "首选后端路径不可用；正在使用备用路径。"
+recovery = "如果您需要预期的性能或功能配置文件，请启用首选后端。"
+tags = ["warning", "codegen", "backend", "fallback"]
+
+[messages.W5002]
+severity = "warning"
+phase = "codegen"
+slug = "optimization_disabled_for_correctness"
+title = "为了正确性禁用了优化"
+summary = "为了保持程序的正确性，故意跳过了一个潜在有效的优化。"
+default_message = "为了保持正确性禁用了优化。"
+recovery = "除非您正在调查性能，否则无需执行任何操作；如果正在调查，请检查阻碍优化的构造。"
+tags = ["warning", "codegen", "optimization"]
+

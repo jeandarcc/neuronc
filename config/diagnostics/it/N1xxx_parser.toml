@@ -1,0 +1,143 @@
+[catalog]
+locale = "it"
+bucket = "N1xxx_parser"
+display_name = "Diagnostica del parser"
+inherits_contract = "N1xxx_parser"
+
+[contracts]
+allowed_exact_codes = ["NPP1001", "NPP1002"]
+allowed_n_range = "1000-1599"
+allowed_w_range = "1000-1099"
+future_addition_rule = "In questo file possono apparire solo N1000-N1599, W1000-W1099 e gli esatti codici legacy del parser elencati sopra."
+
+[messages.NPP1001]
+severity = "error"
+phase = "lexer"
+slug = "legacy_lexer_error"
+title = "Errore del lexer (legacy)"
+summary = "Bucket di compatibilità per i fallimenti di tokenizzazione fino a quando non verranno collegati codici lexer più precisi."
+default_message = "Il sorgente contiene un token non valido, un letterale malformato o una sequenza di caratteri illegale."
+recovery = "Ispezionare il primo carattere non valido o il letterale malformato vicino alla posizione riportata."
+tags = ["legacy", "lexer", "fallback"]
+
+[messages.NPP1002]
+severity = "error"
+phase = "parser"
+slug = "legacy_parser_error"
+title = "Errore del parser (legacy)"
+summary = "Bucket di compatibilità per i fallimenti del parsing fino a quando non verranno collegati codici del parser più precisi."
+default_message = "Il sorgente non corrisponde alla grammatica Neuron++ attesa."
+recovery = "Ispezionare il confine del token riportato, l'accoppiamento dei delimitatori e la forma della dichiarazione o dell'istruzione attesa."
+tags = ["legacy", "parser", "fallback"]
+
+[messages.N1001]
+severity = "error"
+phase = "lexer"
+slug = "invalid_character"
+title = "Carattere non valido"
+summary = "Il lexer ha incontrato un carattere che non è valido nel contesto sorgente attuale."
+default_message = "È stato trovato un carattere non valido nel sorgente."
+recovery = "Rimuovere il carattere o sostituirlo con una sintassi Neuron++ valida."
+tags = ["lexer", "character", "syntax"]
+
+[messages.N1002]
+severity = "error"
+phase = "lexer"
+slug = "unterminated_string_literal"
+title = "Letterale stringa non terminato"
+summary = "Un letterale stringa è iniziato ma non è stato chiuso prima della fine della riga o del file."
+default_message = "Al letterale stringa manca la virgoletta di chiusura."
+recovery = "Aggiungere la virgoletta mancante o eseguire correttamente l'escape delle virgolette incorporate."
+tags = ["lexer", "string", "literal"]
+
+[messages.N1101]
+severity = "error"
+phase = "parser"
+slug = "missing_expression_operand"
+title = "Operando dell'espressione mancante"
+summary = "Un operatore o una forma di espressione appare senza l'operando sinistro o destro richiesto."
+default_message = "All'espressione manca un operando."
+recovery = "Aggiungere l'operando mancante o rimuovere l'operatore incompleto."
+tags = ["parser", "expression", "operand"]
+
+[messages.N1102]
+severity = "error"
+phase = "parser"
+slug = "unexpected_token_in_expression"
+title = "Token inaspettato nell'espressione"
+summary = "Il parser ha trovato un token che non può continuare l'espressione attuale."
+default_message = "Token inaspettato durante il parsing di un'espressione."
+recovery = "Controllare il raggruppamento, i separatori e la sintassi postfix vicino al token riportato."
+tags = ["parser", "expression", "token"]
+
+[messages.N1201]
+severity = "error"
+phase = "parser"
+slug = "missing_statement_terminator"
+title = "Terminatore di istruzione mancante"
+summary = "Era atteso un confine di istruzione ma non è stato trovato."
+default_message = "All'istruzione manca il terminatore atteso."
+recovery = "Aggiungere il punto e virgola mancante o riscrivere l'istruzione in una forma di blocco valida."
+tags = ["parser", "statement", "terminator"]
+
+[messages.N1301]
+severity = "error"
+phase = "parser"
+slug = "invalid_parameter_declaration"
+title = "Dichiarazione del parametro non valida"
+summary = "Un parametro del metodo non corrisponde alla sintassi dei parametri dichiarata del linguaggio."
+default_message = "La dichiarazione del parametro è malformata."
+recovery = "Usare la forma canonica `nome as Type` e separare i parametri con virgole."
+tags = ["parser", "function", "parameter"]
+
+[messages.N1401]
+severity = "error"
+phase = "parser"
+slug = "malformed_type_annotation"
+title = "Annotazione del tipo malformata"
+summary = "Una annotazione del tipo o una lista di argomenti generici è sintatticamente incompleta o malformata."
+default_message = "L'annotazione del tipo è malformata."
+recovery = "Controllare le parentesi generiche, le virgole, i due punti e l'ortografia dei tipi nullable o puntatore."
+tags = ["parser", "type", "generic"]
+
+[messages.N1501]
+severity = "error"
+phase = "parser"
+slug = "unexpected_end_of_file"
+title = "Fine del file inaspettata"
+summary = "Il sorgente è terminato prima che il parser potesse terminare il costrutto attuale."
+default_message = "Il sorgente è terminato prima che il costrutto attuale fosse chiuso."
+recovery = "Aggiungere il delimitatore di chiusura mancante o completare la dichiarazione o il blocco incompiuto."
+tags = ["parser", "recovery", "eof"]
+
+[messages.W1001]
+severity = "warning"
+phase = "parser"
+slug = "recovered_missing_token"
+title = "Il parser si è ripreso inserendo un token atteso"
+summary = "Il parser ha continuato dopo aver ipotizzato un token mancante."
+default_message = "Il parser si è ripreso dopo aver inferito un token mancante."
+recovery = "Correggere la sintassi circostante in modo che la ripresa non sia più richiesta."
+tags = ["warning", "parser", "recovery"]
+
+[messages.W1002]
+severity = "warning"
+phase = "parser"
+slug = "deprecated_syntax_accepted"
+title = "Sintassi deprecata accettata"
+summary = "Il parser ha accettato una forma di sintassi legacy che dovrebbe essere migrata."
+default_message = "La sintassi deprecata è stata accettata per compatibilità."
+recovery = "Riscrivere il costrutto usando l'attuale sintassi canonica."
+tags = ["warning", "parser", "compatibility"]
+
+
+[messages.N1103]
+severity = "error"
+phase = "parser"
+slug = "unexpected_token"
+title = "Token inatteso"
+summary = "Il parser ha incontrato un token non valido nella posizione corrente."
+default_message = "Token inatteso: '{token}'."
+parameters = ["token"]
+recovery = "Rimuovi il token o riscrivi la sintassi circostante in modo che sia valida in questa posizione."
+tags = ["parser", "token", "recovery"]

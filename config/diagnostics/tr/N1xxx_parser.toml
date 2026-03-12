@@ -1,0 +1,143 @@
+[catalog]
+locale = "tr"
+bucket = "N1xxx_parser"
+display_name = "Parser teshisleri"
+inherits_contract = "N1xxx_parser"
+
+[contracts]
+allowed_exact_codes = ["NPP1001", "NPP1002"]
+allowed_n_range = "1000-1599"
+allowed_w_range = "1000-1099"
+future_addition_rule = "Bu dosyada yalnizca N1000-N1599, W1000-W1099 ve yukarida listelenen tam eski parser kodlari yer alabilir."
+
+[messages.NPP1001]
+severity = "error"
+phase = "lexer"
+slug = "legacy_lexer_error"
+title = "Eski lexer hatasi"
+summary = "Daha ince taneli lexer kodlari baglanana kadar tokenlestirme hatalari icin uyumluluk kovasidir."
+default_message = "Kaynak gecersiz bir token, bozuk bir literal veya gecersiz bir karakter dizisi iceriyor."
+recovery = "Bildirilen konum civarindaki ilk gecersiz karakteri veya bozuk literali inceleyin."
+tags = ["legacy", "lexer", "fallback"]
+
+[messages.NPP1002]
+severity = "error"
+phase = "parser"
+slug = "legacy_parser_error"
+title = "Eski parser hatasi"
+summary = "Daha ince taneli parser kodlari baglanana kadar parse hatalari icin uyumluluk kovasidir."
+default_message = "Kaynak beklenen Neuron++ dilbilgisi ile eslesmiyor."
+recovery = "Bildirilen token sinirini, ayirici eslesmelerini ve beklenen ifade veya bildirim bicimini inceleyin."
+tags = ["legacy", "parser", "fallback"]
+
+[messages.N1001]
+severity = "error"
+phase = "lexer"
+slug = "invalid_character"
+title = "Gecersiz karakter"
+summary = "Lexer mevcut kaynak baglaminda gecerli olmayan bir karakter ile karsilasti."
+default_message = "Kaynakta gecersiz bir karakter bulundu."
+recovery = "Karakteri kaldirin veya gecerli Neuron++ sozdizimi ile degistirin."
+tags = ["lexer", "character", "syntax"]
+
+[messages.N1002]
+severity = "error"
+phase = "lexer"
+slug = "unterminated_string_literal"
+title = "Kapatilmamis string literali"
+summary = "Bir string literali basladi ancak satir veya dosya bitmeden kapatilamadi."
+default_message = "String literali kapanis tirnagini eksik."
+recovery = "Eksik tirnagi ekleyin veya icteki tirnaklari dogru sekilde kacislayin."
+tags = ["lexer", "string", "literal"]
+
+[messages.N1101]
+severity = "error"
+phase = "parser"
+slug = "missing_expression_operand"
+title = "Eksik ifade operand'i"
+summary = "Bir operator veya ifade bicimi gerekli sol veya sag operand olmadan gorunuyor."
+default_message = "Ifade bir operand eksik."
+recovery = "Eksik operand'i ekleyin veya tamamlanmamis operatoru kaldirin."
+tags = ["parser", "expression", "operand"]
+
+[messages.N1102]
+severity = "error"
+phase = "parser"
+slug = "unexpected_token_in_expression"
+title = "Ifade icinde beklenmeyen token"
+summary = "Parser mevcut ifadeyi surduremeyen bir token buldu."
+default_message = "Ifade parse edilirken beklenmeyen bir token bulundu."
+recovery = "Gruplama, ayiricilar ve postfix sozdizimini bildirilen token civarinda kontrol edin."
+tags = ["parser", "expression", "token"]
+
+[messages.N1201]
+severity = "error"
+phase = "parser"
+slug = "missing_statement_terminator"
+title = "Eksik ifade sonlandiricisi"
+summary = "Bir ifade siniri bekleniyordu ancak bulunamadi."
+default_message = "Ifade beklenen sonlandiriciyi icermiyor."
+recovery = "Eksik noktali virgulu ekleyin veya ifadeyi gecerli bir blok bicimine donusturun."
+tags = ["parser", "statement", "terminator"]
+
+[messages.N1301]
+severity = "error"
+phase = "parser"
+slug = "invalid_parameter_declaration"
+title = "Gecersiz parametre bildirimi"
+summary = "Bir metot parametresi dilin beklenen parametre sozdizimi ile eslesmiyor."
+default_message = "Parametre bildirimi bozuk."
+recovery = "Kanonik `ad as Tip` bicimini kullanin ve parametreleri virgul ile ayirin."
+tags = ["parser", "function", "parameter"]
+
+[messages.N1401]
+severity = "error"
+phase = "parser"
+slug = "malformed_type_annotation"
+title = "Bozuk tip bildirimi"
+summary = "Bir tip bildirimi veya generic arguman listesi sozdizimsel olarak eksik ya da bozuk."
+default_message = "Tip bildirimi bozuk."
+recovery = "Generic koseli parantezleri, virgulleri, iki noktalari ve nullable veya pointer yazimini kontrol edin."
+tags = ["parser", "type", "generic"]
+
+[messages.N1501]
+severity = "error"
+phase = "parser"
+slug = "unexpected_end_of_file"
+title = "Beklenmeyen dosya sonu"
+summary = "Kaynak, parser mevcut yapiyi bitirmeden sona erdi."
+default_message = "Mevcut yapi kapanmadan kaynak sona erdi."
+recovery = "Eksik kapanis ayiricisini ekleyin veya tamamlanmamis bildirim ya da blogu tamamlayin."
+tags = ["parser", "recovery", "eof"]
+
+[messages.W1001]
+severity = "warning"
+phase = "parser"
+slug = "recovered_missing_token"
+title = "Parser beklenen tokeni varsayarak toparlandi"
+summary = "Parser eksik bir token varsaydiktan sonra devam etti."
+default_message = "Parser eksik bir token cikarsayarak toparlandi."
+recovery = "Toparlanma gerekmemesi icin ilgili sozdizimini duzeltin."
+tags = ["warning", "parser", "recovery"]
+
+[messages.W1002]
+severity = "warning"
+phase = "parser"
+slug = "deprecated_syntax_accepted"
+title = "Kullanimdan kalkacak sozdizimi kabul edildi"
+summary = "Parser tasinmasi gereken eski bir sozdizimi bicimini kabul etti."
+default_message = "Eski sozdizimi uyumluluk icin kabul edildi."
+recovery = "Yapiyi guncel kanonik sozdizimi ile yeniden yazin."
+tags = ["warning", "parser", "compatibility"]
+
+
+[messages.N1103]
+severity = "error"
+phase = "parser"
+slug = "unexpected_token"
+title = "Beklenmeyen token"
+summary = "Parser mevcut konumda gecerli olmayan bir token ile karsilasti."
+default_message = "Beklenmeyen token: '{token}'."
+parameters = ["token"]
+recovery = "Tokeni kaldirin veya cevredeki sozdizimini bu konumda gecerli olacak sekilde yeniden yazin."
+tags = ["parser", "token", "recovery"]

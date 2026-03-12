@@ -1,0 +1,46 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - 'v*.*.*'
+
+jobs:
+  build-installer:
+    name: Build Installer & Upload Release Assets
+    runs-on: windows-latest
+
+    env:
+      LLVM_DIR: C:\msys64\mingw64\lib\cmake\llvm
+      NEURON_TOOLCHAIN_BIN: C:\msys64\mingw64\bin
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up MSYS2 + MinGW toolchain
+        uses: msys2/setup-msys2@v2
+        with:
+          msystem: MINGW64
+          install: >-
+            mingw-w64-x86_64-gcc
+            mingw-w64-x86_64-ninja
+            mingw-w64-x86_64-llvm
+            mingw-w64-x86_64-libffi
+            mingw-w64-x86_64-cmake
+
+      - name: Build
+        shell: cmd
+        run: scripts\build.bat
+
+      - name: Build Installer
+        shell: powershell
+        run: scripts\build_installer.ps1
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: |
+            installer/windows/*.exe
+            installer/windows/*.zip
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

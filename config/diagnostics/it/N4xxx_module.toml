@@ -1,0 +1,92 @@
+[catalog]
+locale = "it"
+bucket = "N4xxx_module"
+display_name = "Diagnostica del modulo"
+inherits_contract = "N4xxx_module"
+
+[contracts]
+allowed_exact_codes = ["NPP4001"]
+allowed_n_range = "4000-4099"
+allowed_w_range = "4000-4099"
+future_addition_rule = "In questo file possono apparire solo N4000-N4099, W4000-W4099 e l'esatto codice del modulo legacy elencato sopra."
+
+[messages.NPP4001]
+severity = "error"
+phase = "module"
+slug = "legacy_module_error"
+title = "Errore del modulo (legacy)"
+summary = "Bucket di compatibilità per i fallimenti nella risoluzione del modulo fino a quando non verranno collegati codici del modulo più precisi."
+default_message = "Un errore relativo al modulo ha impedito la compilazione."
+recovery = "Ispezionare le dichiarazioni del modulo, le importazioni, la configurazione dei moduli nativi e la struttura del progetto vicino alla posizione riportata."
+tags = ["legacy", "module", "fallback"]
+
+[messages.N4001]
+severity = "error"
+phase = "module"
+slug = "missing_module"
+title = "Modulo mancante"
+summary = "Il modulo richiesto non può essere trovato nel progetto attuale o nel set di moduli disponibili."
+default_message = "Non è stato possibile risolvere il modulo richiesto."
+recovery = "Aggiungere il modulo, correggere il nome o aggiornare la configurazione del progetto per rendere disponibile il modulo."
+tags = ["module", "resolution", "import"]
+
+[messages.N4002]
+severity = "error"
+phase = "module"
+slug = "duplicate_module_declaration"
+title = "Dichiarazione del modulo duplicata"
+summary = "Il sorgente dichiara lo stesso contesto del modulo più di una volta dove è consentita una sola dichiarazione."
+default_message = "Il modulo è dichiarato più di una volta."
+recovery = "Mantenere una singola dichiarazione canonica del modulo."
+tags = ["module", "duplicate", "declaration"]
+
+[messages.N4003]
+severity = "error"
+phase = "module"
+slug = "self_import_not_allowed"
+title = "Auto-importazione non consentita"
+summary = "Un file sorgente tenta di importare o dichiarare se stesso come confine di un modulo esterno."
+default_message = "Un file non può importare se stesso come dipendenza del modulo."
+recovery = "Rimuovere l'auto-importazione e fare affidamento direttamente sulle dichiarazioni del file stesso."
+tags = ["module", "self-import", "project-structure"]
+
+[messages.N4004]
+severity = "error"
+phase = "module"
+slug = "modulecpp_configuration_missing"
+title = "Configurazione ModuleCpp mancante"
+summary = "Esiste un'importazione modulecpp nel sorgente, ma manca la configurazione richiesta per il modulo nativo."
+default_message = "All'importazione ModuleCpp manca la configurazione richiesta."
+recovery = "Aggiungere il manifesto del modulo nativo e registrarlo nella configurazione del progetto."
+tags = ["module", "modulecpp", "config"]
+
+[messages.N4005]
+severity = "error"
+phase = "module"
+slug = "modulecpp_export_signature_mismatch"
+title = "Mancata corrispondenza della firma di esportazione ModuleCpp"
+summary = "Un'esportazione nativa configurata non corrisponde al contratto del tipo atteso dalla dichiarazione sorgente."
+default_message = "La firma di esportazione del modulo nativo non corrisponde al contratto del sorgente."
+recovery = "Allineare la dichiarazione sul lato sorgente e la firma di esportazione del manifesto nativo."
+tags = ["module", "modulecpp", "signature"]
+
+[messages.N4006]
+severity = "error"
+phase = "module"
+slug = "invalid_file_to_type_naming_contract"
+title = "Contratto di denominazione file-tipo non valido"
+summary = "Il progetto impone una regola di denominazione da nome-file-a-tipo e il sorgente attuale la viola."
+default_message = "Il nome del tipo dichiarato non corrisponde al contratto di denominazione del file richiesto."
+recovery = "Rinominate il file o il tipo dichiarato in modo che il contratto sia soddisfatto esattamente."
+tags = ["module", "naming", "project-structure"]
+
+[messages.W4001]
+severity = "warning"
+phase = "module"
+slug = "redundant_module_import"
+title = "Importazione del modulo ridondante"
+summary = "Un'importazione di modulo viene accettata ma non è necessaria perché il set di simboli è già disponibile."
+default_message = "L'importazione del modulo è ridondante."
+recovery = "Rimuovere l'importazione extra per mantenere le dipendenze esplicite e minime."
+tags = ["warning", "module", "import"]
+

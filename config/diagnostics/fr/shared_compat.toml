@@ -1,0 +1,60 @@
+[catalog]
+locale = "fr"
+bucket = "shared_compat"
+display_name = "Diagnostics de compatibilité partagés"
+inherits_contract = "shared_compat"
+
+[contracts]
+allowed_exact_codes = ["NPP0001", "NPP3001", "NPP9000", "NPP9001", "NPP9002"]
+future_addition_rule = "Seuls les codes de compatibilité exacts listés ci-dessus peuvent apparaître dans ce fichier."
+
+[messages.NPP0001]
+severity = "error"
+phase = "generic"
+slug = "legacy_generic_error"
+title = "Erreur générique du compilateur (héritée)"
+summary = "Bac de secours pour les erreurs du compilateur qui n'ont pas encore été assignées à une famille de diagnostic plus spécifique."
+default_message = "Le compilateur a échoué, mais aucune famille de diagnostic spécifique n'a encore été assignée à cette erreur."
+recovery = "Inspectez d'abord l'emplacement source rapporté, puis déplacez le diagnostic vers une famille spécifique lorsque l'implémentation deviendra plus précise."
+tags = ["legacy", "fallback", "generic"]
+
+[messages.NPP3001]
+severity = "error"
+phase = "config"
+slug = "legacy_project_configuration_error"
+title = "Erreur de configuration du projet (héritée)"
+summary = "Bac de compatibilité pour les échecs de configuration qui bloquent la compilation source ou l'exécution."
+default_message = "La configuration du projet est invalide ou incomplète pour l'opération source demandée."
+recovery = "Consultez neuron.toml, les paramètres du module et toute configuration de construction ou d'exécution requise près de l'emplacement rapporté."
+tags = ["legacy", "config", "fallback"]
+
+[messages.NPP9000]
+severity = "warning"
+phase = "generic"
+slug = "legacy_generic_warning"
+title = "Avertissement générique du compilateur (hérité)"
+summary = "Bac de secours pour les avertissements qui n'ont pas encore été assignés à une famille d'avertissements plus étroite."
+default_message = "Le compilateur a accepté le programme, mais a détecté un avertissement qui est toujours acheminé via le code de compatibilité générique."
+recovery = "Lisez le texte de l'avertissement et migrez-le vers une famille d'avertissement spécifique une fois que l'implémentation en exposera une."
+tags = ["legacy", "warning", "fallback"]
+
+[messages.NPP9001]
+severity = "warning"
+phase = "config"
+slug = "legacy_project_configuration_warning"
+title = "Avertissement de configuration du projet (hérité)"
+summary = "Bac de compatibilité pour les avertissements de configuration de projet non fatals."
+default_message = "La configuration du projet a été acceptée avec un avertissement."
+recovery = "Consultez le paramètre concerné et resserrez la configuration si un comportement déterministe est requis."
+tags = ["legacy", "warning", "config"]
+
+[messages.NPP9002]
+severity = "warning"
+phase = "semantic"
+slug = "unused_binding_warning"
+title = "Liaison inutilisée"
+summary = "Une liaison locale a été déclarée mais jamais utilisée."
+default_message = "La liaison déclarée n'est jamais lue."
+recovery = "Supprimez la liaison, utilisez-la ou documentez intentionnellement pourquoi elle doit rester inutilisée."
+tags = ["warning", "semantic", "unused", "lsp"]
+

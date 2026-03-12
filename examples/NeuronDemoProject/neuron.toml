@@ -1,0 +1,12 @@
+[project]
+name = "NeuronDemoProject"
+version = "0.1.0"
+
+[build]
+main = "src/Main.npp"
+build_dir = "build"
+optimize = "aggressive"
+emit_ir = "both"
+target_cpu = "native"
+
+[dependencies]

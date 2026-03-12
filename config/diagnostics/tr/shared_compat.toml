@@ -1,0 +1,60 @@
+[catalog]
+locale = "tr"
+bucket = "shared_compat"
+display_name = "Paylasilan uyumluluk teshisleri"
+inherits_contract = "shared_compat"
+
+[contracts]
+allowed_exact_codes = ["NPP0001", "NPP3001", "NPP9000", "NPP9001", "NPP9002"]
+future_addition_rule = "Bu dosyada yalnizca yukarida listelenen tam uyumluluk kodlari yer alabilir."
+
+[messages.NPP0001]
+severity = "error"
+phase = "generic"
+slug = "legacy_generic_error"
+title = "Eski genel derleyici hatasi"
+summary = "Daha ozel bir aileye tasinmamis derleyici hatalari icin yedek kovadir."
+default_message = "Derleyici basarisiz oldu, ancak bu hata henuz daha ozel bir teshis ailesine atanmis degil."
+recovery = "Once bildirilen kaynak konumunu inceleyin, sonra uygulama daha kesin hale geldiginde teshisi uygun aileye tasiyin."
+tags = ["legacy", "fallback", "generic"]
+
+[messages.NPP3001]
+severity = "error"
+phase = "config"
+slug = "legacy_project_configuration_error"
+title = "Eski proje yapilandirma hatasi"
+summary = "Kaynak derleme veya calistirma islemini engelleyen yapilandirma hatalari icin uyumluluk kovasidir."
+default_message = "Istenen kaynak islemi icin proje yapilandirmasi gecersiz veya eksik."
+recovery = "neuron.toml, modul ayarlari ve gerekli derleme veya calisma zamani yapilandirmalarini bildirilen konum civarinda inceleyin."
+tags = ["legacy", "config", "fallback"]
+
+[messages.NPP9000]
+severity = "warning"
+phase = "generic"
+slug = "legacy_generic_warning"
+title = "Eski genel derleyici uyarisi"
+summary = "Daha dar bir uyari ailesine tasinmamis uyarilar icin yedek kovadir."
+default_message = "Derleyici programi kabul etti, ancak uyari hala genel uyumluluk kodu uzerinden yonlendiriliyor."
+recovery = "Uyari metnini okuyun ve uygulama desteklediginde bunu daha ozel bir uyari ailesine tasiyin."
+tags = ["legacy", "warning", "fallback"]
+
+[messages.NPP9001]
+severity = "warning"
+phase = "config"
+slug = "legacy_project_configuration_warning"
+title = "Eski proje yapilandirma uyarisi"
+summary = "Olumcul olmayan proje yapilandirma uyarilari icin uyumluluk kovasidir."
+default_message = "Proje yapilandirmasi bir uyari ile kabul edildi."
+recovery = "Deterministik davranis gerekiyorsa uyarilan ayari gozden gecirin ve sikilastirin."
+tags = ["legacy", "warning", "config"]
+
+[messages.NPP9002]
+severity = "warning"
+phase = "semantic"
+slug = "unused_binding_warning"
+title = "Kullanilmayan baglama"
+summary = "Bir yerel baglama bildirildi ancak hic kullanilmadi."
+default_message = "Bildirilen baglama hic okunmuyor."
+recovery = "Baglamayi kaldirin, kullanin veya neden korunmasi gerektigini acikca belgeleyin."
+tags = ["warning", "semantic", "unused", "lsp"]
+

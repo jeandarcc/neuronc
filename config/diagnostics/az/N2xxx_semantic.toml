@@ -1,0 +1,185 @@
+[catalog]
+locale = "az"
+bucket = "N2xxx_semantic"
+display_name = "Semantik diaqnostika"
+inherits_contract = "N2xxx_semantic"
+
+[contracts]
+allowed_exact_codes = ["NPP2001"]
+allowed_n_range = "2000-2499"
+allowed_w_range = "2000-2099"
+future_addition_rule = "Bu faylda yalnız N2000-N2499, W2000-W2099 və yuxarıda sadalanan dəqiq köhnə semantik kod görünə bilər."
+
+[messages.NPP2001]
+severity = "error"
+phase = "semantic"
+slug = "legacy_semantic_error"
+title = "Semantik xəta (köhnə)"
+summary = "Daha dəqiq semantik kodlar qoşulana qədər semantik uğursuzluqlar üçün uyğunluq bölməsi."
+default_message = "Proqram sintaktik olaraq etibarlıdır, lakin semantik olaraq yanlışdır."
+recovery = "Bildirilən mövqe yaxınlığındakı tipləri, adları, generikləri, yükləmələri (overloads) və dəyər axınını yoxlayın."
+tags = ["legacy", "semantic", "fallback"]
+
+[messages.N2001]
+severity = "error"
+phase = "semantic"
+slug = "type_mismatch"
+title = "Tip uyğunsuzluğu"
+summary = "Bir tipdə olan dəyər başqa tip tələb olunan yerdə istifadə edilib."
+default_message = "Tələb olunan tip və təmin edilən dəyər arasında tip uyğunsuzluğu."
+recovery = "Mənbə ifadəsini dəyişdirin, aşkar bir cast əlavə edin və ya hədəf tipi tənzimləyin."
+tags = ["semantic", "types", "assignment"]
+
+[messages.N2002]
+severity = "error"
+phase = "semantic"
+slug = "invalid_operator_operand_pair"
+title = "Yanlış operator/operand cütlüyü"
+summary = "Operator onu birlikdə dəstəkləməyən operandlara tətbiq edilib."
+default_message = "Operator təmin edilən operand tiplərinə tətbiq edilə bilməz."
+recovery = "Uyğun operand tiplərindən istifadə edin və ya mövcud tiplər üçün təyin edilmiş operatoru seçin."
+tags = ["semantic", "operator", "types"]
+
+[messages.N2003]
+severity = "error"
+phase = "semantic"
+slug = "invalid_return_type"
+title = "Yanlış qaytarma tipi"
+summary = "Return bəyanatı elan edilmiş qaytarma tipi ilə uyğun gəlməyən bir dəyər yaradır."
+default_message = "Qaytarılan dəyər elan edilmiş qaytarma tipinə uyğun gəlmir."
+recovery = "Uyğun bir dəyər qaytarın və ya elan edilmiş qaytarma tipini dəyişdirin."
+tags = ["semantic", "return", "types"]
+
+[messages.N2101]
+severity = "error"
+phase = "semantic"
+slug = "ambiguous_type_inference"
+title = "Qeyri-müəyyən tip nəticəsi"
+summary = "Kompilyator mövcud kontekstdən unikal tip çıxara bilmədi."
+default_message = "Tip birmənalı şəkildə çıxarıla bilmir."
+recovery = "Aşkar tip annotasiyası əlavə edin və ya daha çox kontekst təmin etmək üçün ifadəni yenidən yazın."
+tags = ["semantic", "inference", "ambiguity"]
+
+[messages.N2102]
+severity = "error"
+phase = "semantic"
+slug = "conflicting_branch_inference"
+title = "Ziddiyyətli budaq nəticəsi"
+summary = "İdarəetmə axınının müxtəlif budaqları eyni dəyər üçün uyğunsuz çıxarılan tiplər müəyyən edir."
+default_message = "İdarəetmə axını budaqları arasında tip nəticəsi ziddiyyət təşkil edir."
+recovery = "Ümumi uyğun tipdən istifadə edin və ya hər budaq üçün ayrıca bağlamalar daxil edin."
+tags = ["semantic", "inference", "control-flow"]
+
+
+[messages.N2201]
+severity = "error"
+phase = "semantic"
+slug = "unknown_identifier"
+title = "Namelum identifikator"
+summary = "Istinad edilen simvol cari ehate dairesinde gorunmur."
+default_message = "Istinad edilen identifikator cari ehate dairesinde teyin edilmeyib: {name}."
+parameters = ["name"]
+recovery = "Identifikatoru elan edin, teleb olunan modulu import edin ve ya yazilisi duzeldin."
+tags = ["semantic", "scope", "identifier"]
+[messages.N2202]
+severity = "error"
+phase = "semantic"
+slug = "duplicate_symbol"
+title = "Təkrarlanan simvol"
+summary = "Eyni effektiv əhatə dairəsində iki bəyanat bir-biri ilə ziddiyyət təşkil edir."
+default_message = "Eyni adlı simvol artıq bu əhatə dairəsində təyin edilib."
+recovery = "Bəyanatlardan birini yenidən adlandırın və ya onu başqa əhatə dairəsinə köçürün."
+tags = ["semantic", "scope", "duplicate"]
+
+[messages.N2203]
+severity = "error"
+phase = "semantic"
+slug = "unknown_named_argument"
+title = "Naməlum adlandırılmış arqument"
+summary = "Zəng seçilmiş çağırıla bilən obyektin heç bir parametr adına uyğun gəlməyən adlandırılmış arqumentdən istifadə edir."
+default_message = "Adlandırılmış arqument heç bir elan edilmiş parametrə uyğun gəlmir."
+recovery = "Etibarlı parametr adından istifadə edin və ya etiketi silin."
+tags = ["semantic", "call", "named-arguments"]
+
+[messages.N2301]
+severity = "error"
+phase = "semantic"
+slug = "generic_arity_mismatch"
+title = "Generik ariti uyğunsuzluğu"
+summary = "Generik tip və ya çağırıla bilən obyekt yanlış sayda tip arqumenti alıb."
+default_message = "Generik arqumentlərin sayı bəyanata uyğun gəlmir."
+recovery = "Lazım olan generik arqumentlərin dəqiq sayını təmin edin."
+tags = ["semantic", "generics", "arity"]
+
+[messages.N2302]
+severity = "error"
+phase = "semantic"
+slug = "unsatisfied_generic_constraint"
+title = "Ödənilməyən generik məhdudiyyət"
+summary = "Generik arqument onun tip parametri üçün elan edilmiş məhdudiyyəti ödəmir."
+default_message = "Generik arqument tələb olunan məhdudiyyəti ödəmir."
+recovery = "Məhdudiyyəti ödəyən bir tipdən istifadə edin və ya generik elanı yumşaldın."
+tags = ["semantic", "generics", "constraint"]
+
+[messages.N2401]
+severity = "error"
+phase = "semantic"
+slug = "no_viable_overload"
+title = "Münasib yükləmə (overload) yoxdur"
+summary = "Yükləmə dəstindəki heç bir çağırıla bilən obyekt təmin edilən arqument siyahısını qəbul etmir."
+default_message = "Heç bir yükləmə təmin edilən arqumentlərlə uyğun gəlmir."
+recovery = "Arqument tiplərini, sayını və ya etiketlərini dəyişdirin və ya uyğun yükləmə əlavə edin."
+tags = ["semantic", "overload", "call"]
+
+[messages.N2402]
+severity = "error"
+phase = "semantic"
+slug = "ambiguous_overload"
+title = "Qeyri-müəyyən yükləmə"
+summary = "Birdən çox çağırıla bilən obyekt təmin edilən arqumentlərlə eyni dərəcədə yaxşı uyğun gəlir."
+default_message = "Zəng bir neçə yükləmə arasında qeyri-müəyyəndir."
+recovery = "Aşkar tiplər, cast-lar və ya daha konkret arqument siyahısı ilə zəngi birmənalılaşdırın."
+tags = ["semantic", "overload", "ambiguity"]
+
+[messages.W2001]
+severity = "warning"
+phase = "semantic"
+slug = "unreachable_code"
+title = "Əlçatmaz kod"
+summary = "Bəyanat icra edilə bilməz, çünki idarəetmə axını artıq dayanıb və ya ondan yan keçib."
+default_message = "Kod əlçatmazdır."
+recovery = "Ölü kodu silin və ya bəyanatın əlçatmaz olması üçün idarəetmə axını yenidən yazın."
+tags = ["warning", "semantic", "control-flow"]
+
+[messages.W2002]
+severity = "warning"
+phase = "semantic"
+slug = "redundant_cast"
+title = "Artıq cast"
+summary = "Cast və ya çevirmə addımı faktiki tipi dəyişmir."
+default_message = "Cast artıqdır."
+recovery = "Layihə konvensiyasına görə aydınlıq üçün saxlanılmadıqda lazımsız cast-ı silin."
+tags = ["warning", "semantic", "cast"]
+
+
+[messages.N2403]
+severity = "error"
+phase = "semantic"
+slug = "unknown_callable_target"
+title = "Namelum cagrilan hedef"
+summary = "Cagri cagrila bilen kimi hell olunmayan simvolu ve ya uzv zencirini hedefleyir."
+default_message = "Namelum cagrilan hedef: {target}."
+parameters = ["target"]
+recovery = "Hedefin movcud oldugunu, scopeda gorunduyunu ve cagrila bilen simvol oldugunu yoxlayin."
+tags = ["semantic", "call", "resolution"]
+
+[messages.N2204]
+severity = "error"
+phase = "semantic"
+slug = "use_before_initialization"
+title = "Baslatmadan evvel istifade"
+summary = "Deyisen basladilmazdan once oxunur."
+default_message = "Deyisen basladilmazdan once istifade olunur: {name}."
+parameters = ["name"]
+recovery = "Deyiseni oxumazdan once her idare axini yolunda basladin."
+tags = ["semantic", "flow", "initialization"]

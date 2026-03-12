@@ -1,0 +1,143 @@
+[catalog]
+locale = "ko"
+bucket = "N1xxx_parser"
+display_name = "파서 진단"
+inherits_contract = "N1xxx_parser"
+
+[contracts]
+allowed_exact_codes = ["NPP1001", "NPP1002"]
+allowed_n_range = "1000-1599"
+allowed_w_range = "1000-1099"
+future_addition_rule = "이 파일에는 N1000-N1599, W1000-W1099 및 위에서 나열된 정확한 기존 파서 코드만 나타날 수 있습니다."
+
+[messages.NPP1001]
+severity = "error"
+phase = "lexer"
+slug = "legacy_lexer_error"
+title = "렉서 오류 (기존)"
+summary = "더 정확한 렉서 코드가 연결될 때까지 토큰화 실패를 위한 호환성 버킷입니다."
+default_message = "소스에 유효하지 않은 토큰, 잘못된 형식의 리터럴 또는 잘못된 문자 시퀀스가 포함되어 있습니다."
+recovery = "보고된 위치 근처에서 첫 번째 잘못된 문자나 형식의 리터럴을 검사하십시오."
+tags = ["legacy", "lexer", "fallback"]
+
+[messages.NPP1002]
+severity = "error"
+phase = "parser"
+slug = "legacy_parser_error"
+title = "파서 오류 (기존)"
+summary = "더 정확한 파서 코드가 연결될 때까지 파싱 실패를 위한 호환성 버킷입니다."
+default_message = "소스가 기대되는 Neuron++ 문법과 일치하지 않습니다."
+recovery = "보고된 토큰 경계, 구분 기호 짝, 그리고 기대되는 선언 또는 문 형식을 검사하십시오."
+tags = ["legacy", "parser", "fallback"]
+
+[messages.N1001]
+severity = "error"
+phase = "lexer"
+slug = "invalid_character"
+title = "유효하지 않은 문자"
+summary = "렉서가 현재 소스 컨텍스트에서 유효하지 않은 문자를 만났습니다."
+default_message = "소스에서 유효하지 않은 문자가 발견되었습니다."
+recovery = "문자를 제거하거나 유효한 Neuron++ 구문으로 교체하십시오."
+tags = ["lexer", "character", "syntax"]
+
+[messages.N1002]
+severity = "error"
+phase = "lexer"
+slug = "unterminated_string_literal"
+title = "종료되지 않은 문자열 리터럴"
+summary = "문자열 리터럴이 시작되었지만 줄이나 파일이 끝나기 전에 닫히지 않았습니다."
+default_message = "문자열 리터럴에 닫는 따옴표가 누락되었습니다."
+recovery = "누락된 닫는 따옴표를 추가하거나 포함된 따옴표를 올바르게 이스케이프하십시오."
+tags = ["lexer", "string", "literal"]
+
+[messages.N1101]
+severity = "error"
+phase = "parser"
+slug = "missing_expression_operand"
+title = "표현식 피연산자 누락"
+summary = "연산자나 표현식 형식이 필요한 왼쪽 또는 오른쪽 피연산자 없이 나타났습니다."
+default_message = "표현식에 피연산자가 누락되었습니다."
+recovery = "누락된 피연산자를 추가하거나 불완전한 연산자를 제거하십시오."
+tags = ["parser", "expression", "operand"]
+
+[messages.N1102]
+severity = "error"
+phase = "parser"
+slug = "unexpected_token_in_expression"
+title = "표현식 내 예기치 않은 토큰"
+summary = "파서가 현재 표현식을 계속할 수 없는 토큰을 발견했습니다."
+default_message = "표현식을 파싱하는 중 예기치 않은 토큰이 발견되었습니다."
+recovery = "보고된 토큰 근처의 괄호 그룹화, 구분 기호 및 후위 구문을 확인하십시오."
+tags = ["parser", "expression", "token"]
+
+[messages.N1201]
+severity = "error"
+phase = "parser"
+slug = "missing_statement_terminator"
+title = "문 종료자 누락"
+summary = "문 경계가 예상되었지만 발견되지 않았습니다."
+default_message = "문에 예상되는 종료자가 누락되었습니다."
+recovery = "누락된 세미콜론을 추가하거나 문을 유효한 블록 형식으로 다시 작성하십시오."
+tags = ["parser", "statement", "terminator"]
+
+[messages.N1301]
+severity = "error"
+phase = "parser"
+slug = "invalid_parameter_declaration"
+title = "유효하지 않은 매개변수 선언"
+summary = "메설드 매개변수가 언어의 선언된 매개변수 구문과 일치하지 않습니다."
+default_message = "매개변수 선언 형식이 잘못되었습니다."
+recovery = "정규 형식인 `name as Type`을 사용하고 매개변수를 쉼표로 구분하십시오."
+tags = ["parser", "function", "parameter"]
+
+[messages.N1401]
+severity = "error"
+phase = "parser"
+slug = "malformed_type_annotation"
+title = "잘못된 형식의 타입 어노테이션"
+summary = "타입 어노테이션 또는 제네릭 인수 목록이 구문적으로 불완전하거나 형식이 잘못되었습니다."
+default_message = "타입 어노테이션 형식이 잘못되었습니다."
+recovery = "제네릭 괄호, 쉼표, 콜론 및 null 허용 또는 포인터 타입의 철자를 확인하십시오."
+tags = ["parser", "type", "generic"]
+
+[messages.N1501]
+severity = "error"
+phase = "parser"
+slug = "unexpected_end_of_file"
+title = "예기치 않은 파일 끝"
+summary = "파서가 현재 구조를 끝내기 전에 소스 파일이 종료되었습니다."
+default_message = "현재 구조가 닫히기 전에 소스 파일이 종료되었습니다."
+recovery = "누락된 닫는 구분 기호를 추가하거나 완료되지 않은 선언 또는 블록을 보완하십시오."
+tags = ["parser", "recovery", "eof"]
+
+[messages.W1001]
+severity = "warning"
+phase = "parser"
+slug = "recovered_missing_token"
+title = "예상되는 토큰을 삽입하여 파서가 복구됨"
+summary = "파서가 누락된 토큰을 가정한 후 계속 진행했습니다."
+default_message = "파서가 누락된 토큰을 추론한 후 복구되었습니다."
+recovery = "복구가 더 이상 필요하지 않도록 주변 구문을 수정하십시오."
+tags = ["warning", "parser", "recovery"]
+
+[messages.W1002]
+severity = "warning"
+phase = "parser"
+slug = "deprecated_syntax_accepted"
+title = "권장되지 않는 구문이 수락됨"
+summary = "파서가 마이그레이션해야 할 기존 구문 형식을 수락했습니다."
+default_message = "호환성을 위해 권장되지 않는 구문이 수락되었습니다."
+recovery = "현재 정규 구문을 사용하여 구조를 다시 작성하십시오."
+tags = ["warning", "parser", "compatibility"]
+
+
+[messages.N1103]
+severity = "error"
+phase = "parser"
+slug = "unexpected_token"
+title = "예기치 않은 토큰"
+summary = "파서가 현재 위치에서 유효하지 않은 토큰을 만났습니다."
+default_message = "예기치 않은 토큰: '{token}'."
+parameters = ["token"]
+recovery = "그 토큰을 제거하거나 이 위치에서 유효하도록 주변 구문을 다시 작성하십시오."
+tags = ["parser", "token", "recovery"]

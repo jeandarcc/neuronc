@@ -1,0 +1,112 @@
+[catalog]
+locale = "en"
+bucket = "N3xxx_ownership"
+display_name = "Ownership diagnostics"
+inherits_contract = "N3xxx_ownership"
+
+[contracts]
+allowed_exact_codes = []
+allowed_n_range = "3000-3299"
+allowed_w_range = "3000-3099"
+future_addition_rule = "Only N3000-N3299 and W3000-W3099 may appear in this file."
+
+[messages.N3001]
+severity = "error"
+phase = "ownership"
+slug = "use_after_move"
+title = "Use after move"
+summary = "A value was used after ownership had already been transferred away."
+default_message = "Value is used after its ownership was moved."
+recovery = "Use the new owner, make an explicit copy, or reinitialize the original binding before reuse."
+tags = ["ownership", "move", "lifetime"]
+
+[messages.N3002]
+severity = "error"
+phase = "ownership"
+slug = "double_move"
+title = "Double move"
+summary = "The same owner is moved more than once without being reinitialized."
+default_message = "Ownership cannot be moved more than once from the same value state."
+recovery = "Move the value once, or rebind it before any additional move."
+tags = ["ownership", "move", "duplicate"]
+
+[messages.N3003]
+severity = "error"
+phase = "ownership"
+slug = "invalid_move_source"
+title = "Invalid move source"
+summary = "A move was attempted from a source that does not support transfer in the current form."
+default_message = "Ownership cannot be moved from this source."
+recovery = "Move from a named owner, or rewrite the expression into a move-capable form."
+tags = ["ownership", "move", "source"]
+
+[messages.N3101]
+severity = "error"
+phase = "ownership"
+slug = "mutable_access_during_active_borrow"
+title = "Mutable access during active borrow"
+summary = "A value is mutated while a conflicting borrow or alias is still active."
+default_message = "Value cannot be mutated while a conflicting borrow is active."
+recovery = "End the borrow first, or restructure the code to avoid overlapping access."
+tags = ["ownership", "borrow", "mutation"]
+
+[messages.N3102]
+severity = "error"
+phase = "ownership"
+slug = "illegal_alias_use_after_transfer"
+title = "Illegal alias use after ownership transfer"
+summary = "An alias or borrowed view outlives the ownership state it depends on."
+default_message = "Alias cannot be used after the original ownership changed."
+recovery = "Create an independent copy or ensure the alias is consumed before ownership transfer."
+tags = ["ownership", "alias", "move"]
+
+[messages.N3201]
+severity = "error"
+phase = "ownership"
+slug = "dangling_reference_return"
+title = "Dangling reference return"
+summary = "A function attempts to return a reference, alias, or pointer to storage that will expire on return."
+default_message = "Returned reference would outlive the value it points to."
+recovery = "Return an owned value instead, or return a reference to storage that remains valid."
+tags = ["ownership", "lifetime", "return"]
+
+[messages.N3202]
+severity = "error"
+phase = "ownership"
+slug = "escaping_borrow"
+title = "Escaping borrow"
+summary = "A borrowed view escapes the scope in which the owned storage remains valid."
+default_message = "Borrowed value escapes its valid lifetime."
+recovery = "Keep the borrow local to the valid scope or return an owned copy."
+tags = ["ownership", "borrow", "escape"]
+
+[messages.N3203]
+severity = "error"
+phase = "ownership"
+slug = "use_after_scope_end"
+title = "Use after scope end"
+summary = "A reference-like value is used after the storage it depends on has gone out of scope."
+default_message = "Value is used after the source storage has expired."
+recovery = "Shorten the reference lifetime or extend the lifetime of the owned storage."
+tags = ["ownership", "lifetime", "scope"]
+
+[messages.W3001]
+severity = "warning"
+phase = "ownership"
+slug = "needless_move"
+title = "Needless move"
+summary = "A move operation is explicit but does not improve correctness or performance in the current context."
+default_message = "Move is unnecessary here."
+recovery = "Remove the move unless it documents intent that the project wants to preserve."
+tags = ["warning", "ownership", "move"]
+
+[messages.W3002]
+severity = "warning"
+phase = "ownership"
+slug = "suspicious_alias_chain"
+title = "Suspicious alias chain"
+summary = "A long alias chain may be legal but makes ownership and mutation behavior harder to reason about."
+default_message = "Alias chain is legal but difficult to reason about."
+recovery = "Prefer shorter alias lifetimes or explicit copies where readability matters."
+tags = ["warning", "ownership", "alias"]
+

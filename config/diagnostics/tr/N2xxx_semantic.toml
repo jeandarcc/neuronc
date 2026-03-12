@@ -1,0 +1,185 @@
+[catalog]
+locale = "tr"
+bucket = "N2xxx_semantic"
+display_name = "Semantik teshisler"
+inherits_contract = "N2xxx_semantic"
+
+[contracts]
+allowed_exact_codes = ["NPP2001"]
+allowed_n_range = "2000-2499"
+allowed_w_range = "2000-2099"
+future_addition_rule = "Bu dosyada yalnizca N2000-N2499, W2000-W2099 ve yukarida listelenen tam eski semantik kod yer alabilir."
+
+[messages.NPP2001]
+severity = "error"
+phase = "semantic"
+slug = "legacy_semantic_error"
+title = "Eski semantik hata"
+summary = "Daha ince taneli semantik kodlar baglanana kadar semantik hatalar icin uyumluluk kovasidir."
+default_message = "Program sozdizimsel olarak gecerli ancak semantik olarak gecersiz."
+recovery = "Bildirilen konum civarinda tipleri, isimleri, generics yapilarini, overload secimini ve deger akislarini inceleyin."
+tags = ["legacy", "semantic", "fallback"]
+
+[messages.N2001]
+severity = "error"
+phase = "semantic"
+slug = "type_mismatch"
+title = "Tip uyusmazligi"
+summary = "Bir tipteki deger, baska bir tipin gerektigi yerde kullanildi."
+default_message = "Gereken tip ile saglanan deger arasinda tip uyusmazligi var."
+recovery = "Kaynak ifadeyi degistirin, acik bir donusum ekleyin veya hedef tipi ayarlayin."
+tags = ["semantic", "types", "assignment"]
+
+[messages.N2002]
+severity = "error"
+phase = "semantic"
+slug = "invalid_operator_operand_pair"
+title = "Gecersiz operator operand cifti"
+summary = "Bir operator, birlikte desteklenmeyen operandlara uygulandi."
+default_message = "Operator verilen operand tiplerine uygulanamaz."
+recovery = "Uyumlu operand tipleri kullanin veya mevcut tipler icin tanimli bir operator secin."
+tags = ["semantic", "operator", "types"]
+
+[messages.N2003]
+severity = "error"
+phase = "semantic"
+slug = "invalid_return_type"
+title = "Gecersiz donus tipi"
+summary = "Bir return ifadesi, bildirilen donus tipi ile uyumsuz bir deger uretir."
+default_message = "Donen deger bildirilen donus tipi ile eslesmiyor."
+recovery = "Uyumlu bir deger dondurun veya bildirilen donus tipini degistirin."
+tags = ["semantic", "return", "types"]
+
+[messages.N2101]
+severity = "error"
+phase = "semantic"
+slug = "ambiguous_type_inference"
+title = "Belirsiz tip cikarimi"
+summary = "Derleyici mevcut baglamdan tekil bir tip cikaramadi."
+default_message = "Tip tek anlamli bicimde cikarilamadi."
+recovery = "Acik bir tip bildirimi ekleyin veya ifadeyi daha fazla baglam saglayacak sekilde yeniden yazin."
+tags = ["semantic", "inference", "ambiguity"]
+
+[messages.N2102]
+severity = "error"
+phase = "semantic"
+slug = "conflicting_branch_inference"
+title = "Cakisan dal tip cikarimi"
+summary = "Farkli kontrol akisi dallari ayni deger icin uyumsuz cikarilan tipler olusturuyor."
+default_message = "Tip cikarimi kontrol akisi dallari arasinda cakisiyor."
+recovery = "Ortak uyumlu bir tip kullanin veya dal basina ayri baglamalar tanimlayin."
+tags = ["semantic", "inference", "control-flow"]
+
+
+[messages.N2201]
+severity = "error"
+phase = "semantic"
+slug = "unknown_identifier"
+title = "Bilinmeyen tanimlayici"
+summary = "Basvurulan sembol mevcut kapsamda gorunur degil."
+default_message = "Basvurulan tanimlayici mevcut kapsamda tanimli degil: {name}."
+parameters = ["name"]
+recovery = "Tanimlayiciyi bildirin, gerekli modulu ice alin veya yazimi duzeltin."
+tags = ["semantic", "scope", "identifier"]
+[messages.N2202]
+severity = "error"
+phase = "semantic"
+slug = "duplicate_symbol"
+title = "Yinelenen sembol"
+summary = "Ayni etkin kapsam icindeki iki bildirim birbirleri ile cakisiyor."
+default_message = "Ayni isimde bir sembol bu kapsamda zaten tanimli."
+recovery = "Bildirimlerden birini yeniden adlandirin veya farkli bir kapsama tasiyin."
+tags = ["semantic", "scope", "duplicate"]
+
+[messages.N2203]
+severity = "error"
+phase = "semantic"
+slug = "unknown_named_argument"
+title = "Bilinmeyen adli arguman"
+summary = "Bir cagrida kullanilan adli arguman secilen cagrilabilirin hicbir parametre adi ile eslesmiyor."
+default_message = "Adli arguman, bildirilen hicbir parametre ile eslesmiyor."
+recovery = "Gecerli bir parametre adi kullanin veya etiketi kaldirin."
+tags = ["semantic", "call", "named-arguments"]
+
+[messages.N2301]
+severity = "error"
+phase = "semantic"
+slug = "generic_arity_mismatch"
+title = "Generic arity uyusmazligi"
+summary = "Bir generic tip veya cagrilabilir, yanlis sayida tip argumani aldi."
+default_message = "Generic arguman sayisi bildirim ile eslesmiyor."
+recovery = "Tam olarak gereken generic arguman sayisini verin."
+tags = ["semantic", "generics", "arity"]
+
+[messages.N2302]
+severity = "error"
+phase = "semantic"
+slug = "unsatisfied_generic_constraint"
+title = "Karsilanmayan generic kisit"
+summary = "Bir generic arguman, tip parametresi icin bildirilen kisiti karsilamiyor."
+default_message = "Generic arguman gereken kisiti karsilamiyor."
+recovery = "Kisiti saglayan bir tip kullanin veya generic bildirimi gevsetin."
+tags = ["semantic", "generics", "constraint"]
+
+[messages.N2401]
+severity = "error"
+phase = "semantic"
+slug = "no_viable_overload"
+title = "Uygun overload yok"
+summary = "Overload kumesindeki hicbir cagrilabilir verilen arguman listesini kabul etmiyor."
+default_message = "Verilen argumanlara uyan overload bulunamadi."
+recovery = "Arguman tiplerini, sayisini veya etiketlerini degistirin ya da eslesen bir overload ekleyin."
+tags = ["semantic", "overload", "call"]
+
+[messages.N2402]
+severity = "error"
+phase = "semantic"
+slug = "ambiguous_overload"
+title = "Belirsiz overload"
+summary = "Birden fazla cagrilabilir verilen argumanlara esit derecede uyuyor."
+default_message = "Cagri birden fazla overload arasinda belirsiz."
+recovery = "Acik tipler, cast'ler veya daha ozel bir arguman listesi ile cagriyi netlestirin."
+tags = ["semantic", "overload", "ambiguity"]
+
+[messages.W2001]
+severity = "warning"
+phase = "semantic"
+slug = "unreachable_code"
+title = "Ulasilamaz kod"
+summary = "Bir ifade, kontrol akisi zaten sonlandigi veya onu atladigi icin calisamaz."
+default_message = "Bu koda ulasilamaz."
+recovery = "Olu kodu kaldirin veya ifadeye ulasilabilecek sekilde kontrol akislarini yeniden yazin."
+tags = ["warning", "semantic", "control-flow"]
+
+[messages.W2002]
+severity = "warning"
+phase = "semantic"
+slug = "redundant_cast"
+title = "Gereksiz cast"
+summary = "Bir cast veya donusum adimi etkin tipi degistirmiyor."
+default_message = "Cast gereksiz."
+recovery = "Proje acikligi icin korunmuyorsa gereksiz cast'i kaldirin."
+tags = ["warning", "semantic", "cast"]
+
+
+[messages.N2403]
+severity = "error"
+phase = "semantic"
+slug = "unknown_callable_target"
+title = "Bilinmeyen cagrilabilir hedef"
+summary = "Bir cagri, cagrilabilir olarak cozumlenemeyen bir sembolu veya uye zincirini hedefliyor."
+default_message = "Bilinmeyen cagrilabilir hedef: {target}."
+parameters = ["target"]
+recovery = "Hedefin var oldugunu, kapsamda gorunur oldugunu ve cagrilabilir bir sembole karsilik geldigini kontrol edin."
+tags = ["semantic", "call", "resolution"]
+
+[messages.N2204]
+severity = "error"
+phase = "semantic"
+slug = "use_before_initialization"
+title = "Baslatmadan once kullanim"
+summary = "Bir degisken baslatilmadan once okunuyor."
+default_message = "Degisken baslatilmadan once kullaniliyor: {name}."
+parameters = ["name"]
+recovery = "Degisken okunmadan once her kontrol akisi yolunda baslatildigindan emin olun."
+tags = ["semantic", "flow", "initialization"]

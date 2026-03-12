@@ -1,0 +1,143 @@
+[catalog]
+locale = "ru"
+bucket = "N1xxx_parser"
+display_name = "Диагностики парсера"
+inherits_contract = "N1xxx_parser"
+
+[contracts]
+allowed_exact_codes = ["NPP1001", "NPP1002"]
+allowed_n_range = "1000-1599"
+allowed_w_range = "1000-1099"
+future_addition_rule = "В этом файле могут появляться только N1000-N1599, W1000-W1099 и указанные выше точные устаревшие коды парсера."
+
+[messages.NPP1001]
+severity = "error"
+phase = "lexer"
+slug = "legacy_lexer_error"
+title = "Ошибка лексера (устаревшая)"
+summary = "Хранилище совместимости для сбоев токенизации до внедрения более точных кодов лексера."
+default_message = "Исходный код содержит недопустимый токен, неверно сформированный литерал или незаконную последовательность символов."
+recovery = "Проверьте первый недопустимый символ или неверно сформированный литерал рядом с указанным местом."
+tags = ["legacy", "lexer", "fallback"]
+
+[messages.NPP1002]
+severity = "error"
+phase = "parser"
+slug = "legacy_parser_error"
+title = "Ошибка парсера (устаревшая)"
+summary = "Хранилище совместимости для сбоев парсинга до внедрения более точных кодов парсера."
+default_message = "Исходный код не соответствует ожидаемой грамматике Neuron++."
+recovery = "Проверьте границы токенов, парность скобок и ожидаемую форму объявления или инструкции."
+tags = ["legacy", "parser", "fallback"]
+
+[messages.N1001]
+severity = "error"
+phase = "lexer"
+slug = "invalid_character"
+title = "Недопустимый символ"
+summary = "Лексер встретил символ, который недопустим в текущем контексте исходного кода."
+default_message = "В исходном коде обнаружен недопустимый символ."
+recovery = "Удалите символ или замените его допустимой синтаксической конструкцией Neuron++."
+tags = ["lexer", "character", "syntax"]
+
+[messages.N1002]
+severity = "error"
+phase = "lexer"
+slug = "unterminated_string_literal"
+title = "Незавершенный строковый литерал"
+summary = "Строковый литерал был начат, но не закрыт до конца строки или файла."
+default_message = "У строкового литерала отсутствует закрывающая кавычка."
+recovery = "Добавьте недостающую кавычку или правильно экранируйте вложенные кавычки."
+tags = ["lexer", "string", "literal"]
+
+[messages.N1101]
+severity = "error"
+phase = "parser"
+slug = "missing_expression_operand"
+title = "Отсутствует операнд выражения"
+summary = "Оператор или форма выражения присутствует без необходимого левого или правого операнда."
+default_message = "В выражении отсутствует операнд."
+recovery = "Добавьте отсутствующий операнд или удалите незавершенный оператор."
+tags = ["parser", "expression", "operand"]
+
+[messages.N1102]
+severity = "error"
+phase = "parser"
+slug = "unexpected_token_in_expression"
+title = "Неожиданный токен в выражении"
+summary = "Парсер обнаружил токен, который не может продолжать текущее выражение."
+default_message = "Неожиданный токен при разборе выражения."
+recovery = "Проверьте группировку скобок, разделители и постфиксный синтаксис рядом с указанным токеном."
+tags = ["parser", "expression", "token"]
+
+[messages.N1201]
+severity = "error"
+phase = "parser"
+slug = "missing_statement_terminator"
+title = "Отсутствует завершитель инструкции"
+summary = "Ожидалась граница инструкции (точка с запятой), но она не найдена."
+default_message = "У инструкции отсутствует ожидаемый завершитель."
+recovery = "Добавьте недостающую точку с запятой или перепишите инструкцию в виде допустимого блока."
+tags = ["parser", "statement", "terminator"]
+
+[messages.N1301]
+severity = "error"
+phase = "parser"
+slug = "invalid_parameter_declaration"
+title = "Недопустимое объявление параметра"
+summary = "Параметр метода не соответствует синтаксису объявленных параметров языка."
+default_message = "Объявление параметра сформировано неверно."
+recovery = "Используйте каноническую форму `имя as Тип` и разделяйте параметры запятыми."
+tags = ["parser", "function", "parameter"]
+
+[messages.N1401]
+severity = "error"
+phase = "parser"
+slug = "malformed_type_annotation"
+title = "Неверная аннотация типа"
+summary = "Аннотация типа или список универсальных аргументов синтаксически неполны или неверно сформированы."
+default_message = "Аннотация типа сформирована неверно."
+recovery = "Проверьте угловые скобки, запятые, двоеточия и написание типов (nullable или указатели)."
+tags = ["parser", "type", "generic"]
+
+[messages.N1501]
+severity = "error"
+phase = "parser"
+slug = "unexpected_end_of_file"
+title = "Неожиданный конец файла"
+summary = "Исходный файл закончился до того, как парсер смог завершить текущую конструкцию."
+default_message = "Исходный файл закончился до закрытия текущей конструкции."
+recovery = "Добавьте недостающий закрывающий разделитель или завершите объявление или блок."
+tags = ["parser", "recovery", "eof"]
+
+[messages.W1001]
+severity = "warning"
+phase = "parser"
+slug = "recovered_missing_token"
+title = "Парсер восстановился, вставив ожидаемый токен"
+summary = "Парсер продолжил работу, предположив наличие пропущенного токена."
+default_message = "Парсер восстановился после вывода пропущенного токена."
+recovery = "Исправьте синтаксис, чтобы восстановление больше не требовалось."
+tags = ["warning", "parser", "recovery"]
+
+[messages.W1002]
+severity = "warning"
+phase = "parser"
+slug = "deprecated_syntax_accepted"
+title = "Принят устаревший синтаксис"
+summary = "Парсер принял форму устаревшего синтаксиса, который следует перенести на новый."
+default_message = "Устаревший синтаксис принят для совместимости."
+recovery = "Перепишите конструкцию, используя текущий канонический синтаксис."
+tags = ["warning", "parser", "compatibility"]
+
+
+[messages.N1103]
+severity = "error"
+phase = "parser"
+slug = "unexpected_token"
+title = "Неожиданный токен"
+summary = "Парсер встретил токен, который недопустим в текущей позиции."
+default_message = "Неожиданный токен: '{token}'."
+parameters = ["token"]
+recovery = "Удалите токен или перепишите окружающий синтаксис так, чтобы он был допустим в этой позиции."
+tags = ["parser", "token", "recovery"]

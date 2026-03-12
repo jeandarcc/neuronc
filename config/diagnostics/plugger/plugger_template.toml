@@ -1,0 +1,95 @@
+# Diagnostics Plugger — plugger_template.toml
+#
+# This is the template for adding or updating a diagnostic message across ALL locales.
+# Copy this file (plugger.py will do it for you), fill in every section, then run:
+#   python plugger.py apply pending/ADD_<CODE>.toml
+#
+# RULES:
+#   - All [locale.*] sections are REQUIRED. Do not remove any.
+#   - All four text fields (title, summary, default_message, recovery) must be non-empty.
+#   - slug must be snake_case (letters, digits, underscores only).
+#   - tags must be an array of strings.
+#   - severity must be exactly "error" or "warning".
+#   - Do not add keys not listed here.
+
+[meta]
+action   = "add"          # "add" or "update" — set by plugger.py, do not change
+code     = "NXXXX"        # e.g. N1099, W2003, NPP9002 — set by plugger.py
+bucket   = "BUCKET"       # set by plugger.py
+severity = "error"        # "error" | "warning"
+phase    = "parser"       # e.g. lexer, parser, semantic, ownership, module, codegen, runtime, link, config, generic
+slug     = "my_slug"      # snake_case, unique within bucket
+tags     = ["tag1", "tag2"]
+parameters = []
+
+[locale.en]
+title           = ""
+summary         = ""
+default_message = ""
+recovery        = ""
+
+[locale.tr]
+title           = ""
+summary         = ""
+default_message = ""
+recovery        = ""
+
+[locale.ja]
+title           = ""
+summary         = ""
+default_message = ""
+recovery        = ""
+
+[locale.de]
+title           = ""
+summary         = ""
+default_message = ""
+recovery        = ""
+
+[locale.zh]
+title           = ""
+summary         = ""
+default_message = ""
+recovery        = ""
+
+[locale.es]
+title           = ""
+summary         = ""
+default_message = ""
+recovery        = ""
+
+[locale.fr]
+title           = ""
+summary         = ""
+default_message = ""
+recovery        = ""
+
+[locale.it]
+title           = ""
+summary         = ""
+default_message = ""
+recovery        = ""
+
+[locale.la]
+title           = ""
+summary         = ""
+default_message = ""
+recovery        = ""
+
+[locale.ru]
+title           = ""
+summary         = ""
+default_message = ""
+recovery        = ""
+
+[locale.az]
+title           = ""
+summary         = ""
+default_message = ""
+recovery        = ""
+
+[locale.ko]
+title           = ""
+summary         = ""
+default_message = ""
+recovery        = ""

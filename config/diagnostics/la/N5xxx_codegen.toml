@@ -1,0 +1,92 @@
+[catalog]
+locale = "la"
+bucket = "N5xxx_codegen"
+display_name = "Diagnostica generationis codicis"
+inherits_contract = "N5xxx_codegen"
+
+[contracts]
+allowed_exact_codes = []
+allowed_n_range = "5000-5099"
+allowed_w_range = "5000-5099"
+future_addition_rule = "Solum N5000-N5099 et W5000-W5099 in hoc archivo apparere possunt."
+
+[messages.N5001]
+severity = "error"
+phase = "codegen"
+slug = "unsupported_lowering"
+title = "Demissio (lowering) non sustenta"
+summary = "Programma fontis semantice validum est, sed pars posterior (backend) praesens unam ex structuris eius demittere non potest."
+default_message = "Haec structura fontis a parte posteriore lecta demitti non potest."
+recovery = "Rescribe structuram, muta partem posteriorem, aut sustentationem demissionis pro functione deficiente implementa."
+tags = ["codegen", "lowering", "backend"]
+
+[messages.N5002]
+severity = "error"
+phase = "runtime"
+slug = "runtime_trap"
+title = "Laqueus (trap) executionis"
+summary = "Executio ad defectum pervenit qui ut diagnosticum structuratum praesentari debet loco ruinae tacitae."
+default_message = "Programma laqueum in executione incidit."
+recovery = "Inspice operationem quae defecit et adde praesidia in gradu fontis aut errorem demissionis corrige."
+tags = ["runtime", "trap", "execution"]
+
+[messages.N5003]
+severity = "error"
+phase = "codegen"
+slug = "target_backend_not_available"
+title = "Pars posterior destinata non parabilis"
+summary = "Functio fontis petita partem posteriorem requirit quae in apparatu instrumentorum aut ambiente praesenti non est parabilis."
+default_message = "Pars posterior requisita non est parabilis."
+recovery = "Habilita partem posteriorem, institue dependentias eius, aut viam executionis sustentatam elige."
+tags = ["codegen", "backend", "environment"]
+
+[messages.N5004]
+severity = "error"
+phase = "codegen"
+slug = "abi_layout_mismatch"
+title = "ABI aut dispositio (layout) non congruit"
+summary = "Codex generatus et exspectationes executionis de dispositione aut contractu appellationis valoris non consentiunt."
+default_message = "ABI generata aut dispositio datorum exspectationibus executionis non respondet."
+recovery = "Aequa contractum fontis, contractum executionis, et demissionem partis posterioris pro typo affecto."
+tags = ["codegen", "abi", "layout"]
+
+[messages.N5005]
+severity = "error"
+phase = "link"
+slug = "external_symbol_not_resolved"
+title = "Symbolum externum non resolutum"
+summary = "Generatio codicis successit, sed symbolum externum requisitum pro executione resolvi non potuit."
+default_message = "Symbolum externum requisitum resolvi non potuit."
+recovery = "Liga bibliothecam quae deest, exporta symbolum quod deest, aut dependentiam non resolutam remove."
+tags = ["codegen", "link", "extern"]
+
+[messages.N5006]
+severity = "error"
+phase = "runtime"
+slug = "runtime_feature_contract_violated"
+title = "Contractus functionis executionis violatus"
+summary = "Programma compilatum limitem capacitatis executionis attigit qui contractum executionis in gradu fontis violat."
+default_message = "Ambiens executionis contractui functionum ab hoc programmate requisito non satisfacit."
+recovery = "Accommoda ambiens executionis aut protege functionem post viam executionis sustentatam."
+tags = ["runtime", "feature", "environment"]
+
+[messages.W5001]
+severity = "warning"
+phase = "codegen"
+slug = "backend_fallback_path_selected"
+title = "Via subsidiaria partis posterioris lecta"
+summary = "Executio recte manet, sed via partis posterioris praelata non erat parabilis et via subsidiaria lecta est."
+default_message = "Via partis posterioris praelata non erat parabilis; via subsidiaria adhibetur."
+recovery = "Habilita partem posteriorem praelatam si efficientiam aut profillum functionum exspectatum requiris."
+tags = ["warning", "codegen", "backend", "fallback"]
+
+[messages.W5002]
+severity = "warning"
+phase = "codegen"
+slug = "optimization_disabled_for_correctness"
+title = "Optimizatio propter rectitudinem inhabilis"
+summary = "Optimizatio potentia valida de industria praetermissa est ut rectitudo programmatis servaretur."
+default_message = "Optimizatio inhabilis facta est ut rectitudo servaretur."
+recovery = "Nulla actio requiritur nisi efficientiam investigas; tunc inspice structuram quae optimizationem impedit."
+tags = ["warning", "codegen", "optimization"]
+

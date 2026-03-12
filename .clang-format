@@ -1,0 +1,13 @@
+---
+BasedOnStyle: LLVM
+Standard: Cpp20
+IndentWidth: 2
+TabWidth: 2
+UseTab: Never
+ColumnLimit: 100
+PointerAlignment: Right
+ReferenceAlignment: Pointer
+BreakBeforeBraces: Attach
+AllowShortIfStatementsOnASingleLine: Never
+SortIncludes: Never
+...

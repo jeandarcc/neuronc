@@ -1,0 +1,60 @@
+[catalog]
+locale = "it"
+bucket = "shared_compat"
+display_name = "Diagnostica di compatibilità condivisa"
+inherits_contract = "shared_compat"
+
+[contracts]
+allowed_exact_codes = ["NPP0001", "NPP3001", "NPP9000", "NPP9001", "NPP9002"]
+future_addition_rule = "In questo file possono apparire solo gli esatti codici di compatibilità elencati sopra."
+
+[messages.NPP0001]
+severity = "error"
+phase = "generic"
+slug = "legacy_generic_error"
+title = "Errore generico del compilatore (legacy)"
+summary = "Bucket di ripiego per gli errori del compilatore a cui non è stata ancora assegnata una famiglia diagnostica specifica."
+default_message = "Il compilatore è fallito, ma non è stata ancora assegnata alcuna famiglia diagnostica specifica a questo errore."
+recovery = "Ispezionare prima la posizione sorgente riportata, quindi spostare la diagnostica in una famiglia specifica quando l'implementazione diventerà più precisa."
+tags = ["legacy", "fallback", "generic"]
+
+[messages.NPP3001]
+severity = "error"
+phase = "config"
+slug = "legacy_project_configuration_error"
+title = "Errore di configurazione del progetto (legacy)"
+summary = "Bucket di compatibilità per i fallimenti di configurazione che bloccano la compilazione dei sorgenti o l'esecuzione."
+default_message = "La configurazione del progetto è non valida o incompleta per l'operazione sui sorgenti richiesta."
+recovery = "Rivedere neuron.toml, le impostazioni del modulo e qualsiasi configurazione di build o runtime richiesta vicino alla posizione riportata."
+tags = ["legacy", "config", "fallback"]
+
+[messages.NPP9000]
+severity = "warning"
+phase = "generic"
+slug = "legacy_generic_warning"
+title = "Avviso generico del compilatore (legacy)"
+summary = "Bucket di ripiego per gli avvisi a cui non è stata ancora assegnata una famiglia di avvisi più specifica."
+default_message = "Il compilatore ha accettato il programma, ma ha rilevato un avviso che viene ancora instradato attraverso il codice di compatibilità generico."
+recovery = "Leggere il testo dell'avviso e migrarlo in una famiglia di avvisi specifica una volta che l'implementazione ne espone una."
+tags = ["legacy", "warning", "fallback"]
+
+[messages.NPP9001]
+severity = "warning"
+phase = "config"
+slug = "legacy_project_configuration_warning"
+title = "Avviso di configurazione del progetto (legacy)"
+summary = "Bucket di compatibilità per avvisi di configurazione del progetto non fatali."
+default_message = "La configurazione del progetto è stata accettata con un avviso."
+recovery = "Rivedere l'impostazione segnalata e restringere la configurazione se è richiesto un comportamento deterministico."
+tags = ["legacy", "warning", "config"]
+
+[messages.NPP9002]
+severity = "warning"
+phase = "semantic"
+slug = "unused_binding_warning"
+title = "Binding non utilizzato"
+summary = "Un binding locale è stato dichiarato ma mai utilizzato."
+default_message = "Il binding dichiarato non viene mai letto."
+recovery = "Rimuovere il binding, utilizzarlo o documentare intenzionalmente perché deve rimanere inutilizzato."
+tags = ["warning", "semantic", "unused", "lsp"]
+

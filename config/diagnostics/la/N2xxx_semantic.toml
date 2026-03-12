@@ -1,0 +1,185 @@
+[catalog]
+locale = "la"
+bucket = "N2xxx_semantic"
+display_name = "Diagnostica semantica"
+inherits_contract = "N2xxx_semantic"
+
+[contracts]
+allowed_exact_codes = ["NPP2001"]
+allowed_n_range = "2000-2499"
+allowed_w_range = "2000-2099"
+future_addition_rule = "Solum N2000-N2499, W2000-W2099, et codex semanticus priscae exactus supra recensitus in hoc archivo apparere possunt."
+
+[messages.NPP2001]
+severity = "error"
+phase = "semantic"
+slug = "legacy_semantic_error"
+title = "Error semanticus (prisca)"
+summary = "Receptaculum compatibilitatis pro defectibus semanticis donec codices semantici subtiliores connectantur."
+default_message = "Programma syntactice validum est sed semantice invalidum."
+recovery = "Inspice typos, nomina, generica, superonera, et fluxum valorum prope locum nuntiatum."
+tags = ["legacy", "semantic", "fallback"]
+
+[messages.N2001]
+severity = "error"
+phase = "semantic"
+slug = "type_mismatch"
+title = "Typus non congruit"
+summary = "Valor unius typi ubi alius typus requirebatur adhibitus est."
+default_message = "Typus non congruit inter typum requisitum et valorem praebitum."
+recovery = "Muta expressionem fontis, adde conversionem explicitam, aut typum destinatum accommoda."
+tags = ["semantic", "types", "assignment"]
+
+[messages.N2002]
+severity = "error"
+phase = "semantic"
+slug = "invalid_operator_operand_pair"
+title = "Par operatoris et operandi invalidum"
+summary = "Operator operandis qui eum una non sustinent applicatus est."
+default_message = "Operator typis operandi praebitis applicari non potest."
+recovery = "Utere typis operandi compatibilibus aut operatorem pro typis praesentibus definitum elige."
+tags = ["semantic", "operator", "types"]
+
+[messages.N2003]
+severity = "error"
+phase = "semantic"
+slug = "invalid_return_type"
+title = "Typus reditus invalidus"
+summary = "Sententia reditus valorem producit qui cum typo reditus declarato non est compatibilis."
+default_message = "Valor reditus typo reditus declarato non respondet."
+recovery = "Redde valorem compatibilem aut typum reditus declaratum muta."
+tags = ["semantic", "return", "types"]
+
+[messages.N2101]
+severity = "error"
+phase = "semantic"
+slug = "ambiguous_type_inference"
+title = "Inference typi ambigua"
+summary = "Compilator unum typum ex contextu praesenti conicere non potuit."
+default_message = "Typus non potuit sine ambiguitate conici."
+recovery = "Adde annotationem typi explicitam aut expressionem rescribe ut plus contextus praebeas."
+tags = ["semantic", "inference", "ambiguity"]
+
+[messages.N2102]
+severity = "error"
+phase = "semantic"
+slug = "conflicting_branch_inference"
+title = "Inference ramorum confligens"
+summary = "Varii rami fluxus moderationis typos coniectos incompabiles pro eodem valore statuunt."
+default_message = "Inference typi inter ramos fluxus moderationis confligit."
+recovery = "Utere typo compatibili communi aut ligationes separatas per ramum introduce."
+tags = ["semantic", "inference", "control-flow"]
+
+
+[messages.N2201]
+severity = "error"
+phase = "semantic"
+slug = "unknown_identifier"
+title = "Identificator ignotus"
+summary = "Symbolum relatum in ambitu praesenti non videtur."
+default_message = "Identificator relatus in ambitu praesenti non est definitus: {name}."
+parameters = ["name"]
+recovery = "Identificatorem declara, modulum requisitum importa, aut mendum orthographicum corrige."
+tags = ["semantic", "scope", "identifier"]
+[messages.N2202]
+severity = "error"
+phase = "semantic"
+slug = "duplicate_symbol"
+title = "Symbolum duplex"
+summary = "Duae declarationes in eodem ambitu effectivo inter se confligunt."
+default_message = "Symbolum cum eodem nomine iam in hoc ambitu definitum est."
+recovery = "Declaratorem unum renuncupa aut eum in alium ambitum move."
+tags = ["semantic", "scope", "duplicate"]
+
+[messages.N2203]
+severity = "error"
+phase = "semantic"
+slug = "unknown_named_argument"
+title = "Argumentum nominatum ignotum"
+summary = "Appellatio utitur argumento nominato quod nulli nomini parametri in appellabili lecto respondet."
+default_message = "Argumentum nominatum nulli parametri declarato respondet."
+recovery = "Utere nomine parametri valido aut labellum remove."
+tags = ["semantic", "call", "named-arguments"]
+
+[messages.N2301]
+severity = "error"
+phase = "semantic"
+slug = "generic_arity_mismatch"
+title = "Aritas generica non congruit"
+summary = "Typus genericus aut appellabilis numerum pravum argumentorum typi accepit."
+default_message = "Numerus argumentorum genericorum declarationi non respondet."
+recovery = "Praebe numerum exactum argumentorum genericorum requisitorum."
+tags = ["semantic", "generics", "arity"]
+
+[messages.N2302]
+severity = "error"
+phase = "semantic"
+slug = "unsatisfied_generic_constraint"
+title = "Restrictio generica non satiata"
+summary = "Argumentum genericum restrictioni pro parametro suo typi declaratae non satisfacit."
+default_message = "Argumentum genericum restrictioni requisitae non satisfacit."
+recovery = "Utere typo qui restrictioni satisfacit aut declarationem genericam relaxa."
+tags = ["semantic", "generics", "constraint"]
+
+[messages.N2401]
+severity = "error"
+phase = "semantic"
+slug = "no_viable_overload"
+title = "Nullum superonus viable"
+summary = "Nullum appellabile in grege superonerum indicem argumentorum praebitum accipit."
+default_message = "Nullum superonus argumentis praebitis respondet."
+recovery = "Muta typos argumentorum, numerum, aut labella, vel superonus respondens adde."
+tags = ["semantic", "overload", "call"]
+
+[messages.N2402]
+severity = "error"
+phase = "semantic"
+slug = "ambiguous_overload"
+title = "Superonus ambiguum"
+summary = "Plus quam unum appellabile argumentis praebitis aeque bene respondet."
+default_message = "Appellatio inter multa superonera ambigua est."
+recovery = "Ambiguitatem appellationis solve typis explicitis, conversionibus, aut indice argumentorum subtiliore."
+tags = ["semantic", "overload", "ambiguity"]
+
+[messages.W2001]
+severity = "warning"
+phase = "semantic"
+slug = "unreachable_code"
+title = "Codex inattingibilis"
+summary = "Sententia exsequi non potest quia fluxus moderationis iam finiit aut eam praeteriit."
+default_message = "Codex inattingibilis est."
+recovery = "Remove codicem mortuum aut fluxum moderationis rescribe ut sententia attingi possit."
+tags = ["warning", "semantic", "control-flow"]
+
+[messages.W2002]
+severity = "warning"
+phase = "semantic"
+slug = "redundant_cast"
+title = "Conversio redundans"
+summary = "Gradus conversionis typum effectivum non mutat."
+default_message = "Conversio redundans est."
+recovery = "Remove conversionem non necessariam nisi ad claritatem secundum consuetudinem proiecti servetur."
+tags = ["warning", "semantic", "cast"]
+
+
+[messages.N2403]
+severity = "error"
+phase = "semantic"
+slug = "unknown_callable_target"
+title = "Scopus invocabilis ignotus"
+summary = "Invocatio symbolum aut catenam membrorum petit quae ut invocabilis resolvi non potest."
+default_message = "Scopus invocabilis ignotus: {target}."
+parameters = ["target"]
+recovery = "Vide ut scopus existat, in ambitu visibilis sit, et symbolum invocabile denotet."
+tags = ["semantic", "call", "resolution"]
+
+[messages.N2204]
+severity = "error"
+phase = "semantic"
+slug = "use_before_initialization"
+title = "Usus ante initializationem"
+summary = "Variabilis legitur antequam initializata est."
+default_message = "Variabilis ante initializationem adhibetur: {name}."
+parameters = ["name"]
+recovery = "Variabilem in omni tramite fluxus moderandi initializa antequam legatur."
+tags = ["semantic", "flow", "initialization"]

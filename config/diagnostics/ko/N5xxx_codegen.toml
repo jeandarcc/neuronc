@@ -1,0 +1,92 @@
+[catalog]
+locale = "ko"
+bucket = "N5xxx_codegen"
+display_name = "코드 생성 진단"
+inherits_contract = "N5xxx_codegen"
+
+[contracts]
+allowed_exact_codes = []
+allowed_n_range = "5000-5099"
+allowed_w_range = "5000-5099"
+future_addition_rule = "이 파일에는 N5000-N5099 및 W5000-W5099만 나타날 수 있습니다."
+
+[messages.N5001]
+severity = "error"
+phase = "codegen"
+slug = "unsupported_lowering"
+title = "지원되지 않는 로어링 (lowering)"
+summary = "소스 프로그램은 의미론적으로 유효하지만, 현재 백엔드가 구조 중 하나를 로어링할 수 없습니다."
+default_message = "이 소스 구조는 선택된 백엔드에서 로어링할 수 없습니다."
+recovery = "구조를 다시 작성하거나, 백엔드를 변경하거나, 누락된 기능에 대한 로어링 지원을 구현하십시오."
+tags = ["codegen", "lowering", "backend"]
+
+[messages.N5002]
+severity = "error"
+phase = "runtime"
+slug = "runtime_trap"
+title = "런타임 트랩"
+summary = "실행 중 자동 종료 대신 구조화된 진단으로 표시되어야 하는 런타임 오류가 발생했습니다."
+default_message = "프로그램 실행 중 트랩이 발생했습니다."
+recovery = "실패한 작업을 검사하고 소스 수준에서 보호 기능을 추가하거나 로어링 오류를 수정하십시오."
+tags = ["runtime", "trap", "execution"]
+
+[messages.N5003]
+severity = "error"
+phase = "codegen"
+slug = "target_backend_not_available"
+title = "대상 백엔드 사용 불가"
+summary = "요청된 소스 기능에 현재 툴체인 또는 환경에서 사용할 수 없는 백엔드가 필요합니다."
+default_message = "요청된 백엔드를 사용할 수 없습니다."
+recovery = "백엔드를 활성화하거나, 종속성을 설치하거나, 지원되는 실행 경로를 선택하십시오."
+tags = ["codegen", "backend", "environment"]
+
+[messages.N5004]
+severity = "error"
+phase = "codegen"
+slug = "abi_layout_mismatch"
+title = "ABI 또는 레이아웃 불일치"
+summary = "생성된 코드와 런타임 기대치가 값의 레이아웃 또는 호출 계약에 대해 일치하지 않습니다."
+default_message = "생성된 ABI 또는 데이터 레이아웃이 런타임 기대치와 일치하지 않습니다."
+recovery = "영향을 받는 타입에 대해 소스 계약, 런타임 계약 및 백엔드 로어링을 정렬하십시오."
+tags = ["codegen", "abi", "layout"]
+
+[messages.N5005]
+severity = "error"
+phase = "link"
+slug = "external_symbol_not_resolved"
+title = "외부 심볼 해석되지 않음"
+summary = "코드 생성은 성공했지만, 실행에 필요한 외부 심볼을 해석할 수 없습니다."
+default_message = "필요한 외부 심볼을 해석할 수 없습니다."
+recovery = "누락된 라이브러리를 연결하거나, 누락된 심볼을 내보내거나, 해석되지 않은 종속성을 제거하십시오."
+tags = ["codegen", "link", "extern"]
+
+[messages.N5006]
+severity = "error"
+phase = "runtime"
+slug = "runtime_feature_contract_violated"
+title = "런타임 기능 계약 위반"
+summary = "컴파일된 프로그램이 소스 수준의 실행 계약을 위반하는 런타임 용량 제한에 도달했습니다."
+default_message = "런타임 환경이 이 프로그램에 필요한 기능 계약을 충족하지 않습니다."
+recovery = "런타임 환경을 조정하거나 지원되는 실행 경로 뒤로 기능을 보호하십시오."
+tags = ["runtime", "feature", "environment"]
+
+[messages.W5001]
+severity = "warning"
+phase = "codegen"
+slug = "backend_fallback_path_selected"
+title = "백엔드 폴백 경로 선택됨"
+summary = "실행은 정확하지만 선호되는 백엔드 경로를 사용할 수 없어 폴백 경로가 선택되었습니다."
+default_message = "선호되는 백엔드 경로를 사용할 수 없습니다. 폴백 경로를 사용합니다."
+recovery = "예상되는 성능이나 기능 프로파일이 필요한 경우 선호되는 백엔드를 활성화하십시오."
+tags = ["warning", "codegen", "backend", "fallback"]
+
+[messages.W5002]
+severity = "warning"
+phase = "codegen"
+slug = "optimization_disabled_for_correctness"
+title = "정확성을 위해 최적화 비활성화됨"
+summary = "잠재적으로 유효한 최적화가 프로그램의 정확성을 유지하기 위해 의도적으로 생략되었습니다."
+default_message = "정확성을 유지하기 위해 최적화가 비활성화되었습니다."
+recovery = "성능을 조사하는 경우가 아니라면 조치가 필요하지 않습니다. 최적화를 차단하는 구조를 검사하십시오."
+tags = ["warning", "codegen", "optimization"]
+

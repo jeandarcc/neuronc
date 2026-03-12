@@ -1,0 +1,92 @@
+[catalog]
+locale = "ru"
+bucket = "N4xxx_module"
+display_name = "Диагностики модулей"
+inherits_contract = "N4xxx_module"
+
+[contracts]
+allowed_exact_codes = ["NPP4001"]
+allowed_n_range = "4000-4099"
+allowed_w_range = "4000-4099"
+future_addition_rule = "В этом файле могут появляться только N4000-N4099, W4000-W4099 и указанный выше точный устаревший код модуля."
+
+[messages.NPP4001]
+severity = "error"
+phase = "module"
+slug = "legacy_module_error"
+title = "Ошибка модуля (устаревшая)"
+summary = "Хранилище совместимости для сбоев разрешения модулей до внедрения более точных кодов модулей."
+default_message = "Ошибка, связанная с модулем, помешала компиляции."
+recovery = "Проверьте объявления модулей, импорт, конфигурацию нативных модулей и структуру проекта рядом с указанным местом."
+tags = ["legacy", "module", "fallback"]
+
+[messages.N4001]
+severity = "error"
+phase = "module"
+slug = "missing_module"
+title = "Отсутствует модуль"
+summary = "Запрошенный модуль не найден в текущем проекте или наборе доступных модулей."
+default_message = "Не удалось разрешить запрошенный модуль."
+recovery = "Добавьте модуль, исправьте имя или обновите конфигурацию проекта, чтобы модуль стал доступен."
+tags = ["module", "resolution", "import"]
+
+[messages.N4002]
+severity = "error"
+phase = "module"
+slug = "duplicate_module_declaration"
+title = "Дублирующееся объявление модуля"
+summary = "Исходный код объявляет один и тот же контекст модуля более одного раза там, где разрешено только одно объявление."
+default_message = "Модуль объявлен более одного раза."
+recovery = "Сохраните только одно каноническое объявление модуля."
+tags = ["module", "duplicate", "declaration"]
+
+[messages.N4003]
+severity = "error"
+phase = "module"
+slug = "self_import_not_allowed"
+title = "Самоимпорт не разрешен"
+summary = "Исходный файл пытается импортировать себя или объявить себя внешней границей модуля."
+default_message = "Файл не может импортировать сам себя в качестве зависимости модуля."
+recovery = "Удалите самоимпорт и полагайтесь непосредственно на объявления самого файла."
+tags = ["module", "self-import", "project-structure"]
+
+[messages.N4004]
+severity = "error"
+phase = "module"
+slug = "modulecpp_configuration_missing"
+title = "Отсутствует конфигурация ModuleCpp"
+summary = "В исходном коде присутствует импорт modulecpp, но отсутствует необходимая конфигурация нативного модуля."
+default_message = "У импорта ModuleCpp отсутствует необходимая конфигурация."
+recovery = "Добавьте манифест нативного модуля и зарегистрируйте его в конфигурации проекта."
+tags = ["module", "modulecpp", "config"]
+
+[messages.N4005]
+severity = "error"
+phase = "module"
+slug = "modulecpp_export_signature_mismatch"
+title = "Несоответствие сигнатуры экспорта ModuleCpp"
+summary = "Настроенный нативный экспорт не соответствует контракту типов, ожидаемому объявлением в исходном коде."
+default_message = "Сигнатура экспорта нативного модуля не соответствует контракту исходного кода."
+recovery = "Согласуйте объявление на стороне исходного кода и сигнатуру экспорта в нативном манифесте."
+tags = ["module", "modulecpp", "signature"]
+
+[messages.N4006]
+severity = "error"
+phase = "module"
+slug = "invalid_file_to_type_naming_contract"
+title = "Нарушение соответствия имени файла и типа"
+summary = "В проекте действует правило именования файлов в соответствии с именами типов, и текущий файл его нарушает."
+default_message = "Имя объявленного типа не соответствует требуемому правилу именования файлов."
+recovery = "Переименуйте файл или объявленный тип так, чтобы они точно соответствовали правилу."
+tags = ["module", "naming", "project-structure"]
+
+[messages.W4001]
+severity = "warning"
+phase = "module"
+slug = "redundant_module_import"
+title = "Избыточный импорт модуля"
+summary = "Импорт модуля принят, но не является необходимым, так как набор символов уже доступен."
+default_message = "Импорт модуля избыточен."
+recovery = "Удалите лишний импорт, чтобы зависимости оставались явными и минимальными."
+tags = ["warning", "module", "import"]
+

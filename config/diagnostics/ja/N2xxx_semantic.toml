@@ -1,0 +1,185 @@
+[catalog]
+locale = "ja"
+bucket = "N2xxx_semantic"
+display_name = "意味論的診断"
+inherits_contract = "N2xxx_semantic"
+
+[contracts]
+allowed_exact_codes = ["NPP2001"]
+allowed_n_range = "2000-2499"
+allowed_w_range = "2000-2099"
+future_addition_rule = "Only N2000-N2499, W2000-W2099, and the exact legacy semantic code listed above may appear in this file."
+
+[messages.NPP2001]
+severity = "error"
+phase = "semantic"
+slug = "legacy_semantic_error"
+title = "レガシー意味論エラー"
+summary = "より詳細な意味論コードが接続されるまでの、意味論的な失敗に対する互換性バケット。"
+default_message = "プログラムは構文的に有効ですが、意味論的に無効です。"
+recovery = "報告された場所の近くにある型、名前、ジェネリクス、オーバーロード、および値の流れを確認してください。"
+tags = ["legacy", "semantic", "fallback"]
+
+[messages.N2001]
+severity = "error"
+phase = "semantic"
+slug = "type_mismatch"
+title = "型の不一致"
+summary = "ある型の値が、別の型が必要な場所で使用されました。"
+default_message = "要求された型と提供された値の間で型が一致しません。"
+recovery = "ソースの式を変更するか、明示的な変換を追加するか、または宛先の型を調整してください。"
+tags = ["semantic", "types", "assignment"]
+
+[messages.N2002]
+severity = "error"
+phase = "semantic"
+slug = "invalid_operator_operand_pair"
+title = "無効な演算子とオペランドのペア"
+summary = "その演算子をこれらと一緒にサポートしていないオペランドに対して演算子が適用されました。"
+default_message = "提供されたオペランドの型に対して演算子を適用できません。"
+recovery = "互換性のあるオペランド型を使用するか、現在の型に対して定義されている演算子を選択してください。"
+tags = ["semantic", "operator", "types"]
+
+[messages.N2003]
+severity = "error"
+phase = "semantic"
+slug = "invalid_return_type"
+title = "無効な戻り値の型"
+summary = "return文が、宣言された戻り値の型と互換性のない値を生成しています。"
+default_message = "返された値が、宣言された戻り値の型と一致しません。"
+recovery = "互換性のある値を返すか、宣言された戻り値の型を変更してください。"
+tags = ["semantic", "return", "types"]
+
+[messages.N2101]
+severity = "error"
+phase = "semantic"
+slug = "ambiguous_type_inference"
+title = "曖昧な型推論"
+summary = "コンパイラは、利用可能なコンテキストから一意の型を推論できませんでした。"
+default_message = "型を一意に推論できませんでした。"
+recovery = "明示的な型注釈を追加するか、より多くのコンテキストを提供するために式を書き換えてください。"
+tags = ["semantic", "inference", "ambiguity"]
+
+[messages.N2102]
+severity = "error"
+phase = "semantic"
+slug = "conflicting_branch_inference"
+title = "競合する分岐推論"
+summary = "異なる制御フローの分岐が、同じ値に対して互換性のない推論された型を確立しています。"
+default_message = "型推論が制御フローの分岐間で競合しています。"
+recovery = "共有された互換性のある型を使用するか、分岐ごとに個別のバインディングを導入してください。"
+tags = ["semantic", "inference", "control-flow"]
+
+
+[messages.N2201]
+severity = "error"
+phase = "semantic"
+slug = "unknown_identifier"
+title = "未知の識別子"
+summary = "参照されたシンボルは現在のスコープで見えていません。"
+default_message = "参照された識別子は現在のスコープで定義されていません: {name}。"
+parameters = ["name"]
+recovery = "識別子を宣言するか、必要なモジュールをインポートするか、綴りを修正してください。"
+tags = ["semantic", "scope", "identifier"]
+[messages.N2202]
+severity = "error"
+phase = "semantic"
+slug = "duplicate_symbol"
+title = "重複するシンボル"
+summary = "同じ有効スコープ内の2つの宣言が互いに競合しています。"
+default_message = "同じ名前のシンボルがこのスコープですでに定義されています。"
+recovery = "一方の宣言の名前を変更するか、別のスコープに移動してください。"
+tags = ["semantic", "scope", "duplicate"]
+
+[messages.N2203]
+severity = "error"
+phase = "semantic"
+slug = "unknown_named_argument"
+title = "未知の名前付き引数"
+summary = "呼び出しが、選択された呼び出し可能オブジェクトのパラメータ名と一致しない名前付き引数を使用しています。"
+default_message = "名前付き引数が宣言されたパラメータと一致しません。"
+recovery = "有効なパラメータ名を使用するか、ラベルを削除してください。"
+tags = ["semantic", "call", "named-arguments"]
+
+[messages.N2301]
+severity = "error"
+phase = "semantic"
+slug = "generic_arity_mismatch"
+title = "ジェネリックの引数個数不一致"
+summary = "ジェネリック型または呼び出し可能オブジェクトが、間違った数の型引数を受け取りました。"
+default_message = "ジェネリック引数の数が宣言と一致しません。"
+recovery = "必要なジェネリック引数の数を正確に提供してください。"
+tags = ["semantic", "generics", "arity"]
+
+[messages.N2302]
+severity = "error"
+phase = "semantic"
+slug = "unsatisfied_generic_constraint"
+title = "満たされていないジェネリック制約"
+summary = "ジェネリック引数が、その型パラメータに対して宣言された制約を満たしていません。"
+default_message = "ジェネリック引数が、必要な制約を満たしていません。"
+recovery = "制約を満たす型を使用するか、ジェネリック宣言を緩和してください。"
+tags = ["semantic", "generics", "constraint"]
+
+[messages.N2401]
+severity = "error"
+phase = "semantic"
+slug = "no_viable_overload"
+title = "有効なオーバーロードがありません"
+summary = "オーバーロードセット内のどの呼び出し可能オブジェクトも、提供された引数リストを受け入れません。"
+default_message = "提供された引数に一致するオーバーロードがありません。"
+recovery = "引数の型、数、またはラベルを変更するか、一致するオーバーロードを追加してください。"
+tags = ["semantic", "overload", "call"]
+
+[messages.N2402]
+severity = "error"
+phase = "semantic"
+slug = "ambiguous_overload"
+title = "曖昧なオーバーロード"
+summary = "複数の呼び出し可能オブジェクトが、提供された引数に等しく適合します。"
+default_message = "呼び出しが複数のオーバーロード間で曖昧です。"
+recovery = "明示的な型、キャスト、またはより具体的な引数リストを使用して呼び出しの曖昧さを解消してください。"
+tags = ["semantic", "overload", "ambiguity"]
+
+[messages.W2001]
+severity = "warning"
+phase = "semantic"
+slug = "unreachable_code"
+title = "到達不能なコード"
+summary = "ステートメントを実行できないため、制御フローがすでに終了しているかバイパスしています。"
+default_message = "コードに到達できません。"
+recovery = "デッドコードを削除するか、ステートメントに到達できるように制御フローを書き換えてください。"
+tags = ["warning", "semantic", "control-flow"]
+
+[messages.W2002]
+severity = "warning"
+phase = "semantic"
+slug = "redundant_cast"
+title = "冗長なキャスト"
+summary = "キャストまたは変換ステップが有効な型を変更しません。"
+default_message = "キャストは冗長です。"
+recovery = "プロジェクトの慣習により明快さのために保持される場合を除き、不要なキャストを削除してください。"
+tags = ["warning", "semantic", "cast"]
+
+
+[messages.N2403]
+severity = "error"
+phase = "semantic"
+slug = "unknown_callable_target"
+title = "不明な呼び出し対象"
+summary = "呼び出し先のシンボルまたはメンバー連鎖を callable として解決できません。"
+default_message = "不明な呼び出し対象: {target}。"
+parameters = ["target"]
+recovery = "対象が存在し、スコープ内で可視であり、呼び出し可能なシンボルを指していることを確認してください。"
+tags = ["semantic", "call", "resolution"]
+
+[messages.N2204]
+severity = "error"
+phase = "semantic"
+slug = "use_before_initialization"
+title = "初期化前の使用"
+summary = "変数が初期化される前に読み取られました。"
+default_message = "変数が初期化される前に使用されています: {name}。"
+parameters = ["name"]
+recovery = "変数を読む前に、すべての制御フロー経路で初期化してください。"
+tags = ["semantic", "flow", "initialization"]

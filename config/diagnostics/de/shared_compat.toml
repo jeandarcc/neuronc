@@ -1,0 +1,60 @@
+[catalog]
+locale = "de"
+bucket = "shared_compat"
+display_name = "Gemeinsame Kompatibilitätsdiagnose"
+inherits_contract = "shared_compat"
+
+[contracts]
+allowed_exact_codes = ["NPP0001", "NPP3001", "NPP9000", "NPP9001", "NPP9002"]
+future_addition_rule = "Only the exact compatibility codes listed above may appear in this file."
+
+[messages.NPP0001]
+severity = "error"
+phase = "generic"
+slug = "legacy_generic_error"
+title = "Allgemeiner Legacy-Compilerfehler"
+summary = "Fallback-Bucket für Compilerfehler, denen noch keine spezifischere Diagnosefamilie zugewiesen wurde."
+default_message = "Der Compiler ist fehlgeschlagen, aber diesem Fehler wurde noch keine spezifische Diagnosefamilie zugewiesen."
+recovery = "Untersuchen Sie zuerst den gemeldeten Quellort und verschieben Sie die Diagnose in eine spezifische Familie, sobald die Implementierung präziser wird."
+tags = ["legacy", "fallback", "generic"]
+
+[messages.NPP3001]
+severity = "error"
+phase = "config"
+slug = "legacy_project_configuration_error"
+title = "Legacy-Projektkonfigurationsfehler"
+summary = "Kompatibilitäts-Bucket für Konfigurationsfehler, die die Quellkompilierung oder Ausführung blockieren."
+default_message = "Die Projektkonfiguration ist für die angeforderte Quelloperation ungültig oder unvollständig."
+recovery = "Überprüfen Sie neuron.toml, Moduleinstellungen und alle erforderlichen Build- oder Laufzeitkonfigurationen in der Nähe des gemeldeten Ortes."
+tags = ["legacy", "config", "fallback"]
+
+[messages.NPP9000]
+severity = "warning"
+phase = "generic"
+slug = "legacy_generic_warning"
+title = "Allgemeine Legacy-Compilerwarnung"
+summary = "Fallback-Bucket für Warnungen, denen noch keine engere Warnungsfamilie zugewiesen wurde."
+default_message = "Der Compiler hat das Programm akzeptiert, aber eine Warnung erkannt, die noch über den allgemeinen Kompatibilitätscode geleitet wird."
+recovery = "Lesen Sie den Warnungstext und migrieren Sie ihn zu einer spezifischen Warnungsfamilie, sobald die Implementierung dies ermöglicht."
+tags = ["legacy", "warning", "fallback"]
+
+[messages.NPP9001]
+severity = "warning"
+phase = "config"
+slug = "legacy_project_configuration_warning"
+title = "Legacy-Projektkonfigurationswarnung"
+summary = "Kompatibilitäts-Bucket für nicht-fatale Projektkonfigurationswarnungen."
+default_message = "Die Projektkonfiguration wurde mit einer Warnung akzeptiert."
+recovery = "Überprüfen Sie die gewarnte Einstellung und präzisieren Sie die Konfiguration, wenn deterministisches Verhalten erforderlich ist."
+tags = ["legacy", "warning", "config"]
+
+[messages.NPP9002]
+severity = "warning"
+phase = "semantic"
+slug = "unused_binding_warning"
+title = "Unbenutzte Bindung"
+summary = "Eine lokale Bindung wurde deklariert, aber nie verwendet."
+default_message = "Die deklarierte Bindung wird nie gelesen."
+recovery = "Entfernen Sie die Bindung, verwenden Sie sie oder dokumentieren Sie absichtlich, warum sie unbenutzt bleiben muss."
+tags = ["warning", "semantic", "unused", "lsp"]
+

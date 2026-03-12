@@ -1,0 +1,93 @@
+#version 450
+layout(local_size_x = 16, local_size_y = 16) in;
+
+layout(set = 0, binding = 0) readonly buffer InA {
+  float a[];
+};
+layout(set = 0, binding = 1) readonly buffer PackedData {
+  float packed_data[];
+};
+layout(set = 0, binding = 2) readonly buffer PackedOffsets {
+  uint offsets[];
+};
+layout(set = 0, binding = 3) readonly buffer InBias {
+  float bias[];
+};
+layout(set = 0, binding = 4) readonly buffer InResidual {
+  float residual[];
+};
+layout(set = 0, binding = 5) buffer Out {
+  float outv[];
+};
+
+layout(push_constant) uniform Params {
+  uint m;
+  uint n;
+  uint k;
+  uint kc;
+  uint nc;
+  uint kBlocks;
+  uint nBlocks;
+  uint panelCount;
+  uint biasRows;
+  uint biasCols;
+  uint residualCols;
+  uint activation;
+  uint accumulate;
+} params;
+
+float apply_activation(float x, uint kind) {
+  if (kind == 1u) {
+    return max(x, 0.0);
+  }
+  if (kind == 2u) {
+    const float c = 0.044715;
+    const float scale = 0.7978845608;
+    float cubic = x * x * x;
+    return 0.5 * x * (1.0 + tanh(scale * (x + c * cubic)));
+  }
+  return x;
+}
+
+float packed_b_at(uint p, uint col) {
+  uint ncBlock = col / params.nc;
+  uint kcBlock = p / params.kc;
+  uint colLocal = col % params.nc;
+  uint pLocal = p % params.kc;
+  uint panelIndex = ncBlock * params.kBlocks + kcBlock;
+  if (panelIndex >= params.panelCount) {
+    return 0.0;
+  }
+  uint nc0 = ncBlock * params.nc;
+  uint kc0 = kcBlock * params.kc;
+  uint ncCur = min(params.nc, params.n - nc0);
+  uint kcCur = min(params.kc, params.k - kc0);
+  if (colLocal >= ncCur || pLocal >= kcCur) {
+    return 0.0;
+  }
+  uint base = offsets[panelIndex];
+  return packed_data[base + pLocal * ncCur + colLocal];
+}
+
+void main() {
+  uint row = gl_GlobalInvocationID.y;
+  uint col = gl_GlobalInvocationID.x;
+  if (row >= params.m || col >= params.n) {
+    return;
+  }
+
+  float sum = params.accumulate != 0u ? outv[row * params.n + col] : 0.0;
+  for (uint p = 0u; p < params.k; ++p) {
+    sum += a[row * params.k + p] * packed_b_at(p, col);
+  }
+
+  if (params.biasCols == params.n) {
+    uint biasRow = params.biasRows == 1u ? 0u : row;
+    sum += bias[biasRow * params.biasCols + col];
+  }
+  if (params.residualCols == params.n) {
+    sum += residual[row * params.residualCols + col];
+  }
+
+  outv[row * params.n + col] = apply_activation(sum, params.activation);
+}

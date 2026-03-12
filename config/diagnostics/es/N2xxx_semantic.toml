@@ -1,0 +1,185 @@
+[catalog]
+locale = "es"
+bucket = "N2xxx_semantic"
+display_name = "Diagnósticos semánticos"
+inherits_contract = "N2xxx_semantic"
+
+[contracts]
+allowed_exact_codes = ["NPP2001"]
+allowed_n_range = "2000-2499"
+allowed_w_range = "2000-2099"
+future_addition_rule = "Solo N2000-N2499, W2000-W2099 y el código semántico legado exacto enumerado arriba pueden aparecer en este archivo."
+
+[messages.NPP2001]
+severity = "error"
+phase = "semantic"
+slug = "legacy_semantic_error"
+title = "Error semántico (legado)"
+summary = "Cubo de compatibilidad para fallos semánticos hasta que se conecten códigos semánticos más finos."
+default_message = "El programa es sintácticamente válido pero semánticamente inválido."
+recovery = "Inspeccione tipos, nombres, genéricos, sobrecargas y el flujo de valores cerca de la ubicación reportada."
+tags = ["legacy", "semantic", "fallback"]
+
+[messages.N2001]
+severity = "error"
+phase = "semantic"
+slug = "type_mismatch"
+title = "Discrepancia de tipo"
+summary = "Se usó un valor de un tipo donde se requería otro tipo."
+default_message = "Discrepancia de tipo entre el tipo requerido y el valor proporcionado."
+recovery = "Cambie la expresión de origen, agregue una conversión explícita o ajuste el tipo de destino."
+tags = ["semantic", "types", "assignment"]
+
+[messages.N2002]
+severity = "error"
+phase = "semantic"
+slug = "invalid_operator_operand_pair"
+title = "Par de operador y operando inválido"
+summary = "Se aplicó un operador a operandos que no lo soportan juntos."
+default_message = "El operador no se puede aplicar a los tipos de operando proporcionados."
+recovery = "Use tipos de operando compatibles o elija un operador definido para los tipos actuales."
+tags = ["semantic", "operator", "types"]
+
+[messages.N2003]
+severity = "error"
+phase = "semantic"
+slug = "invalid_return_type"
+title = "Tipo de retorno inválido"
+summary = "Una sentencia de retorno produce un valor que es incompatible con el tipo de retorno declarado."
+default_message = "El valor retornado no coincide con el tipo de retorno declarado."
+recovery = "Retorne un valor compatible o cambie el tipo de retorno declarado."
+tags = ["semantic", "return", "types"]
+
+[messages.N2101]
+severity = "error"
+phase = "semantic"
+slug = "ambiguous_type_inference"
+title = "Inferencia de tipo ambigua"
+summary = "El compilador no pudo inferir un tipo único del contexto disponible."
+default_message = "El tipo no pudo inferirse de manera inequívoca."
+recovery = "Agregue una anotación de tipo explícita o reescriba la expresión para proporcionar más contexto."
+tags = ["semantic", "inference", "ambiguity"]
+
+[messages.N2102]
+severity = "error"
+phase = "semantic"
+slug = "conflicting_branch_inference"
+title = "Inferencia de rama en conflicto"
+summary = "Diferentes ramas de flujo de control establecen tipos inferidos incompatibles para el mismo valor."
+default_message = "La inferencia de tipo entra en conflicto a través de las ramas de flujo de control."
+recovery = "Use un tipo compatible compartido o introduzca vinculaciones separadas por rama."
+tags = ["semantic", "inference", "control-flow"]
+
+
+[messages.N2201]
+severity = "error"
+phase = "semantic"
+slug = "unknown_identifier"
+title = "Identificador desconocido"
+summary = "Un simbolo referenciado no es visible en el alcance actual."
+default_message = "El identificador referenciado no esta definido en el alcance actual: {name}."
+parameters = ["name"]
+recovery = "Declare el identificador, importe el modulo requerido o corrija la ortografia."
+tags = ["semantic", "scope", "identifier"]
+[messages.N2202]
+severity = "error"
+phase = "semantic"
+slug = "duplicate_symbol"
+title = "Símbolo duplicado"
+summary = "Dos declaraciones en el mismo alcance efectivo entran en conflicto entre sí."
+default_message = "Un símbolo con el mismo nombre ya está definido en este alcance."
+recovery = "Renombre una declaración o muévala a un alcance diferente."
+tags = ["semantic", "scope", "duplicate"]
+
+[messages.N2203]
+severity = "error"
+phase = "semantic"
+slug = "unknown_named_argument"
+title = "Argumento nombrado desconocido"
+summary = "Una llamada usa un argumento nombrado que no coincide con ningún nombre de parámetro en el llamable seleccionado."
+default_message = "El argumento nombrado no coincide con ningún parámetro declarado."
+recovery = "Use un nombre de parámetro válido o elimine la etiqueta."
+tags = ["semantic", "call", "named-arguments"]
+
+[messages.N2301]
+severity = "error"
+phase = "semantic"
+slug = "generic_arity_mismatch"
+title = "Discrepancia de aridad genérica"
+summary = "Un tipo genérico o llamable recibió el número incorrecto de argumentos de tipo."
+default_message = "El recuento de argumentos genéricos no coincide con la declaración."
+recovery = "Proporcione el número exacto requerido de argumentos genéricos."
+tags = ["semantic", "generics", "arity"]
+
+[messages.N2302]
+severity = "error"
+phase = "semantic"
+slug = "unsatisfied_generic_constraint"
+title = "Restricción genérica no satisfecha"
+summary = "Un argumento genérico no satisface la restricción declarada para su parámetro de tipo."
+default_message = "El argumento genérico no satisface la restricción requerida."
+recovery = "Use un tipo que satisfaga la restricción o relaje la declaración genérica."
+tags = ["semantic", "generics", "constraint"]
+
+[messages.N2401]
+severity = "error"
+phase = "semantic"
+slug = "no_viable_overload"
+title = "No hay sobrecarga viable"
+summary = "Ningún llamable en el conjunto de sobrecargas acepta la lista de argumentos proporcionada."
+default_message = "Ninguna sobrecarga coincide con los argumentos proporcionados."
+recovery = "Cambie los tipos de argumentos, el recuento o las etiquetas, o agregue una sobrecarga coincidente."
+tags = ["semantic", "overload", "call"]
+
+[messages.N2402]
+severity = "error"
+phase = "semantic"
+slug = "ambiguous_overload"
+title = "Sobrecarga ambigua"
+summary = "Más de un llamable coincide con los argumentos proporcionados igualmente bien."
+default_message = "La llamada es ambigua entre múltiples sobrecargas."
+recovery = "Desambigüe la llamada con tipos explícitos, conversiones o una lista de argumentos más específica."
+tags = ["semantic", "overload", "ambiguity"]
+
+[messages.W2001]
+severity = "warning"
+phase = "semantic"
+slug = "unreachable_code"
+title = "Código inalcanzable"
+summary = "Una sentencia no se puede ejecutar porque el flujo de control ya ha terminado o la ha omitido."
+default_message = "El código es inalcanzable."
+recovery = "Elimine el código muerto o reescriba el flujo de control para que la sentencia sea alcanzable."
+tags = ["warning", "semantic", "control-flow"]
+
+[messages.W2002]
+severity = "warning"
+phase = "semantic"
+slug = "redundant_cast"
+title = "Conversión redundante"
+summary = "Un paso de conversión (cast) no cambia el tipo efectivo."
+default_message = "La conversión es redundante."
+recovery = "Elimine la conversión innecesaria a menos que se mantenga por claridad según la convención del proyecto."
+tags = ["warning", "semantic", "cast"]
+
+
+[messages.N2403]
+severity = "error"
+phase = "semantic"
+slug = "unknown_callable_target"
+title = "Objetivo invocable desconocido"
+summary = "Una llamada apunta a un simbolo o cadena de miembros que no puede resolverse como invocable."
+default_message = "Objetivo invocable desconocido: {target}."
+parameters = ["target"]
+recovery = "Verifique que el objetivo exista, sea visible en el alcance y se refiera a un simbolo invocable."
+tags = ["semantic", "call", "resolution"]
+
+[messages.N2204]
+severity = "error"
+phase = "semantic"
+slug = "use_before_initialization"
+title = "Uso antes de inicializacion"
+summary = "Se lee una variable antes de que haya sido inicializada."
+default_message = "La variable se usa antes de ser inicializada: {name}."
+parameters = ["name"]
+recovery = "Inicialice la variable en cada ruta de control antes de leerla."
+tags = ["semantic", "flow", "initialization"]

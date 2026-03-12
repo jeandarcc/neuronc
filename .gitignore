@@ -1,0 +1,91 @@
+# Build systems
+/build/
+**/build/
+/build-*/
+/cmake-build-*/
+/debug/
+/out/
+CMakeCache.txt
+cmake_install.cmake
+compile_commands.json
+Makefile
+
+# Compiler/linker artifacts
+*.o
+*.obj
+*.a
+*.lib
+*.dll
+*.exe
+*.pdb
+*.ilk
+*.exp
+
+# Runtime stray build artifacts (not in build/)
+/runtime/*.o
+/runtime/.build_cflags
+/runtime/gpu*.o
+/runtime/platform*.o
+/runtime/tensor*.o
+/runtime/runtime.o
+/runtime/modulecpp_runtime.o
+/runtime/io.o
+/runtime/nn.o
+/runtime/objects/
+
+# IR and intermediate outputs
+*.ll
+*.nir
+*.bc
+
+# Logs and scratch outputs
+*.log
+*.out
+*.tmp
+build_*.txt
+lex_out.txt
+parse_out.txt
+parse_error.txt
+opt_out*.txt
+output*.txt
+*err.txt
+*out.txt
+tmp_*.c
+tmp_*.cpp
+
+# Root-level build noise
+/cmake_log.txt
+/diff.txt
+/tmp_cmake.txt
+/build_log.txt
+
+# Scripts output logs
+scripts/build_error.txt
+scripts/build_out.txt
+
+# Runtime pre-built artifacts at repo root (copied by build into build/bin)
+/lib*.dll
+/lib*.a
+
+# ncon local package cache
+/modules/
+
+# Editor/runtime caches
+.cache/
+.vscode/
+.idea/
+
+# Local temporary projects and generated playgrounds
+tmp_*/
+tmp_feature_checks/
+InitHello_*/
+
+# Local agent guidance
+/AGENTS.md
+/agents/
+
+# MorphAPI
+/morph_api/
+
+# Plans
+/plans/

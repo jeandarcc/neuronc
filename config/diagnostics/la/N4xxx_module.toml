@@ -1,0 +1,92 @@
+[catalog]
+locale = "la"
+bucket = "N4xxx_module"
+display_name = "Diagnostica moduli"
+inherits_contract = "N4xxx_module"
+
+[contracts]
+allowed_exact_codes = ["NPP4001"]
+allowed_n_range = "4000-4099"
+allowed_w_range = "4000-4099"
+future_addition_rule = "Solum N4000-N4099, W4000-W4099, et codex moduli priscae exactus supra recensitus in hoc archivo apparere possunt."
+
+[messages.NPP4001]
+severity = "error"
+phase = "module"
+slug = "legacy_module_error"
+title = "Error moduli (prisca)"
+summary = "Receptaculum compatibilitatis pro defectibus resolutionis moduli donec codices moduli subtiliores connectantur."
+default_message = "Error ad modulum pertinens compilationem impedivit."
+recovery = "Inspice declarationes moduli, importationes, configurationem modulorum nativorum, et structuram proiecti prope locum nuntiatum."
+tags = ["legacy", "module", "fallback"]
+
+[messages.N4001]
+severity = "error"
+phase = "module"
+slug = "missing_module"
+title = "Modulus deest"
+summary = "Modulus petitus in proiecto praesenti aut in grege modulorum parabilium inveniri non potest."
+default_message = "Modulus petitus resolvi non potuit."
+recovery = "Adde modulum, nomen corrige, aut configurationem proiecti update ut modulus parabilis sit."
+tags = ["module", "resolution", "import"]
+
+[messages.N4002]
+severity = "error"
+phase = "module"
+slug = "duplicate_module_declaration"
+title = "Declaratio moduli duplex"
+summary = "Fons eundem contextum moduli plus semel declarat ubi solum una declaratio sinitur."
+default_message = "Modulus plus semel declaratus est."
+recovery = "Serva unam declarationem moduli canonicam."
+tags = ["module", "duplicate", "declaration"]
+
+[messages.N4003]
+severity = "error"
+phase = "module"
+slug = "self_import_not_allowed"
+title = "Sui-importatio non sinitur"
+summary = "Archivum fontis se ipsum importare aut declarare ut limitem moduli externi tentat."
+default_message = "Archivum se ipsum ut dependentiam moduli importare non potest."
+recovery = "Remove sui-importationem et declarationibus archivi ipsius recte utere."
+tags = ["module", "self-import", "project-structure"]
+
+[messages.N4004]
+severity = "error"
+phase = "module"
+slug = "modulecpp_configuration_missing"
+title = "Configuratio ModuleCpp deest"
+summary = "Importatio modulecpp in fonte existit, sed configuratio moduli nativi requisita abest."
+default_message = "Importationi ModuleCpp configuratio requisita deest."
+recovery = "Adde manifestum moduli nativi et eum in configuratione proiecti registra."
+tags = ["module", "modulecpp", "config"]
+
+[messages.N4005]
+severity = "error"
+phase = "module"
+slug = "modulecpp_export_signature_mismatch"
+title = "Subscriptio exportationis ModuleCpp non congruit"
+summary = "Exportatio nativa configurata contractui typi ab declaratione fontis expectato non respondet."
+default_message = "Subscriptio exportationis moduli nativi contractui fontis non respondet."
+recovery = "Aequa declarationem lateris fontis et subscriptionem exportationis manifesti nativi."
+tags = ["module", "modulecpp", "signature"]
+
+[messages.N4006]
+severity = "error"
+phase = "module"
+slug = "invalid_file_to_type_naming_contract"
+title = "Contractus nominandis archivi-ad-typum invalidus"
+summary = "Proiectum regulam nominandis ab nomine archivi ad typum exigit et fons praesens eam violat."
+default_message = "Nomen typi declaratum contractui nominandis archivi requisitio non respondet."
+recovery = "Renuncupa archivum aut typum declaratum ut contractui exacte satisfaciant."
+tags = ["module", "naming", "project-structure"]
+
+[messages.W4001]
+severity = "warning"
+phase = "module"
+slug = "redundant_module_import"
+title = "Importatio moduli redundans"
+summary = "Importatio moduli accepta est sed non necessaria quia symbola iam parabilia sunt."
+default_message = "Importatio moduli redundans est."
+recovery = "Remove importationem extra ut dependentiae explicitae et minimae maneant."
+tags = ["warning", "module", "import"]
+

@@ -1,0 +1,112 @@
+[catalog]
+locale = "az"
+bucket = "N3xxx_ownership"
+display_name = "Sahiblik (ownership) diaqnostikası"
+inherits_contract = "N3xxx_ownership"
+
+[contracts]
+allowed_exact_codes = []
+allowed_n_range = "3000-3299"
+allowed_w_range = "3000-3099"
+future_addition_rule = "Bu faylda yalnız N3000-N3299 və W3000-W3099 görünə bilər."
+
+[messages.N3001]
+severity = "error"
+phase = "ownership"
+slug = "use_after_move"
+title = "Köçürmədən (move) sonra istifadə"
+summary = "Sahiblik artıq transfer edildikdən sonra dəyər istifadə edilib."
+default_message = "Dəyər sahibliyi köçürüldükdən sonra istifadə olunub."
+recovery = "Yeni sahibdən istifadə edin, aşkar bir surət çıxarın və ya təkrar istifadədən əvvəl orijinal bağlamanı yenidən inisializasiya edin."
+tags = ["ownership", "move", "lifetime"]
+
+[messages.N3002]
+severity = "error"
+phase = "ownership"
+slug = "double_move"
+title = "İkiqat köçürmə"
+summary = "Eyni sahib yenidən inisializasiya olunmadan birdən çox köçürülür."
+default_message = "Sahiblik eyni dəyər vəziyyətindən birdən çox transfer edilə bilməz."
+recovery = "Dəyəri yalnız bir dəfə köçürün və ya hər hansı əlavə köçürmədən əvvəl onu yenidən bağlayın."
+tags = ["ownership", "move", "duplicate"]
+
+[messages.N3003]
+severity = "error"
+phase = "ownership"
+slug = "invalid_move_source"
+title = "Yanlış köçürmə mənbəyi"
+summary = "Mövcud formada transferi dəstəkləməyən mənbədən köçürməyə cəhd edilib."
+default_message = "Sahiblik bu mənbədən köçürülə bilməz."
+recovery = "Adlandırılmış sahibdən köçürün və ya ifadəni köçürməyə qadir olan bir formaya yenidən yazın."
+tags = ["ownership", "move", "source"]
+
+[messages.N3101]
+severity = "error"
+phase = "ownership"
+slug = "mutable_access_during_active_borrow"
+title = "Aktiv borc (borrow) zamanı dəyişdirilə bilən giriş"
+summary = "Konflikt təşkil edən borc və ya psevdonim hələ də aktiv olduqda dəyər dəyişdirilir."
+default_message = "Konflikt təşkil edən borc aktiv olduğu müddətdə dəyər dəyişdirilə bilməz."
+recovery = "Əvvəlcə borcu bitirin və ya üst-üstə düşən girişlərdən qaçmaq üçün kodu yenidən strukturlaşdırın."
+tags = ["ownership", "borrow", "mutation"]
+
+[messages.N3102]
+severity = "error"
+phase = "ownership"
+slug = "illegal_alias_use_after_transfer"
+title = "Sahiblik transferindən sonra qeyri-qanuni psevdonim istifadəsi"
+summary = "Psevdonim və ya borc verilmiş görünüş asılı olduğu sahiblik vəziyyətindən daha çox yaşayır."
+default_message = "Orijinal sahiblik dəyişdikdən sonra psevdonim istifadə oluna bilməz."
+recovery = "Müstəqil bir surət yaradın və ya qeyri-qanuni transferdən əvvəl psevdonimin istehlak edildiyindən əmin olun."
+tags = ["ownership", "alias", "move"]
+
+[messages.N3201]
+severity = "error"
+phase = "ownership"
+slug = "dangling_reference_return"
+title = "Asılı (dangling) istinadın qaytarılması"
+summary = "Funksiya qaytarıldıqda vaxtı bitəcək yaddaşa istinad, psevdonim və ya göstərici qaytarmağa cəhd edir."
+default_message = "Qaytarılan istinad göstərdiyi dəyərdən daha çox yaşayacaq."
+recovery = "Bunun əvəzinə sahib olunan bir dəyər qaytarın və ya etibarlı qalan yaddaşa istinad qaytarın."
+tags = ["ownership", "lifetime", "return"]
+
+[messages.N3202]
+severity = "error"
+phase = "ownership"
+slug = "escaping_borrow"
+title = "Qaçan borc"
+summary = "Borc verilmiş görünüş sahib olunan yaddaşın etibarlı qaldığı əhatə dairəsindən kənara çıxır."
+default_message = "Borc verilmiş dəyər öz etibarlı ömür müddətindən kənara çıxır."
+recovery = "Borcu etibarlı əhatə dairəsində saxlayın və ya sahib olunan surəti qaytarın."
+tags = ["ownership", "borrow", "escape"]
+
+[messages.N3203]
+severity = "error"
+phase = "ownership"
+slug = "use_after_scope_end"
+title = "Əhatə dairəsinin sonundan sonra istifadə"
+summary = "İstinada bənzər dəyər asılı olduğu yaddaş əhatə dairəsindən çıxdıqdan sonra istifadə olunur."
+default_message = "Dəyər mənbə yaddaşının vaxtı bitdikdən sonra istifadə olunub."
+recovery = "İstinad ömrünü qısaldın və ya sahib olunan yaddaşın ömrünü uzadın."
+tags = ["ownership", "lifetime", "scope"]
+
+[messages.W3001]
+severity = "warning"
+phase = "ownership"
+slug = "needless_move"
+title = "Lüzumsuz köçürmə"
+summary = "Köçürmə əməliyyatı aşkardır, lakin mövcud kontekstdə düzgünlüyü və ya performansı artırmır."
+default_message = "Burada köçürmə tələb olunmur."
+recovery = "Layihə tərəfindən saxlanılması nəzərdə tutulan bir niyyəti sənədləşdirmədikdə köçürməni silin."
+tags = ["warning", "ownership", "move"]
+
+[messages.W3002]
+severity = "warning"
+phase = "ownership"
+slug = "suspicious_alias_chain"
+title = "Şübhəli psevdonim zənciri"
+summary = "Uzun psevdonim zənciri qanuni ola bilər, lakin sahiblik və dəyişiklik haqqında düşünməyi çətinləşdirir."
+default_message = "Psevdonim zənciri qanunidir, lakin haqqında düşünmək çətindir."
+recovery = "Oxunaqlılığın vacib olduğu yerlərdə daha qısa psevdonim ömürlərinə və ya aşkar surətlərə üstünlük verin."
+tags = ["warning", "ownership", "alias"]
+

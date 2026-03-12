@@ -1,0 +1,92 @@
+[catalog]
+locale = "ja"
+bucket = "N5xxx_codegen"
+display_name = "コード生成診断"
+inherits_contract = "N5xxx_codegen"
+
+[contracts]
+allowed_exact_codes = []
+allowed_n_range = "5000-5099"
+allowed_w_range = "5000-5099"
+future_addition_rule = "Only N5000-N5099 and W5000-W5099 may appear in this file."
+
+[messages.N5001]
+severity = "error"
+phase = "codegen"
+slug = "unsupported_lowering"
+title = "サポートされていない変換"
+summary = "ソースプログラムは意味論的に有効ですが、現在のバックエンドはその構成要素の1つを変換（lower）できません。"
+default_message = "このソース構成要素は、選択されたバックエンドでは変換できません。"
+recovery = "構成要素を書き換えるか、バックエンドを変更するか、不足している機能の変換サポートを実装してください。"
+tags = ["codegen", "lowering", "backend"]
+
+[messages.N5002]
+severity = "error"
+phase = "runtime"
+slug = "runtime_trap"
+title = "ランタイムトラップ"
+summary = "サイレントクラッシュではなく、構造化された診断として提示されるべき実行時の失敗に達しました。"
+default_message = "プログラムが実行時にトラップされました。"
+recovery = "失敗した操作を確認し、ソースレベルのガードを追加するか、変換時のバグを修正してください。"
+tags = ["runtime", "trap", "execution"]
+
+[messages.N5003]
+severity = "error"
+phase = "codegen"
+slug = "target_backend_not_available"
+title = "ターゲットバックエンドが利用不可"
+summary = "要求されたソース機能には、現在のツールチェーンまたは環境で利用できないバックエンドが必要です。"
+default_message = "必要なバックエンドが利用できません。"
+recovery = "バックエンドを有効にするか、その依存関係をインストールするか、サポートされている実行パスを選択してください。"
+tags = ["codegen", "backend", "environment"]
+
+[messages.N5004]
+severity = "error"
+phase = "codegen"
+slug = "abi_layout_mismatch"
+title = "ABIまたはレイアウトの不一致"
+summary = "生成されたコードとランタイムの期待が、値のレイアウトまたは呼び出し規約において一致しません。"
+default_message = "生成された ABI またはデータレイアウトがランタイムの期待と一致しません。"
+recovery = "影響を受ける型について、ソースコントラクト、ランタイムコントラクト、およびバックエンド変換を調整してください。"
+tags = ["codegen", "abi", "layout"]
+
+[messages.N5005]
+severity = "error"
+phase = "link"
+slug = "external_symbol_not_resolved"
+title = "外部シンボルが解決されません"
+summary = "コード生成は成功しましたが、実行に必要な外部シンボルを解決できませんでした。"
+default_message = "必要な外部シンボルを解決できませんでした。"
+recovery = "不足しているライブラリをリンクするか、不足しているシンボルをエクスポートするか、未解決の依存関係を削除してください。"
+tags = ["codegen", "link", "extern"]
+
+[messages.N5006]
+severity = "error"
+phase = "runtime"
+slug = "runtime_feature_contract_violated"
+title = "ランタイム機能コントラクト違反"
+summary = "コンパイルされたプログラムが、ソースレベルの実行コントラクトに違反するランタイム機能の境界に達しました。"
+default_message = "ランタイム環境が、このプログラムで必要な機能コントラクトを満たしていません。"
+recovery = "ランタイム環境を調整するか、サポートされている実行パスの背後に機能をゲートしてください。"
+tags = ["runtime", "feature", "environment"]
+
+[messages.W5001]
+severity = "warning"
+phase = "codegen"
+slug = "backend_fallback_path_selected"
+title = "バックエンドのフォールバックパスが選択されました"
+summary = "実行は正しいままですが、優先されるバックエンドパスが利用できなかったため、フォールバックパスが選択されました。"
+default_message = "優先されるバックエンドパスが利用できなかったため、フォールバックパスを使用しています。"
+recovery = "期待されるパフォーマンスまたは機能プロファイルが必要な場合は、優先されるバックエンドを有効にしてください。"
+tags = ["warning", "codegen", "backend", "fallback"]
+
+[messages.W5002]
+severity = "warning"
+phase = "codegen"
+slug = "optimization_disabled_for_correctness"
+title = "正確性のために最適化が無効化されました"
+summary = "プログラムの正確性を維持するために、有効である可能性のある最適化が意図的にスキップされました。"
+default_message = "正確性を維持するために最適化が無効化されました。"
+recovery = "パフォーマンスを調査している場合を除き、アクションは不要です。その場合は、最適化を妨げる構成要素を調査してください。"
+tags = ["warning", "codegen", "optimization"]
+

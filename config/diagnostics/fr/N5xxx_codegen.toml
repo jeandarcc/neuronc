@@ -1,0 +1,92 @@
+[catalog]
+locale = "fr"
+bucket = "N5xxx_codegen"
+display_name = "Diagnostics de génération de code"
+inherits_contract = "N5xxx_codegen"
+
+[contracts]
+allowed_exact_codes = []
+allowed_n_range = "5000-5099"
+allowed_w_range = "5000-5099"
+future_addition_rule = "Seuls les codes N5000-N5099 et W5000-W5099 peuvent apparaître dans ce fichier."
+
+[messages.N5001]
+severity = "error"
+phase = "codegen"
+slug = "unsupported_lowering"
+title = "Abaissement (lowering) non supporté"
+summary = "Le programme source est sémantiquement valide, mais le backend actuel ne peut pas abaisser l'une de ses constructions."
+default_message = "Cette construction source ne peut pas être abaissée par le backend sélectionné."
+recovery = "Réécrivez la construction, changez de backend ou implémentez le support d'abaissement pour la fonctionnalité manquante."
+tags = ["codegen", "lowering", "backend"]
+
+[messages.N5002]
+severity = "error"
+phase = "runtime"
+slug = "runtime_trap"
+title = "Trappe d'exécution (Trap)"
+summary = "L'exécution a atteint un échec d'exécution qui devrait être présenté comme un diagnostic structuré au lieu d'un plantage silencieux."
+default_message = "Le programme a déclenché une trappe lors de l'exécution."
+recovery = "Inspectez l'opération en échec et ajoutez des gardes au niveau de la source ou corrigez l'erreur d'abaissement."
+tags = ["runtime", "trap", "execution"]
+
+[messages.N5003]
+severity = "error"
+phase = "codegen"
+slug = "target_backend_not_available"
+title = "Backend cible non disponible"
+summary = "La fonctionnalité source demandée nécessite un backend qui n'est pas disponible dans la chaîne d'outils ou l'environnement actuel."
+default_message = "Le backend requis n'est pas disponible."
+recovery = "Activez le backend, installez ses dépendances ou choisissez un chemin d'exécution supporté."
+tags = ["codegen", "backend", "environment"]
+
+[messages.N5004]
+severity = "error"
+phase = "codegen"
+slug = "abi_layout_mismatch"
+title = "Incompatibilité d'ABI ou d'agencement (layout)"
+summary = "Le code généré et les attentes d'exécution ne s'accordent pas sur l'agencement ou le contrat d'appel d'une valeur."
+default_message = "L'ABI générée ou l'agencement des données ne correspond pas aux attentes d'exécution."
+recovery = "Alignez le contrat source, le contrat d'exécution et l'abaissement du backend pour le type affecté."
+tags = ["codegen", "abi", "layout"]
+
+[messages.N5005]
+severity = "error"
+phase = "link"
+slug = "external_symbol_not_resolved"
+title = "Symbole externe non résolu"
+summary = "La génération de code a réussi, mais un symbole externe requis n'a pas pu être résolu pour l'exécution."
+default_message = "Le symbole externe requis n'a pas pu être résolu."
+recovery = "Liez la bibliothèque manquante, exportez le symbole manquant ou supprimez la dépendance non résolue."
+tags = ["codegen", "link", "extern"]
+
+[messages.N5006]
+severity = "error"
+phase = "runtime"
+slug = "runtime_feature_contract_violated"
+title = "Contrat de fonctionnalité d'exécution violé"
+summary = "Le programme compilé a atteint une limite de capacité d'exécution qui viole le contrat d'exécution au niveau de la source."
+default_message = "L'environnement d'exécution ne satisfait pas le contrat de fonctionnalité requis par ce programme."
+recovery = "Ajustez l'environnement d'exécution ou protégez la fonctionnalité derrière un chemin d'exécution supporté."
+tags = ["runtime", "feature", "environment"]
+
+[messages.W5001]
+severity = "warning"
+phase = "codegen"
+slug = "backend_fallback_path_selected"
+title = "Chemin de secours du backend sélectionné"
+summary = "L'exécution reste correcte, mais le chemin du backend préféré n'était pas disponible et un chemin de secours a été sélectionné."
+default_message = "Le chemin du backend préféré n'était pas disponible ; utilisation d'un chemin de secours."
+recovery = "Activez le backend préféré si vous avez besoin des performances ou du profil de fonctionnalités attendus."
+tags = ["warning", "codegen", "backend", "fallback"]
+
+[messages.W5002]
+severity = "warning"
+phase = "codegen"
+slug = "optimization_disabled_for_correctness"
+title = "Optimisation désactivée pour la justesse"
+summary = "Une optimisation potentiellement valide a été intentionnellement sautée pour préserver la justesse du programme."
+default_message = "L'optimisation a été désactivée pour préserver la justesse."
+recovery = "Aucune action n'est requise sauf si vous étudiez les performances ; dans ce cas, inspectez la construction qui bloque l'optimisation."
+tags = ["warning", "codegen", "optimization"]
+

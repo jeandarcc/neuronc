@@ -1,0 +1,112 @@
+[catalog]
+locale = "zh"
+bucket = "N3xxx_ownership"
+display_name = "所有权诊断"
+inherits_contract = "N3xxx_ownership"
+
+[contracts]
+allowed_exact_codes = []
+allowed_n_range = "3000-3299"
+allowed_w_range = "3000-3099"
+future_addition_rule = "Only N3000-N3299 and W3000-W3099 may appear in this file."
+
+[messages.N3001]
+severity = "error"
+phase = "ownership"
+slug = "use_after_move"
+title = "移动后使用"
+summary = "在所有权已转移后使用了该值。"
+default_message = "所有权转移后使用了该值。"
+recovery = "使用新的所有者、进行显式拷贝或在重用前重新初始化原始绑定。"
+tags = ["ownership", "move", "lifetime"]
+
+[messages.N3002]
+severity = "error"
+phase = "ownership"
+slug = "double_move"
+title = "重复移动"
+summary = "同一个所有者在未重新初始化的情下被多次移动。"
+default_message = "无法从同一个值状态多次转移所有权。"
+recovery = "只移动该值一次，或在任何额外移动前重新绑定。"
+tags = ["ownership", "move", "duplicate"]
+
+[messages.N3003]
+severity = "error"
+phase = "ownership"
+slug = "invalid_move_source"
+title = "无效的移动源"
+summary = "尝试从不支持当前形式转移的源进行移动。"
+default_message = "无法从此源转移所有权。"
+recovery = "从具名所有者移动，或将表达式重写为支持移动的形式。"
+tags = ["ownership", "move", "source"]
+
+[messages.N3101]
+severity = "error"
+phase = "ownership"
+slug = "mutable_access_during_active_borrow"
+title = "活跃借用期间的可变访问"
+summary = "在冲突的借用或别名仍处于活跃状态时修改了值。"
+default_message = "在冲突的借用处于活跃状态时无法修改值。"
+recovery = "先结束借用，或重构代码以避免重叠访问。"
+tags = ["ownership", "borrow", "mutation"]
+
+[messages.N3102]
+severity = "error"
+phase = "ownership"
+slug = "illegal_alias_use_after_transfer"
+title = "所有极转移后非法使用别名"
+summary = "别名或借用视图的寿命超过了它所依赖的所有权状态。"
+default_message = "原始所有权更改后无法使用别名。"
+recovery = "创建独立的拷贝或确保在所有权转移前消耗别名。"
+tags = ["ownership", "alias", "move"]
+
+[messages.N3201]
+severity = "error"
+phase = "ownership"
+slug = "dangling_reference_return"
+title = "悬空引用返回"
+summary = "函数尝试返回指向将在返回时过期的存储的引用、别名或指针。"
+default_message = "返回的引用寿命将超过它所指向的值。"
+recovery = "改为返回拥有的值，或返回指向保持有效的存储的引用。"
+tags = ["ownership", "lifetime", "return"]
+
+[messages.N3202]
+severity = "error"
+phase = "ownership"
+slug = "escaping_borrow"
+title = "借用逃逸"
+summary = "借用视图逃逸了拥有存储保持有效的范围。"
+default_message = "借用的值逃逸了其有效生命周期。"
+recovery = "将借用保持在有效范围内，或返回拥有的拷贝。"
+tags = ["ownership", "borrow", "escape"]
+
+[messages.N3203]
+severity = "error"
+phase = "ownership"
+slug = "use_after_scope_end"
+title = "作用域结束后使用"
+summary = "在它所依赖的存储超出范围后使用了类引用值。"
+default_message = "源存储过期后使用了该值。"
+recovery = "缩短引用生命周期或延长拥有存储的生命周期。"
+tags = ["ownership", "lifetime", "scope"]
+
+[messages.W3001]
+severity = "warning"
+phase = "ownership"
+slug = "needless_move"
+title = "不必要的移动"
+summary = "移动操作是显式的，但在当前上下文中并不提高正确性或性能。"
+default_message = "此处不需要移动。"
+recovery = "移除该移动，除非它记录了项目想要保留的意图。"
+tags = ["warning", "ownership", "move"]
+
+[messages.W3002]
+severity = "warning"
+phase = "ownership"
+slug = "suspicious_alias_chain"
+title = "可疑的别名链"
+summary = "长别名链可能是合法的，但会使所有权和可变行为更难推断。"
+default_message = "别名链合法但难以推断。"
+recovery = "在可读性重要的地方，优先选择更短的别名生命周期或显式拷贝。"
+tags = ["warning", "ownership", "alias"]
+

@@ -1,0 +1,92 @@
+[catalog]
+locale = "ko"
+bucket = "N4xxx_module"
+display_name = "모듈 진단"
+inherits_contract = "N4xxx_module"
+
+[contracts]
+allowed_exact_codes = ["NPP4001"]
+allowed_n_range = "4000-4099"
+allowed_w_range = "4000-4099"
+future_addition_rule = "이 파일에는 N4000-N4099, W4000-W4099 및 위에서 나열된 정확한 기존 모듈 코드만 나타날 수 있습니다."
+
+[messages.NPP4001]
+severity = "error"
+phase = "module"
+slug = "legacy_module_error"
+title = "모듈 오류 (기존)"
+summary = "더 정확한 모듈 코드가 연결될 때까지 모듈 해석 실패를 위한 호환성 버킷입니다."
+default_message = "모듈 관련 오류로 인해 컴파일이 중단되었습니다."
+recovery = "보고된 위치 근처의 모듈 선언, 가져오기, 원시 모듈 설정 및 프로젝트 구조를 검사하십시오."
+tags = ["legacy", "module", "fallback"]
+
+[messages.N4001]
+severity = "error"
+phase = "module"
+slug = "missing_module"
+title = "모듈 누락"
+summary = "요청된 모듈을 현재 프로젝트 또는 사용 가능한 모듈 세트에서 찾을 수 없습니다."
+default_message = "요청된 모듈을 해석할 수 없습니다."
+recovery = "모듈을 추가하거나, 이름을 수정한거나, 모듈을 사용할 수 있도록 프로젝트 설정을 업데이트하십시오."
+tags = ["module", "resolution", "import"]
+
+[messages.N4002]
+severity = "error"
+phase = "module"
+slug = "duplicate_module_declaration"
+title = "중복된 모듈 선언"
+summary = "소스에서 하나의 선언만 허용되는 위치에 동일한 모듈 컨텍스트를 두 번 이상 선언했습니다."
+default_message = "모듈이 두 번 이상 선언되었습니다."
+recovery = "단일 정규 모듈 선언만 유지하십시오."
+tags = ["module", "duplicate", "declaration"]
+
+[messages.N4003]
+severity = "error"
+phase = "module"
+slug = "self_import_not_allowed"
+title = "자기 가져오기 허용되지 않음"
+summary = "소스 파일이 자신을 가져오거나 외부 모듈 경계로 선언하려고 시도합니다."
+default_message = "파일은 자신을 모듈 종속성으로 가져올 수 없습니다."
+recovery = "자기 가져오기를 제거하고 파일 자체의 선언에 직접 의존하십시오."
+tags = ["module", "self-import", "project-structure"]
+
+[messages.N4004]
+severity = "error"
+phase = "module"
+slug = "modulecpp_configuration_missing"
+title = "ModuleCpp 설정 누락"
+summary = "소스에 modulecpp 가져오기가 존재하지만 필수 원시 모듈 설정이 누락되었습니다."
+default_message = "ModuleCpp 가져오기에 필수 설정이 누락되었습니다."
+recovery = "원시 모듈 매니페스트를 추가하고 프로젝트 설정에 등록하십시오."
+tags = ["module", "modulecpp", "config"]
+
+[messages.N4005]
+severity = "error"
+phase = "module"
+slug = "modulecpp_export_signature_mismatch"
+title = "ModuleCpp 내보내기 시그니처 불일치"
+summary = "설정된 원시 내보내기가 소스 선언에서 기대하는 타입 계약과 일치하지 않습니다."
+default_message = "원시 모듈의 내보내기 시그니처가 소스 계약과 일치하지 않습니다."
+recovery = "소스 쪽 선언과 원시 매니페스트 내보내기 시그니처를 정렬하십시오."
+tags = ["module", "modulecpp", "signature"]
+
+[messages.N4006]
+severity = "error"
+phase = "module"
+slug = "invalid_file_to_type_naming_contract"
+title = "유효하지 않은 파일-타입 명명 계약"
+summary = "프로젝트에서 파일 이름과 타입 이름의 일치 규칙을 강제하며, 현재 소스가 이를 위반했습니다."
+default_message = "선언된 타입 이름이 필수 파일 명명 계약과 일치하지 않습니다."
+recovery = "계약이 정확히 충족되도록 파일 또는 선언된 타입의 이름을 바꾸십시오."
+tags = ["module", "naming", "project-structure"]
+
+[messages.W4001]
+severity = "warning"
+phase = "module"
+slug = "redundant_module_import"
+title = "불필요한 모듈 가져오기"
+summary = "모듈 가져오기가 수락되었지만 심볼 세트를 이미 사용할 수 있으므로 필요하지 않습니다."
+default_message = "모듈 가져오기가 불필요합니다."
+recovery = "종속성을 명확하고 최소한으로 유지하기 위해 추가 가져오기를 제거하십시오."
+tags = ["warning", "module", "import"]
+

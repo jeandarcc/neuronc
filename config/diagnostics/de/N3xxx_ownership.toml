@@ -1,0 +1,112 @@
+[catalog]
+locale = "de"
+bucket = "N3xxx_ownership"
+display_name = "Ownership-Diagnose"
+inherits_contract = "N3xxx_ownership"
+
+[contracts]
+allowed_exact_codes = []
+allowed_n_range = "3000-3299"
+allowed_w_range = "3000-3099"
+future_addition_rule = "Only N3000-N3299 and W3000-W3099 may appear in this file."
+
+[messages.N3001]
+severity = "error"
+phase = "ownership"
+slug = "use_after_move"
+title = "Verwendung nach Move"
+summary = "Ein Wert wurde verwendet, nachdem der Besitz (Ownership) bereits übertragen wurde."
+default_message = "Der Wert wird verwendet, nachdem sein Besitz verschoben (move) wurde."
+recovery = "Verwenden Sie den neuen Besitzer, erstellen Sie eine explizite Kopie oder initialisieren Sie die ursprüngliche Bindung vor der Wiederverwendung neu."
+tags = ["ownership", "move", "lifetime"]
+
+[messages.N3002]
+severity = "error"
+phase = "ownership"
+slug = "double_move"
+title = "Doppelter Move"
+summary = "Derselbe Besitzer wird mehr als einmal verschoben, ohne neu initialisiert zu werden."
+default_message = "Der Besitz kann nicht mehr als einmal vom selben Wertzustand verschoben werden."
+recovery = "Verschieben Sie den Wert einmal oder binden Sie ihn vor einem weiteren Move neu."
+tags = ["ownership", "move", "duplicate"]
+
+[messages.N3003]
+severity = "error"
+phase = "ownership"
+slug = "invalid_move_source"
+title = "Ungültige Move-Quelle"
+summary = "Ein Move wurde von einer Quelle versucht, die die Übertragung in der aktuellen Form nicht unterstützt."
+default_message = "Der Besitz kann von dieser Quelle nicht verschoben werden."
+recovery = "Verschieben Sie von einem benannten Besitzer oder schreiben Sie den Ausdruck in eine Move-fähige Form um."
+tags = ["ownership", "move", "source"]
+
+[messages.N3101]
+severity = "error"
+phase = "ownership"
+slug = "mutable_access_during_active_borrow"
+title = "Mutabler Zugriff während aktiver Ausleihe"
+summary = "Ein Wert wird verändert, während eine widersprüchliche Ausleihe (Borrow) oder ein Alias noch aktiv ist."
+default_message = "Der Wert kann nicht verändert werden, solange eine widersprüchliche Ausleihe aktiv ist."
+recovery = "Beenden Sie zuerst die Ausleihe oder strukturieren Sie den Code um, um überlappende Zugriffe zu vermeiden."
+tags = ["ownership", "borrow", "mutation"]
+
+[messages.N3102]
+severity = "error"
+phase = "ownership"
+slug = "illegal_alias_use_after_transfer"
+title = "Illegale Alias-Verwendung nach Besitzübertragung"
+summary = "Ein Alias oder eine ausgeliehene Ansicht überlebt den Besitzzustand, von dem sie abhängt."
+default_message = "Der Alias kann nicht verwendet werden, nachdem sich der ursprüngliche Besitz geändert hat."
+recovery = "Erstellen Sie eine unabhängige Kopie oder stellen Sie sicher, dass der Alias vor der Besitzübertragung konsumiert wird."
+tags = ["ownership", "alias", "move"]
+
+[messages.N3201]
+severity = "error"
+phase = "ownership"
+slug = "dangling_reference_return"
+title = "Rückgabe einer hängenden Referenz"
+summary = "Eine Funktion versucht, eine Referenz, einen Alias oder einen Zeiger auf einen Speicher zurückzugeben, der bei Rückgabe abläuft."
+default_message = "Die zurückgegebene Referenz würde den Wert, auf den sie zeigt, überleben."
+recovery = "Geben Sie stattdessen einen eigenen (owned) Wert zurück oder geben Sie eine Referenz auf einen Speicher zurück, der gültig bleibt."
+tags = ["ownership", "lifetime", "return"]
+
+[messages.N3202]
+severity = "error"
+phase = "ownership"
+slug = "escaping_borrow"
+title = "Entkommende Ausleihe"
+summary = "Eine ausgeliehene Ansicht entkommt dem Scope, in dem der eigene Speicher gültig bleibt."
+default_message = "Der ausgeliehene Wert entkommt seiner gültigen Lebensdauer."
+recovery = "Halten Sie die Ausleihe lokal im gültigen Scope oder geben Sie eine eigene Kopie zurück."
+tags = ["ownership", "borrow", "escape"]
+
+[messages.N3203]
+severity = "error"
+phase = "ownership"
+slug = "use_after_scope_end"
+title = "Verwendung nach Scope-Ende"
+summary = "Ein referenzähnlicher Wert wird verwendet, nachdem der Speicher, von dem er abhängt, den Scope verlassen hat."
+default_message = "Der Wert wird verwendet, nachdem der Quellspeicher abgelaufen ist."
+recovery = "Verkürzen Sie die Lebensdauer der Referenz oder verlängern Sie die Lebensdauer des eigenen Speichers."
+tags = ["ownership", "lifetime", "scope"]
+
+[messages.W3001]
+severity = "warning"
+phase = "ownership"
+slug = "needless_move"
+title = "Unnötiger Move"
+summary = "Eine Move-Operation ist explizit, verbessert aber weder die Korrektheit noch die Performance im aktuellen Kontext."
+default_message = "Ein Move ist hier unnötig."
+recovery = "Entfernen Sie den Move, es sei denn, er dokumentiert eine Absicht, die das Projekt bewahren möchte."
+tags = ["warning", "ownership", "move"]
+
+[messages.W3002]
+severity = "warning"
+phase = "ownership"
+slug = "suspicious_alias_chain"
+title = "Verdächtige Alias-Kette"
+summary = "Eine lange Alias-Kette mag legal sein, macht es aber schwieriger, über Besitz- und Mutationsverhalten nachzudenken."
+default_message = "Die Alias-Kette ist legal, aber schwer zu durchschauen."
+recovery = "Bevorzugen Sie kürzere Alias-Lebensdauern oder explizite Kopien, wo Lesbarkeit wichtig ist."
+tags = ["warning", "ownership", "alias"]
+

@@ -1,0 +1,60 @@
+[catalog]
+locale = "az"
+bucket = "shared_compat"
+display_name = "Paylaşılan uyğunluq diaqnostikası"
+inherits_contract = "shared_compat"
+
+[contracts]
+allowed_exact_codes = ["NPP0001", "NPP3001", "NPP9000", "NPP9001", "NPP9002"]
+future_addition_rule = "Bu faylda yalnız yuxarıda sadalanan dəqiq uyğunluq kodları görünə bilər."
+
+[messages.NPP0001]
+severity = "error"
+phase = "generic"
+slug = "legacy_generic_error"
+title = "Ümumi kompilyator xətası (köhnə)"
+summary = "Hələ konkret diaqnostik ailə təyin edilməmiş kompilyator xətaları üçün ehtiyat bölmə."
+default_message = "Kompilyatorda xəta baş verdi, lakin bu xəta üçün hələ konkret diaqnostik ailə təyin edilməyib."
+recovery = "İlk öncə bildirilən mənbə mövqeyini yoxlayın və tətbiq daha dəqiq olduqda diaqnostikanı konkret ailəyə köçürün."
+tags = ["legacy", "fallback", "generic"]
+
+[messages.NPP3001]
+severity = "error"
+phase = "config"
+slug = "legacy_project_configuration_error"
+title = "Layihə konfiqurasiya xətası (köhnə)"
+summary = "Mənbə kompilyasiyasına və ya icrasına mane olan konfiqurasiya uğursuzluqları üçün uyğunluq bölməsi."
+default_message = "Tələb olunan mənbə əməliyyatı üçün layihə konfiqurasiyası yanlışdır və ya natamamdır."
+recovery = "Neuron.toml faylını, modul parametrlərini və bildirilən mövqe yaxınlığındakı hər hansı tələb olunan quruluş və ya icra konfiqurasiyasını nəzərdən keçirin."
+tags = ["legacy", "config", "fallback"]
+
+[messages.NPP9000]
+severity = "warning"
+phase = "generic"
+slug = "legacy_generic_warning"
+title = "Ümumi kompilyator xəbərdarlığı (köhnə)"
+summary = "Hələ daha dar xəbərdarlıq ailəsi təyin edilməmiş xəbərdarlıqlar üçün ehtiyat bölmə."
+default_message = "Kompilyator proqramı qəbul etdi, lakin hələ də ümumi uyğunluq kodu vasitəsilə yönləndirilən bir xəbərdarlıq aşkar etdi."
+recovery = "Xəbərdarlıq mətnini oxuyun və tətbiq konkret ailəni təqdim etdikdən sonra onu həmin ailəyə köçürün."
+tags = ["legacy", "warning", "fallback"]
+
+[messages.NPP9001]
+severity = "warning"
+phase = "config"
+slug = "legacy_project_configuration_warning"
+title = "Layihə konfiqurasiya xəbərdarlığı (köhnə)"
+summary = "Həyati olmayan layihə konfiqurasiya xəbərdarlıqları üçün uyğunluq bölməsi."
+default_message = "Layihə konfiqurasiyası xəbərdarlıqla qəbul edildi."
+recovery = "Xəbərdarlıq edilən parametri nəzərdən keçirin və deterministik davranış tələb olunursa, konfiqurasiyanı dəqiqləşdirin."
+tags = ["legacy", "warning", "config"]
+
+[messages.NPP9002]
+severity = "warning"
+phase = "semantic"
+slug = "unused_binding_warning"
+title = "İstifadə olunmayan bağlama"
+summary = "Lokal bağlama elan edilib, lakin heç vaxt istifadə olunmayıb."
+default_message = "Elan edilmiş bağlama heç vaxt oxunmur."
+recovery = "Bağlamanı silin, ondan istifadə edin və ya niyə istifadə olunmamış qaldığını sənədləşdirin."
+tags = ["warning", "semantic", "unused", "lsp"]
+

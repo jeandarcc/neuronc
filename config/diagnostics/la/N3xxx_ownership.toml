@@ -1,0 +1,112 @@
+[catalog]
+locale = "la"
+bucket = "N3xxx_ownership"
+display_name = "Diagnostica dominii"
+inherits_contract = "N3xxx_ownership"
+
+[contracts]
+allowed_exact_codes = []
+allowed_n_range = "3000-3299"
+allowed_w_range = "3000-3099"
+future_addition_rule = "Solum N3000-N3299 et W3000-W3099 in hoc archivo apparere possunt."
+
+[messages.N3001]
+severity = "error"
+phase = "ownership"
+slug = "use_after_move"
+title = "Usus post motionem (move)"
+summary = "Valor adhibitus est postquam dominium iam translatum erat."
+default_message = "Valor adhibitus est postquam dominium eius motum est."
+recovery = "Utere novo domino, fac copiam explicitam, aut ligationem originalem ante re-usum reinstitue."
+tags = ["ownership", "move", "lifetime"]
+
+[messages.N3002]
+severity = "error"
+phase = "ownership"
+slug = "double_move"
+title = "Motio duplex"
+summary = "Idem dominus plus semel movetur sine reinstitutione."
+default_message = "Dominium plus semel ex eodem statu valoris transferri non potest."
+recovery = "Move valorem semel, aut eum ante quamvis aliam motionem rursus liga."
+tags = ["ownership", "move", "duplicate"]
+
+[messages.N3003]
+severity = "error"
+phase = "ownership"
+slug = "invalid_move_source"
+title = "Fons motionis invalidus"
+summary = "Motio tentata est ex fonte qui translationem in forma praesenti non sustinet."
+default_message = "Dominium ex hoc fonte moveri non potest."
+recovery = "Move ex domino nominato, aut expressionem rescribe in formam motui capacem."
+tags = ["ownership", "move", "source"]
+
+[messages.N3101]
+severity = "error"
+phase = "ownership"
+slug = "mutable_access_during_active_borrow"
+title = "Aditus mutabilis dum mutuum (borrow) viget"
+summary = "Valor mutatur dum mutuum aut alias confligens adhuc viget."
+default_message = "Valor mutari non potest dum mutuum confligens viget."
+recovery = "Fini primum mutuum, aut codicem re-structura ut aditus superpositos vites."
+tags = ["ownership", "borrow", "mutation"]
+
+[messages.N3102]
+severity = "error"
+phase = "ownership"
+slug = "illegal_alias_use_after_transfer"
+title = "Usus alias illicitus post translationem dominii"
+summary = "Alias aut mutuum statum dominii a quo pendet superstes est."
+default_message = "Alias adhiberi non potest postquam dominium originale mutatum est."
+recovery = "Crea copiam independentem aut cura ut alias ante translationem dominii consumatur."
+tags = ["ownership", "alias", "move"]
+
+[messages.N3201]
+severity = "error"
+phase = "ownership"
+slug = "dangling_reference_return"
+title = "Reditus referentiae pendentis"
+summary = "Functio tentat referentiam, alias, aut indicem reddere ad memoriam quae in reditu expirabit."
+default_message = "Referentia reddita valorem ad quem spectat superstes esset."
+recovery = "Redde valorem possessum loco eius, aut redde referentiam ad memoriam quae valida manet."
+tags = ["ownership", "lifetime", "return"]
+
+[messages.N3202]
+severity = "error"
+phase = "ownership"
+slug = "escaping_borrow"
+title = "Mutuum effugiens"
+summary = "Vidus mutuo datus ambitum in quo memoria possessa valida manet effugit."
+default_message = "Valor mutuo datus aetatem suam validam effugit."
+recovery = "Tene mutuum intra ambitum validum aut redde copiam possessam."
+tags = ["ownership", "borrow", "escape"]
+
+[messages.N3203]
+severity = "error"
+phase = "ownership"
+slug = "use_after_scope_end"
+title = "Usus post finem ambitus"
+summary = "Valor referentiae similis adhibitus est postquam memoria a qua pendet ex ambitu excessit."
+default_message = "Valor adhibitus est postquam memoria fontis expiravit."
+recovery = "Aetatem referentiae abbrevia aut aetatem memoriae possessae extende."
+tags = ["ownership", "lifetime", "scope"]
+
+[messages.W3001]
+severity = "warning"
+phase = "ownership"
+slug = "needless_move"
+title = "Motio non necessaria"
+summary = "Operatio motionis explicita est sed rectitudinem aut efficientiam in contextu praesenti non auget."
+default_message = "Motio hic non est necessaria."
+recovery = "Remove motionem, nisi consilium quod proiectum servare vult demonstrat."
+tags = ["warning", "ownership", "move"]
+
+[messages.W3002]
+severity = "warning"
+phase = "ownership"
+slug = "suspicious_alias_chain"
+title = "Catena alias suspiciosa"
+summary = "Longa catena alias legitima esse potest sed ratiocinationem de dominio et mutatione difficiliorem facit."
+default_message = "Catena alias legitima est sed de ea ratiocinari difficile est."
+recovery = "Praefer aetates alias breviores aut copias explicitas ubi legibilitas interest."
+tags = ["warning", "ownership", "alias"]
+

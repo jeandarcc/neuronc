@@ -1,0 +1,143 @@
+[catalog]
+locale = "es"
+bucket = "N1xxx_parser"
+display_name = "Diagnósticos del analizador sintáctico"
+inherits_contract = "N1xxx_parser"
+
+[contracts]
+allowed_exact_codes = ["NPP1001", "NPP1002"]
+allowed_n_range = "1000-1599"
+allowed_w_range = "1000-1099"
+future_addition_rule = "Solo N1000-N1599, W1000-W1099 y los códigos exactos del analizador legado enumerados arriba pueden aparecer en este archivo."
+
+[messages.NPP1001]
+severity = "error"
+phase = "lexer"
+slug = "legacy_lexer_error"
+title = "Error del analizador léxico (legado)"
+summary = "Cubo de compatibilidad para fallos de tokenización hasta que se conecten códigos de léxico más finos."
+default_message = "La fuente contiene un token inválido, un literal mal formado o una secuencia de caracteres ilegal."
+recovery = "Inspeccione el primer carácter inválido o el literal mal formado cerca de la ubicación reportada."
+tags = ["legacy", "lexer", "fallback"]
+
+[messages.NPP1002]
+severity = "error"
+phase = "parser"
+slug = "legacy_parser_error"
+title = "Error del analizador sintáctico (legado)"
+summary = "Cubo de compatibilidad para fallos de análisis hasta que se conecten códigos de analizador más finos."
+default_message = "La fuente no coincide con la gramática esperada de Neuron++."
+recovery = "Inspeccione el límite del token reportado, el emparejamiento de delimitadores y la forma esperada de la declaración o sentencia."
+tags = ["legacy", "parser", "fallback"]
+
+[messages.N1001]
+severity = "error"
+phase = "lexer"
+slug = "invalid_character"
+title = "Carácter inválido"
+summary = "El analizador léxico encontró un carácter que no es válido en el contexto actual de la fuente."
+default_message = "Se encontró un carácter inválido en la fuente."
+recovery = "Elimine el carácter o reemplácelo con una sintaxis válida de Neuron++."
+tags = ["lexer", "character", "syntax"]
+
+[messages.N1002]
+severity = "error"
+phase = "lexer"
+slug = "unterminated_string_literal"
+title = "Literal de cadena no terminado"
+summary = "Se inició un literal de cadena pero no se cerró antes de que terminara la línea o el archivo."
+default_message = "Al literal de cadena le falta su comilla de cierre."
+recovery = "Agregue la comilla faltante o escape las comillas incrustadas correctamente."
+tags = ["lexer", "string", "literal"]
+
+[messages.N1101]
+severity = "error"
+phase = "parser"
+slug = "missing_expression_operand"
+title = "Falta el operando de la expresión"
+summary = "Un operador o una forma de expresión aparece sin el operando izquierdo o derecho requerido."
+default_message = "A la expresión le falta un operando."
+recovery = "Agregue el operando faltante o elimine el operador incompleto."
+tags = ["parser", "expression", "operand"]
+
+[messages.N1102]
+severity = "error"
+phase = "parser"
+slug = "unexpected_token_in_expression"
+title = "Token inesperado en la expresión"
+summary = "El analizador encontró un token que no puede continuar la expresión actual."
+default_message = "Token inesperado al analizar una expresión."
+recovery = "Verifique el agrupamiento, los separadores y la sintaxis postfija cerca del token reportado."
+tags = ["parser", "expression", "token"]
+
+[messages.N1201]
+severity = "error"
+phase = "parser"
+slug = "missing_statement_terminator"
+title = "Falta el terminador de la sentencia"
+summary = "Se esperaba un límite de sentencia pero no se encontró."
+default_message = "A la sentencia le falta su terminador esperado."
+recovery = "Agregue el punto y coma faltante o reescriba la sentencia en una forma de bloque válida."
+tags = ["parser", "statement", "terminator"]
+
+[messages.N1301]
+severity = "error"
+phase = "parser"
+slug = "invalid_parameter_declaration"
+title = "Declaración de parámetro inválida"
+summary = "Un parámetro de método no coincide con la sintaxis de parámetros declarada del lenguaje."
+default_message = "La declaración del parámetro está mal formada."
+recovery = "Use la forma canónica `nombre as Tipo` y separe los parámetros con comas."
+tags = ["parser", "function", "parameter"]
+
+[messages.N1401]
+severity = "error"
+phase = "parser"
+slug = "malformed_type_annotation"
+title = "Anotación de tipo mal formada"
+summary = "Una anotación de tipo o lista de argumentos genéricos está sintácticamente incompleta o mal formada."
+default_message = "La anotación de tipo está mal formada."
+recovery = "Verifique los corchetes genéricos, comas, dos puntos y la ortografía de tipos nulos o punteros."
+tags = ["parser", "type", "generic"]
+
+[messages.N1501]
+severity = "error"
+phase = "parser"
+slug = "unexpected_end_of_file"
+title = "Fin de archivo inesperado"
+summary = "La fuente terminó antes de que el analizador pudiera finalizar la construcción actual."
+default_message = "La fuente terminó antes de que se cerrara la construcción actual."
+recovery = "Agregue el delimitador de cierre faltante o complete la declaración o bloque inacabado."
+tags = ["parser", "recovery", "eof"]
+
+[messages.W1001]
+severity = "warning"
+phase = "parser"
+slug = "recovered_missing_token"
+title = "Analizador recuperado insertando un token esperado"
+summary = "El analizador continuó después de asumir un token faltante."
+default_message = "El analizador se recuperó después de inferir un token faltante."
+recovery = "Corrija la sintaxis circundante para que la recuperación ya no sea necesaria."
+tags = ["warning", "parser", "recovery"]
+
+[messages.W1002]
+severity = "warning"
+phase = "parser"
+slug = "deprecated_syntax_accepted"
+title = "Sintaxis obsoleta aceptada"
+summary = "El analizador aceptó una forma de sintaxis legada que debería ser migrada."
+default_message = "Se aceptó sintaxis obsoleta por compatibilidad."
+recovery = "Reescriba la construcción usando la sintaxis canónica actual."
+tags = ["warning", "parser", "compatibility"]
+
+
+[messages.N1103]
+severity = "error"
+phase = "parser"
+slug = "unexpected_token"
+title = "Token inesperado"
+summary = "El parser encontro un token que no es valido en la posicion actual."
+default_message = "Token inesperado: '{token}'."
+parameters = ["token"]
+recovery = "Quite el token o reescriba la sintaxis circundante para que sea valida en esta posicion."
+tags = ["parser", "token", "recovery"]

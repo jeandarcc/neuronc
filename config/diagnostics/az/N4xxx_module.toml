@@ -1,0 +1,92 @@
+[catalog]
+locale = "az"
+bucket = "N4xxx_module"
+display_name = "Modul diaqnostikası"
+inherits_contract = "N4xxx_module"
+
+[contracts]
+allowed_exact_codes = ["NPP4001"]
+allowed_n_range = "4000-4099"
+allowed_w_range = "4000-4099"
+future_addition_rule = "Bu faylda yalnız N4000-N4099, W4000-W4099 və yuxarıda sadalanan dəqiq köhnə modul kodu görünə bilər."
+
+[messages.NPP4001]
+severity = "error"
+phase = "module"
+slug = "legacy_module_error"
+title = "Modul xətası (köhnə)"
+summary = "Daha dəqiq modul kodları qoşulana qədər modul həlli uğursuzluqları üçün uyğunluq bölməsi."
+default_message = "Modulla bağlı xəta kompilyasiyaya mane oldu."
+recovery = "Bildirilən mövqe yaxınlığındakı modul bəyanatlarını, importları, nativ modulların konfiqurasiyasını və layihə strukturunu yoxlayın."
+tags = ["legacy", "module", "fallback"]
+
+[messages.N4001]
+severity = "error"
+phase = "module"
+slug = "missing_module"
+title = "Modul çatışmır"
+summary = "Tələb olunan modul cari layihədə və ya mövcud modullar dəstində tapıla bilmir."
+default_message = "Tələb olunan modulu həll etmək mümkün olmadı."
+recovery = "Modulu əlavə edin, adı düzəldin və ya modulu əlçatan etmək üçün layihə konfiqurasiyasını yeniləyin."
+tags = ["module", "resolution", "import"]
+
+[messages.N4002]
+severity = "error"
+phase = "module"
+slug = "duplicate_module_declaration"
+title = "Təkrarlanan modul bəyanatı"
+summary = "Mənbə eyni modul kontekstini yalnız bir bəyanata icazə verilən yerdə birdən çox dəfə elan edir."
+default_message = "Modul birdən çox dəfə elan edilib."
+recovery = "Yalnız bir kanonik modul bəyanatını saxlayın."
+tags = ["module", "duplicate", "declaration"]
+
+[messages.N4003]
+severity = "error"
+phase = "module"
+slug = "self_import_not_allowed"
+title = "Öz-özünə import icazə verilmir"
+summary = "Mənbə faylı özünü xarici modul sərhədi kimi import etməyə və ya elan etməyə cəhd edir."
+default_message = "Fayl özünü modul asılılığı kimi import edə bilməz."
+recovery = "Öz-özünə importu silin və birbaşa faylın öz bəyanatlarına etibar edin."
+tags = ["module", "self-import", "project-structure"]
+
+[messages.N4004]
+severity = "error"
+phase = "module"
+slug = "modulecpp_configuration_missing"
+title = "ModuleCpp konfiqurasiyası çatışmır"
+summary = "Mənbədə modulecpp importu mövcuddur, lakin tələb olunan nativ modul konfiqurasiyası yoxdur."
+default_message = "ModuleCpp importunun tələb olunan konfiqurasiyası çatışmır."
+recovery = "Nativ modul manifestini əlavə edin və onu layihə konfiqurasiyasında qeydiyyata alın."
+tags = ["module", "modulecpp", "config"]
+
+[messages.N4005]
+severity = "error"
+phase = "module"
+slug = "modulecpp_export_signature_mismatch"
+title = "ModuleCpp eksport imza uyğunsuzluğu"
+summary = "Konfiqurasiya edilmiş nativ eksport mənbə bəyanatı tərəfindən gözlənilən tip müqaviləsinə uyğun gəlmir."
+default_message = "Nativ modulun eksport imzası mənbə müqaviləsinə uyğun gəlmir."
+recovery = "Mənbə tərəfindəki bəyanatı və nativ manifest eksport imzasını uyğunlaşdırın."
+tags = ["module", "modulecpp", "signature"]
+
+[messages.N4006]
+severity = "error"
+phase = "module"
+slug = "invalid_file_to_type_naming_contract"
+title = "Yanlış fayl-tip adlandırma müqaviləsi"
+summary = "Layihə fayl-adından-tipə adlandırma qaydasını tətbiq edir və cari mənbə bunu pozur."
+default_message = "Elan edilmiş tip adı tələb olunan fayl adlandırma müqaviləsinə uyğun gəlmir."
+recovery = "Faylı və ya elan edilmiş tipi yenidən adlandırın ki, müqavilə tam şəkildə yerinə yetirilsin."
+tags = ["module", "naming", "project-structure"]
+
+[messages.W4001]
+severity = "warning"
+phase = "module"
+slug = "redundant_module_import"
+title = "Artıq modul importu"
+summary = "Modul importu qəbul edilir, lakin simvollar dəsti artıq mövcud olduğu üçün tələb olunmur."
+default_message = "Modul importu artıqdır."
+recovery = "Asılılıqları aşkar və minimum saxlamaq üçün əlavə importu silin."
+tags = ["warning", "module", "import"]
+

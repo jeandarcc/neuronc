@@ -1,0 +1,185 @@
+[catalog]
+locale = "ru"
+bucket = "N2xxx_semantic"
+display_name = "Семантические диагностики"
+inherits_contract = "N2xxx_semantic"
+
+[contracts]
+allowed_exact_codes = ["NPP2001"]
+allowed_n_range = "2000-2499"
+allowed_w_range = "2000-2099"
+future_addition_rule = "В этом файле могут появляться только N2000-N2499, W2000-W2099 и указанный выше точный устаревший семантический код."
+
+[messages.NPP2001]
+severity = "error"
+phase = "semantic"
+slug = "legacy_semantic_error"
+title = "Семантическая ошибка (устаревшая)"
+summary = "Хранилище совместимости для семантических сбоев до внедрения более точных семантических кодов."
+default_message = "Программа синтаксически верна, но семантически недопустима."
+recovery = "Проверьте типы, имена, универсальные шаблоны, перегрузки и поток значений рядом с указанным местом."
+tags = ["legacy", "semantic", "fallback"]
+
+[messages.N2001]
+severity = "error"
+phase = "semantic"
+slug = "type_mismatch"
+title = "Несоответствие типов"
+summary = "Значение одного типа было использовано там, где требовался другой тип."
+default_message = "Несоответствие между требуемым типом и типом предоставленного значения."
+recovery = "Измените исходное выражение, добавьте явное приведение типов или настройте целевой тип."
+tags = ["semantic", "types", "assignment"]
+
+[messages.N2002]
+severity = "error"
+phase = "semantic"
+slug = "invalid_operator_operand_pair"
+title = "Недопустимая пара оператора и операнда"
+summary = "Оператор применен к операндам, которые не поддерживают его совместное использование."
+default_message = "Оператор не может быть применен к предоставленным типам операндов."
+recovery = "Используйте совместимые типы операндов или выберите оператор, определенный для текущих типов."
+tags = ["semantic", "operator", "types"]
+
+[messages.N2003]
+severity = "error"
+phase = "semantic"
+slug = "invalid_return_type"
+title = "Недопустимый тип возвращаемого значения"
+summary = "Инструкция return возвращает значение, несовместимое с объявленным типом возвращаемого значения."
+default_message = "Возвращаемое значение не соответствует объявленному типу возвращаемого значения."
+recovery = "Верните совместимое значение или измените объявленный тип возвращаемого значения."
+tags = ["semantic", "return", "types"]
+
+[messages.N2101]
+severity = "error"
+phase = "semantic"
+slug = "ambiguous_type_inference"
+title = "Неоднозначный вывод типов"
+summary = "Компилятор не смог вывести однозначный тип из доступного контекста."
+default_message = "Тип не может быть выведен однозначно."
+recovery = "Добавьте явную аннотацию типа или перепишите выражение, чтобы предоставить больше контекста."
+tags = ["semantic", "inference", "ambiguity"]
+
+[messages.N2102]
+severity = "error"
+phase = "semantic"
+slug = "conflicting_branch_inference"
+title = "Конфликт вывода типов в ветвлениях"
+summary = "Различные ветви потока управления устанавливают несовместимые выведенные типы для одного и того же значения."
+default_message = "Вывод типов конфликтует в разных ветвях потока управления."
+recovery = "Используйте общий совместимый тип или введите отдельные привязки для каждой ветви."
+tags = ["semantic", "inference", "control-flow"]
+
+
+[messages.N2201]
+severity = "error"
+phase = "semantic"
+slug = "unknown_identifier"
+title = "Неизвестный идентификатор"
+summary = "Ссылочный символ не виден в текущей области видимости."
+default_message = "Ссылочный идентификатор не определен в текущей области видимости: {name}."
+parameters = ["name"]
+recovery = "Объявите идентификатор, импортируйте необходимый модуль или исправьте опечатку."
+tags = ["semantic", "scope", "identifier"]
+[messages.N2202]
+severity = "error"
+phase = "semantic"
+slug = "duplicate_symbol"
+title = "Дублирующийся символ"
+summary = "Два объявления в одной и той же действующей области видимости конфликтуют друг с другом."
+default_message = "Символ с таким же именем уже определен в этой области видимости."
+recovery = "Переименуйте одно из объявлений или переместите его в другую область видимости."
+tags = ["semantic", "scope", "duplicate"]
+
+[messages.N2203]
+severity = "error"
+phase = "semantic"
+slug = "unknown_named_argument"
+title = "Неизвестный именованный аргумент"
+summary = "Вызов использует именованный аргумент, который не соответствует ни одному имени параметра в выбранном вызываемом объекте."
+default_message = "Именованный аргумент не соответствует ни одному из объявленных параметров."
+recovery = "Используйте допустимое имя параметра или удалите метку."
+tags = ["semantic", "call", "named-arguments"]
+
+[messages.N2301]
+severity = "error"
+phase = "semantic"
+slug = "generic_arity_mismatch"
+title = "Несоответствие количества универсальных параметров"
+summary = "Универсальный тип или вызываемый объект получил неверное количество аргументов типа."
+default_message = "Количество универсальных аргументов не соответствует объявлению."
+recovery = "Предоставьте ровно столько универсальных аргументов, сколько требуется."
+tags = ["semantic", "generics", "arity"]
+
+[messages.N2302]
+severity = "error"
+phase = "semantic"
+slug = "unsatisfied_generic_constraint"
+title = "Невыполненное ограничение универсального типа"
+summary = "Универсальный аргумент не удовлетворяет ограничению, объявленному для его параметра типа."
+default_message = "Универсальный аргумент не удовлетворяет требуемому ограничению."
+recovery = "Используйте тип, соответствующий ограничению, или смягчите универсальное объявление."
+tags = ["semantic", "generics", "constraint"]
+
+[messages.N2401]
+severity = "error"
+phase = "semantic"
+slug = "no_viable_overload"
+title = "Нет подходящей перегрузки"
+summary = "Ни один вызываемый объект в наборе перегрузок не принимает предоставленный список аргументов."
+default_message = "Ни одна перегрузка не соответствует предоставленным аргументам."
+recovery = "Измените типы аргументов, их количество или метки, либо добавьте подходящую перегрузку."
+tags = ["semantic", "overload", "call"]
+
+[messages.N2402]
+severity = "error"
+phase = "semantic"
+slug = "ambiguous_overload"
+title = "Неоднозначная перегрузка"
+summary = "Более чем один вызываемый объект одинаково хорошо соответствует предоставленным аргументам."
+default_message = "Вызов неоднозначен из-за наличия нескольких подходящих перегрузок."
+recovery = "Устраните неоднозначность вызова с помощью явных типов, приведения типов или более точного списка аргументов."
+tags = ["semantic", "overload", "ambiguity"]
+
+[messages.W2001]
+severity = "warning"
+phase = "semantic"
+slug = "unreachable_code"
+title = "Недостижимый код"
+summary = "Инструкция не может быть выполнена, так как поток управления уже завершился или обошел её."
+default_message = "Код недостижим."
+recovery = "Удалите «мертвый» код или перепишите поток управления так, чтобы инструкция стала достижимой."
+tags = ["warning", "semantic", "control-flow"]
+
+[messages.W2002]
+severity = "warning"
+phase = "semantic"
+slug = "redundant_cast"
+title = "Избыточное приведение типов"
+summary = "Приведение типов или шаг преобразования не меняет фактический тип."
+default_message = "Приведение типов избыточно."
+recovery = "Удалите ненужное приведение типов, если только оно не оставлено для ясности в соответствии с соглашениями проекта."
+tags = ["warning", "semantic", "cast"]
+
+
+[messages.N2403]
+severity = "error"
+phase = "semantic"
+slug = "unknown_callable_target"
+title = "Неизвестная вызываемая цель"
+summary = "Вызов обращается к символу или цепочке членов, которую нельзя разрешить как вызываемую."
+default_message = "Неизвестная вызываемая цель: {target}."
+parameters = ["target"]
+recovery = "Проверьте, что цель существует, видима в текущей области и обозначает вызываемый символ."
+tags = ["semantic", "call", "resolution"]
+
+[messages.N2204]
+severity = "error"
+phase = "semantic"
+slug = "use_before_initialization"
+title = "Использование до инициализации"
+summary = "Переменная читается до того, как была инициализирована."
+default_message = "Переменная используется до инициализации: {name}."
+parameters = ["name"]
+recovery = "Инициализируйте переменную на каждом пути потока управления до ее чтения."
+tags = ["semantic", "flow", "initialization"]

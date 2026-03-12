@@ -1,0 +1,60 @@
+[catalog]
+locale = "ja"
+bucket = "shared_compat"
+display_name = "共通互換性診断"
+inherits_contract = "shared_compat"
+
+[contracts]
+allowed_exact_codes = ["NPP0001", "NPP3001", "NPP9000", "NPP9001", "NPP9002"]
+future_addition_rule = "Only the exact compatibility codes listed above may appear in this file."
+
+[messages.NPP0001]
+severity = "error"
+phase = "generic"
+slug = "legacy_generic_error"
+title = "レガシー汎用コンパイラエラー"
+summary = "より具体的なファミリーがまだ割り当てられていないコンパイラエラーのフォールバックバケット。"
+default_message = "コンパイラが失敗しましたが、このエラーに特定の診断ファミリーがまだ割り当てられていません。"
+recovery = "まず報告されたソースの場所を確認し、実装がより正確になったら診断を特定のファミリーに移動してください。"
+tags = ["legacy", "fallback", "generic"]
+
+[messages.NPP3001]
+severity = "error"
+phase = "config"
+slug = "legacy_project_configuration_error"
+title = "レガシープロジェクト構成エラー"
+summary = "ソースのコンパイルまたは実行を妨げる構成の失敗に対する互換性バケット。"
+default_message = "要求されたソース操作に対して、プロジェクト構成が無効または不完全です。"
+recovery = "neuron.toml、モジュール設定、および報告された場所の近くにある必要なビルドまたはランタイム構成を確認してください。"
+tags = ["legacy", "config", "fallback"]
+
+[messages.NPP9000]
+severity = "warning"
+phase = "generic"
+slug = "legacy_generic_warning"
+title = "レガシー汎用コンパイラ警告"
+summary = "より狭い警告ファミリーがまだ割り当てられていない警告のフォールバックバケット。"
+default_message = "コンパイラはプログラムを受け入れましたが、汎用互換コードを介してルーティングされている警告を検出しました。"
+recovery = "警告テキストを読み、実装が公開されたら特定の警告ファミリーに移行してください。"
+tags = ["legacy", "warning", "fallback"]
+
+[messages.NPP9001]
+severity = "warning"
+phase = "config"
+slug = "legacy_project_configuration_warning"
+title = "レガシープロジェクト構成警告"
+summary = "致命的ではないプロジェクト構成警告の互換性バケット。"
+default_message = "プロジェクト構成は警告付きで受け入れられました。"
+recovery = "警告された設定を確認し、決定的な動作が必要な場合は構成を絞り込んでください。"
+tags = ["legacy", "warning", "config"]
+
+[messages.NPP9002]
+severity = "warning"
+phase = "semantic"
+slug = "unused_binding_warning"
+title = "未使用のバインディング"
+summary = "ローカルバインディングが宣言されましたが、一度も使用されませんでした。"
+default_message = "宣言されたバインディングは一度も読み取られません。"
+recovery = "バインディングを削除するか、使用するか、あるいは未使用のままにする理由を意図的に文書化してください。"
+tags = ["warning", "semantic", "unused", "lsp"]
+

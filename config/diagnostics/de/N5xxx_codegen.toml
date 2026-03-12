@@ -1,0 +1,92 @@
+[catalog]
+locale = "de"
+bucket = "N5xxx_codegen"
+display_name = "Codegen-Diagnose"
+inherits_contract = "N5xxx_codegen"
+
+[contracts]
+allowed_exact_codes = []
+allowed_n_range = "5000-5099"
+allowed_w_range = "5000-5099"
+future_addition_rule = "Only N5000-N5099 and W5000-W5099 may appear in this file."
+
+[messages.N5001]
+severity = "error"
+phase = "codegen"
+slug = "unsupported_lowering"
+title = "Nicht unterstützte Absenkung (Lowering)"
+summary = "Das Quellprogramm ist semantisch gültig, aber das aktuelle Backend kann eines seiner Konstrukte nicht absenken."
+default_message = "Dieses Quellkonstrukt kann vom ausgewählten Backend nicht abgesenkt werden."
+recovery = "Schreiben Sie das Konstrukt um, wechseln Sie das Backend oder implementieren Sie die Absenkungsunterstützung für das fehlende Feature."
+tags = ["codegen", "lowering", "backend"]
+
+[messages.N5002]
+severity = "error"
+phase = "runtime"
+slug = "runtime_trap"
+title = "Laufzeit-Trap"
+summary = "Die Ausführung hat einen Laufzeitfehler erreicht, der als strukturierte Diagnose anstatt eines lautlosen Absturzes gemeldet werden sollte."
+default_message = "Programm ist zur Laufzeit in einen Trap gelaufen."
+recovery = "Untersuchen Sie die fehlgeschlagene Operation und fügen Sie quellseitige Guards hinzu oder beheben Sie den Absenkungsfehler."
+tags = ["runtime", "trap", "execution"]
+
+[messages.N5003]
+severity = "error"
+phase = "codegen"
+slug = "target_backend_not_available"
+title = "Ziel-Backend nicht verfügbar"
+summary = "Das angeforderte Quell-Feature erfordert ein Backend, das im aktuellen Toolchain veya Umgebung nicht verfügbar ist."
+default_message = "Das erforderliche Backend ist nicht verfügbar."
+recovery = "Aktivieren Sie das Backend, installieren Sie dessen Abhängigkeiten oder wählen Sie einen unterstützten Ausführungspfad."
+tags = ["codegen", "backend", "environment"]
+
+[messages.N5004]
+severity = "error"
+phase = "codegen"
+slug = "abi_layout_mismatch"
+title = "ABI- oder Layout-Fehlanpassung"
+summary = "Generierter Code und Laufzeiterwartungen stimmen beim Layout oder dem Aufruffertrag eines Wertes nicht überein."
+default_message = "Generiertes ABI oder Datenlayout entspricht nicht den Laufzeiterwartungen."
+recovery = "Gleichen Sie den Quellvertrag, den Laufzeitvertrag und die Backend-Absenkung für den betroffenen Typ an."
+tags = ["codegen", "abi", "layout"]
+
+[messages.N5005]
+severity = "error"
+phase = "link"
+slug = "external_symbol_not_resolved"
+title = "Externes Symbol nicht aufgelöst"
+summary = "Die Codegenerierung war erfolgreich, aber ein erforderliches externes Symbol konnte für die Ausführung nicht aufgelöst werden."
+default_message = "Das erforderliche externe Symbol konnte nicht aufgelöst werden."
+recovery = "Linken Sie die fehlende Bibliothek, exportieren Sie das fehlende Symbol oder entfernen Sie die ungelöste Abhängigkeit."
+tags = ["codegen", "link", "extern"]
+
+[messages.N5006]
+severity = "error"
+phase = "runtime"
+slug = "runtime_feature_contract_violated"
+title = "Laufzeit-Feature-Vertrag verletzt"
+summary = "Das kompilierte Programm hat eine Laufzeit-Fähigkeitsgrenze erreicht, die den Ausführungsvertrag auf Quellebene verletzt."
+default_message = "Die Laufzeitumgebung erfüllt nicht den von diesem Programm erforderlichen Feature-Vertrag."
+recovery = "Passen Sie die Laufzeitumgebung an oder kapseln Sie das Feature hinter einem unterstützten Ausführungspfad."
+tags = ["runtime", "feature", "environment"]
+
+[messages.W5001]
+severity = "warning"
+phase = "codegen"
+slug = "backend_fallback_path_selected"
+title = "Backend-Fallback-Pfad ausgewählt"
+summary = "Die Ausführung bleibt korrekt, aber der bevorzugte Backend-Pfad war nicht verfügbar und ein Fallback-Pfad wurde ausgewählt."
+default_message = "Der bevorzugte Backend-Pfad war nicht verfügbar; ein Fallback-Pfad wird verwendet."
+recovery = "Aktivieren Sie das bevorzugte Backend, wenn Sie die erwartete Performance oder das Feature-Profil benötigen."
+tags = ["warning", "codegen", "backend", "fallback"]
+
+[messages.W5002]
+severity = "warning"
+phase = "codegen"
+slug = "optimization_disabled_for_correctness"
+title = "Optimierung zur Korrektheit deaktiviert"
+summary = "Eine potenziell gültige Optimierung wurde absichtlich übersprungen, um die Korrektheit des Programms zu bewahren."
+default_message = "Die Optimierung wurde deaktiviert, um die Korrektheit zu bewahren."
+recovery = "Keine Aktion erforderlich, es sei denn, Sie untersuchen die Performance; untersuchen Sie dann das Konstrukt, das die Optimierung blockiert."
+tags = ["warning", "codegen", "optimization"]
+

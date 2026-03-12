@@ -1,0 +1,92 @@
+[catalog]
+locale = "az"
+bucket = "N5xxx_codegen"
+display_name = "Kod generasiyası diaqnostikası"
+inherits_contract = "N5xxx_codegen"
+
+[contracts]
+allowed_exact_codes = []
+allowed_n_range = "5000-5099"
+allowed_w_range = "5000-5099"
+future_addition_rule = "Bu faylda yalnız N5000-N5099 və W5000-W5099 görünə bilər."
+
+[messages.N5001]
+severity = "error"
+phase = "codegen"
+slug = "unsupported_lowering"
+title = "Dəstəklənməyən aşağı salma (lowering)"
+summary = "Mənbə proqramı semantik olaraq etibarlıdır, lakin mövcud backend onun konstruksiyalarından birini aşağı sala bilmir."
+default_message = "Bu mənbə konstruksiyası seçilmiş backend tərəfindən aşağı sala bilmir."
+recovery = "Konstruksiyanı yenidən yazın, backendi dəyişdirin və ya çatışmayan funksionallıq üçün aşağı salma dəstəyini tətbiq edin."
+tags = ["codegen", "lowering", "backend"]
+
+[messages.N5002]
+severity = "error"
+phase = "runtime"
+slug = "runtime_trap"
+title = "Runtime tələsi"
+summary = "İcra sessiz qəza əvəzinə strukturlaşdırılmış diaqnostika kimi təqdim edilməli olan runtime uğursuzluğuna çatdı."
+default_message = "Proqram icra zamanı tələyə düşdü."
+recovery = "Uğursuz əməliyyatı yoxlayın və mənbə səviyyəsində qoruyucular əlavə edin və ya aşağı salma xətasını düzəldin."
+tags = ["runtime", "trap", "execution"]
+
+[messages.N5003]
+severity = "error"
+phase = "codegen"
+slug = "target_backend_not_available"
+title = "Hədəf backend mövcud deyil"
+summary = "Tələb olunan mənbə funksionallığı mövcud alətlər dəstində və ya mühitdə olmayan backend tələb edir."
+default_message = "Tələb olunan backend mövcud deyil."
+recovery = "Backendi aktivləşdirin, asılılıqlarını quraşdırın və ya dəstəklənən bir icra yolunu seçin."
+tags = ["codegen", "backend", "environment"]
+
+[messages.N5004]
+severity = "error"
+phase = "codegen"
+slug = "abi_layout_mismatch"
+title = "ABI və ya düzülüş (layout) uyğunsuzluğu"
+summary = "Generalizə edilmiş kod və runtime gözləntiləri bir dəyərin düzülüşü və ya zəng müqaviləsi haqqında razılaşmır."
+default_message = "Generalizə edilmiş ABI və ya verilənlər düzülüşü runtime gözləntilərinə uyğun gəlmir."
+recovery = "Təsirə məruz qalan tip üçün mənbə müqaviləsini, runtime müqaviləsini və backend aşağı salmını uyğunlaşdırın."
+tags = ["codegen", "abi", "layout"]
+
+[messages.N5005]
+severity = "error"
+phase = "link"
+slug = "external_symbol_not_resolved"
+title = "Xarici simvol həll olunmadı"
+summary = "Kod generasiyası uğurlu oldu, lakin tələb olunan xarici simvol icra üçün həll oluna bilmədi."
+default_message = "Tələb olunan xarici simvolu həll etmək mümkün olmadı."
+recovery = "Çatışmayan kitabxananı birləşdirin, çatışmayan simvolu eksport edin və ya həll olunmamış asılılığı silin."
+tags = ["codegen", "link", "extern"]
+
+[messages.N5006]
+severity = "error"
+phase = "runtime"
+slug = "runtime_feature_contract_violated"
+title = "Runtime xüsusiyyət müqaviləsi pozuldu"
+summary = "Kompilyasiya edilmiş proqram mənbə səviyyəsində icra müqaviləsini pozan bir runtime tutumu limitinə çatdı."
+default_message = "Runtime mühiti bu proqram tərəfindən tələb olunan xüsusiyyət müqaviləsini ödəmir."
+recovery = "Runtime mühitini tənzimləyin və ya xüsusiyyəti dəstəklənən icra yolunun arxasında qoruyun."
+tags = ["runtime", "feature", "environment"]
+
+[messages.W5001]
+severity = "warning"
+phase = "codegen"
+slug = "backend_fallback_path_selected"
+title = "Backend ehtiyat yolu seçildi"
+summary = "İcra düzgün qalır, lakin backendin üstünlük verilən yolu mövcud deyildi və ehtiyat yolu seçildi."
+default_message = "Backendin üstünlük verilən yolu mövcud deyildi; ehtiyat yol istifadə olunur."
+recovery = "Gözlənilən performansa və ya xüsusiyyət profilinə ehtiyacınız varsa, üstünlük verilən backendi aktivləşdirin."
+tags = ["warning", "codegen", "backend", "fallback"]
+
+[messages.W5002]
+severity = "warning"
+phase = "codegen"
+slug = "optimization_disabled_for_correctness"
+title = "Düzgünlük üçün optimallaşdırma deaktiv edildi"
+summary = "Potensial olaraq etibarlı optimallaşdırma proqramın düzgünlüyünü qorumaq üçün qəsdən atlanıb."
+default_message = "Düzgünlüyü qorumaq üçün optimallaşdırma deaktiv edildi."
+recovery = "Performansı araşdırmadıqca heç bir hərəkət tələb olunmur; bu halda optimallaşdırmaya mane olan konstruksiyanı yoxlayın."
+tags = ["warning", "codegen", "optimization"]
+

@@ -1,0 +1,92 @@
+[catalog]
+locale = "zh"
+bucket = "N4xxx_module"
+display_name = "模块诊断"
+inherits_contract = "N4xxx_module"
+
+[contracts]
+allowed_exact_codes = ["NPP4001"]
+allowed_n_range = "4000-4099"
+allowed_w_range = "4000-4099"
+future_addition_rule = "Only N4000-N4099, W4000-W4099, and the exact legacy module code listed above may appear in this file."
+
+[messages.NPP4001]
+severity = "error"
+phase = "module"
+slug = "legacy_module_error"
+title = "旧版模块错误"
+summary = "在连接更精细的模块代码之前，模块解析失败的兼容性存储桶。"
+default_message = "与模块相关的错误阻止了编译。"
+recovery = "检查报告位置附近的模块声明、导入、原生模块配置和项目结构。"
+tags = ["legacy", "module", "fallback"]
+
+[messages.N4001]
+severity = "error"
+phase = "module"
+slug = "missing_module"
+title = "缺少模块"
+summary = "在当前项目或可用模块集中找不到请求的模块。"
+default_message = "无法解析请求的模块。"
+recovery = "添加模块、修复名称或更新项目配置以便模块可用。"
+tags = ["module", "resolution", "import"]
+
+[messages.N4002]
+severity = "error"
+phase = "module"
+slug = "duplicate_module_declaration"
+title = "重复的模块声明"
+summary = "在只允许一个声明的地方，源文件多次声明了同一个模块上下文。"
+default_message = "模块被多次声明。"
+recovery = "保持单一的规范模块声明。"
+tags = ["module", "duplicate", "declaration"]
+
+[messages.N4003]
+severity = "error"
+phase = "module"
+slug = "self_import_not_allowed"
+title = "不允许自我导入"
+summary = "源文件尝试导入或将其自身声明为外部模块边界。"
+default_message = "文件不能将其自身导入为模块依赖项。"
+recovery = "移除自我导入并直接依赖文件自身的声明。"
+tags = ["module", "self-import", "project-structure"]
+
+[messages.N4004]
+severity = "error"
+phase = "module"
+slug = "modulecpp_configuration_missing"
+title = "缺少 ModuleCpp 配置"
+summary = "源文件中存在 modulecpp 导入，但缺少必需的原生模块配置。"
+default_message = "ModuleCpp 导入缺少必需的配置。"
+recovery = "添加原生模块清单并在项目配置中注册。"
+tags = ["module", "modulecpp", "config"]
+
+[messages.N4005]
+severity = "error"
+phase = "module"
+slug = "modulecpp_export_signature_mismatch"
+title = "ModuleCpp 导出签名不匹配"
+summary = "配置的原生导出与源声明预期的类型契约不匹配。"
+default_message = "原生模块导出签名与源契约不匹配。"
+recovery = "对齐源端声明和原生清单导出签名。"
+tags = ["module", "modulecpp", "signature"]
+
+[messages.N4006]
+severity = "error"
+phase = "module"
+slug = "invalid_file_to_type_naming_contract"
+title = "无效的文件到类型命名契约"
+summary = "项目强制执行文件名到类型的命名规则，当前源文件违反了该规则。"
+default_message = "声明的类型名称不符合必需的文件命名契约。"
+recovery = "重命名文件或声明的类型，以便完全满足契约。"
+tags = ["module", "naming", "project-structure"]
+
+[messages.W4001]
+severity = "warning"
+phase = "module"
+slug = "redundant_module_import"
+title = "冗余模块导入"
+summary = "由于符号集已可用，模块导入虽然被接受但并非必要。"
+default_message = "模块导入是冗余的。"
+recovery = "移除额外的导入以保持依赖关系明确且最小化。"
+tags = ["warning", "module", "import"]
+

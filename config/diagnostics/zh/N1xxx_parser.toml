@@ -1,0 +1,143 @@
+[catalog]
+locale = "zh"
+bucket = "N1xxx_parser"
+display_name = "解析器诊断"
+inherits_contract = "N1xxx_parser"
+
+[contracts]
+allowed_exact_codes = ["NPP1001", "NPP1002"]
+allowed_n_range = "1000-1599"
+allowed_w_range = "1000-1099"
+future_addition_rule = "Only N1000-N1599, W1000-W1099, and the exact legacy parser codes listed above may appear in this file."
+
+[messages.NPP1001]
+severity = "error"
+phase = "lexer"
+slug = "legacy_lexer_error"
+title = "旧版词法分析错误"
+summary = "在连接更精细的词法分析代码之前，词法标记化失败的兼容性存储桶。"
+default_message = "源文件包含无效的标记、格式错误的内容或非法的字符序列。"
+recovery = "检查报告位置附近第一个无效字符或格式错误的内容。"
+tags = ["legacy", "lexer", "fallback"]
+
+[messages.NPP1002]
+severity = "error"
+phase = "parser"
+slug = "legacy_parser_error"
+title = "旧版解析器错误"
+summary = "在连接更精细的解析器代码之前，解析失败的兼容性存储桶。"
+default_message = "源文件与预期的 Neuron++ 语法不匹配。"
+recovery = "检查报告的标记边界、分隔符配对以及预期的语句或声明形式。"
+tags = ["legacy", "parser", "fallback"]
+
+[messages.N1001]
+severity = "error"
+phase = "lexer"
+slug = "invalid_character"
+title = "无效字符"
+summary = "词法分析器遇到在当前源上下文中无效的字符。"
+default_message = "在源文件中发现无效字符。"
+recovery = "移除该字符或使用有效的 Neuron++ 语法替换。"
+tags = ["lexer", "character", "syntax"]
+
+[messages.N1002]
+severity = "error"
+phase = "lexer"
+slug = "unterminated_string_literal"
+title = "未终止的字符串字面量"
+summary = "字符串字面量已开始，但在行或文件结束前未关闭。"
+default_message = "字符串字面量缺少闭合引号。"
+recovery = "添加缺少的引号或正确转义嵌入的引号。"
+tags = ["lexer", "string", "literal"]
+
+[messages.N1101]
+severity = "error"
+phase = "parser"
+slug = "missing_expression_operand"
+title = "缺少表达式操作数"
+summary = "运算符或表达式形式出现，但缺少必需的左侧或右侧操作数。"
+default_message = "表达式缺少操作数。"
+recovery = "添加缺少的操作数或移除不完整的运算符。"
+tags = ["parser", "expression", "operand"]
+
+[messages.N1102]
+severity = "error"
+phase = "parser"
+slug = "unexpected_token_in_expression"
+title = "表达式中出现意外标记"
+summary = "解析器发现了一个无法继续当前表达式的标记。"
+default_message = "解析表达式时出现意外标记。"
+recovery = "检查报告标记附近的括号分组、分隔符和后缀语法。"
+tags = ["parser", "expression", "token"]
+
+[messages.N1201]
+severity = "error"
+phase = "parser"
+slug = "missing_statement_terminator"
+title = "缺少语句终止符"
+summary = "预期出现语句边界但未找到。"
+default_message = "语句缺少预期的终止符。"
+recovery = "添加缺失的分号或将语句重写为有效的块形式。"
+tags = ["parser", "statement", "terminator"]
+
+[messages.N1301]
+severity = "error"
+phase = "parser"
+slug = "invalid_parameter_declaration"
+title = "参数声明无效"
+summary = "方法参数与语言声明的参数语法不匹配。"
+default_message = "参数声明格式错误。"
+recovery = "使用规范形式 `name as Type` 并用逗号分隔参数。"
+tags = ["parser", "function", "parameter"]
+
+[messages.N1401]
+severity = "error"
+phase = "parser"
+slug = "malformed_type_annotation"
+title = "类型注解格式错误"
+summary = "类型注解或泛型参数列表在语法上不完整或格式错误。"
+default_message = "类型注解格式错误。"
+recovery = "检查泛型括号、逗号、冒号以及可空或指针的拼写。"
+tags = ["parser", "type", "generic"]
+
+[messages.N1501]
+severity = "error"
+phase = "parser"
+slug = "unexpected_end_of_file"
+title = "意外的文件结束"
+summary = "在解析器完成当前构造前，源文件已结束。"
+default_message = "在当前构造关闭前，源文件已结束。"
+recovery = "添加缺少的闭合分隔符或完成未完成的声明或块。"
+tags = ["parser", "recovery", "eof"]
+
+[messages.W1001]
+severity = "warning"
+phase = "parser"
+slug = "recovered_missing_token"
+title = "解析器通过插入预期标记恢复"
+summary = "解析器在假设缺少标记后继续执行。"
+default_message = "解析器在推断出缺少的标记后恢复。"
+recovery = "修复周围的语法，以便不再需要恢复。"
+tags = ["warning", "parser", "recovery"]
+
+[messages.W1002]
+severity = "warning"
+phase = "parser"
+slug = "deprecated_syntax_accepted"
+title = "接受弃用的语法"
+summary = "解析器接受了应该迁移的旧版语法形式。"
+default_message = "为了兼容性接受了弃用的语法。"
+recovery = "使用当前的规范语法重写该构造。"
+tags = ["warning", "parser", "compatibility"]
+
+
+[messages.N1103]
+severity = "error"
+phase = "parser"
+slug = "unexpected_token"
+title = "意外标记"
+summary = "解析器遇到了一个在当前位置无效的标记。"
+default_message = "意外标记：'{token}'。"
+parameters = ["token"]
+recovery = "删除该标记，或重写周围语法，使其在此位置有效。"
+tags = ["parser", "token", "recovery"]

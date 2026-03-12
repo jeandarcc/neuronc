@@ -1,0 +1,112 @@
+[catalog]
+locale = "ja"
+bucket = "N3xxx_ownership"
+display_name = "所有権診断"
+inherits_contract = "N3xxx_ownership"
+
+[contracts]
+allowed_exact_codes = []
+allowed_n_range = "3000-3299"
+allowed_w_range = "3000-3099"
+future_addition_rule = "Only N3000-N3299 and W3000-W3099 may appear in this file."
+
+[messages.N3001]
+severity = "error"
+phase = "ownership"
+slug = "use_after_move"
+title = "ムーブ後の使用"
+summary = "所有権がすでに譲渡された後に値が使用されました。"
+default_message = "所有権が移動した後に値が使用されています。"
+recovery = "新しい所有者を使用するか、明示的なコピーを作成するか、再利用する前に元のバインディングを再初期化してください。"
+tags = ["ownership", "move", "lifetime"]
+
+[messages.N3002]
+severity = "error"
+phase = "ownership"
+slug = "double_move"
+title = "二重ムーブ"
+summary = "同じ所有者が、再初期化されることなく複数回移動されました。"
+default_message = "同じ値の状態から所有権を複数回移動することはできません。"
+recovery = "値を一度移動するか、追加の移動の前に再バインドしてください。"
+tags = ["ownership", "move", "duplicate"]
+
+[messages.N3003]
+severity = "error"
+phase = "ownership"
+slug = "invalid_move_source"
+title = "無効なムーブ元"
+summary = "現在の形式では譲渡をサポートしていないソースからムーブが試行されました。"
+default_message = "このソースから所有権を移動することはできません。"
+recovery = "名前付き所有者から移動するか、式を移動可能な形式に書き換えてください。"
+tags = ["ownership", "move", "source"]
+
+[messages.N3101]
+severity = "error"
+phase = "ownership"
+slug = "mutable_access_during_active_borrow"
+title = "アクティブな借用中のミュータブルアクセス"
+summary = "競合する借用またはエイリアスがまだアクティブな間に値が変更されました。"
+default_message = "競合する借用がアクティブな間は値を変更できません。"
+recovery = "借用を先に終了させるか、アクセスの重複を避けるようにコードを再構成してください。"
+tags = ["ownership", "borrow", "mutation"]
+
+[messages.N3102]
+severity = "error"
+phase = "ownership"
+slug = "illegal_alias_use_after_transfer"
+title = "所有権譲渡後の不正なエイリアス使用"
+summary = "エイリアスまたは借用されたビューが、それが依存する所有権状態よりも長く生存しています。"
+default_message = "元の所有権が変更された後はエイリアスを使用できません。"
+recovery = "独立したコピーを作成するか、所有権が譲渡される前にエイリアスが消費されることを確認してください。"
+tags = ["ownership", "alias", "move"]
+
+[messages.N3201]
+severity = "error"
+phase = "ownership"
+slug = "dangling_reference_return"
+title = "ダングリングリファレンスの返却"
+summary = "関数が、戻り時に期限切れになるストレージへの参照、エイリアス、またはポインタを返そうとしています。"
+default_message = "返された参照は、それが指す値よりも長く生存することになります。"
+recovery = "代わりに所有された値を返すか、有効なままのストレージへの参照を返してください。"
+tags = ["ownership", "lifetime", "return"]
+
+[messages.N3202]
+severity = "error"
+phase = "ownership"
+slug = "escaping_borrow"
+title = "エスケープする借用"
+summary = "借用されたビューが、所有されたストレージが有効なままのスコープから脱出しています。"
+default_message = "借用された値がその有効な存続期間を超えて脱出しています。"
+recovery = "借用を有効なスコープ内に留めるか、所有されたコピーを返してください。"
+tags = ["ownership", "borrow", "escape"]
+
+[messages.N3203]
+severity = "error"
+phase = "ownership"
+slug = "use_after_scope_end"
+title = "スコープ終了後の使用"
+summary = "参照のような値が、それが依存するストレージがスコープ外になった後に使用されました。"
+default_message = "ソースストレージの期限が切れた後に値が使用されています。"
+recovery = "参照の存続期間を短くするか、所有されたストレージの存続期間を延ばしてください。"
+tags = ["ownership", "lifetime", "scope"]
+
+[messages.W3001]
+severity = "warning"
+phase = "ownership"
+slug = "needless_move"
+title = "不要なムーブ"
+summary = "ムーブ操作は明示的ですが、現在のコンテキストでは正確性やパフォーマンスを向上させません。"
+default_message = "ここでのムーブは不要です。"
+recovery = "プロジェクトが保持したい意図を文書化している場合を除き、ムーブを削除してください。"
+tags = ["warning", "ownership", "move"]
+
+[messages.W3002]
+severity = "warning"
+phase = "ownership"
+slug = "suspicious_alias_chain"
+title = "疑わしいエイリアスチェーン"
+summary = "長いエイリアスチェーンは合法かもしれませんが、所有権と変更の動作について推論するのが難しくなります。"
+default_message = "エイリアスチェーンは合法ですが、推論が困難です。"
+recovery = "可読性が重要な場合は、短いエイリアス存続期間または明示的なコピーを優先してください。"
+tags = ["warning", "ownership", "alias"]
+

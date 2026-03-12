@@ -1,0 +1,44 @@
+---
+# Neuron++ clang-tidy configuration
+# Applied to: src/, include/, runtime/src/ (C/C++ files)
+# Run via: clang-tidy <file> -p build/compile_commands.json
+
+Checks: >
+  -*,
+  bugprone-*,
+  -bugprone-easily-swappable-parameters,
+  -bugprone-macro-parentheses,
+  readability-identifier-naming,
+  readability-redundant-declaration,
+  readability-redundant-smartptr-get,
+  readability-use-anyofallof,
+  modernize-use-nullptr,
+  modernize-use-override,
+  modernize-redundant-void-arg,
+  performance-unnecessary-copy-initialization,
+  performance-unnecessary-value-param,
+  clang-analyzer-core.*,
+  clang-analyzer-cplusplus.*,
+  clang-analyzer-unix.*
+
+WarningsAsErrors: ''
+
+HeaderFilterRegex: '^.*(include/neuronc|src/).*\.h$'
+
+CheckOptions:
+  - key:   readability-identifier-naming.ClassCase
+    value: CamelCase
+  - key:   readability-identifier-naming.FunctionCase
+    value: camelCase
+  - key:   readability-identifier-naming.VariableCase
+    value: camelCase
+  - key:   readability-identifier-naming.MemberCase
+    value: camelCase
+  - key:   readability-identifier-naming.ParameterCase
+    value: camelCase
+  - key:   readability-identifier-naming.MacroDefinitionCase
+    value: UPPER_CASE
+  - key:   readability-identifier-naming.EnumConstantCase
+    value: UPPER_CASE
+  - key:   readability-identifier-naming.NamespaceCase
+    value: lower_case

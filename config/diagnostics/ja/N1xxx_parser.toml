@@ -1,0 +1,143 @@
+[catalog]
+locale = "ja"
+bucket = "N1xxx_parser"
+display_name = "パーサー診断"
+inherits_contract = "N1xxx_parser"
+
+[contracts]
+allowed_exact_codes = ["NPP1001", "NPP1002"]
+allowed_n_range = "1000-1599"
+allowed_w_range = "1000-1099"
+future_addition_rule = "Only N1000-N1599, W1000-W1099, and the exact legacy parser codes listed above may appear in this file."
+
+[messages.NPP1001]
+severity = "error"
+phase = "lexer"
+slug = "legacy_lexer_error"
+title = "レガシー字句解析エラー"
+summary = "より詳細な字句解析コードが接続されるまでの、トークン化の失敗に対する互換性バケット。"
+default_message = "ソースに無効なトークン、不正な形式のリテラル、または不正な文字シーケンスが含まれています。"
+recovery = "報告された場所の近くにある最初の無効な文字または不正な形式のリテラルを確認してください。"
+tags = ["legacy", "lexer", "fallback"]
+
+[messages.NPP1002]
+severity = "error"
+phase = "parser"
+slug = "legacy_parser_error"
+title = "レガシー構文解析エラー"
+summary = "より詳細なパーサーコードが接続されるまでの、解析失敗に対する互換性バケット。"
+default_message = "ソースが期待されるNeuron++文法と一致しません。"
+recovery = "報告されたトークンの境界、デリミタのペアリング、および期待されるステートメントまたは宣言の形式を確認してください。"
+tags = ["legacy", "parser", "fallback"]
+
+[messages.N1001]
+severity = "error"
+phase = "lexer"
+slug = "invalid_character"
+title = "無効な文字"
+summary = "字句解析器が、現在のソースコンテキストで有効ではない文字に遭遇しました。"
+default_message = "ソースに無効な文字が見つかりました。"
+recovery = "文字を削除するか、有効なNeuron++構文に置き換えてください。"
+tags = ["lexer", "character", "syntax"]
+
+[messages.N1002]
+severity = "error"
+phase = "lexer"
+slug = "unterminated_string_literal"
+title = "未終端の文字列リテラル"
+summary = "文字列リテラルが開始されましたが、行またはファイルが終了する前に閉じられませんでした。"
+default_message = "文字列リテラルの閉じ引用符がありません。"
+recovery = "不足している引用符を追加するか、埋め込まれた引用符を正しくエスケープしてください。"
+tags = ["lexer", "string", "literal"]
+
+[messages.N1101]
+severity = "error"
+phase = "parser"
+slug = "missing_expression_operand"
+title = "式のオペランド不足"
+summary = "演算子または式の形式が、必要な左辺または右辺のオペランドなしで表示されています。"
+default_message = "式にオペランドが不足しています。"
+recovery = "不足しているオペランドを追加するか、不完全な演算子を削除してください。"
+tags = ["parser", "expression", "operand"]
+
+[messages.N1102]
+severity = "error"
+phase = "parser"
+slug = "unexpected_token_in_expression"
+title = "式内の予期しないトークン"
+summary = "パーサーは、現在の式を続行できないトークンを見つけました。"
+default_message = "式の解析中に予期しないトークンが見つかりました。"
+recovery = "報告されたトークンの近くで、グループ化、セパレータ、および後置構文を確認してください。"
+tags = ["parser", "expression", "token"]
+
+[messages.N1201]
+severity = "error"
+phase = "parser"
+slug = "missing_statement_terminator"
+title = "ステートメント終端記号の不足"
+summary = "ステートメントの境界が期待されましたが見つかりませんでした。"
+default_message = "ステートメントに期待される終端記号が不足しています。"
+recovery = "不足しているセミコロンを追加するか、ステートメントを有効なブロック形式に書き換えてください。"
+tags = ["parser", "statement", "terminator"]
+
+[messages.N1301]
+severity = "error"
+phase = "parser"
+slug = "invalid_parameter_declaration"
+title = "無効なパラメータ宣言"
+summary = "メソッドのパラメータが、言語で宣言されたパラメータ構文と一致しません。"
+default_message = "パラメータ宣言の形式が不正です。"
+recovery = "正規の形式 `name as Type` を使用し、パラメータをカンマで区切ってください。"
+tags = ["parser", "function", "parameter"]
+
+[messages.N1401]
+severity = "error"
+phase = "parser"
+slug = "malformed_type_annotation"
+title = "不正な形式の型注釈"
+summary = "型注釈またはジェネリック引数リストが、構文的に不完全または不正な形式です。"
+default_message = "型注釈の形式が不正です。"
+recovery = "ジェネリックの括弧、カンマ、コロン、およびNull許容またはポインタの綴りを確認してください。"
+tags = ["parser", "type", "generic"]
+
+[messages.N1501]
+severity = "error"
+phase = "parser"
+slug = "unexpected_end_of_file"
+title = "予期しないファイルの終端"
+summary = "パーサーが現在の構成要素を終了する前にソースが終了しました。"
+default_message = "現在の構成要素が閉じられる前にソースが終了しました。"
+recovery = "不足している閉じデリミタを追加するか、未完了の宣言またはブロックを完了させてください。"
+tags = ["parser", "recovery", "eof"]
+
+[messages.W1001]
+severity = "warning"
+phase = "parser"
+slug = "recovered_missing_token"
+title = "期待されるトークンを挿入してパーサーが復旧しました"
+summary = "パーサーは不足しているトークンを想定した後、続行しました。"
+default_message = "不足しているトークンを推論した後、パーサーが復旧しました。"
+recovery = "復旧が不要になるように周辺の構文を修正してください。"
+tags = ["warning", "parser", "recovery"]
+
+[messages.W1002]
+severity = "warning"
+phase = "parser"
+slug = "deprecated_syntax_accepted"
+title = "非推奨の構文が受け入れられました"
+summary = "パーサーは、移行する必要があるレガシー構文形式を受け入れました。"
+default_message = "互換性のために非推奨の構文が受け入れられました。"
+recovery = "現在の正規の構文を使用して構成要素を書き換えてください。"
+tags = ["warning", "parser", "compatibility"]
+
+
+[messages.N1103]
+severity = "error"
+phase = "parser"
+slug = "unexpected_token"
+title = "予期しないトークン"
+summary = "パーサーが現在位置で有効ではないトークンに遭遇しました。"
+default_message = "予期しないトークン: '{token}'。"
+parameters = ["token"]
+recovery = "そのトークンを削除するか、この位置で有効になるよう周辺の構文を書き換えてください。"
+tags = ["parser", "token", "recovery"]

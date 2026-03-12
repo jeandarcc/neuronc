@@ -1,0 +1,112 @@
+[catalog]
+locale = "fr"
+bucket = "N3xxx_ownership"
+display_name = "Diagnostics de propriété"
+inherits_contract = "N3xxx_ownership"
+
+[contracts]
+allowed_exact_codes = []
+allowed_n_range = "3000-3299"
+allowed_w_range = "3000-3099"
+future_addition_rule = "Seuls les codes N3000-N3299 et W3000-W3099 peuvent apparaître dans ce fichier."
+
+[messages.N3001]
+severity = "error"
+phase = "ownership"
+slug = "use_after_move"
+title = "Utilisation après déplacement"
+summary = "Une valeur a été utilisée après que sa propriété a déjà été transférée."
+default_message = "La valeur est utilisée après que sa propriété a été déplacée (move)."
+recovery = "Utilisez le nouveau propriétaire, faites une copie explicite ou réinitialisez la liaison d'origine avant réutilisation."
+tags = ["ownership", "move", "lifetime"]
+
+[messages.N3002]
+severity = "error"
+phase = "ownership"
+slug = "double_move"
+title = "Double déplacement"
+summary = "Le même propriétaire est déplacé plus d'une fois sans être réinitialisé."
+default_message = "La propriété ne peut pas être déplacée plus d'une fois à partir du même état de valeur."
+recovery = "Déplacez la valeur une seule fois, ou liez-la à nouveau avant tout déplacement supplémentaire."
+tags = ["ownership", "move", "duplicate"]
+
+[messages.N3003]
+severity = "error"
+phase = "ownership"
+slug = "invalid_move_source"
+title = "Source de déplacement invalide"
+summary = "Un déplacement a été tenté à partir d'une source qui ne supporte pas le transfert dans sa forme actuelle."
+default_message = "La propriété ne peut pas être déplacée à partir de cette source."
+recovery = "Déplacez à partir d'un propriétaire nommé, ou réécrivez l'expression dans une forme capable de déplacement."
+tags = ["ownership", "move", "source"]
+
+[messages.N3101]
+severity = "error"
+phase = "ownership"
+slug = "mutable_access_during_active_borrow"
+title = "Accès mutable pendant un emprunt actif"
+summary = "Une valeur est mutée alors qu'un emprunt ou un alias conflictuel est encore actif."
+default_message = "La valeur ne peut pas être mutée tant qu'un emprunt conflictuel est actif."
+recovery = "Terminez d'abord l'emprunt, ou restructurez le code pour éviter les accès superposés."
+tags = ["ownership", "borrow", "mutation"]
+
+[messages.N3102]
+severity = "error"
+phase = "ownership"
+slug = "illegal_alias_use_after_transfer"
+title = "Utilisation illégale d'alias après transfert de propriété"
+summary = "Un alias ou une vue empruntée survit à l'état de propriété dont il dépend."
+default_message = "L'alias ne peut pas être utilisé après que la propriété d'origine a changé."
+recovery = "Créez une copie indépendante ou assurez-vous que l'alias est consommé avant le transfert de propriété."
+tags = ["ownership", "alias", "move"]
+
+[messages.N3201]
+severity = "error"
+phase = "ownership"
+slug = "dangling_reference_return"
+title = "Retour de référence pendante"
+summary = "Une fonction tente de retourner une référence, un alias ou un pointeur vers un stockage qui expirera au retour."
+default_message = "La référence retournée survivrait à la valeur vers laquelle elle pointe."
+recovery = "Retournez une valeur possédée (owned) à la place, ou retournez une référence vers un stockage qui reste valide."
+tags = ["ownership", "lifetime", "return"]
+
+[messages.N3202]
+severity = "error"
+phase = "ownership"
+slug = "escaping_borrow"
+title = "Emprunt s'échappant"
+summary = "Une vue empruntée s'échappe de la portée dans laquelle le stockage possédé reste valide."
+default_message = "La valeur empruntée s'échappe de sa durée de vie valide."
+recovery = "Gardez l'emprunt local à la portée valide ou retournez une copie possédée."
+tags = ["ownership", "borrow", "escape"]
+
+[messages.N3203]
+severity = "error"
+phase = "ownership"
+slug = "use_after_scope_end"
+title = "Utilisation après la fin de la portée"
+summary = "Une valeur de type référence est utilisée après que le stockage dont elle dépend est sorti de sa portée."
+default_message = "La valeur est utilisée après l'expiration du stockage source."
+recovery = "Raccourcissez la durée de vie de la référence ou prolongez la durée de vie du stockage possédé."
+tags = ["ownership", "lifetime", "scope"]
+
+[messages.W3001]
+severity = "warning"
+phase = "ownership"
+slug = "needless_move"
+title = "Déplacement inutile"
+summary = "Une opération de déplacement est explicite mais n'améliore pas la justesse ou la performance dans le contexte actuel."
+default_message = "Le déplacement est inutile ici."
+recovery = "Supprimez le déplacement, sauf s'il documente une intention que le projet souhaite préserver."
+tags = ["warning", "ownership", "move"]
+
+[messages.W3002]
+severity = "warning"
+phase = "ownership"
+slug = "suspicious_alias_chain"
+title = "Chaîne d'alias suspecte"
+summary = "Une longue chaîne d'alias peut être légale mais rend le raisonnement sur la propriété et la mutation plus difficile."
+default_message = "La chaîne d'alias est légale mais difficile à raisonner."
+recovery = "Préférez des durées de vie d'alias plus courtes ou des copies explicites là où la lisibilité est importante."
+tags = ["warning", "ownership", "alias"]
+

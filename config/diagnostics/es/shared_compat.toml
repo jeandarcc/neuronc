@@ -1,0 +1,60 @@
+[catalog]
+locale = "es"
+bucket = "shared_compat"
+display_name = "Diagnósticos de compatibilidad compartida"
+inherits_contract = "shared_compat"
+
+[contracts]
+allowed_exact_codes = ["NPP0001", "NPP3001", "NPP9000", "NPP9001", "NPP9002"]
+future_addition_rule = "Solo los códigos de compatibilidad exactos enumerados arriba pueden aparecer en este archivo."
+
+[messages.NPP0001]
+severity = "error"
+phase = "generic"
+slug = "legacy_generic_error"
+title = "Error genérico del compilador (legado)"
+summary = "Cubo de respaldo para errores del compilador que aún no han sido asignados a una familia de diagnóstico más específica."
+default_message = "El compilador falló, pero aún no se ha asignado ninguna familia de diagnóstico específica a este error."
+recovery = "Inspeccione primero la ubicación del código fuente reportado y luego mueva el diagnóstico a una familia específica cuando la implementación sea más precisa."
+tags = ["legacy", "fallback", "generic"]
+
+[messages.NPP3001]
+severity = "error"
+phase = "config"
+slug = "legacy_project_configuration_error"
+title = "Error de configuración del proyecto (legado)"
+summary = "Cubo de compatibilidad para fallos de configuración que bloquean la compilación o ejecución de la fuente."
+default_message = "La configuración del proyecto es inválida o incompleta para la operación de fuente solicitada."
+recovery = "Revise neuron.toml, ajustes del módulo y cualquier configuración de construcción o ejecución requerida cerca de la ubicación reportada."
+tags = ["legacy", "config", "fallback"]
+
+[messages.NPP9000]
+severity = "warning"
+phase = "generic"
+slug = "legacy_generic_warning"
+title = "Advertencia genérica del compilador (legado)"
+summary = "Cubo de respaldo para advertencias que aún no han sido asignadas a una familia de advertencias más estrecha."
+default_message = "El compilador aceptó el programa, pero detectó una advertencia que todavía se enruta a través del código de compatibilidad genérico."
+recovery = "Lea el texto de la advertencia y mígrelo a una familia de advertencias específica una vez que la implementación exponga una."
+tags = ["legacy", "warning", "fallback"]
+
+[messages.NPP9001]
+severity = "warning"
+phase = "config"
+slug = "legacy_project_configuration_warning"
+title = "Advertencia de configuración del proyecto (legado)"
+summary = "Cubo de compatibilidad para advertencias de configuración de proyecto no fatales."
+default_message = "La configuración del proyecto fue aceptada con una advertencia."
+recovery = "Revise el ajuste advertido y ajuste la configuración si se requiere un comportamiento determinista."
+tags = ["legacy", "warning", "config"]
+
+[messages.NPP9002]
+severity = "warning"
+phase = "semantic"
+slug = "unused_binding_warning"
+title = "Vinculación no utilizada"
+summary = "Se declaró una vinculación local pero nunca se usó."
+default_message = "La vinculación declarada nunca se lee."
+recovery = "Elimine la vinculación, úsela o documente intencionalmente por qué debe permanecer sin uso."
+tags = ["warning", "semantic", "unused", "lsp"]
+

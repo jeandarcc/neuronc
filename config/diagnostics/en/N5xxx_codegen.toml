@@ -1,0 +1,92 @@
+[catalog]
+locale = "en"
+bucket = "N5xxx_codegen"
+display_name = "Codegen diagnostics"
+inherits_contract = "N5xxx_codegen"
+
+[contracts]
+allowed_exact_codes = []
+allowed_n_range = "5000-5099"
+allowed_w_range = "5000-5099"
+future_addition_rule = "Only N5000-N5099 and W5000-W5099 may appear in this file."
+
+[messages.N5001]
+severity = "error"
+phase = "codegen"
+slug = "unsupported_lowering"
+title = "Unsupported lowering"
+summary = "The source program is semantically valid, but the current backend cannot lower one of its constructs."
+default_message = "This source construct cannot be lowered by the selected backend."
+recovery = "Rewrite the construct, change backend, or implement lowering support for the missing feature."
+tags = ["codegen", "lowering", "backend"]
+
+[messages.N5002]
+severity = "error"
+phase = "runtime"
+slug = "runtime_trap"
+title = "Runtime trap"
+summary = "Execution reached a runtime failure that should be surfaced as a structured diagnostic instead of a silent crash."
+default_message = "Program trapped at runtime."
+recovery = "Inspect the failing operation and add source-level guards or fix the lowering bug."
+tags = ["runtime", "trap", "execution"]
+
+[messages.N5003]
+severity = "error"
+phase = "codegen"
+slug = "target_backend_not_available"
+title = "Target backend not available"
+summary = "The requested source feature requires a backend that is not available in the current toolchain or environment."
+default_message = "Required backend is not available."
+recovery = "Enable the backend, install its dependencies, or choose a supported execution path."
+tags = ["codegen", "backend", "environment"]
+
+[messages.N5004]
+severity = "error"
+phase = "codegen"
+slug = "abi_layout_mismatch"
+title = "ABI or layout mismatch"
+summary = "Generated code and runtime expectations disagree on the layout or call contract of a value."
+default_message = "Generated ABI or data layout does not match runtime expectations."
+recovery = "Align the source contract, runtime contract, and backend lowering for the affected type."
+tags = ["codegen", "abi", "layout"]
+
+[messages.N5005]
+severity = "error"
+phase = "link"
+slug = "external_symbol_not_resolved"
+title = "External symbol not resolved"
+summary = "Code generation succeeded, but a required external symbol could not be resolved for execution."
+default_message = "Required external symbol could not be resolved."
+recovery = "Link the missing library, export the missing symbol, or remove the unresolved dependency."
+tags = ["codegen", "link", "extern"]
+
+[messages.N5006]
+severity = "error"
+phase = "runtime"
+slug = "runtime_feature_contract_violated"
+title = "Runtime feature contract violated"
+summary = "The compiled program reached a runtime capability boundary that violates the source-level execution contract."
+default_message = "Runtime environment does not satisfy the feature contract required by this program."
+recovery = "Adjust the runtime environment or gate the feature behind a supported execution path."
+tags = ["runtime", "feature", "environment"]
+
+[messages.W5001]
+severity = "warning"
+phase = "codegen"
+slug = "backend_fallback_path_selected"
+title = "Backend fallback path selected"
+summary = "Execution remains correct, but the preferred backend path was unavailable and a fallback path was selected."
+default_message = "Preferred backend path was unavailable; using a fallback path."
+recovery = "Enable the preferred backend if you require the expected performance or feature profile."
+tags = ["warning", "codegen", "backend", "fallback"]
+
+[messages.W5002]
+severity = "warning"
+phase = "codegen"
+slug = "optimization_disabled_for_correctness"
+title = "Optimization disabled for correctness"
+summary = "A potentially valid optimization was intentionally skipped to preserve program correctness."
+default_message = "Optimization was disabled to preserve correctness."
+recovery = "No action is required unless you are investigating performance; then inspect the construct that blocks optimization."
+tags = ["warning", "codegen", "optimization"]
+

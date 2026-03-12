@@ -1,0 +1,54 @@
+[native]
+name = "FileSystemNative"
+abi = "cdecl"
+
+[artifacts]
+windows_x64 = "artifacts/windows-x64/filesystem.dll"
+linux_x64 = "artifacts/linux-x64/libfilesystem.so"
+macos_arm64 = "artifacts/macos-arm64/libfilesystem.dylib"
+
+[exports.FileExists]
+symbol = "fs_file_exists"
+parameter_types = ["string"]
+return_type = "bool"
+
+[exports.ReadFile]
+symbol = "fs_file_read"
+parameter_types = ["string"]
+return_type = "string"
+
+[exports.WriteFile]
+symbol = "fs_file_write"
+parameter_types = ["string", "string"]
+return_type = "bool"
+
+[exports.DeleteFile]
+symbol = "fs_file_delete"
+parameter_types = ["string"]
+return_type = "bool"
+
+[exports.DirectoryExists]
+symbol = "fs_dir_exists"
+parameter_types = ["string"]
+return_type = "bool"
+
+[exports.CreateDirectory]
+symbol = "fs_dir_create"
+parameter_types = ["string"]
+return_type = "bool"
+
+[exports.ListDirectory]
+symbol = "fs_dir_list"
+parameter_types = ["string"]
+return_type = "Array<string>"
+
+[exports.GetAbsolutePath]
+symbol = "fs_path_absolute"
+parameter_types = ["string"]
+return_type = "string"
+
+[exports.GetFileSize]
+symbol = "fs_file_size"
+parameter_types = ["string"]
+return_type = "int"
+

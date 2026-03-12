@@ -1,0 +1,92 @@
+[catalog]
+locale = "de"
+bucket = "N4xxx_module"
+display_name = "Modul-Diagnose"
+inherits_contract = "N4xxx_module"
+
+[contracts]
+allowed_exact_codes = ["NPP4001"]
+allowed_n_range = "4000-4099"
+allowed_w_range = "4000-4099"
+future_addition_rule = "Only N4000-N4099, W4000-W4099, and the exact legacy module code listed above may appear in this file."
+
+[messages.NPP4001]
+severity = "error"
+phase = "module"
+slug = "legacy_module_error"
+title = "Modul-Legacy-Fehler"
+summary = "Kompatibilitäts-Bucket für Modulauflösungsfehler, bis feinere Modulcodes angebunden sind."
+default_message = "Ein modulbezogener Fehler hat die Kompilierung verhindert."
+recovery = "Untersuchen Sie Moduldeklarationen, Imports, native Modulkonfigurationen und die Projektstruktur in der Nähe des gemeldeten Ortes."
+tags = ["legacy", "module", "fallback"]
+
+[messages.N4001]
+severity = "error"
+phase = "module"
+slug = "missing_module"
+title = "Fehlendes Modul"
+summary = "Das angeforderte Modul kann im aktuellen Projekt oder im verfügbaren Modulsatz nicht gefunden werden."
+default_message = "Das angeforderte Modul konnte nicht aufgelöst werden."
+recovery = "Fügen Sie das Modul hinzu, korrigieren Sie den Namen oder aktualisieren Sie die Projektkonfiguration, damit das Modul verfügbar ist."
+tags = ["module", "resolution", "import"]
+
+[messages.N4002]
+severity = "error"
+phase = "module"
+slug = "duplicate_module_declaration"
+title = "Doppelte Moduldeklaration"
+summary = "Die Quelle deklariert denselben Modulkontext mehr als einmal, wo nur eine Deklaration erlaubt ist."
+default_message = "Das Modul wurde mehr als einmal deklariert."
+recovery = "Behalten Sie eine einzige kanonische Moduldeklaration bei."
+tags = ["module", "duplicate", "declaration"]
+
+[messages.N4003]
+severity = "error"
+phase = "module"
+slug = "self_import_not_allowed"
+title = "Selbst-Import nicht erlaubt"
+summary = "Eine Quelldatei versucht, sich selbst als externe Modulgrenze zu importieren oder zu deklarieren."
+default_message = "Eine Datei kann sich nicht selbst als Modulabhängigkeit importieren."
+recovery = "Entfernen Sie den Selbst-Import und verlassen Sie sich direkt auf die eigenen Deklarationen der Datei."
+tags = ["module", "self-import", "project-structure"]
+
+[messages.N4004]
+severity = "error"
+phase = "module"
+slug = "modulecpp_configuration_missing"
+title = "ModuleCpp-Konfiguration fehlt"
+summary = "Ein ModuleCpp-Import existiert in der Quelle, aber die erforderliche native Modulkonfiguration fehlt."
+default_message = "Dem ModuleCpp-Import fehlt die erforderliche Konfiguration."
+recovery = "Fügen Sie das native Modulmanifest hinzu und registrieren Sie es in der Projektkonfiguration."
+tags = ["module", "modulecpp", "config"]
+
+[messages.N4005]
+severity = "error"
+phase = "module"
+slug = "modulecpp_export_signature_mismatch"
+title = "ModuleCpp-Exportsignatur-Fehlanpassung"
+summary = "Ein konfigurierter nativer Export entspricht nicht dem vom Quellvertrag erwarteten Typvertrag."
+default_message = "Die native Modul-Exportsignatur entspricht nicht dem Quellvertrag."
+recovery = "Gleichen Sie die quellseitige Deklaration und die native Manifest-Exportsignatur an."
+tags = ["module", "modulecpp", "signature"]
+
+[messages.N4006]
+severity = "error"
+phase = "module"
+slug = "invalid_file_to_type_naming_contract"
+title = "Ungültiger Datei-zu-Typ-Namensvertrag"
+summary = "Das Projekt erzwingt eine Dateiname-zu-Typ-Benennungsregel, gegen die die aktuelle Quelle verstößt."
+default_message = "Der deklarierte Typname entspricht nicht dem erforderlichen Dateibenennungsvertrag."
+recovery = "Benennen Sie die Datei oder den deklarierten Typ um, damit der Vertrag exakt erfüllt wird."
+tags = ["module", "naming", "project-structure"]
+
+[messages.W4001]
+severity = "warning"
+phase = "module"
+slug = "redundant_module_import"
+title = "Redundanter Modul-Import"
+summary = "Ein Modul-Import wird akzeptiert, ist aber unnötig, da der Symbolsatz bereits verfügbar ist."
+default_message = "Der Modul-Import ist redundant."
+recovery = "Entfernen Sie den zusätzlichen Import, um Abhängigkeiten explizit und minimal zu halten."
+tags = ["warning", "module", "import"]
+

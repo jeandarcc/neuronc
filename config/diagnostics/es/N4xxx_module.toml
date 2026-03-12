@@ -1,0 +1,92 @@
+[catalog]
+locale = "es"
+bucket = "N4xxx_module"
+display_name = "Diagnósticos de módulo"
+inherits_contract = "N4xxx_module"
+
+[contracts]
+allowed_exact_codes = ["NPP4001"]
+allowed_n_range = "4000-4099"
+allowed_w_range = "4000-4099"
+future_addition_rule = "Solo N4000-N4099, W4000-W4099 y el código de módulo legado exacto enumerado arriba pueden aparecer en este archivo."
+
+[messages.NPP4001]
+severity = "error"
+phase = "module"
+slug = "legacy_module_error"
+title = "Error de módulo (legado)"
+summary = "Cubo de compatibilidad para fallos de resolución de módulos hasta que se conecten códigos de módulo más finos."
+default_message = "Un error relacionado con el módulo impidió la compilación."
+recovery = "Inspeccione las declaraciones de módulo, importaciones, configuración de módulos nativos y la estructura del proyecto cerca de la ubicación reportada."
+tags = ["legacy", "module", "fallback"]
+
+[messages.N4001]
+severity = "error"
+phase = "module"
+slug = "missing_module"
+title = "Módulo faltante"
+summary = "El módulo solicitado no se puede encontrar en el proyecto actual o en el conjunto de módulos disponibles."
+default_message = "El módulo solicitado no pudo ser resuelto."
+recovery = "Agregue el módulo, corrija el nombre o actualice la configuración del proyecto para que el módulo esté disponible."
+tags = ["module", "resolution", "import"]
+
+[messages.N4002]
+severity = "error"
+phase = "module"
+slug = "duplicate_module_declaration"
+title = "Declaración de módulo duplicada"
+summary = "La fuente declara el mismo contexto de módulo más de una vez donde solo se permite una declaración."
+default_message = "El módulo se declara más de una vez."
+recovery = "Mantenga una única declaración de módulo canónica."
+tags = ["module", "duplicate", "declaration"]
+
+[messages.N4003]
+severity = "error"
+phase = "module"
+slug = "self_import_not_allowed"
+title = "Autoimportación no permitida"
+summary = "Un archivo de origen intenta importarse o declararse a sí mismo como un límite de módulo externo."
+default_message = "Un archivo no puede importarse a sí mismo como una dependencia de módulo."
+recovery = "Elimine la autoimportación y confíe directamente en las propias declaraciones del archivo."
+tags = ["module", "self-import", "project-structure"]
+
+[messages.N4004]
+severity = "error"
+phase = "module"
+slug = "modulecpp_configuration_missing"
+title = "Falta configuración de ModuleCpp"
+summary = "Existe una importación de modulecpp en la fuente, pero la configuración del módulo nativo requerida está ausente."
+default_message = "A la importación de ModuleCpp le falta la configuración requerida."
+recovery = "Agregue el manifiesto del módulo nativo y regístrelo en la configuración del proyecto."
+tags = ["module", "modulecpp", "config"]
+
+[messages.N4005]
+severity = "error"
+phase = "module"
+slug = "modulecpp_export_signature_mismatch"
+title = "Discrepancia en la firma de exportación de ModuleCpp"
+summary = "Una exportación nativa configurada no coincide con el contrato de tipo esperado por la declaración de origen."
+default_message = "La firma de exportación del módulo nativo no coincide con el contrato de la fuente."
+recovery = "Alinee la declaración del lado de la fuente y la firma de exportación del manifiesto nativo."
+tags = ["module", "modulecpp", "signature"]
+
+[messages.N4006]
+severity = "error"
+phase = "module"
+slug = "invalid_file_to_type_naming_contract"
+title = "Contrato de nomenclatura de archivo a tipo inválido"
+summary = "El proyecto impone una regla de nomenclatura de nombre de archivo a tipo y la fuente actual la viola."
+default_message = "El nombre de tipo declarado no coincide con el contrato de nomenclatura de archivos requerido."
+recovery = "Renombre el archivo o el tipo declarado para que el contrato se satisfaga exactamente."
+tags = ["module", "naming", "project-structure"]
+
+[messages.W4001]
+severity = "warning"
+phase = "module"
+slug = "redundant_module_import"
+title = "Importación de módulo redundante"
+summary = "Se acepta una importación de módulo pero es innecesaria porque el conjunto de símbolos ya está disponible."
+default_message = "La importación del módulo es redundante."
+recovery = "Elimine la importación adicional para mantener las dependencias explícitas y mínimas."
+tags = ["warning", "module", "import"]
+

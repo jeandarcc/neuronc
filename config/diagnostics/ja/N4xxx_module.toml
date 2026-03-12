@@ -1,0 +1,92 @@
+[catalog]
+locale = "ja"
+bucket = "N4xxx_module"
+display_name = "モジュール診断"
+inherits_contract = "N4xxx_module"
+
+[contracts]
+allowed_exact_codes = ["NPP4001"]
+allowed_n_range = "4000-4099"
+allowed_w_range = "4000-4099"
+future_addition_rule = "Only N4000-N4099, W4000-W4099, and the exact legacy module code listed above may appear in this file."
+
+[messages.NPP4001]
+severity = "error"
+phase = "module"
+slug = "legacy_module_error"
+title = "レガシーモジュールエラー"
+summary = "より詳細なモジュールコードが接続されるまでの、モジュール解決の失敗に対する互換性バケット。"
+default_message = "モジュール関連のエラーによりコンパイルが妨げられました。"
+recovery = "報告された場所の近くにあるモジュール宣言、インポート、ネイティブモジュール構成、およびプロジェクト構造を確認してください。"
+tags = ["legacy", "module", "fallback"]
+
+[messages.N4001]
+severity = "error"
+phase = "module"
+slug = "missing_module"
+title = "モジュールが見つかりません"
+summary = "要求されたモジュールが現在のプロジェクトまたは利用可能なモジュールセット内に見つかりません。"
+default_message = "要求されたモジュールを解決できませんでした。"
+recovery = "モジュールを追加するか、名前を修正するか、モジュールが利用可能になるようにプロジェクト構成を更新してください。"
+tags = ["module", "resolution", "import"]
+
+[messages.N4002]
+severity = "error"
+phase = "module"
+slug = "duplicate_module_declaration"
+title = "重複するモジュール宣言"
+summary = "ソースが、1つの宣言のみが許可される場所で同じモジュールコンテキストを複数回宣言しています。"
+default_message = "モジュールが複数回宣言されています。"
+recovery = "単一の正規のモジュール宣言を保持してください。"
+tags = ["module", "duplicate", "declaration"]
+
+[messages.N4003]
+severity = "error"
+phase = "module"
+slug = "self_import_not_allowed"
+title = "自己インポートは許可されていません"
+summary = "ソースファイルが、自分自身を外部モジュール境界としてインポートまたは宣言しようとしています。"
+default_message = "ファイルは自分自身をモジュール依存関係としてインポートできません。"
+recovery = "自己インポートを削除し、ファイル自身の宣言を直接使用してください。"
+tags = ["module", "self-import", "project-structure"]
+
+[messages.N4004]
+severity = "error"
+phase = "module"
+slug = "modulecpp_configuration_missing"
+title = "ModuleCpp 構成が見つかりません"
+summary = "ソースに modulecpp インポートが存在しますが、必要なネイティブモジュール構成がありません。"
+default_message = "ModuleCpp インポートに必要な構成が不足しています。"
+recovery = "ネイティブモジュールマニフェストを追加し、プロジェクト構成に登録してください。"
+tags = ["module", "modulecpp", "config"]
+
+[messages.N4005]
+severity = "error"
+phase = "module"
+slug = "modulecpp_export_signature_mismatch"
+title = "ModuleCpp エクスポートシグネチャの不一致"
+summary = "構成されたネイティブエクスポートが、ソース宣言で期待される型コントラクトと一致しません。"
+default_message = "ネイティブモジュールのエクスポートシグネチャがソースコントラクトと一致しません。"
+recovery = "ソース側の宣言とネイティブマニフェストのエクスポートシグネチャを一致させてください。"
+tags = ["module", "modulecpp", "signature"]
+
+[messages.N4006]
+severity = "error"
+phase = "module"
+slug = "invalid_file_to_type_naming_contract"
+title = "無効なファイル対型の命名コントラクト"
+summary = "プロジェクトがファイル名対型の命名規則を強制しており、現在のソースがそれに違反しています。"
+default_message = "宣言された型名が、必要なファイル命名コントラクトと一致しません。"
+recovery = "コントラクトが正確に満たされるように、ファイル名または宣言された型名を変更してください。"
+tags = ["module", "naming", "project-structure"]
+
+[messages.W4001]
+severity = "warning"
+phase = "module"
+slug = "redundant_module_import"
+title = "冗長なモジュールインポート"
+summary = "モジュールインポートは受け入れられましたが、シンボルセットがすでに利用可能であるため不要です。"
+default_message = "モジュールのインポートは冗長です。"
+recovery = "依存関係を明示的かつ最小限に保つために、余分なインポートを削除してください。"
+tags = ["warning", "module", "import"]
+

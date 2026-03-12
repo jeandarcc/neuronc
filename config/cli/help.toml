@@ -1,0 +1,235 @@
+title = "Neuron++ CLI help text"
+version = "0.1.0"
+
+[[section]]
+order = 10
+header = "banner"
+lines = [
+  "  _   _                              _     _",
+  "  | \\ | | ___ _   _ _ __ ___  _ __  _| |_ _| |_",
+  "  |  \\| |/ _ \\ | | | '__/ _ \\| '_ \\(_   _|_   _)",
+  "  | |\\  |  __/ |_| | | | (_) | | | | |_|   |_|",
+  "  |_| \\_|\\___|\\__,_|_|  \\___/|_| |_|",
+  "",
+  "  Neuron++ Compiler v0.1.0"
+]
+
+[[section]]
+order = 20
+header = "Usage:"
+
+[[section.entry]]
+order = 10
+command = "neuron"
+detail = "Start interactive REPL when stdin is a TTY"
+
+[[section.entry]]
+order = 20
+command = "neuron --language"
+detail = "Show current diagnostic language and how to change it"
+
+[[section.entry]]
+order = 30
+command = "neuron --language <code>"
+detail = "Persist a diagnostic language (example: tr, en, ja)"
+
+[[section.entry]]
+order = 40
+command = "neuron --language auto"
+detail = "Follow OS language when available, else fallback to English"
+
+[[section.entry]]
+order = 50
+command = "neuron new <project-name> [--lib]"
+detail = "Create a new Neuron++ project or library"
+multiline = true
+
+[[section.entry]]
+order = 60
+command = "neuron init <project-name> [--lib]"
+detail = "Create a new Neuron++ project or library"
+multiline = true
+
+[[section.entry]]
+order = 70
+command = "neuron add <owner/repo|url> [--version X] [--tag T] [--commit SHA] [--global]"
+detail = "Add a package dependency or install globally"
+multiline = true
+
+[[section.entry]]
+order = 80
+command = "neuron install"
+detail = "Install local dependencies from neuron.toml/neuron.lock"
+
+[[section.entry]]
+order = 90
+command = "neuron remove <package> [--global]"
+detail = "Remove a package dependency or global package"
+multiline = true
+
+[[section.entry]]
+order = 100
+command = "neuron update [package]"
+detail = "Update one/all dependencies"
+
+[[section.entry]]
+order = 110
+command = "neuron publish"
+detail = "Create a .nppkg package artifact"
+
+[[section.entry]]
+order = 120
+command = "neuron packages"
+detail = "List installed local/global packages"
+
+[[section.entry]]
+order = 130
+command = "neuron settings-of <builtin-module|package-name|owner/repo|url>"
+detail = "Print effective .modulesettings content for a builtin or installed package"
+multiline = true
+
+[[section.entry]]
+order = 140
+command = "neuron dependencies-of <builtin-module|package-name|owner/repo|url>"
+detail = "Print dependency metadata for a builtin or installed package"
+multiline = true
+
+[[section.entry]]
+order = 150
+command = "neuron release"
+detail = "Build/test/package release bundle"
+
+[[section.entry]]
+order = 152
+command = "neuron surgeon"
+detail = "Print a health report of the installed toolchain components"
+
+[[section.entry]]
+order = 153
+command = "neuron surgeon install <component>"
+detail = "Show installation instructions for a missing component (vulkan, lsp, toolchain, llvm)"
+multiline = true
+
+[[section.entry]]
+order = 160
+command = "neuron build"
+detail = "Build the current project"
+
+[[section.entry]]
+order = 170
+command = "neuron build --target=web"
+detail = "Build web artifacts into build/web"
+
+[[section.entry]]
+order = 180
+command = "neuron run"
+detail = "Build and run the current project"
+
+[[section.entry]]
+order = 190
+command = "neuron run --target=web"
+detail = "Serve build/web with embedded COOP/COEP dev server"
+
+[[section.entry]]
+order = 200
+command = "neuron build-nucleus --platform <Windows|Linux|Mac> [--compiler <path>] [--output <path>] [--verbose]"
+detail = "Build single-file nucleus runtime for .ncon execution"
+multiline = true
+
+[[section.entry]]
+order = 210
+command = "neuron ncon <command>"
+detail = "Build/run/inspect NCON containers"
+
+[[section.entry]]
+order = 220
+command = "neuron lex <file> [--trace-errors] [--bypass-rules]"
+detail = "Tokenize a .npp file (debug)"
+multiline = true
+
+[[section.entry]]
+order = 230
+command = "neuron parse <file> [--trace-errors] [--bypass-rules]"
+detail = "Parse a .npp file (debug)"
+multiline = true
+
+[[section.entry]]
+order = 240
+command = "neuron nir <file> [--trace-errors] [--bypass-rules]"
+detail = "Generate and print NIR for a .npp file (debug)"
+multiline = true
+
+[[section.entry]]
+order = 250
+command = "neuron compile <file> [--trace-errors] [--bypass-rules]"
+detail = "Compile a .npp file to native executable"
+multiline = true
+
+[[section.entry]]
+order = 260
+command = "neuron help"
+detail = "Show this help message"
+
+[[section]]
+order = 30
+header = "REPL:"
+
+[[section.entry]]
+order = 10
+command = "Enter"
+detail = "Submit current buffer"
+
+[[section.entry]]
+order = 20
+command = "Ctrl+Enter"
+detail = "Insert newline without submitting (Windows console)"
+
+[[section.entry]]
+order = 30
+command = ":run"
+detail = "Submit buffered multi-line input"
+
+[[section.entry]]
+order = 40
+command = ":reset"
+detail = "Clear REPL session state"
+
+[[section.entry]]
+order = 50
+command = ":clear"
+detail = "Clear the console"
+
+[[section.entry]]
+order = 60
+command = ":quit"
+detail = "Exit the REPL"
+
+[[section]]
+order = 40
+header = "Tracing:"
+
+[[section.entry]]
+order = 10
+command = "--trace-errors"
+detail = "Print source-context traces for diagnostics"
+
+[[section.entry]]
+order = 20
+command = "--bypass-rules"
+detail = "Disable .neuronsettings rule enforcement for this run"
+
+[[section.entry]]
+order = 30
+command = "NEURON_TRACE_ERRORS=1"
+detail = "Enable tracing via environment variable"
+
+[[section.entry]]
+order = 40
+command = "NEURON_COLOR=0|1"
+detail = "Disable/enable diagnostic colors (NO_COLOR also works)"
+
+[[section.entry]]
+order = 50
+command = "NEURON_TOOLCHAIN_BIN=..."
+detail = "Override bundled gcc/binutils directory"
+

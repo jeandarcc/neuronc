@@ -1,0 +1,65 @@
+#version 450
+layout(local_size_x = 16, local_size_y = 16) in;
+
+layout(set = 0, binding = 0) readonly buffer InA {
+  float a[];
+};
+layout(set = 0, binding = 1) readonly buffer InB {
+  float b[];
+};
+layout(set = 0, binding = 2) readonly buffer InBias {
+  float bias[];
+};
+layout(set = 0, binding = 3) readonly buffer InResidual {
+  float residual[];
+};
+layout(set = 0, binding = 4) buffer Out {
+  float outv[];
+};
+
+layout(push_constant) uniform Params {
+  uint m;
+  uint n;
+  uint k;
+  uint biasRows;
+  uint biasCols;
+  uint residualCols;
+  uint activation;
+  uint accumulate;
+} params;
+
+float apply_activation(float x, uint kind) {
+  if (kind == 1u) {
+    return max(x, 0.0);
+  }
+  if (kind == 2u) {
+    const float c = 0.044715;
+    const float scale = 0.7978845608;
+    float cubic = x * x * x;
+    return 0.5 * x * (1.0 + tanh(scale * (x + c * cubic)));
+  }
+  return x;
+}
+
+void main() {
+  uint row = gl_GlobalInvocationID.y;
+  uint col = gl_GlobalInvocationID.x;
+  if (row >= params.m || col >= params.n) {
+    return;
+  }
+
+  float sum = params.accumulate != 0u ? outv[row * params.n + col] : 0.0;
+  for (uint p = 0u; p < params.k; ++p) {
+    sum += a[row * params.k + p] * b[p * params.n + col];
+  }
+
+  if (params.biasCols == params.n) {
+    uint biasRow = params.biasRows == 1u ? 0u : row;
+    sum += bias[biasRow * params.biasCols + col];
+  }
+  if (params.residualCols == params.n) {
+    sum += residual[row * params.residualCols + col];
+  }
+
+  outv[row * params.n + col] = apply_activation(sum, params.activation);
+}

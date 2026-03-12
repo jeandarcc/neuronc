@@ -1,0 +1,92 @@
+[catalog]
+locale = "tr"
+bucket = "N4xxx_module"
+display_name = "Modul teshisleri"
+inherits_contract = "N4xxx_module"
+
+[contracts]
+allowed_exact_codes = ["NPP4001"]
+allowed_n_range = "4000-4099"
+allowed_w_range = "4000-4099"
+future_addition_rule = "Bu dosyada yalnizca N4000-N4099, W4000-W4099 ve yukarida listelenen tam eski modul kodu yer alabilir."
+
+[messages.NPP4001]
+severity = "error"
+phase = "module"
+slug = "legacy_module_error"
+title = "Eski modul hatasi"
+summary = "Daha ince taneli modul kodlari baglanana kadar modul cozumleme hatalari icin uyumluluk kovasidir."
+default_message = "Modul ile ilgili bir hata derlemeyi engelledi."
+recovery = "Bildirilen konum civarinda modul bildirimlerini, importlari, native modul yapilandirmasini ve proje yapisini inceleyin."
+tags = ["legacy", "module", "fallback"]
+
+[messages.N4001]
+severity = "error"
+phase = "module"
+slug = "missing_module"
+title = "Eksik modul"
+summary = "Istenen modul mevcut projede veya erisilebilir modul kumesinde bulunamiyor."
+default_message = "Istenen modul cozumlenemedi."
+recovery = "Modulu ekleyin, adini duzeltin veya proje yapilandirmasini modulun erisilebilir olacagi sekilde guncelleyin."
+tags = ["module", "resolution", "import"]
+
+[messages.N4002]
+severity = "error"
+phase = "module"
+slug = "duplicate_module_declaration"
+title = "Yinelenen modul bildirimi"
+summary = "Kaynak, yalnizca bir bildirime izin verilen yerde ayni modul baglamini birden fazla kez bildiriyor."
+default_message = "Modul birden fazla kez bildirildi."
+recovery = "Tek bir kanonik modul bildirimi birakin."
+tags = ["module", "duplicate", "declaration"]
+
+[messages.N4003]
+severity = "error"
+phase = "module"
+slug = "self_import_not_allowed"
+title = "Kendini import etmek yasak"
+summary = "Bir kaynak dosya kendisini harici bir modul siniri gibi import etmeye veya bildirmeye calisiyor."
+default_message = "Bir dosya kendisini modul bagimliligi olarak import edemez."
+recovery = "Kendine import satirini kaldirin ve dosyanin kendi bildirimlerini dogrudan kullanin."
+tags = ["module", "self-import", "project-structure"]
+
+[messages.N4004]
+severity = "error"
+phase = "module"
+slug = "modulecpp_configuration_missing"
+title = "ModuleCpp yapilandirmasi eksik"
+summary = "Kaynakta modulecpp importu var, ancak gerekli native modul yapilandirmasi bulunmuyor."
+default_message = "ModuleCpp importu gerekli yapilandirmayi icermiyor."
+recovery = "Native modul manifestini ekleyin ve proje yapilandirmasinda kaydedin."
+tags = ["module", "modulecpp", "config"]
+
+[messages.N4005]
+severity = "error"
+phase = "module"
+slug = "modulecpp_export_signature_mismatch"
+title = "ModuleCpp export imza uyusmazligi"
+summary = "Yapilandirilmis bir native export, kaynak bildiriminin bekledigi tip sozlesmesi ile eslesmiyor."
+default_message = "Native modul export imzasi kaynak sozlesmesi ile eslesmiyor."
+recovery = "Kaynak tarafindaki bildirim ile native manifest export imzasini hizalayin."
+tags = ["module", "modulecpp", "signature"]
+
+[messages.N4006]
+severity = "error"
+phase = "module"
+slug = "invalid_file_to_type_naming_contract"
+title = "Gecersiz dosya-tip adlandirma sozlesmesi"
+summary = "Proje, dosya adi ile tip adi arasinda bir kural uygular ve mevcut kaynak bunu ihlal eder."
+default_message = "Bildirilen tip adi gerekli dosya adlandirma sozlesmesi ile eslesmiyor."
+recovery = "Dosyayi veya bildirilen tipi sozlesme bire bir saglanacak sekilde yeniden adlandirin."
+tags = ["module", "naming", "project-structure"]
+
+[messages.W4001]
+severity = "warning"
+phase = "module"
+slug = "redundant_module_import"
+title = "Gereksiz modul importu"
+summary = "Bir modul importu kabul edildi, ancak sembol kumesi zaten erisilebilir oldugu icin gereksiz."
+default_message = "Modul importu gereksiz."
+recovery = "Bagimliliklari acik ve minimum tutmak icin fazla importu kaldirin."
+tags = ["warning", "module", "import"]
+

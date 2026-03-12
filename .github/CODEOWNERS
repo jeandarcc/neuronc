@@ -1,0 +1,41 @@
+# CODEOWNERS
+# Each line maps a path pattern to the owner(s) responsible for reviewing changes.
+# Owners are automatically added as reviewers when a PR touches their paths.
+# Format: <pattern> <owner> [<owner2> ...]
+# See: https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-code-owners
+
+# --- Global fallback ---
+*                           @your-org/core-team
+
+# --- Compiler pipeline ---
+/src/lexer/                 @your-org/compiler-team
+/src/parser/                @your-org/compiler-team
+/src/sema/                  @your-org/compiler-team
+/src/nir/                   @your-org/compiler-team
+/src/mir/                   @your-org/compiler-team
+/src/codegen/               @your-org/compiler-team
+/include/neuronc/           @your-org/compiler-team
+
+# --- Runtime ---
+/runtime/                   @your-org/runtime-team
+
+# --- Package manager ---
+/src/ncon/                  @your-org/tooling-team
+
+# --- LSP server ---
+/src/lsp/                   @your-org/tooling-team
+
+# --- Extensions ---
+/extensions/vscode-npp/     @your-org/tooling-team
+/extensions/intellij-npp/   @your-org/tooling-team
+
+# --- Build & CI ---
+/scripts/                   @your-org/infra-team
+/.github/                   @your-org/infra-team
+/CMakeLists.txt             @your-org/infra-team
+
+# --- Diagnostics catalog ---
+/config/diagnostics/        @your-org/compiler-team
+
+# --- Docs ---
+/docs/                      @your-org/core-team

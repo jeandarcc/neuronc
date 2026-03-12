@@ -1,0 +1,185 @@
+[catalog]
+locale = "de"
+bucket = "N2xxx_semantic"
+display_name = "Semantische Diagnose"
+inherits_contract = "N2xxx_semantic"
+
+[contracts]
+allowed_exact_codes = ["NPP2001"]
+allowed_n_range = "2000-2499"
+allowed_w_range = "2000-2099"
+future_addition_rule = "Only N2000-N2499, W2000-W2099, and the exact legacy semantic code listed above may appear in this file."
+
+[messages.NPP2001]
+severity = "error"
+phase = "semantic"
+slug = "legacy_semantic_error"
+title = "Semantischer Legacy-Fehler"
+summary = "Kompatibilitäts-Bucket für semantische Fehler, bis feinere semantische Codes angebunden sind."
+default_message = "Das Programm ist syntaktisch gültig, aber semantisch ungültig."
+recovery = "Untersuchen Sie Typen, Namen, Generics, Überladungen und den Wertefluss in der Nähe der gemeldeten Stelle."
+tags = ["legacy", "semantic", "fallback"]
+
+[messages.N2001]
+severity = "error"
+phase = "semantic"
+slug = "type_mismatch"
+title = "Typ-Fehler"
+summary = "Ein Wert eines Typs wurde verwendet, wo ein anderer Typ erforderlich war."
+default_message = "Typ-Konflikt zwischen dem erforderlichen Typ und dem bereitgestellten Wert."
+recovery = "Ändern Sie den Quellausdruck, fügen Sie eine explizite Konvertierung hinzu oder passen Sie den Zieltyp an."
+tags = ["semantic", "types", "assignment"]
+
+[messages.N2002]
+severity = "error"
+phase = "semantic"
+slug = "invalid_operator_operand_pair"
+title = "Ungültiges Operator-Operanden-Paar"
+summary = "Ein Operator wurde auf Operanden angewendet, die diesen zusammen nicht unterstützen."
+default_message = "Der Operator kann nicht auf die bereitgestellten Operandentypen angewendet werden."
+recovery = "Verwenden Sie kompatible Operandentypen oder wählen Sie einen Operator, der für die aktuellen Typen definiert ist."
+tags = ["semantic", "operator", "types"]
+
+[messages.N2003]
+severity = "error"
+phase = "semantic"
+slug = "invalid_return_type"
+title = "Ungültiger Rückgabetyp"
+summary = "Eine Return-Anweisung erzeugt einen Wert, der mit dem deklarierten Rückgabetyp inkompatibel ist."
+default_message = "Der zurückgegebene Wert entspricht nicht dem deklarierten Rückgabetyp."
+recovery = "Geben Sie einen kompatiblen Wert zurück oder ändern Sie den deklarierten Rückgabetyp."
+tags = ["semantic", "return", "types"]
+
+[messages.N2101]
+severity = "error"
+phase = "semantic"
+slug = "ambiguous_type_inference"
+title = "Mehrdeutige Typ-Inferenz"
+summary = "Der Compiler konnte keinen eindeutigen Typ aus dem verfügbaren Kontext ableiten."
+default_message = "Der Typ konnte nicht eindeutig abgeleitet werden."
+recovery = "Fügen Sie eine explizite Typ-Annotation hinzu oder schreiben Sie den Ausdruck um, um mehr Kontext bereitzustellen."
+tags = ["semantic", "inference", "ambiguity"]
+
+[messages.N2102]
+severity = "error"
+phase = "semantic"
+slug = "conflicting_branch_inference"
+title = "Widersprüchliche Zweig-Inferenz"
+summary = "Verschiedene Kontrollflusszweige etablieren inkompatible abgeleitete Typen für denselben Wert."
+default_message = "Die Typ-Inferenz kollidiert über Kontrollflusszweige hinweg."
+recovery = "Verwenden Sie einen gemeinsamen kompatiblen Typ oder führen Sie separate Bindungen pro Zweig ein."
+tags = ["semantic", "inference", "control-flow"]
+
+
+[messages.N2201]
+severity = "error"
+phase = "semantic"
+slug = "unknown_identifier"
+title = "Unbekannter Bezeichner"
+summary = "Ein referenziertes Symbol ist im aktuellen Scope nicht sichtbar."
+default_message = "Der referenzierte Bezeichner ist im aktuellen Scope nicht definiert: {name}."
+parameters = ["name"]
+recovery = "Deklarieren Sie den Bezeichner, importieren Sie das erforderliche Modul oder korrigieren Sie die Schreibweise."
+tags = ["semantic", "scope", "identifier"]
+[messages.N2202]
+severity = "error"
+phase = "semantic"
+slug = "duplicate_symbol"
+title = "Doppeltes Symbol"
+summary = "Zwei Deklarationen im selben effektiven Scope widersprechen einander."
+default_message = "Ein Symbol mit demselben Namen ist in diesem Scope bereits definiert."
+recovery = "Benennen Sie eine Deklaration um oder verschieben Sie sie in einen anderen Scope."
+tags = ["semantic", "scope", "duplicate"]
+
+[messages.N2203]
+severity = "error"
+phase = "semantic"
+slug = "unknown_named_argument"
+title = "Unbekanntes benanntes Argument"
+summary = "Ein Aufruf verwendet ein benanntes Argument, das mit keinem Parameternamen des ausgewählten Callable übereinstimmt."
+default_message = "Das benannte Argument entspricht keinem deklarierten Parameter."
+recovery = "Verwenden Sie einen gültigen Parameternamen oder entfernen Sie das Label."
+tags = ["semantic", "call", "named-arguments"]
+
+[messages.N2301]
+severity = "error"
+phase = "semantic"
+slug = "generic_arity_mismatch"
+title = "Generische Aritäts-Fehlanpassung"
+summary = "Ein generischer Typ oder ein Callable hat die falsche Anzahl von Typ-Argumenten erhalten."
+default_message = "Die Anzahl der generischen Argumente entspricht nicht der Deklaration."
+recovery = "Geben Sie die genaue erforderliche Anzahl generischer Argumente an."
+tags = ["semantic", "generics", "arity"]
+
+[messages.N2302]
+severity = "error"
+phase = "semantic"
+slug = "unsatisfied_generic_constraint"
+title = "Nichterfüllte generische Einschränkung"
+summary = "Ein generisches Argument erfüllt nicht die für seinen Typparameter deklarierte Einschränkung."
+default_message = "Das generische Argument erfüllt nicht die erforderliche Einschränkung."
+recovery = "Verwenden Sie einen Typ, der die Einschränkung erfüllt, oder lockern Sie die generische Deklaration."
+tags = ["semantic", "generics", "constraint"]
+
+[messages.N2401]
+severity = "error"
+phase = "semantic"
+slug = "no_viable_overload"
+title = "Keine brauchbare Überladung"
+summary = "Kein Callable in der Überladungsmenge akzeptiert die bereitgestellte Argumentliste."
+default_message = "Keine Überladung entspricht den bereitgestellten Argumenten."
+recovery = "Ändern Sie die Argumenttypen, die Anzahl oder die Labels, oder fügen Sie eine passende Überladung hinzu."
+tags = ["semantic", "overload", "call"]
+
+[messages.N2402]
+severity = "error"
+phase = "semantic"
+slug = "ambiguous_overload"
+title = "Mehrdeutige Überladung"
+summary = "Mehr als ein Callable passt gleichermaßen gut zu den bereitgestellten Argumenten."
+default_message = "Der Aufruf ist zwischen mehreren Überladungen mehrdeutig."
+recovery = "Lösen Sie die Mehrdeutigkeit des Aufrufs durch explizite Typen, Casts oder eine spezifischere Argumentliste auf."
+tags = ["semantic", "overload", "ambiguity"]
+
+[messages.W2001]
+severity = "warning"
+phase = "semantic"
+slug = "unreachable_code"
+title = "Unerreichbarer Code"
+summary = "Eine Anweisung kann nicht ausgeführt werden, da der Kontrollfluss bereits beendet wurde oder sie umgeht."
+default_message = "Der Code ist unerreichbar."
+recovery = "Entfernen Sie den toten Code oder schreiben Sie den Kontrollfluss so um, dass die Anweisung erreichbar ist."
+tags = ["warning", "semantic", "control-flow"]
+
+[messages.W2002]
+severity = "warning"
+phase = "semantic"
+slug = "redundant_cast"
+title = "Redundanter Cast"
+summary = "Ein Cast- oder Konvertierungsschritt ändert den effektiven Typ nicht."
+default_message = "Der Cast ist redundant."
+recovery = "Entfernen Sie den unnötigen Cast, es sei denn, er wird aus Gründen der Klarheit gemäß der Projektkonvention beibehalten."
+tags = ["warning", "semantic", "cast"]
+
+
+[messages.N2403]
+severity = "error"
+phase = "semantic"
+slug = "unknown_callable_target"
+title = "Unbekanntes Aufrufziel"
+summary = "Ein Aufruf zielt auf ein Symbol oder eine Member-Kette, die nicht als aufrufbar aufgeloest werden kann."
+default_message = "Unbekanntes Aufrufziel: {target}."
+parameters = ["target"]
+recovery = "Prufen Sie, dass das Ziel existiert, im Gultigkeitsbereich sichtbar ist und ein aufrufbares Symbol bezeichnet."
+tags = ["semantic", "call", "resolution"]
+
+[messages.N2204]
+severity = "error"
+phase = "semantic"
+slug = "use_before_initialization"
+title = "Verwendung vor Initialisierung"
+summary = "Eine Variable wird gelesen, bevor sie initialisiert wurde."
+default_message = "Variable wird verwendet, bevor sie initialisiert wurde: {name}."
+parameters = ["name"]
+recovery = "Initialisieren Sie die Variable auf jedem Kontrollfluss-Pfad, bevor Sie sie lesen."
+tags = ["semantic", "flow", "initialization"]

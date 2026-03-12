@@ -1,0 +1,60 @@
+[catalog]
+locale = "zh"
+bucket = "shared_compat"
+display_name = "共享兼容性诊断"
+inherits_contract = "shared_compat"
+
+[contracts]
+allowed_exact_codes = ["NPP0001", "NPP3001", "NPP9000", "NPP9001", "NPP9002"]
+future_addition_rule = "Only the exact compatibility codes listed above may appear in this file."
+
+[messages.NPP0001]
+severity = "error"
+phase = "generic"
+slug = "legacy_generic_error"
+title = "旧版通用编译器错误"
+summary = "尚未分配特定诊断系列的编译器错误的备用存储桶。"
+default_message = "编译器失败，但尚未为此错误分配特定的诊断系列。"
+recovery = "首先检查报告的源位置，当实现变得更精确时，将诊断移至特定系列。"
+tags = ["legacy", "fallback", "generic"]
+
+[messages.NPP3001]
+severity = "error"
+phase = "config"
+slug = "legacy_project_configuration_error"
+title = "旧版项目配置错误"
+summary = "阻碍源编译或执行的配置失败的兼容性存储桶。"
+default_message = "对于请求的源操作，项目配置无效或不完整。"
+recovery = "检查 neuron.toml、模块设置以及报告位置附近的任何必需构建或运行时配置。"
+tags = ["legacy", "config", "fallback"]
+
+[messages.NPP9000]
+severity = "warning"
+phase = "generic"
+slug = "legacy_generic_warning"
+title = "旧版通用编译器警告"
+summary = "尚未分配更窄警告系列的警告的备用存储桶。"
+default_message = "编译器接受了程序，但检测到仍通过通用兼容性代码路由的警告。"
+recovery = "阅读警告文本，并在实现暴露特定警告系列后将其迁移到该系列。"
+tags = ["legacy", "warning", "fallback"]
+
+[messages.NPP9001]
+severity = "warning"
+phase = "config"
+slug = "legacy_project_configuration_warning"
+title = "旧版项目配置警告"
+summary = "非致命项目配置警告的兼容性存储桶。"
+default_message = "项目配置已接受，但带有警告。"
+recovery = "检查发出的警告设置，如果需要确定性行为，请收紧配置。"
+tags = ["legacy", "warning", "config"]
+
+[messages.NPP9002]
+severity = "warning"
+phase = "semantic"
+slug = "unused_binding_warning"
+title = "未使用的绑定"
+summary = "声明了局部绑定但从未被使用。"
+default_message = "声明的绑定从未被读取。"
+recovery = "移除该绑定，使用它，或有意地记录为什么要保持未使用状态。"
+tags = ["warning", "semantic", "unused", "lsp"]
+

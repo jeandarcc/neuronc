@@ -1,0 +1,143 @@
+[catalog]
+locale = "en"
+bucket = "N1xxx_parser"
+display_name = "Parser diagnostics"
+inherits_contract = "N1xxx_parser"
+
+[contracts]
+allowed_exact_codes = ["NPP1001", "NPP1002"]
+allowed_n_range = "1000-1599"
+allowed_w_range = "1000-1099"
+future_addition_rule = "Only N1000-N1599, W1000-W1099, and the exact legacy parser codes listed above may appear in this file."
+
+[messages.NPP1001]
+severity = "error"
+phase = "lexer"
+slug = "legacy_lexer_error"
+title = "Legacy lexer error"
+summary = "Compatibility bucket for tokenization failures until finer lexer codes are wired."
+default_message = "The source contains an invalid token, malformed literal, or illegal character sequence."
+recovery = "Inspect the first invalid character or malformed literal near the reported location."
+tags = ["legacy", "lexer", "fallback"]
+
+[messages.NPP1002]
+severity = "error"
+phase = "parser"
+slug = "legacy_parser_error"
+title = "Legacy parser error"
+summary = "Compatibility bucket for parse failures until finer parser codes are wired."
+default_message = "The source does not match the expected Neuron++ grammar."
+recovery = "Inspect the reported token boundary, delimiter pairing, and the expected statement or declaration form."
+tags = ["legacy", "parser", "fallback"]
+
+[messages.N1001]
+severity = "error"
+phase = "lexer"
+slug = "invalid_character"
+title = "Invalid character"
+summary = "The lexer encountered a character that is not valid in the current source context."
+default_message = "An invalid character was found in the source."
+recovery = "Remove the character or replace it with valid Neuron++ syntax."
+tags = ["lexer", "character", "syntax"]
+
+[messages.N1002]
+severity = "error"
+phase = "lexer"
+slug = "unterminated_string_literal"
+title = "Unterminated string literal"
+summary = "A string literal started but was not closed before the line or file ended."
+default_message = "String literal is missing its closing quote."
+recovery = "Add the missing quote or escape embedded quotes correctly."
+tags = ["lexer", "string", "literal"]
+
+[messages.N1101]
+severity = "error"
+phase = "parser"
+slug = "missing_expression_operand"
+title = "Missing expression operand"
+summary = "An operator or expression form appears without the required left-hand side or right-hand side operand."
+default_message = "Expression is missing an operand."
+recovery = "Add the missing operand or remove the incomplete operator."
+tags = ["parser", "expression", "operand"]
+
+[messages.N1102]
+severity = "error"
+phase = "parser"
+slug = "unexpected_token_in_expression"
+title = "Unexpected token in expression"
+summary = "The parser found a token that cannot continue the current expression."
+default_message = "Unexpected token while parsing an expression."
+recovery = "Check grouping, separators, and postfix syntax near the reported token."
+tags = ["parser", "expression", "token"]
+
+[messages.N1201]
+severity = "error"
+phase = "parser"
+slug = "missing_statement_terminator"
+title = "Missing statement terminator"
+summary = "A statement boundary was expected but not found."
+default_message = "Statement is missing its expected terminator."
+recovery = "Add the missing semicolon or rewrite the statement into a valid block form."
+tags = ["parser", "statement", "terminator"]
+
+[messages.N1301]
+severity = "error"
+phase = "parser"
+slug = "invalid_parameter_declaration"
+title = "Invalid parameter declaration"
+summary = "A method parameter does not match the language's declared parameter syntax."
+default_message = "Parameter declaration is malformed."
+recovery = "Use the canonical form `name as Type` and separate parameters with commas."
+tags = ["parser", "function", "parameter"]
+
+[messages.N1401]
+severity = "error"
+phase = "parser"
+slug = "malformed_type_annotation"
+title = "Malformed type annotation"
+summary = "A type annotation or generic argument list is syntactically incomplete or malformed."
+default_message = "Type annotation is malformed."
+recovery = "Check generic brackets, commas, colons, and nullable or pointer spelling."
+tags = ["parser", "type", "generic"]
+
+[messages.N1501]
+severity = "error"
+phase = "parser"
+slug = "unexpected_end_of_file"
+title = "Unexpected end of file"
+summary = "The source ended before the parser could finish the current construct."
+default_message = "Source ended before the current construct was closed."
+recovery = "Add the missing closing delimiter or complete the unfinished declaration or block."
+tags = ["parser", "recovery", "eof"]
+
+[messages.W1001]
+severity = "warning"
+phase = "parser"
+slug = "recovered_missing_token"
+title = "Parser recovered by inserting an expected token"
+summary = "The parser continued after assuming a missing token."
+default_message = "Parser recovered after inferring a missing token."
+recovery = "Fix the surrounding syntax so recovery is no longer required."
+tags = ["warning", "parser", "recovery"]
+
+[messages.W1002]
+severity = "warning"
+phase = "parser"
+slug = "deprecated_syntax_accepted"
+title = "Deprecated syntax accepted"
+summary = "The parser accepted a legacy syntax form that should be migrated."
+default_message = "Deprecated syntax was accepted for compatibility."
+recovery = "Rewrite the construct using the current canonical syntax."
+tags = ["warning", "parser", "compatibility"]
+
+
+[messages.N1103]
+severity = "error"
+phase = "parser"
+slug = "unexpected_token"
+title = "Unexpected token"
+summary = "The parser encountered a token that is not valid at the current position."
+default_message = "Unexpected token: '{token}'."
+parameters = ["token"]
+recovery = "Remove the token or rewrite the surrounding syntax so the token is valid in this position."
+tags = ["parser", "token", "recovery"]

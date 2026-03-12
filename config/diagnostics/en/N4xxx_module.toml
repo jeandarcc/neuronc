@@ -1,0 +1,92 @@
+[catalog]
+locale = "en"
+bucket = "N4xxx_module"
+display_name = "Module diagnostics"
+inherits_contract = "N4xxx_module"
+
+[contracts]
+allowed_exact_codes = ["NPP4001"]
+allowed_n_range = "4000-4099"
+allowed_w_range = "4000-4099"
+future_addition_rule = "Only N4000-N4099, W4000-W4099, and the exact legacy module code listed above may appear in this file."
+
+[messages.NPP4001]
+severity = "error"
+phase = "module"
+slug = "legacy_module_error"
+title = "Legacy module error"
+summary = "Compatibility bucket for module-resolution failures until finer module codes are wired."
+default_message = "A module-related error prevented compilation."
+recovery = "Inspect module declarations, imports, native module configuration, and project structure near the reported location."
+tags = ["legacy", "module", "fallback"]
+
+[messages.N4001]
+severity = "error"
+phase = "module"
+slug = "missing_module"
+title = "Missing module"
+summary = "The requested module cannot be found in the current project or available module set."
+default_message = "Requested module could not be resolved."
+recovery = "Add the module, fix the name, or update the project configuration so the module is available."
+tags = ["module", "resolution", "import"]
+
+[messages.N4002]
+severity = "error"
+phase = "module"
+slug = "duplicate_module_declaration"
+title = "Duplicate module declaration"
+summary = "The source declares the same module context more than once where only one declaration is allowed."
+default_message = "Module is declared more than once."
+recovery = "Keep a single canonical module declaration."
+tags = ["module", "duplicate", "declaration"]
+
+[messages.N4003]
+severity = "error"
+phase = "module"
+slug = "self_import_not_allowed"
+title = "Self import not allowed"
+summary = "A source file attempts to import or declare itself as an external module boundary."
+default_message = "A file cannot import itself as a module dependency."
+recovery = "Remove the self import and rely on the file's own declarations directly."
+tags = ["module", "self-import", "project-structure"]
+
+[messages.N4004]
+severity = "error"
+phase = "module"
+slug = "modulecpp_configuration_missing"
+title = "ModuleCpp configuration missing"
+summary = "A modulecpp import exists in source, but the required native module configuration is absent."
+default_message = "ModuleCpp import is missing required configuration."
+recovery = "Add the native module manifest and register it in project configuration."
+tags = ["module", "modulecpp", "config"]
+
+[messages.N4005]
+severity = "error"
+phase = "module"
+slug = "modulecpp_export_signature_mismatch"
+title = "ModuleCpp export signature mismatch"
+summary = "A configured native export does not match the type contract expected by the source declaration."
+default_message = "Native module export signature does not match the source contract."
+recovery = "Align the source-side declaration and the native manifest export signature."
+tags = ["module", "modulecpp", "signature"]
+
+[messages.N4006]
+severity = "error"
+phase = "module"
+slug = "invalid_file_to_type_naming_contract"
+title = "Invalid file-to-type naming contract"
+summary = "The project enforces a filename-to-type naming rule and the current source violates it."
+default_message = "Declared type name does not match the required file naming contract."
+recovery = "Rename the file or the declared type so the contract is satisfied exactly."
+tags = ["module", "naming", "project-structure"]
+
+[messages.W4001]
+severity = "warning"
+phase = "module"
+slug = "redundant_module_import"
+title = "Redundant module import"
+summary = "A module import is accepted but unnecessary because the symbol set is already available."
+default_message = "Module import is redundant."
+recovery = "Remove the extra import to keep dependencies explicit and minimal."
+tags = ["warning", "module", "import"]
+
