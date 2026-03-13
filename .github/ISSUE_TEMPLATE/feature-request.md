@@ -1,7 +1,7 @@
 ---
 name: Feature Request
 about: Suggest a new language feature, compiler pass, runtime API, or tooling improvement
-title: "<short description>"
+title: 'FEATURE:: [short_description]'
 labels: enhancement
 assignees: jeandarcc
 
