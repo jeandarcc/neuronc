@@ -2,7 +2,7 @@
 
 ## Scope
 
-This folder covers successful compilation cases where the primary oracle is executable behavior. These tests do not assert internal LLVM, MIR, or NIR details; they assert what the compiled `.npp` program does.
+This folder covers successful compilation cases where the primary oracle is executable behavior. These tests do not assert internal LLVM, MIR, or NIR details; they assert what the compiled `.nr` program does.
 
 Subfolders:
 
@@ -32,11 +32,11 @@ Excluded:
 | --- | --- |
 | `N5000-N5099` | runtime-visible lowering failures or backend-visible source errors |
 | `W5000-W5099` | backend fallbacks or degraded-but-correct behavior |
-| `NPP0001` | generic fallback if a backend-visible source failure escapes uncategorized |
+| `NR0001` | generic fallback if a backend-visible source failure escapes uncategorized |
 
 ## Test List
 
-| Name | `.npp` input code | Expected output or error | Why important |
+| Name | `.nr` input code | Expected output or error | Why important |
 | --- | --- | --- | --- |
 | `codegen_baseline__integer_arithmetic` | `module System; Init is method() { Print(1 + 2 * 3); }` | Prints `7` | Baseline end-to-end expression execution |
 | `codegen_baseline__if_else_branch` | branch on a boolean and print one arm | Prints the correct branch result | Keeps control-flow lowering honest |

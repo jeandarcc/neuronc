@@ -1,6 +1,6 @@
 # Tensor Creation
 
-Tensors are multi-dimensional arrays — the core data structure for numerical computing in Neuron++.
+Tensors are multi-dimensional arrays — the core data structure for numerical computing in Neuron.
 
 ---
 
@@ -29,7 +29,7 @@ c is Tensor<float>.Ones(4, 4);
 
 ## Real Example
 
-From `GpuBlockTensorOps.npp`:
+From `GpuBlockTensorOps.nr`:
 
 ```npp
 a is Tensor<float>.Random(2, 2);

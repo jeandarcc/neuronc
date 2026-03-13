@@ -28,14 +28,14 @@ TEST(BuildCommandCompilesIntoDevOutputDirectory) {
   fs::create_directories(tempDir / "src");
 
   {
-    std::ofstream mainFile(tempDir / "src" / "Main.npp");
+    std::ofstream mainFile(tempDir / "src" / "Main.nr");
     mainFile << "Init is method() { Print(\"ok\"); }\n";
   }
 
   ProjectConfig config;
   config.name = "sample_app";
   config.buildDir = "build";
-  config.mainFile = (tempDir / "src" / "Main.npp").string();
+  config.mainFile = (tempDir / "src" / "Main.nr").string();
 
   bool testsRan = false;
   bool compileCalled = false;

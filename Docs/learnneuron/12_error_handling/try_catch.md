@@ -1,6 +1,6 @@
 # Try / Catch / Finally
 
-Neuron++ provides structured error handling with `try`, `catch`, and `finally`.
+Neuron provides structured error handling with `try`, `catch`, and `finally`.
 
 ---
 
@@ -20,7 +20,7 @@ try {
 
 ## Example
 
-From `TryCatch.npp`:
+From `TryCatch.nr`:
 
 ```npp
 module System;

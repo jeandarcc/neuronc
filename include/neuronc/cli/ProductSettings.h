@@ -12,7 +12,7 @@ struct ProductSettings {
   std::string productVersion = "1.0.0";
   int productBuildVersion = 1;
   std::string productPublisher;
-  std::string productDescription = "A Neuron++ application";
+  std::string productDescription = "A Neuron application";
   std::string productWebsite;
 
   // ── Branding ──

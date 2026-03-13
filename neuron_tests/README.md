@@ -1,16 +1,16 @@
-# Neuron++ Source Behavior Test Architecture
+# Neuron Source Behavior Test Architecture
 
 ## Scope
 
-`neuron_tests/` is the canonical specification tree for black-box `.npp` behavior tests.
+`neuron_tests/` is the canonical specification tree for black-box `.nr` behavior tests.
 
 This tree answers one question only:
 
-> When this `.npp` program is compiled and executed, what observable behavior is correct?
+> When this `.nr` program is compiled and executed, what observable behavior is correct?
 
 Included:
 
-- Parse acceptance and parse rejection for user-written `.npp` source
+- Parse acceptance and parse rejection for user-written `.nr` source
 - Semantic acceptance and semantic rejection visible to end users
 - Ownership and aliasing behavior visible at compile time or runtime
 - Runtime/codegen-visible program behavior such as arithmetic results, branching, data layout, and standard library side effects
@@ -23,7 +23,7 @@ Explicitly excluded:
 - Internal MIR/NIR/LLVM/unit-level compiler infrastructure tests
 - IDE-only experiences
 - Performance microbenchmarks unless the optimization changes observable program behavior
-- Package manager, project generator, installer, or other CLI workflows unless they materially change `.npp` source execution
+- Package manager, project generator, installer, or other CLI workflows unless they materially change `.nr` source execution
 
 ## Category Index
 
@@ -31,13 +31,13 @@ Explicitly excluded:
 - [semantic/README.md](semantic/README.md): Type rules, name resolution, generics, and overload resolution
 - [ownership/README.md](ownership/README.md): Alias, copy, move, borrow, and lifetime behavior
 - [codegen/README.md](codegen/README.md): Executable program behavior after successful compilation
-- [stdlib/README.md](stdlib/README.md): Observable behavior of standard modules used from `.npp`
+- [stdlib/README.md](stdlib/README.md): Observable behavior of standard modules used from `.nr`
 - [error_messages/README.md](error_messages/README.md): Diagnostic contracts, code coverage, wording, and source-location quality
 - [regression/README.md](regression/README.md): Bug-reproduction tests that must never regress
 
 ## Error-Code Master List
 
-The repository currently exposes coarse fallback codes such as `NPP1002`, `NPP2001`, and `NPP9000` in the frontend diagnostics layer. This test architecture defines the finer-grained taxonomy that behavior tests should target. Until the compiler emits fully specific codes, tests may assert:
+The repository currently exposes coarse fallback codes such as `NR1002`, `NR2001`, and `NR9000` in the frontend diagnostics layer. This test architecture defines the finer-grained taxonomy that behavior tests should target. Until the compiler emits fully specific codes, tests may assert:
 
 - Exact fine-grained code when available
 - Otherwise the phase-level fallback code plus the stable message stem and source span
@@ -77,18 +77,18 @@ The repository currently exposes coarse fallback codes such as `NPP1002`, `NPP20
 
 | Current fallback | Meaning today | Expected replacement range |
 | --- | --- | --- |
-| `NPP1001` | lexer/tokenization error | `N1000-N1099` |
-| `NPP1002` | parser error | `N1100-N1599` |
-| `NPP2001` | semantic error | `N2000-N3299` |
-| `NPP3001` | config-related error visible to source execution | case-specific; usually out of scope here |
-| `NPP4001` | module error | `N4000-N4099` |
-| `NPP9000` | generic warning | one of the `Wxxxx` ranges |
-| `NPP9001` | config warning | usually out of scope here |
+| `NR1001` | lexer/tokenization error | `N1000-N1099` |
+| `NR1002` | parser error | `N1100-N1599` |
+| `NR2001` | semantic error | `N2000-N3299` |
+| `NR3001` | config-related error visible to source execution | case-specific; usually out of scope here |
+| `NR4001` | module error | `N4000-N4099` |
+| `NR9000` | generic warning | one of the `Wxxxx` ranges |
+| `NR9001` | config warning | usually out of scope here |
 
-## `.npp` Test Writing Conventions
+## `.nr` Test Writing Conventions
 
 - Treat every test as a user-observable contract, not an implementation probe.
-- Prefer minimal `.npp` inputs that isolate one rule.
+- Prefer minimal `.nr` inputs that isolate one rule.
 - Keep syntax tests source-only unless runtime execution is necessary to disambiguate behavior.
 - For executable tests, specify `stdout`, `stderr`, process exit status, and whether output ordering matters.
 - Always pin the expected phase: parse failure, semantic failure, compile success with runtime output, compile success with runtime trap, or warning-only success.
@@ -134,11 +134,11 @@ Parameterization axes that should be reused everywhere:
 
 These root-level tests validate the architecture itself and should exist as smoke tests before the tree is filled out.
 
-| Name | `.npp` input code | Expected output or error | Why important |
+| Name | `.nr` input code | Expected output or error | Why important |
 | --- | --- | --- | --- |
 | `root_smoke__parse_and_run_hello` | `module System; Init is method() { Print("hello"); }` | Compiles and prints `hello` | Establishes the end-to-end happy path baseline |
-| `root_smoke__parser_error_is_routed` | `Init is method( { }` | Parser failure with `N1xxx` or `NPP1002` | Proves syntax failures are classified into the parser branch |
-| `root_smoke__semantic_error_is_routed` | `Init is method() { x is "a" + 1; }` | Semantic failure with `N2xxx` or `NPP2001` | Proves semantic failures are classified distinctly from parser failures |
+| `root_smoke__parser_error_is_routed` | `Init is method( { }` | Parser failure with `N1xxx` or `NR1002` | Proves syntax failures are classified into the parser branch |
+| `root_smoke__semantic_error_is_routed` | `Init is method() { x is "a" + 1; }` | Semantic failure with `N2xxx` or `NR2001` | Proves semantic failures are classified distinctly from parser failures |
 | `root_smoke__ownership_error_is_routed` | `Init is method() { a is 1; b is move a; Print(a); }` | Ownership failure with `N3xxx` or semantic fallback | Prevents ownership diagnostics from being lost inside generic semantic buckets |
 | `root_smoke__runtime_behavior_is_asserted` | `module System; Init is method() { Print(1 + 2); }` | Compiles and prints `3` | Confirms runtime-visible behavior is the test oracle, not internal IR |
 | `root_smoke__diagnostic_location_is_asserted` | `x is` | Diagnostic points at the incomplete binding line and column | Keeps source mapping quality part of the contract |

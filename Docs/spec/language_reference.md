@@ -1,4 +1,4 @@
-# Neuron++ Language Reference
+# Neuron Language Reference
 
 > **Status:** Living document — updated alongside language evolution.
 
@@ -128,7 +128,7 @@ gpu fn forward(x: tensor<f32, [128]>) -> tensor<f32, [64]> {
 
 ## Ownership
 
-Neuron++ uses a lightweight ownership system:
+Neuron uses a lightweight ownership system:
 
 ```neuron
 let a = String::new("hello")

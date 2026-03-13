@@ -1,6 +1,6 @@
 # Type Casting
 
-Neuron++ uses the `as` keyword for type conversions, with `maybe` for safe (nullable) casts and `then` for chaining multiple conversion steps.
+Neuron uses the `as` keyword for type conversions, with `maybe` for safe (nullable) casts and `then` for chaining multiple conversion steps.
 
 ---
 
@@ -71,7 +71,7 @@ value as (maybe float);      // nullable cast to float
 
 ## Real Example
 
-From `CSharpFeatures.npp`:
+From `CSharpFeatures.nr`:
 
 ```npp
 value is 10 as int;

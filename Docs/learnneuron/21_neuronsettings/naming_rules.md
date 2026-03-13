@@ -37,15 +37,15 @@ score is player.score;          // score = field (lowercase)
 
 Three rules enforced together:
 
-1. **Filename starts uppercase**: `player.npp` ❌ → `Player.npp` ✅
-2. **No underscores**: `my_class.npp` ❌ → `MyClass.npp` ✅
-3. **Class name matches filename**: `Warrior.npp` with `Fighter class` inside ❌
+1. **Filename starts uppercase**: `player.nr` ❌ → `Player.nr` ✅
+2. **No underscores**: `my_class.nr` ❌ → `MyClass.nr` ✅
+3. **Class name matches filename**: `Warrior.nr` with `Fighter class` inside ❌
 
 ```
-neuronc: error: Invalid .npp filename 'player.npp': filename must start
+neuronc: error: Invalid .nr filename 'player.nr': filename must start
 with an uppercase letter.
 
-neuronc: error: Invalid .npp filename 'my_class.npp': filename cannot
+neuronc: error: Invalid .nr filename 'my_class.nr': filename cannot
 include '_'.
 
 neuronc: error: Class name must match module filename.

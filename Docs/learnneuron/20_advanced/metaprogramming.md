@@ -1,6 +1,6 @@
 # Metaprogramming
 
-Neuron++ provides `macro`, `typeof`, and `static_assert` for compile-time code generation and validation.
+Neuron provides `macro`, `typeof`, and `static_assert` for compile-time code generation and validation.
 
 ---
 

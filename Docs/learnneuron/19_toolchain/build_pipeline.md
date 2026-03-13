@@ -1,6 +1,6 @@
 # Build Pipeline
 
-Neuron++ supports two compilation paths.
+Neuron supports two compilation paths.
 
 ---
 
@@ -9,7 +9,7 @@ Neuron++ supports two compilation paths.
 For production builds with maximum performance:
 
 ```
-Source (.npp)
+Source (.nr)
    │
    ├── Lexer → Tokens
    ├── Parser → AST
@@ -29,7 +29,7 @@ Command: `neuron build`
 For development, portability, and hot-reload:
 
 ```
-Source (.npp)
+Source (.nr)
    │
    ├── Lexer → Tokens
    ├── Parser → AST
@@ -61,10 +61,10 @@ Command: `neuron run` or `neuron ncon build`
 For compiler development and debugging:
 
 ```bash
-neuron lex file.npp        # Stage 1: Tokens
-neuron parse file.npp      # Stage 2: AST
-neuron nir file.npp        # Stage 3: NIR
-neuron compile file.npp    # Stage 4: LLVM IR
+neuron lex file.nr        # Stage 1: Tokens
+neuron parse file.nr      # Stage 2: AST
+neuron nir file.nr        # Stage 3: NIR
+neuron compile file.nr    # Stage 4: LLVM IR
 ```
 
 ---

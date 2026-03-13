@@ -17,7 +17,7 @@ UI capabilities, 2D/3D visualizations, and windowing integration.
 
 ## Vulkan Backend (`backend/vulkan/`)
 
-Neuron++ uses Vulkan as its primary native graphics backend. The integration includes:
+Neuron uses Vulkan as its primary native graphics backend. The integration includes:
 - **Spir-V Caching:** Shader source (GLSL) is compiled ahead-of-time in `runtime/shaders/` and bundled as SPIR-V binaries inside the `vulkan_shaders.h` header located globally in `runtime/src`.
 - **Pipeline Caching:** PSO state is cached heavily to reduce draw-call overhead.
 - **Compute Integration:** Interoperates smoothly with `gpu_vulkan/` in the parent directory to allow sharing Vulkan buffers between graphics passes and neural tensor operations.

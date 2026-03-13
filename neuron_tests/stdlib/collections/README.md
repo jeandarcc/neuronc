@@ -17,11 +17,11 @@ Covered behavior:
 | --- | --- |
 | `N2000-N2499` | invalid collection typing, indexing, or API misuse |
 | `N5000-N5099` | runtime-visible collection failure |
-| `NPP2001`, `NPP0001` | current fallbacks |
+| `NR2001`, `NR0001` | current fallbacks |
 
 ## Test List
 
-| Name | `.npp` input code | Expected output or error | Why important |
+| Name | `.nr` input code | Expected output or error | Why important |
 | --- | --- | --- | --- |
 | `collections__array_iteration` | `Init method(items as Array<int>) { for(item in items) Print(item); }` with harness-provided array input or equivalent fixture | Prints elements in documented order | Existing syntax already appears in semantic tests |
 | `collections__array_index_read` | collection setup followed by `Print(items[0]);` | Prints first element | Baseline indexed read behavior |

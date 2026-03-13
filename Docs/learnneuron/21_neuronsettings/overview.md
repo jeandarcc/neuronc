@@ -1,6 +1,6 @@
 # .neuronsettings
 
-The `.neuronsettings` file controls **compiler-enforced** source code rules for every Neuron++ project. These rules are not suggestions — they are **hard constraints** checked at compile time.
+The `.neuronsettings` file controls **compiler-enforced** source code rules for every Neuron project. These rules are not suggestions — they are **hard constraints** checked at compile time.
 
 ---
 
@@ -22,14 +22,14 @@ Without enforced rules, projects naturally degrade over time:
 
 ### 2. AI Agent Protection
 
-This is equally important: when AI coding assistants (Copilot, Cursor, Claude, etc.) generate or modify code in a Neuron++ project, they MUST follow these rules or the **compiler will reject** their output.
+This is equally important: when AI coding assistants (Copilot, Cursor, Claude, etc.) generate or modify code in a Neuron project, they MUST follow these rules or the **compiler will reject** their output.
 
 Without `.neuronsettings`:
 - An agent might dump 500 lines into a single method
-- An agent might create `utilities.npp` with 12 classes inside
+- An agent might create `utilities.nr` with 12 classes inside
 - An agent might skip documentation entirely
 - An agent might use `processData()` as a method name (lowercase start)
-- An agent might place `.npp` files directly in the project root
+- An agent might place `.nr` files directly in the project root
 
 With `.neuronsettings`, **none of this compiles**. The rules act as a guardrail that protects the project's quality regardless of who — or what — writes the code.
 

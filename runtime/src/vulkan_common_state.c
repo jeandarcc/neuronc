@@ -4,7 +4,7 @@
 #include <stdio.h>
 #include <string.h>
 
-#if NPP_VK_COMMON_HAS_HEADERS
+#if Neuron_VK_COMMON_HAS_HEADERS
 
 VulkanCommonState g_common = {0};
 

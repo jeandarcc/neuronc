@@ -1,6 +1,6 @@
 #include "graphics/backend/vulkan/graphics_vk_internal.h"
 
-#if NPP_GRAPHICS_VK_ENABLED
+#if Neuron_GRAPHICS_VK_ENABLED
 int neuron_graphics_backend_set_tensor_interop(NeuronGraphicsBackend *backend,
                                                NeuronTensor *tensor) {
   if (backend == NULL || tensor == NULL || tensor->data == NULL ||

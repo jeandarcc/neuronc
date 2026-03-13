@@ -19,7 +19,7 @@ Print(copied);    // 100
 
 ## Why `another`?
 
-In Neuron++, `is` creates an alias by default. To get a true copy, you must request one explicitly:
+In Neuron, `is` creates an alias by default. To get a true copy, you must request one explicitly:
 
 | Statement | Behavior |
 |-----------|----------|
@@ -64,7 +64,7 @@ b another a;    // copy without 'is'
 
 ## C++ Equivalent
 
-| Neuron++ | C++ |
+| Neuron | C++ |
 |----------|-----|
 | `y is x;` | `T& y = x;` (reference) |
 | `y is another x;` | `T y = x;` (value copy) |

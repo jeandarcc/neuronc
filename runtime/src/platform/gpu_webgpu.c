@@ -7,11 +7,11 @@
 #include <emscripten/webgpu.h>
 #endif
 
-#ifndef NPP_ENABLE_WEBGPU_BACKEND
-#define NPP_ENABLE_WEBGPU_BACKEND 0
+#ifndef Neuron_ENABLE_WEBGPU_BACKEND
+#define Neuron_ENABLE_WEBGPU_BACKEND 0
 #endif
 
-#if NPP_ENABLE_WEBGPU_BACKEND && defined(__EMSCRIPTEN__)
+#if Neuron_ENABLE_WEBGPU_BACKEND && defined(__EMSCRIPTEN__)
 
 static int g_webgpu_initialized = 0;
 

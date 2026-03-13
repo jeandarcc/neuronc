@@ -77,8 +77,8 @@ def emit_array(name: str, words):
     return lines
 
 header_lines = []
-header_lines.append("#ifndef NPP_RUNTIME_VULKAN_SHADERS_H")
-header_lines.append("#define NPP_RUNTIME_VULKAN_SHADERS_H")
+header_lines.append("#ifndef Neuron_RUNTIME_VULKAN_SHADERS_H")
+header_lines.append("#define Neuron_RUNTIME_VULKAN_SHADERS_H")
 header_lines.append("")
 header_lines.append("#include <stdint.h>")
 header_lines.append("#include <stddef.h>")
@@ -90,7 +90,7 @@ header_lines.extend(emit_array("kBinaryChainThenFmaSpirv", load_words(binary_cha
 header_lines.extend(emit_array("kFmaSpirv", load_words(fma_path)))
 header_lines.extend(emit_array("kMatMulDenseSpirv", load_words(matmul_dense_path)))
 header_lines.extend(emit_array("kMatMulPackedSpirv", load_words(matmul_packed_path)))
-header_lines.append("#endif // NPP_RUNTIME_VULKAN_SHADERS_H")
+header_lines.append("#endif // Neuron_RUNTIME_VULKAN_SHADERS_H")
 header_lines.append("")
 
 out_header.write_text("\n".join(header_lines), encoding="utf-8")

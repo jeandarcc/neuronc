@@ -10,7 +10,7 @@
 namespace neuron {
 
 // ══════════════════════════════════════════════════════
-// Type system for Neuron++
+// Type system for Neuron
 // ══════════════════════════════════════════════════════
 
 enum class TypeKind {

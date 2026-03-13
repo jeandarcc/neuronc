@@ -13,7 +13,7 @@ The script performs these steps:
 - Builds and stages a default `nucleus.exe` runtime under `bin/`.
 - Stages `neuron.exe`, `ncon.exe`, `nucleus.exe`, required DLLs, `runtime/src`, `runtime/include`, `runtime/minimal`, `include/`, `src/ncon`, and a bundled GCC toolchain under `build/installer/stage`.
 - Invokes Inno Setup and writes the installer into `build/installer/out`.
-- Produces release artifacts under `build/installer/release/neuronpp-<version>-windows-x64/`.
+- Produces release artifacts under `build/installer/release/Neuron-<version>-windows-x64/`.
 
 Common options:
 
@@ -29,7 +29,7 @@ Installer behavior:
 
 - Reuses the same `AppId`, so a newer installer upgrades the existing installation.
 - Adds `{app}\bin` to the Windows `PATH` by default, so both `neuron` and `ncon` are callable everywhere.
-- Installs to `C:\Program Files\NeuronPP` by default.
+- Installs to `C:\Program Files\Neuron` by default.
 - Bundles `runtime/` so installed `neuron` can compile from any working directory.
 - Bundles minimal SDK sources so installed `neuron build-nucleus --platform ...` works without cloning the repo.
 - Registers `.ncon` file association so double-click opens files with `{install}\bin\nucleus.exe`.
@@ -37,8 +37,8 @@ Installer behavior:
 
 Release artifacts:
 
-- `neuronpp-<version>-windows-x64.exe`: the Windows installer produced by Inno Setup.
-- `neuronpp-<version>-windows-x64-portable.zip`: a portable archive containing `bin/`, `runtime/`, and bundled toolchain files from the staged tree.
+- `Neuron-<version>-windows-x64.exe`: the Windows installer produced by Inno Setup.
+- `Neuron-<version>-windows-x64-portable.zip`: a portable archive containing `bin/`, `runtime/`, and bundled toolchain files from the staged tree.
 - `SHA256SUMS.txt`: SHA-256 checksums for published artifacts.
 - `release-manifest.json`: machine-readable release metadata with artifact names, sizes, and hashes.
 

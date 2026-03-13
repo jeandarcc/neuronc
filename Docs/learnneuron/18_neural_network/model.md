@@ -1,6 +1,6 @@
 # Neural Network Model
 
-Build neural networks using Neuron++'s built-in NN module.
+Build neural networks using Neuron's built-in NN module.
 
 ---
 

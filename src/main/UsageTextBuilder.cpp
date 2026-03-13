@@ -1,5 +1,4 @@
 #include "UsageTextBuilder.h"
-#include "UsageText.h"
 
 #include <algorithm>
 #include <cctype>
@@ -328,7 +327,7 @@ std::string buildUsageText(const std::filesystem::path &toolRoot) {
       (toolRoot / "config" / "cli" / "help.toml").lexically_normal();
   const auto document = loadHelpDocumentFromToml(configPath);
   if (!document.has_value()) {
-    return std::string(kUsageText);
+    return "Error: CLI help configuration (help.toml) is missing or corrupted.\n";
   }
   return renderHelpDocument(*document);
 }

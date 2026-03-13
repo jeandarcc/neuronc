@@ -1,4 +1,4 @@
-param(
+﻿param(
   [int]$Trials = 3,
   [string[]]$ThreadCounts = @(),
   [int]$TensorSize = 1024,
@@ -152,7 +152,7 @@ function Compile-NppBenchmark {
   & $NeuronExe compile $SourcePath | Out-Host
   Pop-Location
   if (-not (Test-Path $ExpectedExe)) {
-    throw "Compiled N++ benchmark executable not found at $ExpectedExe"
+    throw "Compiled Neuron benchmark executable not found at $ExpectedExe"
   }
 }
 
@@ -384,9 +384,9 @@ if (-not (Test-Path $neuronExe)) {
   throw "neuron executable not found at $neuronExe"
 }
 
-$pureNppSource = Join-Path $repoRoot "benchmarks/AiTensorBench.npp"
+$pureNppSource = Join-Path $repoRoot "benchmarks/AiTensorBench.nr"
 $pureNppExe = Join-Path $repoRoot "benchmarks/AiTensorBench.exe"
-$fusedNppSource = Join-Path $repoRoot "benchmarks/AiFusedBench.npp"
+$fusedNppSource = Join-Path $repoRoot "benchmarks/AiFusedBench.nr"
 $fusedNppExe = Join-Path $repoRoot "benchmarks/AiFusedBench.exe"
 
 Compile-NppBenchmark -NeuronExe $neuronExe -RepoRoot $repoRoot `
@@ -496,7 +496,7 @@ if ($DisableTensorFlow) {
 
 $normalizedThreadCounts = Normalize-ThreadCounts -InputThreadCounts $ThreadCounts
 Write-Host ("Thread sweep: {0}" -f ($normalizedThreadCounts -join ", "))
-Write-Host "Thread equality is enforced for N++, BLAS and TensorFlow through environment variables."
+Write-Host "Thread equality is enforced for Neuron, BLAS and TensorFlow through environment variables."
 
 $threadRunSummaries = @()
 $rows = @()
@@ -508,7 +508,7 @@ foreach ($threadCount in $normalizedThreadCounts) {
   Write-Host ("=== Thread Count: {0} ===" -f $threadCount)
 
   $pureProfiles = @(
-    @{ Name = "N++ runtime"; Prefix = "NPP"; Exe = $pureNppExe; Args = @() },
+    @{ Name = "Neuron runtime"; Prefix = "Neuron"; Exe = $pureNppExe; Args = @() },
     @{ Name = "C++ naive"; Prefix = "NAIVE"; Exe = $cppNaiveExe; Args = @() },
     @{ Name = "C++ optimized"; Prefix = "OPT"; Exe = $cppOptimizedExe; Args = @() }
   )
@@ -521,7 +521,7 @@ foreach ($threadCount in $normalizedThreadCounts) {
   }
 
   $fusedProfiles = @(
-    @{ Name = "N++ fused"; Prefix = "NPP"; Exe = $fusedNppExe; Args = @(); Label = "NPP_FUSED_MS" },
+    @{ Name = "Neuron fused"; Prefix = "Neuron"; Exe = $fusedNppExe; Args = @(); Label = "Neuron_FUSED_MS" },
     @{ Name = "C++ fused opt"; Prefix = "OPT"; Exe = $cppFusedOptExe; Args = @(); Label = "OPT_FUSED_MS" }
   )
   if ($hasBlasFused) {
@@ -534,7 +534,7 @@ foreach ($threadCount in $normalizedThreadCounts) {
 
   $structuredProfiles = @()
   if ($hasStructuredRuntime) {
-    $structuredProfiles += @{ Name = "N++ structured"; Prefix = "NPP_STRUCT"; Exe = $cppStructuredRuntimeExe; Args = @() }
+    $structuredProfiles += @{ Name = "Neuron structured"; Prefix = "Neuron_STRUCT"; Exe = $cppStructuredRuntimeExe; Args = @() }
   }
   if ($hasBlasStructured) {
     $structuredProfiles += @{ Name = "C++ structured BLAS"; Prefix = "BLAS_STRUCT"; Exe = $cppStructuredBlasExe; Args = @() }
@@ -629,17 +629,17 @@ foreach ($threadCount in $normalizedThreadCounts) {
     Write-Host ("{0,-15} FMA={1,8:N2} | MatMul={2,8:N2}" -f $profile.Name, $vals["fma"], $vals["matmul"])
   }
 
-  $nppPureFma = [double]$pureMedian["NPP"]["fma"]
-  $nppPureMatmul = [double]$pureMedian["NPP"]["matmul"]
+  $nppPureFma = [double]$pureMedian["Neuron"]["fma"]
+  $nppPureMatmul = [double]$pureMedian["Neuron"]["matmul"]
 
   Write-Host ""
-  Write-Host ("=== Pure Speedup (N++ baseline) [threads={0}] ===" -f $threadCount)
+  Write-Host ("=== Pure Speedup (Neuron baseline) [threads={0}] ===" -f $threadCount)
   foreach ($profile in $pureProfiles) {
-    if ($profile.Prefix -eq "NPP") { continue }
+    if ($profile.Prefix -eq "Neuron") { continue }
     $vals = $pureMedian[$profile.Prefix]
     $fmaSpeed = Format-Speedup -Base ([double]$vals["fma"]) -Npp $nppPureFma
     $matmulSpeed = Format-Speedup -Base ([double]$vals["matmul"]) -Npp $nppPureMatmul
-    Write-Host ("N++ vs {0,-12} FMA={1} | MatMul={2}" -f $profile.Name, $fmaSpeed, $matmulSpeed)
+    Write-Host ("Neuron vs {0,-12} FMA={1} | MatMul={2}" -f $profile.Name, $fmaSpeed, $matmulSpeed)
   }
 
   Write-Host ""
@@ -649,13 +649,13 @@ foreach ($threadCount in $normalizedThreadCounts) {
     Write-Host ("{0,-15} Fused={1,8:N2}" -f $profile.Name, $value)
   }
 
-  $nppFused = [double]$fusedMedian["NPP"]
+  $nppFused = [double]$fusedMedian["Neuron"]
   Write-Host ""
-  Write-Host ("=== Fused Speedup (N++ baseline) [threads={0}] ===" -f $threadCount)
+  Write-Host ("=== Fused Speedup (Neuron baseline) [threads={0}] ===" -f $threadCount)
   foreach ($profile in $fusedProfiles) {
-    if ($profile.Prefix -eq "NPP") { continue }
+    if ($profile.Prefix -eq "Neuron") { continue }
     $speed = Format-Speedup -Base ([double]$fusedMedian[$profile.Prefix]) -Npp $nppFused
-    Write-Host ("N++ vs {0,-12} Fused={1}" -f $profile.Name, $speed)
+    Write-Host ("Neuron vs {0,-12} Fused={1}" -f $profile.Name, $speed)
   }
 
   if ($structuredProfiles.Count -gt 0) {
@@ -669,19 +669,19 @@ foreach ($threadCount in $normalizedThreadCounts) {
           "", $vals["circ_fused"], $vals["toep_fused"], $vals["hybrid_fused"])
     }
 
-    if ($structuredMedian.ContainsKey("NPP_STRUCT")) {
-      $nppStruct = $structuredMedian["NPP_STRUCT"]
+    if ($structuredMedian.ContainsKey("Neuron_STRUCT")) {
+      $nppStruct = $structuredMedian["Neuron_STRUCT"]
       Write-Host ""
-      Write-Host ("=== Structured Speedup (N++ baseline) [threads={0}] ===" -f $threadCount)
+      Write-Host ("=== Structured Speedup (Neuron baseline) [threads={0}] ===" -f $threadCount)
       foreach ($profile in $structuredProfiles) {
-        if ($profile.Prefix -eq "NPP_STRUCT") { continue }
+        if ($profile.Prefix -eq "Neuron_STRUCT") { continue }
         $vals = $structuredMedian[$profile.Prefix]
-        Write-Host ("N++ vs {0,-16} CIRC_MM={1} | TOEP_MM={2} | HYB_MM={3}" -f
+        Write-Host ("Neuron vs {0,-16} CIRC_MM={1} | TOEP_MM={2} | HYB_MM={3}" -f
             $profile.Name,
             (Format-Speedup -Base ([double]$vals["circ_matmul"]) -Npp ([double]$nppStruct["circ_matmul"])),
             (Format-Speedup -Base ([double]$vals["toep_matmul"]) -Npp ([double]$nppStruct["toep_matmul"])),
             (Format-Speedup -Base ([double]$vals["hybrid_matmul"]) -Npp ([double]$nppStruct["hybrid_matmul"])))
-        Write-Host ("N++ vs {0,-16} CIRC_FU={1} | TOEP_FU={2} | HYB_FU={3}" -f
+        Write-Host ("Neuron vs {0,-16} CIRC_FU={1} | TOEP_FU={2} | HYB_FU={3}" -f
             "",
             (Format-Speedup -Base ([double]$vals["circ_fused"]) -Npp ([double]$nppStruct["circ_fused"])),
             (Format-Speedup -Base ([double]$vals["toep_fused"]) -Npp ([double]$nppStruct["toep_fused"])),
@@ -790,7 +790,7 @@ foreach ($threadCount in $normalizedThreadCounts) {
 
 Write-Host ""
 Write-Host "=== Thread Sweep Summary (median ms) ==="
-$summaryHeader = "{0,7} | {1,10} | {2,10} | {3,10} | {4,10} | {5,10} | {6,10}" -f "Threads", "N++ MM", "BLAS MM", "TF MM", "N++ Fused", "BLAS Fused", "TF Fused"
+$summaryHeader = "{0,7} | {1,10} | {2,10} | {3,10} | {4,10} | {5,10} | {6,10}" -f "Threads", "Neuron MM", "BLAS MM", "TF MM", "Neuron Fused", "BLAS Fused", "TF Fused"
 Write-Host $summaryHeader
 Write-Host ("-" * $summaryHeader.Length)
 foreach ($summary in $threadRunSummaries) {
@@ -798,10 +798,10 @@ foreach ($summary in $threadRunSummaries) {
   $pureMedian = [hashtable]$summary.PureMedian
   $fusedMedian = [hashtable]$summary.FusedMedian
 
-  $nppMm = Get-NullablePureMetric -MedianMap $pureMedian -Prefix "NPP" -Metric "matmul"
+  $nppMm = Get-NullablePureMetric -MedianMap $pureMedian -Prefix "Neuron" -Metric "matmul"
   $blasMm = Get-NullablePureMetric -MedianMap $pureMedian -Prefix "BLAS" -Metric "matmul"
   $tfMm = Get-NullablePureMetric -MedianMap $pureMedian -Prefix "TF" -Metric "matmul"
-  $nppFused = Get-NullableFusedMetric -MedianMap $fusedMedian -Prefix "NPP"
+  $nppFused = Get-NullableFusedMetric -MedianMap $fusedMedian -Prefix "Neuron"
   $blasFused = Get-NullableFusedMetric -MedianMap $fusedMedian -Prefix "BLAS"
   $tfFused = Get-NullableFusedMetric -MedianMap $fusedMedian -Prefix "TF"
 
@@ -825,15 +825,15 @@ foreach ($summary in $threadRunSummaries) {
 if ($hasStructuredAny) {
   Write-Host ""
   Write-Host "=== Structured Thread Sweep Summary (median ms) ==="
-  $structuredHeader = "{0,7} | {1,14} | {2,14} | {3,14} | {4,14}" -f "Threads", "N++ HYB MM", "BLAS HYB MM", "N++ HYB FU", "BLAS HYB FU"
+  $structuredHeader = "{0,7} | {1,14} | {2,14} | {3,14} | {4,14}" -f "Threads", "Neuron HYB MM", "BLAS HYB MM", "Neuron HYB FU", "BLAS HYB FU"
   Write-Host $structuredHeader
   Write-Host ("-" * $structuredHeader.Length)
   foreach ($summary in $threadRunSummaries) {
     $threadCount = [int]$summary.ThreadCount
     $structuredMedian = [hashtable]$summary.StructuredMedian
-    $nppHybridMm = Get-NullableStructuredMetric -MedianMap $structuredMedian -Prefix "NPP_STRUCT" -Metric "hybrid_matmul"
+    $nppHybridMm = Get-NullableStructuredMetric -MedianMap $structuredMedian -Prefix "Neuron_STRUCT" -Metric "hybrid_matmul"
     $blasHybridMm = Get-NullableStructuredMetric -MedianMap $structuredMedian -Prefix "BLAS_STRUCT" -Metric "hybrid_matmul"
-    $nppHybridFu = Get-NullableStructuredMetric -MedianMap $structuredMedian -Prefix "NPP_STRUCT" -Metric "hybrid_fused"
+    $nppHybridFu = Get-NullableStructuredMetric -MedianMap $structuredMedian -Prefix "Neuron_STRUCT" -Metric "hybrid_fused"
     $blasHybridFu = Get-NullableStructuredMetric -MedianMap $structuredMedian -Prefix "BLAS_STRUCT" -Metric "hybrid_fused"
     Write-Host ("{0,7} | {1,14} | {2,14} | {3,14} | {4,14}" -f
         $threadCount,

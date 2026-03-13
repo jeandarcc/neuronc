@@ -1,15 +1,15 @@
 # Project Rules
 
-This document defines the project-specific constraints and workflows that apply to this Neuron++ project.
+This document defines the project-specific constraints and workflows that apply to this Neuron project.
 
 ---
 
 ## 1. Source Organization
 
 - All source code resides in the `src/` directory.
-- Each `.npp` file contains exactly **one class**.
+- Each `.nr` file contains exactly **one class**.
 - The class name must **match the filename** (case-sensitive).
-- The program entry point is the `Init` method in `src/Main.npp`.
+- The program entry point is the `Init` method in `src/Main.nr`.
 
 ---
 

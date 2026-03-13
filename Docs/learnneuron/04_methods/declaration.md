@@ -1,6 +1,6 @@
 # Method Declaration
 
-All functions in Neuron++ are declared with the `method` keyword.
+All functions in Neuron are declared with the `method` keyword.
 
 ---
 
@@ -47,7 +47,7 @@ Print(result);      // 8
 
 ## Entry Point
 
-The `Init` method in `src/Main.npp` is the program entry point:
+The `Init` method in `src/Main.nr` is the program entry point:
 
 ```npp
 Init method() {

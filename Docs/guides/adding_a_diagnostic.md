@@ -1,6 +1,6 @@
 # How to Add a Diagnostic Error Code
 
-Neuron++ uses a multi-locale diagnostic system. Error codes are defined in TOML
+Neuron uses a multi-locale diagnostic system. Error codes are defined in TOML
 files under `config/diagnostics/<locale>/` and referenced by numeric ID from C++.
 
 ---
@@ -76,7 +76,7 @@ the locale at runtime using `config/diagnostics/<locale>/` TOML files.
 
 ## Step 4 — Write a Test
 
-Add a test that compiles a `.npp` snippet and asserts the diagnostic fires:
+Add a test that compiles a `.nr` snippet and asserts the diagnostic fires:
 
 ```cpp
 // In tests/sema/<something>.cpp

@@ -1,4 +1,4 @@
-# Getting Started with Neuron++ Development
+?# Getting Started with Neuron Development
 
 ## Prerequisites
 
@@ -36,7 +36,7 @@ $env:NEURON_TOOLCHAIN_BIN = "C:\msys64\mingw64\bin"
 scripts\build.bat
 ```
 
-The build output lands in `%LOCALAPPDATA%\NeuronPP\workspaces\NPP\build-mingw\bin\`.
+The build output lands in `%LOCALAPPDATA%\Neuron\workspaces\Neuron\build-mingw\bin\`.
 
 ---
 
@@ -45,13 +45,13 @@ The build output lands in `%LOCALAPPDATA%\NeuronPP\workspaces\NPP\build-mingw\bi
 ```powershell
 # Run all tests
 powershell -NoProfile -ExecutionPolicy Bypass -File scripts/build_tests.ps1 `
-  -BuildDir "$env:LOCALAPPDATA\NeuronPP\workspaces\NPP\build-mingw" `
+  -BuildDir "$env:LOCALAPPDATA\Neuron\workspaces\Neuron\build-mingw" `
   -Filter "*" `
   -LlvmDir "C:\msys64\mingw64\lib\cmake\llvm"
 
 # Run only sema tests
 powershell -NoProfile -ExecutionPolicy Bypass -File scripts/build_tests.ps1 `
-  -BuildDir "$env:LOCALAPPDATA\NeuronPP\workspaces\NPP\build-mingw" `
+  -BuildDir "$env:LOCALAPPDATA\Neuron\workspaces\Neuron\build-mingw" `
   -Filter "sema*" `
   -LlvmDir "C:\msys64\mingw64\lib\cmake\llvm"
 ```
@@ -80,7 +80,7 @@ include/      Public headers (ABI boundary: include/neuronc/)
 tests/        Single-binary test suite (mirrors src/ layout)
 scripts/      Canonical build/test scripts (the ONLY way to build)
 config/       Runtime config and diagnostics catalog
-extensions/   IDE plugins (vscode-npp, intellij-npp)
+extensions/   IDE plugins (vscode-neuron, intellij-neuron)
 docs/         Architecture docs, ADRs, guides, specs
 benchmarks/   Performance benchmarking suite
 plans/        Long-horizon design plans

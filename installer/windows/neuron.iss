@@ -1,4 +1,4 @@
-#define AppName "NeuronPP"
+﻿#define AppName "Neuron"
 #ifndef AppVersion
   #define AppVersion "0.1.0"
 #endif
@@ -14,14 +14,14 @@ AppId={{A312B684-8A5E-4F3D-80E4-061E9BA6C9F6}
 AppName={#AppName}
 AppVersion={#AppVersion}
 AppVerName={#AppName} {#AppVersion}
-AppPublisher=NeuronPP
-DefaultDirName={autopf}\NeuronPP
-DefaultGroupName=NeuronPP
+AppPublisher=Neuron
+DefaultDirName={autopf}\Neuron
+DefaultGroupName=Neuron
 DisableProgramGroupPage=yes
 UsePreviousAppDir=yes
 UsePreviousTasks=yes
 OutputDir={#OutputDir}
-OutputBaseFilename=neuronpp-{#AppVersion}-windows-x64
+OutputBaseFilename=Neuron-{#AppVersion}-windows-x64
 ArchitecturesAllowed=x64compatible
 ArchitecturesInstallIn64BitMode=x64compatible
 #ifndef CompressionLevel
@@ -55,13 +55,13 @@ Source: "{#SourceDir}\toolchain\*"; DestDir: "{app}\toolchain"; Flags: ignorever
 [Icons]
 Name: "{group}\Neuron CLI"; Filename: "{app}\bin\neuron.exe"
 Name: "{group}\NCON CLI"; Filename: "{app}\bin\ncon.exe"
-Name: "{group}\Uninstall NeuronPP"; Filename: "{uninstallexe}"
+Name: "{group}\Uninstall Neuron"; Filename: "{uninstallexe}"
 
 [Registry]
-Root: HKCR; Subkey: ".ncon"; ValueType: string; ValueName: ""; ValueData: "NeuronPP.Ncon"; Flags: uninsdeletevalue
-Root: HKCR; Subkey: "NeuronPP.Ncon"; ValueType: string; ValueName: ""; ValueData: "NCON Container"; Flags: uninsdeletekey
-Root: HKCR; Subkey: "NeuronPP.Ncon\DefaultIcon"; ValueType: string; ValueName: ""; ValueData: """{app}\bin\nucleus.exe"",0"
-Root: HKCR; Subkey: "NeuronPP.Ncon\shell\open\command"; ValueType: string; ValueName: ""; ValueData: """{app}\bin\nucleus.exe"" ""%1"""
+Root: HKCR; Subkey: ".ncon"; ValueType: string; ValueName: ""; ValueData: "Neuron.Ncon"; Flags: uninsdeletevalue
+Root: HKCR; Subkey: "Neuron.Ncon"; ValueType: string; ValueName: ""; ValueData: "NCON Container"; Flags: uninsdeletekey
+Root: HKCR; Subkey: "Neuron.Ncon\DefaultIcon"; ValueType: string; ValueName: ""; ValueData: """{app}\bin\nucleus.exe"",0"
+Root: HKCR; Subkey: "Neuron.Ncon\shell\open\command"; ValueType: string; ValueName: ""; ValueData: """{app}\bin\nucleus.exe"" ""%1"""
 
 [Code]
 const

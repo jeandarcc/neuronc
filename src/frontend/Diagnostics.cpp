@@ -67,24 +67,24 @@ void bindSpecificDiagnostic(const std::string &phase, const std::string &message
 std::string phaseDiagnosticCode(const std::string &phase,
                                 DiagnosticSeverity severity) {
   if (severity == DiagnosticSeverity::Warning) {
-    return phase == "config" ? "NPP9001" : "NPP9000";
+    return phase == "config" ? "NR9001" : "NR9000";
   }
   if (phase == "lexer") {
-    return "NPP1001";
+    return "NR1001";
   }
   if (phase == "parser") {
-    return "NPP1002";
+    return "NR1002";
   }
   if (phase == "semantic") {
-    return "NPP2001";
+    return "NR2001";
   }
   if (phase == "config") {
-    return "NPP3001";
+    return "NR3001";
   }
   if (phase == "module") {
-    return "NPP4001";
+    return "NR4001";
   }
-  return "NPP0001";
+  return "NR0001";
 }
 
 Range makePointRange(int line, int column) {

@@ -19,7 +19,7 @@ int runBuildCommand(const ProjectCommandDependencies &deps) {
   }
 
   const std::string mainFile =
-      config.mainFile.empty() ? "src/Main.npp" : config.mainFile;
+      config.mainFile.empty() ? "src/Main.nr" : config.mainFile;
   if (!fs::exists(mainFile)) {
     std::cerr << "Error: Entry file not found: " << mainFile << std::endl;
     return 1;
@@ -61,7 +61,7 @@ int runRunCommand(const ProjectCommandDependencies &deps) {
   }
 
   const std::string mainFile =
-      config.mainFile.empty() ? "src/Main.npp" : config.mainFile;
+      config.mainFile.empty() ? "src/Main.nr" : config.mainFile;
   std::string executablePath;
   const int compileResult = deps.cmdCompile(mainFile, &executablePath);
   if (compileResult != 0) {
@@ -97,7 +97,7 @@ int runReleaseCommand(const ProjectCommandDependencies &deps) {
   }
 
   const std::string mainFile =
-      config.mainFile.empty() ? "src/Main.npp" : config.mainFile;
+      config.mainFile.empty() ? "src/Main.nr" : config.mainFile;
   const NeuronSettings settings = deps.loadNeuronSettings(fs::path(mainFile));
   if (!deps.runAutomatedTestSuite(settings, false, "Release")) {
     return 1;
@@ -166,7 +166,7 @@ int runReleaseCommand(const ProjectCommandDependencies &deps) {
   }
 
   std::ofstream notes(releaseDir / "RELEASE_NOTES.txt");
-  notes << "Neuron++ Release Bundle\n";
+  notes << "Neuron Release Bundle\n";
   notes << "Project: " << config.name << "\n";
   notes << "Version: " << config.version << "\n";
   notes << "Entry: " << mainFile << "\n";

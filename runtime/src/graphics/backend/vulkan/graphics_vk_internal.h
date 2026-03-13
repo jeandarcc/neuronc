@@ -1,22 +1,22 @@
-#ifndef NPP_RUNTIME_GRAPHICS_VK_INTERNAL_H
-#define NPP_RUNTIME_GRAPHICS_VK_INTERNAL_H
+#ifndef Neuron_RUNTIME_GRAPHICS_VK_INTERNAL_H
+#define Neuron_RUNTIME_GRAPHICS_VK_INTERNAL_H
 
 #include "graphics/backend/graphics_backend_internal.h"
 #include "graphics/graphics_core_internal.h"
 #include "gpu_internal.h"
 #include "vulkan_common.h"
 
-#ifndef NPP_ENABLE_VULKAN_BACKEND
-#define NPP_ENABLE_VULKAN_BACKEND 0
+#ifndef Neuron_ENABLE_VULKAN_BACKEND
+#define Neuron_ENABLE_VULKAN_BACKEND 0
 #endif
 
-#if defined(_WIN32) && NPP_VK_COMMON_HAS_HEADERS && NPP_ENABLE_VULKAN_BACKEND
-#define NPP_GRAPHICS_VK_ENABLED 1
+#if defined(_WIN32) && Neuron_VK_COMMON_HAS_HEADERS && Neuron_ENABLE_VULKAN_BACKEND
+#define Neuron_GRAPHICS_VK_ENABLED 1
 #else
-#define NPP_GRAPHICS_VK_ENABLED 0
+#define Neuron_GRAPHICS_VK_ENABLED 0
 #endif
 
-#if NPP_GRAPHICS_VK_ENABLED
+#if Neuron_GRAPHICS_VK_ENABLED
 
 #define NEURON_GRAPHICS_FRAMES_IN_FLIGHT 2
 

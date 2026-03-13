@@ -5,12 +5,12 @@ display_name = "Diagnostics de l'analyseur"
 inherits_contract = "N1xxx_parser"
 
 [contracts]
-allowed_exact_codes = ["NPP1001", "NPP1002"]
+allowed_exact_codes = ["NR1001", "NR1002"]
 allowed_n_range = "1000-1599"
 allowed_w_range = "1000-1099"
 future_addition_rule = "Seuls les codes N1000-N1599, W1000-W1099 et les codes d'analyseur hérités exacts listés ci-dessus peuvent apparaître dans ce fichier."
 
-[messages.NPP1001]
+[messages.nr1001]
 severity = "error"
 phase = "lexer"
 slug = "legacy_lexer_error"
@@ -20,13 +20,13 @@ default_message = "La source contient un jeton invalide, un littéral mal formé
 recovery = "Inspectez le premier caractère invalide ou le littéral mal formé près de l'emplacement rapporté."
 tags = ["legacy", "lexer", "fallback"]
 
-[messages.NPP1002]
+[messages.nr1002]
 severity = "error"
 phase = "parser"
 slug = "legacy_parser_error"
 title = "Erreur de l'analyseur syntaxique (héritée)"
 summary = "Bac de compatibilité pour les échecs d'analyse jusqu'à ce que des codes d'analyseur plus précis soient connectés."
-default_message = "La source ne correspond pas à la grammaire Neuron++ attendue."
+default_message = "La source ne correspond pas à la grammaire Neuron attendue."
 recovery = "Inspectez la limite du jeton rapporté, l'appariement des délimiteurs et la forme de déclaration ou d'instruction attendue."
 tags = ["legacy", "parser", "fallback"]
 
@@ -37,7 +37,7 @@ slug = "invalid_character"
 title = "Caractère invalide"
 summary = "L'analyseur lexical a rencontré un caractère qui n'est pas valide dans le contexte source actuel."
 default_message = "Un caractère invalide a été trouvé dans la source."
-recovery = "Supprimez le caractère ou remplacez-le par une syntaxe Neuron++ valide."
+recovery = "Supprimez le caractère ou remplacez-le par une syntaxe Neuron valide."
 tags = ["lexer", "character", "syntax"]
 
 [messages.N1002]

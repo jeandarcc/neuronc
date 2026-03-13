@@ -12,7 +12,7 @@ namespace fs = std::filesystem;
 // Derleyici araç zincirinin bin dizini (boşsa PATH üzerinden aranır).
 extern std::string g_toolchainBinDir;
 
-// Neuron++ araçlarının kök dizini (runtime, toolchain vb. buradan çözümlenir).
+// Neuron araçlarının kök dizini (runtime, toolchain vb. buradan çözümlenir).
 extern fs::path g_toolRoot;
 
 // Derlenmiş runtime objelerinin önbellek dizini.

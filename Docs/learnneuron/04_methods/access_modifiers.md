@@ -1,6 +1,6 @@
 # Access Modifiers
 
-Neuron++ uses `public` and `private` to control visibility of methods and fields.
+Neuron uses `public` and `private` to control visibility of methods and fields.
 
 ---
 

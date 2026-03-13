@@ -1,6 +1,6 @@
-# Neuron++ Project Structure
+# Neuron Project Structure
 
-This document defines the recommended directory layout for Neuron++ projects and explains the purpose of each directory and configuration file.
+This document defines the recommended directory layout for Neuron projects and explains the purpose of each directory and configuration file.
 
 ---
 
@@ -16,7 +16,7 @@ my_project/
 ├─ .gitignore               # Git exclusion rules
 │
 ├─ src/                     # Source code directory
-│   └─ Main.npp             # Program entry point (Init method)
+│   └─ Main.nr             # Program entry point (Init method)
 │
 ├─ modules/                 # External module dependencies
 │
@@ -24,7 +24,7 @@ my_project/
 │
 ├─ docs/                    # Project documentation
 │   └─ scripts/             # Per-script documentation files
-│       └─ Main.md          # Documentation for Main.npp
+│       └─ Main.md          # Documentation for Main.nr
 │
 ├─ tests/                   # Test suites
 │   ├─ auto/                # Automated integration tests
@@ -50,26 +50,26 @@ my_project/
 
 ### `src/`
 
-Contains all `.npp` source files. The main entry point is always `src/Main.npp`, which must define an `Init` method.
+Contains all `.nr` source files. The main entry point is always `src/Main.nr`, which must define an `Init` method.
 
 **Organization for larger projects:**
 
 ```
 src/
-├─ Main.npp
+├─ Main.nr
 ├─ Math/
-│   ├─ Vector2.npp
-│   ├─ Vector3.npp
-│   └─ Matrix.npp
+│   ├─ Vector2.nr
+│   ├─ Vector3.nr
+│   └─ Matrix.nr
 ├─ AI/
-│   ├─ Tensor.npp
-│   ├─ Layer.npp
-│   └─ Optimizer.npp
+│   ├─ Tensor.nr
+│   ├─ Layer.nr
+│   └─ Optimizer.nr
 └─ Utils/
-    └─ Logger.npp
+    └─ Logger.nr
 ```
 
-Each `.npp` file defines exactly one class, and the class name must match the filename.
+Each `.nr` file defines exactly one class, and the class name must match the filename.
 
 ### `modules/`
 
@@ -81,7 +81,7 @@ Build output directory. Contains compiled binaries, object files, LLVM IR, and N
 
 ### `docs/scripts/`
 
-Per-script documentation files. When `require_script_docs = true` in `.neuronsettings`, every source file must have a corresponding `.md` file here (e.g., `docs/scripts/Main.md` for `src/Main.npp`).
+Per-script documentation files. When `require_script_docs = true` in `.neuronsettings`, every source file must have a corresponding `.md` file here (e.g., `docs/scripts/Main.md` for `src/Main.nr`).
 
 ### `tests/`
 
@@ -108,7 +108,7 @@ name = "my_project"
 version = "0.1.0"
 
 [build]
-main = "src/Main.npp"
+main = "src/Main.nr"
 build_dir = "build"
 optimize = "aggressive"
 emit_ir = "optimized"
@@ -151,7 +151,7 @@ The `agents/` directory is excluded because it is generated from templates durin
 
 | Category        | Convention                    | Example                    |
 |-----------------|-------------------------------|----------------------------|
-| Source files     | PascalCase with `.npp`        | `Vector2.npp`              |
+| Source files     | PascalCase with `.nr`        | `Vector2.nr`              |
 | Class names      | Must match filename           | `Vector2 is public class`  |
 | Documentation    | Match source name with `.md`  | `docs/scripts/Main.md`     |
 | Config files     | lowercase or dotfile          | `neuron.toml`, `.neuronsettings` |
@@ -165,7 +165,7 @@ When `enforce_strict_file_naming = true`, the compiler validates that all file a
 
 When a `module <Name>;` statement is encountered, the compiler searches for the module in the following order:
 
-1. **`src/` directory** — Recursively searches for `<Name>.npp`
+1. **`src/` directory** — Recursively searches for `<Name>.nr`
 2. **`modules/` directory** — Checks installed package dependencies
 3. **Standard library** — Built-in modules like `System`, `Math`, `IO`
 

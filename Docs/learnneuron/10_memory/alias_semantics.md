@@ -1,6 +1,6 @@
 # Alias Semantics
 
-In Neuron++, the default `is` assignment creates an **alias** — both names share the same underlying memory.
+In Neuron, the default `is` assignment creates an **alias** — both names share the same underlying memory.
 
 ---
 

@@ -35,9 +35,9 @@ namespace {
 void printUsage(const char *programName) {
   std::cout << "Usage:\n"
             << "  " << programName
-            << " build [project-dir|entry.npp] [-o output.ncon]\n"
+            << " build [project-dir|entry.nr] [-o output.ncon]\n"
             << "  " << programName
-            << " watch [project-dir|entry.npp] [--hot-reload|--no-hot-reload]\n"
+            << " watch [project-dir|entry.nr] [--hot-reload|--no-hot-reload]\n"
             << "  " << programName
             << " config set hot_reload true|false\n"
             << "  " << programName
@@ -113,7 +113,7 @@ fs::path watchProjectRootForInput(const fs::path &inputPath) {
 bool shouldWatchFile(const fs::path &path) {
   const std::string filename = path.filename().string();
   const std::string extension = path.extension().string();
-  return extension == ".npp" || filename == "neuron.toml" ||
+  return extension == ".nr" || filename == "neuron.toml" ||
          filename == "modulecpp.toml";
 }
 
@@ -220,7 +220,7 @@ bool requiresHardRestart(const std::vector<std::string> &changedPaths) {
     if (filename == "neuron.toml" || filename == "modulecpp.toml") {
       return true;
     }
-    if (changed.extension() != ".npp") {
+    if (changed.extension() != ".nr") {
       return true;
     }
     if (changed.string().find("build") != std::string::npos) {
@@ -550,7 +550,7 @@ int runWatch(int argc, char *argv[], const char *invokerPath) {
   const std::size_t sessionKey =
       std::hash<std::string>{}(projectRoot.lexically_normal().string());
   const fs::path sessionDir =
-      fs::temp_directory_path() / "neuronpp" / "ncon-watch" /
+      fs::temp_directory_path() / "Neuron" / "ncon-watch" /
       std::to_string(sessionKey);
   std::error_code ec;
   fs::create_directories(sessionDir, ec);

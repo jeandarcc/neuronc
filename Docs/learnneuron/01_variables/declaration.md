@@ -1,6 +1,6 @@
 # Variable Declaration
 
-Variables in Neuron++ are declared using the `is` keyword, or optionally without it using bare declaration syntax.
+Variables in Neuron are declared using the `is` keyword, or optionally without it using bare declaration syntax.
 
 ---
 
@@ -19,7 +19,7 @@ active is true;
 
 ## The `is` Keyword Is Optional
 
-In Neuron++, `is` is **optional**. You can declare variables without it:
+In Neuron, `is` is **optional**. You can declare variables without it:
 
 ```npp
 // With 'is' — recommended for variables
@@ -75,13 +75,13 @@ When `as` is omitted, the compiler infers the type from the assigned value.
 ## Examples from Real Code
 
 ```npp
-// From Hello.npp
+// From Hello.nr
 x is 10;
 Init is method() {
     Print(x);
 };
 
-// From IsOptionalDynamic.npp — all valid declarations
+// From IsOptionalDynamic.nr — all valid declarations
 a;              // bare declaration (dynamic)
 b 10;           // shorthand (int, value 10)
 c as dynamic;   // typed declaration (dynamic, no value)

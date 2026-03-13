@@ -2,14 +2,14 @@
 
 **Status:** Accepted  
 **Date:** 2025  
-**Deciders:** NPP core team  
+**Deciders:** Neuron core team  
 **Categories:** Package Manager, ncon
 
 ---
 
 ## Context
 
-Neuron++ needs a package management system (`ncon`) for dependency declaration,
+Neuron needs a package management system (`ncon`) for dependency declaration,
 resolution, sandboxed execution, and bytecode caching. A manifest format must be
 chosen that is:
 

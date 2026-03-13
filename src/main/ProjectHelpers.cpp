@@ -31,7 +31,7 @@ static void collectModulesFromDir(const fs::path &dir,
     return;
   }
   for (const auto &entry : fs::recursive_directory_iterator(dir)) {
-    if (!entry.is_regular_file() || entry.path().extension() != ".npp") {
+    if (!entry.is_regular_file() || entry.path().extension() != ".nr") {
       continue;
     }
     out->insert(normalizeName(entry.path().stem().string()));

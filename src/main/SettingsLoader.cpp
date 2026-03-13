@@ -342,7 +342,7 @@ NeuronSettings loadNeuronSettings(const fs::path &pathHint) {
   std::vector<fs::path> searchRoots;
   if (!pathHint.empty()) {
     fs::path hint = pathHint;
-    if (hint.has_filename() && hint.extension() == ".npp") {
+    if (hint.has_filename() && hint.extension() == ".nr") {
       hint = hint.parent_path();
     } else if (fs::exists(hint) && fs::is_regular_file(hint)) {
       hint = hint.parent_path();
@@ -641,7 +641,7 @@ bool validateScriptPolicy(const fs::path &sourcePath,
   std::transform(
       extension.begin(), extension.end(), extension.begin(),
       [](unsigned char c) { return static_cast<char>(std::tolower(c)); });
-  if (extension != ".npp") {
+  if (extension != ".nr") {
     return true;
   }
 

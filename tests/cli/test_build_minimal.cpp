@@ -101,7 +101,10 @@ TEST(MinimalBuildManifestEntriesExist) {
     }
     const auto last = line.find_last_not_of(" \t\r\n");
     const std::string cleaned = line.substr(first, last - first + 1);
-    ASSERT_TRUE(std::filesystem::exists(repoRoot / cleaned));
+    if (!std::filesystem::exists(repoRoot / cleaned)) {
+      std::cerr << "Manifest entry NOT FOUND at: " << (repoRoot / cleaned).string() << " (repoRoot=" << repoRoot.string() << ", cleaned=" << cleaned << ")" << std::endl;
+      ASSERT_TRUE(false);
+    }
     sawSource = true;
   }
 

@@ -1,6 +1,6 @@
 # Diagnostics Engine (`src/diagnostics/`)
 
-This directory houses the multi-locale error reporting system for the Neuron++
+This directory houses the multi-locale error reporting system for the Neuron
 compiler. Rather than hardcoding English error messages into the compiler passes,
 errors are emitted by ID (e.g., `N2042`) and resolved to formatted messages at
 runtime.

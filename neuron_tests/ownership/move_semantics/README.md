@@ -10,11 +10,11 @@ This folder covers ownership transfer with `move`, post-move invalidation, reini
 | --- | --- |
 | `N3000-N3099` | use-after-move, double move, move from invalid source |
 | `W3000-W3099` | needless move or other quality-only move diagnostics |
-| `NPP2001` | current semantic fallback |
+| `NR2001` | current semantic fallback |
 
 ## Test List
 
-| Name | `.npp` input code | Expected output or error | Why important |
+| Name | `.nr` input code | Expected output or error | Why important |
 | --- | --- | --- | --- |
 | `move__basic_transfer` | `Init is method() { x is 100; y is move x; Print(y); }` | Compiles and prints `100` | Baseline transfer contract |
 | `move__use_after_move` | `Init is method() { x is 100; y is move x; Print(x); }` | `N3000-N3099` | Core safety guarantee |

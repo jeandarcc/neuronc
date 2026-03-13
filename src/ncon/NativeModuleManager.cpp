@@ -81,19 +81,19 @@ fs::path nativeCacheRoot() {
 #ifdef _WIN32
   const char *localAppData = std::getenv("LOCALAPPDATA");
   if (localAppData != nullptr && *localAppData != '\0') {
-    return fs::path(localAppData) / "NeuronPP" / "ncon" / "native";
+    return fs::path(localAppData) / "Neuron" / "ncon" / "native";
   }
 #else
   const char *xdgCache = std::getenv("XDG_CACHE_HOME");
   if (xdgCache != nullptr && *xdgCache != '\0') {
-    return fs::path(xdgCache) / "neuronpp" / "ncon" / "native";
+    return fs::path(xdgCache) / "Neuron" / "ncon" / "native";
   }
   const char *home = std::getenv("HOME");
   if (home != nullptr && *home != '\0') {
-    return fs::path(home) / ".cache" / "neuronpp" / "ncon" / "native";
+    return fs::path(home) / ".cache" / "Neuron" / "ncon" / "native";
   }
 #endif
-  return fs::temp_directory_path() / "neuronpp" / "ncon" / "native";
+  return fs::temp_directory_path() / "Neuron" / "ncon" / "native";
 }
 
 std::string toString(const VMValue &value) {

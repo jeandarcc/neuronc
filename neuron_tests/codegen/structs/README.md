@@ -10,11 +10,11 @@ This folder covers user-visible runtime behavior of structs and aggregate-like d
 | --- | --- |
 | `N5000-N5099` | aggregate layout/lowering failure visible at runtime |
 | `N2000-N2099` | semantic rejection of invalid field usage |
-| `NPP0001`, `NPP2001` | current fallbacks |
+| `NR0001`, `NR2001` | current fallbacks |
 
 ## Test List
 
-| Name | `.npp` input code | Expected output or error | Why important |
+| Name | `.nr` input code | Expected output or error | Why important |
 | --- | --- | --- | --- |
 | `struct__field_read_write` | `module System; Point struct { x is 0 as int; y is 0 as int; } Init is method() { p is Point(); p.x is 3; p.y is 4; Print(p.x); Print(p.y); }` | Prints `3` then `4` | Baseline aggregate field behavior |
 | `struct__copy_vs_alias` | struct assigned with `is` vs `another` then mutated | Output proves whether state is shared or copied | Makes aggregate ownership behavior visible |

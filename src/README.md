@@ -1,6 +1,6 @@
-# Neuron++ Compiler Source (`src/`)
+# Neuron Compiler Source (`src/`)
 
-This directory contains the core implementation of the Neuron++ compiler pipeline,
+This directory contains the core implementation of the Neuron compiler pipeline,
 the Language Server Protocol (LSP) server, and the `ncon` package manager.
 
 ## Architecture Pipeline

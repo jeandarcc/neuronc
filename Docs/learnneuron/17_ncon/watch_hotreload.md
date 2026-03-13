@@ -14,7 +14,7 @@ neuron ncon watch
 
 ## How It Works
 
-1. **Watches** all `.npp` files in `src/`
+1. **Watches** all `.nr` files in `src/`
 2. On file change → **rebuilds** the NCON container
 3. If the change is **compatible** → **hot patches** the running VM
 4. If the change is **structural** → **full restart**

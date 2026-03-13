@@ -32,9 +32,9 @@ add_library(nconlib STATIC
 target_include_directories(nconlib PUBLIC
     ${CMAKE_SOURCE_DIR}/include
     ${CMAKE_SOURCE_DIR}/runtime/include
-    ${NPP_FFI_INCLUDE_DIR}
+    ${Neuron_FFI_INCLUDE_DIR}
 )
-target_link_libraries(nconlib PUBLIC neuronc neuron_runtime ${NPP_FFI_LIBRARY})
+target_link_libraries(nconlib PUBLIC neuronc neuron_runtime ${Neuron_FFI_LIBRARY})
 if(WIN32)
     target_link_libraries(nconlib PUBLIC advapi32)
 endif()

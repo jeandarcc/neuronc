@@ -1,6 +1,6 @@
-# Neuron++ Test Suite (`tests/`)
+# Neuron Test Suite (`tests/`)
 
-NPP ships a unified, single-binary test suite. Instead of compiling hundreds of
+Neuron ships a unified, single-binary test suite. Instead of compiling hundreds of
 tiny executables, all tests are linked into the `neuron_tests.exe` binary.
 
 This repository structure exactly mirrors `src/`. For example, tests for
@@ -46,6 +46,6 @@ TEST_CASE("Struct Parsing", "[parser]") {
 When you create a new C++ test file, you must add it to the `neuron_tests` executable in the root `CMakeLists.txt`.
 
 ## `fixtures/`
-The `tests/fixtures/` directory is for `.npp` source files, C/C++ FFI files (`test_c.c`, `tmp_compile_test.cpp`), and shaders (`triangle.frag/.vert`) that
-are larger than inline string literals. Use `compileFile("tests/fixtures/my_test.npp")`
+The `tests/fixtures/` directory is for `.nr` source files, C/C++ FFI files (`test_c.c`, `tmp_compile_test.cpp`), and shaders (`triangle.frag/.vert`) that
+are larger than inline string literals. Use `compileFile("tests/fixtures/my_test.nr")`
 to test them.

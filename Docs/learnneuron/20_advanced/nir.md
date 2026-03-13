@@ -17,7 +17,7 @@ NIR sits between semantic analysis and code generation, serving both the LLVM an
 ## Viewing NIR
 
 ```bash
-neuron nir file.npp
+neuron nir file.nr
 ```
 
 ---

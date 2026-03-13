@@ -2,7 +2,7 @@
 
 ## Scope
 
-This folder specifies type-annotation syntax as written in `.npp` source.
+This folder specifies type-annotation syntax as written in `.nr` source.
 
 Covered forms:
 
@@ -19,11 +19,11 @@ Covered forms:
 | --- | --- |
 | `N1400-N1499` | malformed type syntax |
 | `N1300-N1399` | type errors embedded in declaration headers |
-| `NPP1002` | current parser fallback |
+| `NR1002` | current parser fallback |
 
 ## Test List
 
-| Name | `.npp` input code | Expected output or error | Why important |
+| Name | `.nr` input code | Expected output or error | Why important |
 | --- | --- | --- | --- |
 | `types__primitive_annotation` | `count as int; ratio as float;` | Parse succeeds | Baseline annotated bindings |
 | `types__generic_tensor_type` | `input as Tensor<float>;` | Parse succeeds | Covers common generic type usage in repo docs |

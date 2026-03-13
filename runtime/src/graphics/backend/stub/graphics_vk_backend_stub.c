@@ -2,11 +2,11 @@
 #include "graphics/graphics_core_internal.h"
 #include "vulkan_common.h"
 
-#ifndef NPP_ENABLE_VULKAN_BACKEND
-#define NPP_ENABLE_VULKAN_BACKEND 0
+#ifndef Neuron_ENABLE_VULKAN_BACKEND
+#define Neuron_ENABLE_VULKAN_BACKEND 0
 #endif
 
-#if !defined(__EMSCRIPTEN__) && (!defined(_WIN32) || !NPP_VK_COMMON_HAS_HEADERS || !NPP_ENABLE_VULKAN_BACKEND)
+#if !defined(__EMSCRIPTEN__) && (!defined(_WIN32) || !Neuron_VK_COMMON_HAS_HEADERS || !Neuron_ENABLE_VULKAN_BACKEND)
 #include <stdlib.h>
 
 struct NeuronGraphicsBackend {

@@ -43,7 +43,7 @@ For agents: Add `public` or `private` before class fields and methods.
 
 ```
 Error: Scripts cannot live at repository root when
-forbid_root_scripts = true: 'MyCode.npp'.
+forbid_root_scripts = true: 'MyCode.nr'.
 For agents: Move root scripts under folders like src/,
 modules/, or tests/.
 ```
@@ -59,7 +59,7 @@ Agent hints add the **missing context**:
 - They use the **exact syntax** the agent should write
 - They match the agent's mental model of "read error → apply fix"
 
-This turns the Neuron++ compiler into a **real-time tutor** for AI agents, ensuring they learn from each error and produce compliant code on subsequent attempts.
+This turns the Neuron compiler into a **real-time tutor** for AI agents, ensuring they learn from each error and produce compliant code on subsequent attempts.
 
 ---
 

@@ -1,6 +1,6 @@
 # Project Structure
 
-Every Neuron++ project follows a standard directory layout created by `neuron new`.
+Every Neuron project follows a standard directory layout created by `neuron new`.
 
 ---
 
@@ -14,7 +14,7 @@ my_project/
 ├── .gitignore               # Git exclusion rules
 │
 ├── src/                     # Source code
-│   └── Main.npp             # Program entry point (Init method)
+│   └── Main.nr             # Program entry point (Init method)
 │
 ├── modules/                 # External package dependencies
 │
@@ -22,7 +22,7 @@ my_project/
 │
 ├── docs/                    # Documentation
 │   └── scripts/             # Per-script documentation
-│       └── Main.md          # Docs for Main.npp
+│       └── Main.md          # Docs for Main.nr
 │
 ├── tests/                   # Tests
 │   ├── auto/                # Automated integration tests
@@ -47,7 +47,7 @@ name = "my_project"
 version = "0.1.0"
 
 [build]
-main = "src/Main.npp"
+main = "src/Main.nr"
 build_dir = "build"
 optimize = "aggressive"
 emit_ir = "optimized"
@@ -81,7 +81,7 @@ require_public_method_docs = true
 
 See [.neuronsettings Reference](../19_toolchain/neuronsettings.md) for all available settings.
 
-### `src/Main.npp`
+### `src/Main.nr`
 
 The program entry point. Must contain an `Init` method:
 
@@ -93,22 +93,22 @@ Init method() {
 
 ### `docs/scripts/Main.md`
 
-Documentation for `Main.npp`. Required when `require_script_docs = true`. Must have at least 5 non-empty lines (configurable).
+Documentation for `Main.nr`. Required when `require_script_docs = true`. Must have at least 5 non-empty lines (configurable).
 
 ---
 
 ## Source Organization
 
-Each `.npp` file contains exactly **one class**. The class name must match the filename:
+Each `.nr` file contains exactly **one class**. The class name must match the filename:
 
 ```
 src/
-├── Main.npp          → Init method (entry point)
-├── Vector2.npp       → Vector2 class
-├── Player.npp        → Player class
+├── Main.nr          → Init method (entry point)
+├── Vector2.nr       → Vector2 class
+├── Player.nr        → Player class
 └── AI/
-    ├── Brain.npp     → Brain class
-    └── Neuron.npp    → Neuron class
+    ├── Brain.nr     → Brain class
+    └── Neuron.nr    → Neuron class
 ```
 
 Subdirectories are allowed for organizing larger projects.
@@ -143,4 +143,4 @@ The `agents/` directory is regenerated from templates on project creation.
 
 ## Next Steps
 
-- [Variables](../01_variables/declaration.md) — Start writing Neuron++ code
+- [Variables](../01_variables/declaration.md) — Start writing Neuron code

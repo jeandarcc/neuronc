@@ -1,6 +1,6 @@
 # Unsafe Blocks
 
-The `unsafe` keyword allows low-level operations that bypass Neuron++'s safety guarantees.
+The `unsafe` keyword allows low-level operations that bypass Neuron's safety guarantees.
 
 ---
 

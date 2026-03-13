@@ -1,6 +1,6 @@
 # Semantic Analysis (`src/sema/`)
 
-The Semantic Analyzer (`sema`) is the most complex phase of the Neuron++ compiler.
+The Semantic Analyzer (`sema`) is the most complex phase of the Neuron compiler.
 It takes a raw, syntactic AST from `src/parser/` and produces a fully type-checked,
 name-resolved, and semantically valid AST ready for NIR lowering.
 
@@ -21,7 +21,7 @@ share a central `AnalysisContext`.
 ### Type System & Environments
 | File | Role |
 |------|------|
-| `TypeSystem.cpp` | Representation of all Neuron++ types (`Primitive`, `Struct`, `Pointer`, `Tensor`, etc.) in an arena. |
+| `TypeSystem.cpp` | Representation of all Neuron types (`Primitive`, `Struct`, `Pointer`, `Tensor`, etc.) in an arena. |
 | `TypeChecker.cpp/.h` | Logic for type compatibility, subtyping, and coercions (e.g., implicit widening). |
 | `TypeResolver.cpp/.h` | Resolves syntax-level type annotations (`AST::Type`) into semantic `TypeSystem` objects. |
 | `SymbolTable.cpp/.h` | Hierarchical name environment handling variable shadowing and forward decls. |
@@ -57,7 +57,7 @@ share a central `AnalysisContext`.
 ## Architecture Notes
 
 ### Multi-Pass Design
-Because Neuron++ allows forward references (calling a function defined later in
+Because Neuron allows forward references (calling a function defined later in
 the file), `sema` is strictly multi-pass:
 1. **Declaration Pass (`DeclarationAnalyzer`)**: Scans root-level structs and function signatures.
 2. **Body Pass (`ExpressionAnalyzer`/`StatementAnalyzer`)**: Resolves inside function bodies.

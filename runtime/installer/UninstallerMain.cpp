@@ -48,7 +48,7 @@ int showConfirmDialog(const std::string &targetPath) {
   std::string message =
       "This will uninstall the application and remove all files under:\n\n" +
       targetPath + "\n\nContinue?";
-  return MessageBoxA(nullptr, message.c_str(), "Neuron++ Uninstaller",
+  return MessageBoxA(nullptr, message.c_str(), "Neuron Uninstaller",
                      MB_YESNO | MB_ICONQUESTION | MB_TOPMOST);
 #else
   (void)targetPath;
@@ -134,7 +134,7 @@ int runUninstaller(int argc, char **argv) {
   if (!isSafeRemovalTarget(targetDir)) {
 #ifdef _WIN32
     MessageBoxA(nullptr, "Unsafe uninstall target path.",
-                "Neuron++ Uninstaller", MB_OK | MB_ICONERROR | MB_TOPMOST);
+                "Neuron Uninstaller", MB_OK | MB_ICONERROR | MB_TOPMOST);
 #endif
     return 1;
   }
@@ -151,7 +151,7 @@ int runUninstaller(int argc, char **argv) {
   std::string error;
   if (!scheduleRemovalScript(targetDir, &error)) {
 #ifdef _WIN32
-    MessageBoxA(nullptr, error.c_str(), "Neuron++ Uninstaller",
+    MessageBoxA(nullptr, error.c_str(), "Neuron Uninstaller",
                 MB_OK | MB_ICONERROR | MB_TOPMOST);
 #endif
     return 1;
@@ -159,7 +159,7 @@ int runUninstaller(int argc, char **argv) {
 
 #ifdef _WIN32
   MessageBoxA(nullptr, "Uninstall has started. Application files will be removed.",
-              "Neuron++ Uninstaller",
+              "Neuron Uninstaller",
               MB_OK | MB_ICONINFORMATION | MB_TOPMOST);
 #endif
   return 0;

@@ -19,31 +19,31 @@ require_required_fields = true
 reject_out_of_range_codes = true
 
 [compatibility.current_frontend_codes]
-lexer_error = "NPP1001"
-parser_error = "NPP1002"
-semantic_error = "NPP2001"
-config_error = "NPP3001"
-module_error = "NPP4001"
-generic_warning = "NPP9000"
-config_warning = "NPP9001"
-unused_binding_warning = "NPP9002"
-generic_fallback = "NPP0001"
+lexer_error = "NR1001"
+parser_error = "NR1002"
+semantic_error = "NR2001"
+config_error = "NR3001"
+module_error = "NR4001"
+generic_warning = "NR9000"
+config_warning = "NR9001"
+unused_binding_warning = "NR9002"
+generic_fallback = "NR0001"
 
 [buckets.shared_compat]
 path_pattern = "{locale}/shared_compat.toml"
-allowed_exact_codes = ["NPP0001", "NPP3001", "NPP9000", "NPP9001", "NPP9002"]
+allowed_exact_codes = ["NR0001", "NR3001", "NR9000", "NR9001", "NR9002"]
 description = "Cross-phase compatibility and fallback diagnostics."
 
 [buckets.N1xxx_parser]
 path_pattern = "{locale}/N1xxx_parser.toml"
-allowed_exact_codes = ["NPP1001", "NPP1002"]
+allowed_exact_codes = ["NR1001", "NR1002"]
 allowed_n_range = "1000-1599"
 allowed_w_range = "1000-1099"
 description = "Lexer and parser diagnostics."
 
 [buckets.N2xxx_semantic]
 path_pattern = "{locale}/N2xxx_semantic.toml"
-allowed_exact_codes = ["NPP2001"]
+allowed_exact_codes = ["NR2001"]
 allowed_n_range = "2000-2499"
 allowed_w_range = "2000-2099"
 description = "Type, inference, scope, generic, and overload diagnostics."
@@ -57,7 +57,7 @@ description = "Move, borrow, alias, and lifetime diagnostics."
 
 [buckets.N4xxx_module]
 path_pattern = "{locale}/N4xxx_module.toml"
-allowed_exact_codes = ["NPP4001"]
+allowed_exact_codes = ["NR4001"]
 allowed_n_range = "4000-4099"
 allowed_w_range = "4000-4099"
 description = "Module and source-to-module boundary diagnostics."

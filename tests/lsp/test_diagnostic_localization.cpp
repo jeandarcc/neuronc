@@ -6,6 +6,13 @@
 
 namespace {
 
+std::filesystem::path getToolRoot() {
+  return std::filesystem::absolute(std::filesystem::path(__FILE__))
+      .parent_path()
+      .parent_path()
+      .parent_path();
+}
+
 neuron::frontend::Diagnostic makeDiagnostic(
     const std::string &code, const std::string &message,
     neuron::diagnostics::DiagnosticArguments arguments = {},
@@ -15,7 +22,7 @@ neuron::frontend::Diagnostic makeDiagnostic(
   diagnostic.phase = "semantic";
   diagnostic.severity = severity;
   diagnostic.code = code;
-  diagnostic.file = "demo.npp";
+  diagnostic.file = "demo.nr";
   diagnostic.range.start.line = 1;
   diagnostic.range.start.column = 1;
   diagnostic.range.end.line = 1;
@@ -29,13 +36,13 @@ neuron::frontend::Diagnostic makeDiagnostic(
 
 TEST(DiagnosticLocalizerLoadsLocalizedCatalogEntries) {
   neuron::diagnostics::DiagnosticLocalizer localizer(
-      std::filesystem::path("C:/Users/yusuf/Desktop/NPP"));
+      getToolRoot());
 
-  const auto trEntry = localizer.findEntry("tr", "NPP9002");
+  const auto trEntry = localizer.findEntry("tr", "NR9002");
   ASSERT_TRUE(trEntry.has_value());
   ASSERT_EQ(trEntry->defaultMessage, "Bildirilen baglama hic okunmuyor.");
 
-  const auto enEntry = localizer.findEntry("en", "NPP9002");
+  const auto enEntry = localizer.findEntry("en", "NR9002");
   ASSERT_TRUE(enEntry.has_value());
   ASSERT_EQ(enEntry->defaultMessage, "The declared binding is never read.");
   return true;
@@ -43,7 +50,7 @@ TEST(DiagnosticLocalizerLoadsLocalizedCatalogEntries) {
 
 TEST(DocumentManagerLocalizesDiagnosticsUsingResolvedLanguage) {
   neuron::lsp::DocumentManager manager;
-  manager.setToolRoot(std::filesystem::path("C:/Users/yusuf/Desktop/NPP"));
+  manager.setToolRoot(getToolRoot());
   manager.setDiagnosticLanguage(neuron::diagnostics::ResolvedLanguage{
       .requested = "tr",
       .normalized = "tr",
@@ -53,21 +60,21 @@ TEST(DocumentManagerLocalizesDiagnosticsUsingResolvedLanguage) {
   });
 
   std::vector<neuron::frontend::Diagnostic> diagnostics = {
-      makeDiagnostic("NPP9002", "Unused variable: value")};
+      makeDiagnostic("NR9002", "Unused variable: value")};
   neuron::diagnostics::DiagnosticLocalizer localizer(
-      std::filesystem::path("C:/Users/yusuf/Desktop/NPP"));
+      getToolRoot());
   const auto localized = localizer.localizeDiagnostics(diagnostics, "tr");
 
   ASSERT_EQ(localized.size(), static_cast<std::size_t>(1));
   ASSERT_TRUE(localized.front().message.find("Bildirilen baglama hic okunmuyor.") !=
               std::string::npos);
-  ASSERT_TRUE(localized.front().message.find("NPP9002") == std::string::npos);
+  ASSERT_TRUE(localized.front().message.find("NR9002") == std::string::npos);
   return true;
 }
 
 TEST(DiagnosticLocalizerRendersTemplateArgumentsFromCatalog) {
   neuron::diagnostics::DiagnosticLocalizer localizer(
-      std::filesystem::path("C:/Users/yusuf/Desktop/NPP"));
+      getToolRoot());
   const auto localized = localizer.localizeDiagnostics(
       {makeDiagnostic("N2204", "Variable is used before it is initialized: h",
                       {{"name", "h"}})},
@@ -81,7 +88,7 @@ TEST(DiagnosticLocalizerRendersTemplateArgumentsFromCatalog) {
 
 TEST(DiagnosticLocalizerRendersUnknownIdentifierTemplateArguments) {
   neuron::diagnostics::DiagnosticLocalizer localizer(
-      std::filesystem::path("C:/Users/yusuf/Desktop/NPP"));
+      getToolRoot());
   const auto localized = localizer.localizeDiagnostics(
       {makeDiagnostic("N2201", "Undefined identifier: f", {{"name", "f"}},
                       neuron::frontend::DiagnosticSeverity::Error)},
@@ -95,14 +102,14 @@ TEST(DiagnosticLocalizerRendersUnknownIdentifierTemplateArguments) {
 
 TEST(DiagnosticLocalizerFallsBackToLocalizedGenericMessageWithoutRawText) {
   neuron::diagnostics::DiagnosticLocalizer localizer(
-      std::filesystem::path("C:/Users/yusuf/Desktop/NPP"));
+      getToolRoot());
   const auto localized = localizer.localizeDiagnostics(
       {makeDiagnostic("N2999", "Unknown internal compiler thing", {},
                       neuron::frontend::DiagnosticSeverity::Error)},
       "tr");
 
   ASSERT_EQ(localized.size(), static_cast<std::size_t>(1));
-  ASSERT_EQ(localized.front().code, "NPP2001");
+  ASSERT_EQ(localized.front().code, "NR2001");
   ASSERT_EQ(localized.front().message,
             "Program sozdizimsel olarak gecerli ancak semantik olarak gecersiz.");
   return true;

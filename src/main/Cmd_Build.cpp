@@ -331,7 +331,7 @@ int cmdBuildProduct(int argc, char *argv[]) {
   const fs::path settingsPath = projectRoot / ".productsettings";
   if (!fs::exists(settingsPath)) {
     std::cerr << "Error: .productsettings not found in current directory.\n"
-              << "Are you in a Neuron++ project directory?" << std::endl;
+              << "Are you in a Neuron project directory?" << std::endl;
     return 1;
   }
 

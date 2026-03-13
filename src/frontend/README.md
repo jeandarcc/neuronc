@@ -15,6 +15,6 @@ diagnostic initialization.
 
 - **Import Resolution:** Translates `import foo.bar` statements into physical
   file paths, checking the local project directory and the `ncon` global package cache.
-- **Encoding:** Neuron++ strictly requires UTF-8 source files. `Frontend.cpp`
+- **Encoding:** Neuron strictly requires UTF-8 source files. `Frontend.cpp`
   checks for byte-order marks (BOM) or invalid UTF-8 sequences and emits the `N1001`
   diagnostic early to prevent parser assertions.

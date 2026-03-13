@@ -1,6 +1,6 @@
-# Neuron++ Error Guide
+?# Neuron Error Guide
 
-This document catalogs the most common compiler diagnostics emitted by the Neuron++ toolchain, explains their root causes, and provides actionable resolution steps.
+This document catalogs the most common compiler diagnostics emitted by the Neuron toolchain, explains their root causes, and provides actionable resolution steps.
 
 ---
 
@@ -9,17 +9,17 @@ This document catalogs the most common compiler diagnostics emitted by the Neuro
 **Diagnostic:**
 ```
 ERROR: Multiple classes defined in module.
-Each .npp file may contain only one class.
+Each .nr file may contain only one class.
 ```
 
-**Cause:** A single `.npp` file contains more than one `class` declaration. Neuron++ enforces a strict one-class-per-file policy.
+**Cause:** A single `.nr` file contains more than one `class` declaration. Neuron enforces a strict one-class-per-file policy.
 
-**Fix:** Split each class into its own `.npp` file. The filename must match the class name.
+**Fix:** Split each class into its own `.nr` file. The filename must match the class name.
 
 ```
-❌  Shapes.npp  →  Circle is public class { }  +  Square is public class { }
-✅  Circle.npp  →  Circle is public class { }
-✅  Square.npp  →  Square is public class { }
+❌  Shapes.nr  →  Circle is public class { }  +  Square is public class { }
+✅  Circle.nr  →  Circle is public class { }
+✅  Square.nr  →  Square is public class { }
 ```
 
 ---
@@ -38,8 +38,8 @@ Found: <ClassName>
 **Fix:** Rename either the file or the class so they match exactly (case-sensitive).
 
 ```
-❌  Vector2.npp  →  Vec2 is public class { }
-✅  Vector2.npp  →  Vector2 is public class { }
+❌  Vector2.nr  →  Vec2 is public class { }
+✅  Vector2.nr  →  Vector2 is public class { }
 ```
 
 ---
@@ -51,7 +51,7 @@ Found: <ClassName>
 ERROR: Module cannot import itself.
 ```
 
-**Cause:** A file contains a `module` statement that references its own name. For example, `Box.npp` contains `module Box;`.
+**Cause:** A file contains a `module` statement that references its own name. For example, `Box.nr` contains `module Box;`.
 
 **Fix:** Remove the self-referencing `module` statement. A file's own declarations are automatically in scope.
 
@@ -131,10 +131,10 @@ ERROR: Script documentation '<path>' is too short (N non-empty lines, minimum M)
 ```markdown
 # Main Script
 
-This document describes `src/Main.npp`.
+This document describes `src/Main.nr`.
 
 ## Purpose
-Entry point for the Neuron++ project. Runs the `Init` method on startup.
+Entry point for the Neuron project. Runs the `Init` method on startup.
 
 ## Usage
 The `Init` method is automatically invoked by the runtime when the project
@@ -150,7 +150,7 @@ is executed via `neuron run`. No manual call is required.
 ERROR: File exceeds maximum line count (N > max_lines_per_file).
 ```
 
-**Cause:** The `.npp` file exceeds the `max_lines_per_file` setting (default: 1000).
+**Cause:** The `.nr` file exceeds the `max_lines_per_file` setting (default: 1000).
 
 **Fix:** Refactor the file by extracting logic into separate modules or helper methods.
 
@@ -180,7 +180,7 @@ ERROR: Block nesting exceeds maximum depth (N > max_nesting_depth).
 
 **Fix:** Use early returns, guard clauses, or extract nested logic into separate methods.
 
-```npp
+```nr
 // ❌ Too deeply nested
 if(a) {
     if(b) {
@@ -223,7 +223,7 @@ ERROR: Type mismatch — expected '<TypeA>', found '<TypeB>'.
 
 **Fix:** Use explicit type annotation with `as`, or ensure the operand types are compatible.
 
-```npp
+```nr
 x is 10 as int;
 y is 3.14 as float;
 // z is x + y;          // potential type mismatch
@@ -269,7 +269,7 @@ ERROR: Constant name must be UPPER_CASE.
 
 ## General Debugging Tips
 
-1. **Read the full error message** — Neuron++ diagnostics include the file, line number, and expected vs. found values.
+1. **Read the full error message** — Neuron diagnostics include the file, line number, and expected vs. found values.
 2. **Check `.neuronsettings`** — Many errors are caused by project-level rule configurations.
 3. **One class per file** — This is the most common mistake for newcomers from C++ or Java.
 4. **Alias vs. copy** — If two variables unexpectedly share state, you may need `another` for an independent copy.

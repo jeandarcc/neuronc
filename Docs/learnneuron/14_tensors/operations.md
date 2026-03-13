@@ -1,6 +1,6 @@
 # Tensor Operations
 
-Neuron++ supports element-wise arithmetic and matrix multiplication on tensors.
+Neuron supports element-wise arithmetic and matrix multiplication on tensors.
 
 ---
 
@@ -42,7 +42,7 @@ result is (a * b) + c;    // Single kernel: out[i] = (a[i] * b[i]) + c[i]
 
 ## Real Example
 
-From `TensorTest.npp`:
+From `TensorTest.nr`:
 
 ```npp
 module Tensor;

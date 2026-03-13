@@ -28,7 +28,7 @@ public:
     message << "\nInstall update now?";
 
     const int result = MessageBoxA(nullptr, message.str().c_str(),
-                                   "Neuron++ Updater",
+                                   "Neuron Updater",
                                    MB_YESNO | MB_ICONQUESTION | MB_TOPMOST);
     return result == IDYES;
   }

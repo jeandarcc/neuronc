@@ -2,7 +2,7 @@
 
 ## Scope
 
-This folder specifies how standalone literal forms are parsed in `.npp` source before semantic meaning is considered.
+This folder specifies how standalone literal forms are parsed in `.nr` source before semantic meaning is considered.
 
 Covered literal families:
 
@@ -19,11 +19,11 @@ Covered literal families:
 | `N1000-N1099` | malformed literal token forms |
 | `N1100-N1199` | literal used in malformed surrounding expression syntax |
 | `W1000-W1099` | tolerated but suspicious literal spellings, if any compatibility mode exists |
-| `NPP1001`, `NPP1002` | current lexer/parser fallbacks |
+| `NR1001`, `NR1002` | current lexer/parser fallbacks |
 
 ## Test List
 
-| Name | `.npp` input code | Expected output or error | Why important |
+| Name | `.nr` input code | Expected output or error | Why important |
 | --- | --- | --- | --- |
 | `literal__integer_decimal` | `x is 42;` | Parse succeeds | Smallest numeric literal baseline |
 | `literal__float_decimal` | `x is 3.14;` | Parse succeeds | Pins decimal float syntax |

@@ -29,7 +29,7 @@ s.value is "hello";
 
 ## Real Example
 
-From `Box.npp`:
+From `Box.nr`:
 
 ```npp
 Box class<T> {

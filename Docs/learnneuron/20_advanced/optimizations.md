@@ -1,6 +1,6 @@
 # Compiler Optimizations
 
-Neuron++ applies multiple optimization passes to produce efficient code.
+Neuron applies multiple optimization passes to produce efficient code.
 
 ---
 
@@ -18,7 +18,7 @@ Neuron++ applies multiple optimization passes to produce efficient code.
 
 ## Real Example
 
-From `OptTest.npp`:
+From `OptTest.nr`:
 
 ```npp
 Compute method() {
@@ -67,5 +67,5 @@ optimize = "aggressive"    # none, basic, aggressive
 ## Viewing Optimized Output
 
 ```bash
-neuron compile file.npp    # Show LLVM IR (optimized)
+neuron compile file.nr    # Show LLVM IR (optimized)
 ```

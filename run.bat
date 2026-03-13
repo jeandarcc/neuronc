@@ -1,14 +1,14 @@
-@echo off
+﻿@echo off
 setlocal enabledelayedexpansion
 
-:: NPP Repository Run/Test Shortcut Script
-:: This script compiles an .npp file, runs it, and then cleans up the exe/obj files.
+:: Neuron Repository Run/Test Shortcut Script
+:: This script compiles an .nr file, runs it, and then cleans up the exe/obj files.
 :: It does not require neuron.toml and does not affect the project state.
 
 set "TARGET_FILE=%~1"
 
 if "!TARGET_FILE!"=="" (
-    echo Usage: run.bat [file.npp]
+    echo Usage: run.bat [file.nr]
     exit /b 1
 )
 
@@ -17,7 +17,7 @@ if not exist "!TARGET_FILE!" (
     exit /b 1
 )
 
-set "BIN_DIR=%LOCALAPPDATA%\NeuronPP\workspaces\NPP\build-mingw\bin"
+set "BIN_DIR=%LOCALAPPDATA%\Neuron\workspaces\Neuron\build-mingw\bin"
 set "NEURON_EXE=!BIN_DIR!\neuron.exe"
 
 if not exist "!NEURON_EXE!" (
@@ -32,11 +32,11 @@ for %%i in ("!TARGET_FILE!") do (
 )
 
 :: Compile (Uses --bypass-rules by default)
-echo [NPP] Compiling: !TARGET_FILE!
+echo [Neuron] Compiling: !TARGET_FILE!
 "!NEURON_EXE!" compile "!TARGET_FILE!" --bypass-rules
 
 if %ERRORLEVEL% NEQ 0 (
-    echo [NPP] Compilation failed.
+    echo [Neuron] Compilation failed.
     exit /b %ERRORLEVEL%
 )
 
@@ -53,12 +53,12 @@ if exist "!EXE_OUTPUT_SRC!" set "EXE_OUTPUT=!EXE_OUTPUT_SRC!"
 if "!EXE_OUTPUT!"=="" if exist "!EXE_OUTPUT_CWD!" set "EXE_OUTPUT=!EXE_OUTPUT_CWD!"
 
 if "!EXE_OUTPUT!"=="" (
-    echo [NPP] Error: Executable was not produced.
-    echo [NPP] Checked: "!EXE_OUTPUT_SRC!" and "!EXE_OUTPUT_CWD!"
+    echo [Neuron] Error: Executable was not produced.
+    echo [Neuron] Checked: "!EXE_OUTPUT_SRC!" and "!EXE_OUTPUT_CWD!"
     exit /b 1
 )
 
-echo [NPP] Running: !EXE_OUTPUT!
+echo [Neuron] Running: !EXE_OUTPUT!
 echo --------------------------------------------------
 "!EXE_OUTPUT!"
 set "RUN_RET=%ERRORLEVEL%"

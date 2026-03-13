@@ -1,4 +1,4 @@
-[CmdletBinding()]
+﻿[CmdletBinding()]
 param(
     [string]$BuildDir = "",
     [string]$StageDir = "",
@@ -33,7 +33,7 @@ function Get-WorkspaceStateRoot {
     }
 
     $repoName = Split-Path -Path $RepoPath -Leaf
-    return [System.IO.Path]::GetFullPath((Join-Path $baseRoot ("NeuronPP\workspaces\" + $repoName)))
+    return [System.IO.Path]::GetFullPath((Join-Path $baseRoot ("Neuron\workspaces\" + $repoName)))
 }
 
 function Resolve-RepoPath {
@@ -98,7 +98,7 @@ function Prime-CompilerPath {
 function Get-ProjectVersion {
     param([Parameter(Mandatory = $true)][string]$Path)
 
-    $match = Select-String -Path $Path -Pattern 'project\s*\(\s*NeuronPP\s+VERSION\s+([0-9]+\.[0-9]+\.[0-9]+)' | Select-Object -First 1
+    $match = Select-String -Path $Path -Pattern 'project\s*\(\s*Neuron\s+VERSION\s+([0-9]+\.[0-9]+\.[0-9]+)' | Select-Object -First 1
     if ($null -eq $match) {
         throw "Could not determine project version from $Path."
     }
@@ -256,7 +256,7 @@ function Copy-ToolchainBundle {
     }
 
     # GCC plugin headers are only needed for building GCC plugins, not for
-    # compiling NeuronPP runtime sources. Drop them from installer payload.
+    # compiling Neuron runtime sources. Drop them from installer payload.
     $gccLibRoot = Join-Path $Destination "lib\gcc"
     if (Test-Path -LiteralPath $gccLibRoot) {
         $pluginIncludeDirs = Get-ChildItem -LiteralPath $gccLibRoot -Recurse -Directory -ErrorAction SilentlyContinue | Where-Object {
@@ -310,7 +310,7 @@ function New-PortableZipArtifact {
         [Parameter(Mandatory = $true)][string]$DestinationDir
     )
 
-    $portableRootName = "neuronpp-$VersionValue-windows-x64-portable"
+    $portableRootName = "Neuron-$VersionValue-windows-x64-portable"
     $portableRootDir = Join-Path $DestinationDir $portableRootName
     Write-Host "Preparing portable payload tree: $portableRootDir"
     Reset-Directory -Path $portableRootDir
@@ -337,7 +337,7 @@ function New-ReleaseArtifacts {
         [string]$InstallerArtifactPath
     )
 
-    $releaseArtifactDir = Join-Path $ReleaseRootDir ("neuronpp-$VersionValue-windows-x64")
+    $releaseArtifactDir = Join-Path $ReleaseRootDir ("Neuron-$VersionValue-windows-x64")
     Reset-Directory -Path $releaseArtifactDir
 
     $artifacts = @()
@@ -514,7 +514,7 @@ if ($SkipInstaller) {
         throw "Inno Setup build failed."
     }
 
-    $InstallerPath = Join-Path $OutputDir ("neuronpp-{0}-windows-x64.exe" -f $Version)
+    $InstallerPath = Join-Path $OutputDir ("Neuron-{0}-windows-x64.exe" -f $Version)
     if (Test-Path -LiteralPath $InstallerPath) {
         Write-Host "Installer ready: $InstallerPath"
     } else {

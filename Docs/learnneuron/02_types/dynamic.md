@@ -34,7 +34,7 @@ value is true;       // now holds a bool
 
 ## Real Example
 
-From `IsOptionalDynamic.npp`:
+From `IsOptionalDynamic.nr`:
 
 ```npp
 RunFmaBench method() as int {

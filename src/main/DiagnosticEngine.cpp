@@ -127,13 +127,13 @@ DiagnosticLocation parseDiagnosticLocation(const std::string &diagnostic) {
 std::string diagnosticCodeForPhase(const std::string &phase,
                                     DiagnosticSeverity severity) {
   if (severity == DiagnosticSeverity::Warning) {
-    return (phase == "config") ? "NPP9001" : "NPP9000";
+    return (phase == "config") ? "NR9001" : "NR9000";
   }
-  if (phase == "lexer")    { return "NPP1001"; }
-  if (phase == "parser")   { return "NPP1002"; }
-  if (phase == "semantic") { return "NPP2001"; }
-  if (phase == "config")   { return "NPP3001"; }
-  return "NPP0001";
+  if (phase == "lexer")    { return "NR1001"; }
+  if (phase == "parser")   { return "NR1002"; }
+  if (phase == "semantic") { return "NR2001"; }
+  if (phase == "config")   { return "NR3001"; }
+  return "NR0001";
 }
 
 // ── Mesaj normalleştirme ─────────────────────────────────────────────────────
@@ -224,7 +224,7 @@ void reportStringDiagnostics(const std::string &phase,
   for (auto diagnostic : converted) {
     if (diagnostic.severity == neuron::frontend::DiagnosticSeverity::Warning &&
         phase == "semantic" && looksLikeUnusedVariableMessage(diagnostic.message)) {
-      diagnostic.code = "NPP9002";
+      diagnostic.code = "NR9002";
     }
     diagnostic = localizeDiagnostic(std::move(diagnostic));
     const int line = diagnostic.range.start.line;
@@ -243,7 +243,7 @@ void reportFrontendDiagnostics(
     if (diagnostic.severity == neuron::frontend::DiagnosticSeverity::Warning &&
         diagnostic.phase == "semantic" &&
         looksLikeUnusedVariableMessage(diagnostic.message)) {
-      diagnostic.code = "NPP9002";
+      diagnostic.code = "NR9002";
     }
     diagnostic = localizeDiagnostic(std::move(diagnostic));
     const int line = diagnostic.range.start.line;
@@ -264,7 +264,7 @@ void reportSemanticDiagnostics(
   for (auto diagnostic : converted) {
     if (diagnostic.severity == neuron::frontend::DiagnosticSeverity::Warning &&
         looksLikeUnusedVariableMessage(diagnostic.message)) {
-      diagnostic.code = "NPP9002";
+      diagnostic.code = "NR9002";
     }
     if (diagnostic.file.empty()) {
       diagnostic.file = filepath;

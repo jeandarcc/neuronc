@@ -1,6 +1,6 @@
 # Type Inference
 
-Neuron++ can automatically deduce the type of a variable from its assigned value, so you don't always need to write `as <type>`.
+Neuron can automatically deduce the type of a variable from its assigned value, so you don't always need to write `as <type>`.
 
 ---
 

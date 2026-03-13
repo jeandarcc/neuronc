@@ -178,13 +178,13 @@ void DeclarationAnalyzer::analyze(const ProgramView &program) {
         static_cast<unsigned char>(options.sourceFileStem.front());
     if (std::islower(firstChar)) {
       context.error(program.location,
-                    "Invalid .npp filename '" + options.sourceFileStem +
-                        ".npp': filename must start with an uppercase letter.");
+                    "Invalid .nr filename '" + options.sourceFileStem +
+                        ".nr': filename must start with an uppercase letter.");
     }
     if (options.sourceFileStem.find('_') != std::string::npos) {
       context.error(program.location,
-                    "Invalid .npp filename '" + options.sourceFileStem +
-                        ".npp': filename cannot include '_'.");
+                    "Invalid .nr filename '" + options.sourceFileStem +
+                        ".nr': filename cannot include '_'.");
     }
     if (classCount == 1 && firstClassName != options.sourceFileStem) {
       context.error(firstClassLoc,
@@ -205,7 +205,7 @@ void DeclarationAnalyzer::analyze(const ProgramView &program) {
     if (classCountForLimit > options.maxClassesPerFile) {
       if (options.maxClassesPerFile == 1) {
         context.error(extraClassLoc,
-                      "Multiple classes defined in module. Each .npp file may "
+                      "Multiple classes defined in module. Each .nr file may "
                       "contain only one class.");
       } else {
         context.error(extraClassLoc,
@@ -322,7 +322,7 @@ void DeclarationAnalyzer::visitModuleDecl(ModuleDeclNode *node) {
     context.error(node->location,
                   "Unknown module: " + node->moduleName +
                       ". Install via 'neuron add " + normalized +
-                      "' or provide modules/" + node->moduleName + ".npp");
+                      "' or provide modules/" + node->moduleName + ".nr");
     return;
   }
 
@@ -344,7 +344,7 @@ void DeclarationAnalyzer::visitExpandModuleDecl(ExpandModuleDeclNode *node) {
     context.error(node->location,
                   "Unknown module: " + node->moduleName +
                       ". Install via 'neuron add " + normalized +
-                      "' or provide modules/" + node->moduleName + ".npp");
+                      "' or provide modules/" + node->moduleName + ".nr");
     return;
   }
 

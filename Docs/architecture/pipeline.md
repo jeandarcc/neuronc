@@ -3,7 +3,7 @@
 ## Overview
 
 ```
-Source (.npp)  →  [Lexer]  →  [Parser]  →  [Frontend]  →  [Sema]
+Source (.nr)  →  [Lexer]  →  [Parser]  →  [Frontend]  →  [Sema]
                                                               ↓
                                                         [NIR Builder]
                                                               ↓

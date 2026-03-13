@@ -4,7 +4,7 @@ This plugin provides support for the Neuron++ (NPP) language in JetBrains IDEs (
 
 ## Features
 
-- Syntax highlighting for `.npp` files.
+- Syntax highlighting for `.nr` files.
 - LSP integration for features provided by `neuron-lsp`:
     - Code completion
     - Hover information
@@ -47,4 +47,4 @@ The plugin automatically looks for the `neuron-lsp` executable in several locati
 1. Workspace build folders (e.g., `build/bin/neuron-lsp`).
 2. Your system's `PATH`.
 
-Once a `.npp` file is opened, the plugin will attempt to start the server and connect via standard I/O.
+Once a `.nr` file is opened, the plugin will attempt to start the server and connect via standard I/O.

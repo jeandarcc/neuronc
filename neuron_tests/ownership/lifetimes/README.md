@@ -10,11 +10,11 @@ This folder covers whether references, aliases, pointers, and moved values remai
 | --- | --- |
 | `N3200-N3299` | dangling reference/alias/pointer, invalid scope escape, expired value use |
 | `N3000-N3099` | lifetime issues rooted in prior move invalidation |
-| `NPP2001` | current semantic fallback |
+| `NR2001` | current semantic fallback |
 
 ## Test List
 
-| Name | `.npp` input code | Expected output or error | Why important |
+| Name | `.nr` input code | Expected output or error | Why important |
 | --- | --- | --- | --- |
 | `lifetime__return_local_address_rejected` | function returns `address of` a local variable | `N3200-N3299` | Canonical dangling-reference scenario |
 | `lifetime__inner_scope_alias_escape` | alias or pointer to inner-scope local used after block exit | `N3200-N3299` | Baseline scope-escape rejection |

@@ -1,4 +1,4 @@
-// main.cpp — Neuron++ compiler entry point.
+// main.cpp — Neuron compiler entry point.
 //
 // This file ONLY performs the following:
 //   1. Initializes global state (trace, color, toolRoot, toolchain)

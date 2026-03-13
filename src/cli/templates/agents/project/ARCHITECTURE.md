@@ -6,7 +6,7 @@ This document provides a high-level overview of the project's architecture, modu
 
 ## Overview
 
-This is a Neuron++ project. Neuron++ programs are organized into modules, where each `.npp` file represents a single module containing exactly one class. The program entry point is the `Init` method in `src/Main.npp`.
+This is a Neuron project. Neuron programs are organized into modules, where each `.nr` file represents a single module containing exactly one class. The program entry point is the `Init` method in `src/Main.nr`.
 
 ---
 
@@ -15,7 +15,7 @@ This is a Neuron++ project. Neuron++ programs are organized into modules, where 
 1. **Startup** — The runtime initializes core subsystems (memory allocator, thread pool, tensor engine, GPU runtime).
 2. **Module Loading** — All imported modules are loaded and their dependencies resolved.
 3. **Module Initialization** — Each module's `Init` method (if present) is called in dependency order.
-4. **Entry Point** — The `Init` method in `Main.npp` is executed.
+4. **Entry Point** — The `Init` method in `Main.nr` is executed.
 5. **Shutdown** — Resources are released and the process exits.
 
 ---
@@ -25,7 +25,7 @@ This is a Neuron++ project. Neuron++ programs are organized into modules, where 
 Modules declare dependencies via `module <Name>;` statements at the top of each file. The compiler resolves these into a directed acyclic graph (DAG) for deterministic initialization order.
 
 ```
-Main.npp
+Main.nr
 ├── module Math
 ├── module Vector2
 │   └── module Math
@@ -41,7 +41,7 @@ Circular dependencies between modules are not permitted by the compiler.
 ## Build Pipeline
 
 ```
-Source (.npp)
+Source (.nr)
     ↓
 Lexer → Tokens
     ↓
@@ -69,7 +69,7 @@ The project can be built and executed via:
 
 | Directory    | Purpose                                    |
 |--------------|--------------------------------------------|
-| `src/`       | All `.npp` source files                    |
+| `src/`       | All `.nr` source files                    |
 | `modules/`   | External package dependencies              |
 | `build/`     | Compiled output (binaries, IR, containers) |
 | `docs/`      | Project and script documentation           |

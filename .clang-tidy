@@ -1,5 +1,5 @@
----
-# Neuron++ clang-tidy configuration
+﻿---
+# Neuron clang-tidy configuration
 # Applied to: src/, include/, runtime/src/ (C/C++ files)
 # Run via: clang-tidy <file> -p build/compile_commands.json
 

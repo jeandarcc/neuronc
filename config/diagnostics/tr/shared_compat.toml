@@ -5,10 +5,10 @@ display_name = "Paylasilan uyumluluk teshisleri"
 inherits_contract = "shared_compat"
 
 [contracts]
-allowed_exact_codes = ["NPP0001", "NPP3001", "NPP9000", "NPP9001", "NPP9002"]
+allowed_exact_codes = ["NR0001", "NR3001", "NR9000", "NR9001", "NR9002"]
 future_addition_rule = "Bu dosyada yalnizca yukarida listelenen tam uyumluluk kodlari yer alabilir."
 
-[messages.NPP0001]
+[messages.NR0001]
 severity = "error"
 phase = "generic"
 slug = "legacy_generic_error"
@@ -18,7 +18,7 @@ default_message = "Derleyici basarisiz oldu, ancak bu hata henuz daha ozel bir t
 recovery = "Once bildirilen kaynak konumunu inceleyin, sonra uygulama daha kesin hale geldiginde teshisi uygun aileye tasiyin."
 tags = ["legacy", "fallback", "generic"]
 
-[messages.NPP3001]
+[messages.NR3001]
 severity = "error"
 phase = "config"
 slug = "legacy_project_configuration_error"
@@ -28,7 +28,7 @@ default_message = "Istenen kaynak islemi icin proje yapilandirmasi gecersiz veya
 recovery = "neuron.toml, modul ayarlari ve gerekli derleme veya calisma zamani yapilandirmalarini bildirilen konum civarinda inceleyin."
 tags = ["legacy", "config", "fallback"]
 
-[messages.NPP9000]
+[messages.NR9000]
 severity = "warning"
 phase = "generic"
 slug = "legacy_generic_warning"
@@ -38,7 +38,7 @@ default_message = "Derleyici programi kabul etti, ancak uyari hala genel uyumlul
 recovery = "Uyari metnini okuyun ve uygulama desteklediginde bunu daha ozel bir uyari ailesine tasiyin."
 tags = ["legacy", "warning", "fallback"]
 
-[messages.NPP9001]
+[messages.NR9001]
 severity = "warning"
 phase = "config"
 slug = "legacy_project_configuration_warning"
@@ -48,7 +48,7 @@ default_message = "Proje yapilandirmasi bir uyari ile kabul edildi."
 recovery = "Deterministik davranis gerekiyorsa uyarilan ayari gozden gecirin ve sikilastirin."
 tags = ["legacy", "warning", "config"]
 
-[messages.NPP9002]
+[messages.NR9002]
 severity = "warning"
 phase = "semantic"
 slug = "unused_binding_warning"

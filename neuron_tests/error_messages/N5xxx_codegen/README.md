@@ -10,11 +10,11 @@ This folder covers diagnostics emitted after semantic success when execution or 
 | --- | --- |
 | `N5000-N5099` | runtime/codegen-visible failure |
 | `W5000-W5099` | runtime/codegen warning or fallback |
-| `NPP0001` | current generic fallback |
+| `NR0001` | current generic fallback |
 
 ## Test List
 
-| Name | `.npp` input code | Expected output or error | Why important |
+| Name | `.nr` input code | Expected output or error | Why important |
 | --- | --- | --- | --- |
 | `diag_codegen__unsupported_lowering` | source construct that semantically passes but backend cannot lower | Diagnostic explains unsupported source feature | Users need source-level explanations for backend gaps |
 | `diag_codegen__runtime_trap_message` | deterministic trap such as invalid runtime operation if defined | Runtime error message is stable and actionable | Prevents backend crashes with no context |

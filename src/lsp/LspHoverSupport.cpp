@@ -161,10 +161,10 @@ std::optional<std::string> buildHoverMarkup(const ASTNode *node,
     if (analyzer != nullptr) {
       value += ": " + typeToString(analyzer->getInferredType(node));
     }
-    return "```npp\n" + value + "\n```";
+    return "```nr\n" + value + "\n```";
   }
   case ASTNodeType::MethodDecl:
-    return "```npp\n" +
+    return "```nr\n" +
            formatMethodSignature(static_cast<const MethodDeclNode *>(node)) +
            "\n```";
   case ASTNodeType::ClassDecl: {
@@ -175,19 +175,19 @@ std::optional<std::string> buildHoverMarkup(const ASTNode *node,
     } else if (classDecl->kind == ClassKind::Interface) {
       kind = "interface";
     }
-    return "```npp\n" + classDecl->name + " is " + kind + "\n```";
+    return "```nr\n" + classDecl->name + " is " + kind + "\n```";
   }
   case ASTNodeType::EnumDecl:
-    return "```npp\n" + static_cast<const EnumDeclNode *>(node)->name +
+    return "```nr\n" + static_cast<const EnumDeclNode *>(node)->name +
            " is enum\n```";
   case ASTNodeType::ShaderDecl:
-    return "```npp\n" + static_cast<const ShaderDeclNode *>(node)->name +
+    return "```nr\n" + static_cast<const ShaderDeclNode *>(node)->name +
            " is shader\n```";
   case ASTNodeType::ModuleDecl:
-    return "```npp\nmodule " +
+    return "```nr\nmodule " +
            static_cast<const ModuleDeclNode *>(node)->moduleName + ";\n```";
   case ASTNodeType::ModuleCppDecl:
-    return "```npp\nmodulecpp " +
+    return "```nr\nmodulecpp " +
            static_cast<const ModuleCppDeclNode *>(node)->moduleName + ";\n```";
   case ASTNodeType::Identifier: {
     const auto *identifier = static_cast<const IdentifierNode *>(node);
@@ -195,7 +195,7 @@ std::optional<std::string> buildHoverMarkup(const ASTNode *node,
       return std::nullopt;
     }
     if (analyzer != nullptr) {
-      return "```npp\n" + identifier->name + ": " +
+      return "```nr\n" + identifier->name + ": " +
              typeToString(analyzer->getInferredType(node)) + "\n```";
     }
     break;
@@ -203,13 +203,13 @@ std::optional<std::string> buildHoverMarkup(const ASTNode *node,
   case ASTNodeType::MemberAccessExpr: {
     const auto *member = static_cast<const MemberAccessNode *>(node);
     if (analyzer != nullptr) {
-      return "```npp\n" + member->member + ": " +
+      return "```nr\n" + member->member + ": " +
              typeToString(analyzer->getInferredType(node)) + "\n```";
     }
     break;
   }
   case ASTNodeType::TypeSpec:
-    return "```npp\ntype " +
+    return "```nr\ntype " +
            static_cast<const TypeSpecNode *>(node)->typeName + "\n```";
   default:
     break;
@@ -217,7 +217,7 @@ std::optional<std::string> buildHoverMarkup(const ASTNode *node,
 
   if (analyzer != nullptr) {
     if (NTypePtr type = analyzer->getInferredType(node)) {
-      return "```npp\n" + typeToString(type) + "\n```";
+      return "```nr\n" + typeToString(type) + "\n```";
     }
   }
   return std::nullopt;

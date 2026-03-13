@@ -30,16 +30,16 @@ std::filesystem::path resolveUserConfigRoot() {
 #ifdef _WIN32
   if (const char *appData = std::getenv("APPDATA")) {
     if (*appData != '\0') {
-      return std::filesystem::path(appData) / "NeuronPP";
+      return std::filesystem::path(appData) / "Neuron";
     }
   }
 #endif
   if (const char *home = std::getenv("USERPROFILE")) {
     if (*home != '\0') {
-      return std::filesystem::path(home) / ".neuronpp";
+      return std::filesystem::path(home) / ".Neuron";
     }
   }
-  return std::filesystem::temp_directory_path() / "NeuronPP";
+  return std::filesystem::temp_directory_path() / "Neuron";
 }
 
 } // namespace

@@ -16,9 +16,9 @@ Her görev tamamlandığında `[x]` ile işaretlenir.
 
 ### Faz 2 — Resolver provider modeli
 - [x] `ModuleResolver` provider-aware hale getirilecek
-- [x] Arama sırası: proje source → modules → `BuiltinLibraries` → `BuiltinNativeLibraries` → external native
+- [x] Arama sırası: proje source → modules → `builtin_libraries` → `builtin_native_libraries` → external native
 - [x] Aynı modül adı source/native çakışmasında deterministic conflict policy eklenecek
-- [x] `BuiltinNativeLibraries/<Name>/<Name>.npp` + `modulecpp.toml` discovery eklenecek
+- [x] `builtin_native_libraries/<Name>/<Name>.nr` + `modulecpp.toml` discovery eklenecek
 
 ### Faz 3 — Sema / type çözümleme
 - [x] `module X;` native provider contract dosyasını da normal modül gibi görecek
@@ -33,14 +33,14 @@ Her görev tamamlandığında `[x]` ile işaretlenir.
 - [x] Builtin native provider için proje config zorunluluğu kaldırılacak
 
 ### Faz 5 — FileSystemNative referans modülü
-- [x] `BuiltinNativeLibraries/FileSystemNative/FileSystemNative.npp` contract dosyası oluşturulacak
-- [x] `BuiltinNativeLibraries/FileSystemNative/modulecpp.toml` metadata dosyası oluşturulacak
-- [x] `BuiltinLibraries/FileSystem` üst modülü tek `module FileSystem;` yüzeyiyle çalışacak
+- [x] `builtin_native_libraries/FileSystemNative/FileSystemNative.nr` contract dosyası oluşturulacak
+- [x] `builtin_native_libraries/FileSystemNative/modulecpp.toml` metadata dosyası oluşturulacak
+- [x] `builtin_libraries/FileSystem` üst modülü tek `module FileSystem;` yüzeyiyle çalışacak
 - [x] FileSystem ile ilişkili native provider testleri eklenecek
 
 ### Faz 6 — Legacy temizliği
 - [x] `modulecpp` parser keyword'ü kaldırıldı (unreleased dil, deprecated warning yerine full removal)
-- [x] repo içindeki `modulecpp` kullanım yolları (5 builtin .npp dosyası) `module` modeline taşındı
+- [x] repo içindeki `modulecpp` kullanım yolları (5 builtin .nr dosyası) `module` modeline taşındı
 - [x] `modulecpp` syntax'ı parser, sema, reference tracker'dan tamamen kaldırıldı
 
 ---
@@ -48,7 +48,7 @@ Her görev tamamlandığında `[x]` ile işaretlenir.
 ## Tasarım Kuralları
 - [ ] Kullanıcı yüzeyinde yalnızca `module X;` ve `expand module Y;` kalacak
 - [x] Native/source/builtin ayrımı compiler içinde provider metadata olarak yaşayacak
-- [x] Native contract `.npp` dosyalarında gerçek body olmayacak, yalnızca `extern` declaration/type/sabit yüzeyi olacak
+- [x] Native contract `.nr` dosyalarında gerçek body olmayacak, yalnızca `extern` declaration/type/sabit yüzeyi olacak
 - [x] `native.toml` metadata ile symbol mapping ve artifact paths yönetilecek
 
 ---

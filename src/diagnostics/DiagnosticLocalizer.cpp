@@ -71,24 +71,24 @@ std::vector<std::string> parseStringArray(std::string value) {
 
 std::string fallbackCodeFor(const frontend::Diagnostic &diagnostic) {
   if (diagnostic.severity == frontend::DiagnosticSeverity::Warning) {
-    return diagnostic.phase == "config" ? "NPP9001" : "NPP9000";
+    return diagnostic.phase == "config" ? "NR9001" : "NR9000";
   }
   if (diagnostic.phase == "lexer") {
-    return "NPP1001";
+    return "NR1001";
   }
   if (diagnostic.phase == "parser") {
-    return "NPP1002";
+    return "NR1002";
   }
   if (diagnostic.phase == "semantic") {
-    return "NPP2001";
+    return "NR2001";
   }
   if (diagnostic.phase == "config") {
-    return "NPP3001";
+    return "NR3001";
   }
   if (diagnostic.phase == "module") {
-    return "NPP4001";
+    return "NR4001";
   }
-  return "NPP0001";
+  return "NR0001";
 }
 
 std::optional<std::string>

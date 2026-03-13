@@ -1,7 +1,7 @@
 # The `ncon` Package Manager (`src/ncon/`)
 
 `ncon` (Neuron Container) is the official package manager, build orchestrator,
-and runtime execution engine (sandbox VM) for the Neuron++ ecosystem.
+and runtime execution engine (sandbox VM) for the Neuron ecosystem.
 
 Unlike most package managers which only download source, `ncon` actively controls
 the `neuronc` build pipeline and contains a full bytecode execution VM.

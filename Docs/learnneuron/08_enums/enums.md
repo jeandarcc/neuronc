@@ -56,7 +56,7 @@ Init method() as int {
 
 ## Real Example
 
-From `CSharpFeatures.npp`:
+From `CSharpFeatures.nr`:
 
 ```npp
 Color enum {

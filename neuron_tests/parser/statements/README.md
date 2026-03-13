@@ -20,11 +20,11 @@ Covered statement families:
 | --- | --- |
 | `N1200-N1299` | malformed statement grammar |
 | `N1500-N1599` | recovery after incomplete or unmatched blocks |
-| `NPP1002` | current parser fallback |
+| `NR1002` | current parser fallback |
 
 ## Test List
 
-| Name | `.npp` input code | Expected output or error | Why important |
+| Name | `.nr` input code | Expected output or error | Why important |
 | --- | --- | --- | --- |
 | `stmt__binding_and_assignment` | `x is 1; x is 2;` | Parse succeeds | Baseline statement sequence |
 | `stmt__const_binding` | `const answer is 42 as int;` | Parse succeeds | Confirms modifier placement |

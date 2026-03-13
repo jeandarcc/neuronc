@@ -5,12 +5,12 @@ display_name = "Diagnósticos del analizador sintáctico"
 inherits_contract = "N1xxx_parser"
 
 [contracts]
-allowed_exact_codes = ["NPP1001", "NPP1002"]
+allowed_exact_codes = ["NR1001", "NR1002"]
 allowed_n_range = "1000-1599"
 allowed_w_range = "1000-1099"
 future_addition_rule = "Solo N1000-N1599, W1000-W1099 y los códigos exactos del analizador legado enumerados arriba pueden aparecer en este archivo."
 
-[messages.NPP1001]
+[messages.nr1001]
 severity = "error"
 phase = "lexer"
 slug = "legacy_lexer_error"
@@ -20,13 +20,13 @@ default_message = "La fuente contiene un token inválido, un literal mal formado
 recovery = "Inspeccione el primer carácter inválido o el literal mal formado cerca de la ubicación reportada."
 tags = ["legacy", "lexer", "fallback"]
 
-[messages.NPP1002]
+[messages.nr1002]
 severity = "error"
 phase = "parser"
 slug = "legacy_parser_error"
 title = "Error del analizador sintáctico (legado)"
 summary = "Cubo de compatibilidad para fallos de análisis hasta que se conecten códigos de analizador más finos."
-default_message = "La fuente no coincide con la gramática esperada de Neuron++."
+default_message = "La fuente no coincide con la gramática esperada de Neuron."
 recovery = "Inspeccione el límite del token reportado, el emparejamiento de delimitadores y la forma esperada de la declaración o sentencia."
 tags = ["legacy", "parser", "fallback"]
 
@@ -37,7 +37,7 @@ slug = "invalid_character"
 title = "Carácter inválido"
 summary = "El analizador léxico encontró un carácter que no es válido en el contexto actual de la fuente."
 default_message = "Se encontró un carácter inválido en la fuente."
-recovery = "Elimine el carácter o reemplácelo con una sintaxis válida de Neuron++."
+recovery = "Elimine el carácter o reemplácelo con una sintaxis válida de Neuron."
 tags = ["lexer", "character", "syntax"]
 
 [messages.N1002]

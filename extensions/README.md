@@ -1,7 +1,7 @@
-# Official IDE Extensions (`extensions/`)
+?# Official IDE Extensions (`extensions/`)
 
 This directory houses the source code for the official IDE extensions that provide
-language intelligence for Neuron++.
+language intelligence for Neuron.
 
 These extensions are thin clients. They primarily launch the `neuron-lsp` binary
 (built from `src/lsp/`) to provide real-time code analysis, error reporting,
@@ -11,13 +11,13 @@ and intellisense.
 
 | Extension | Subdirectory | Tech Stack | Status |
 |-----------|--------------|------------|--------|
-| **VS Code** | `vscode-npp/` | TypeScript, npm | Stable. Includes custom AST/NIR explorer debug views. |
-| **IntelliJ** | `intellij-npp/` | Kotlin, Gradle | Alpha. Uses JetBrains LSP framework. |
+| **VS Code** | `vscode-neuron/` | TypeScript, npm | Stable. Includes custom AST/NIR explorer debug views. |
+| **IntelliJ** | `intellij-neuron/` | Kotlin, Gradle | Alpha. Uses JetBrains LSP framework. |
 
 ## Building the VS Code Extension
 
 ```bash
-cd extensions/vscode-npp
+cd extensions/vscode-neuron
 npm install
 npm run package
 ```
@@ -29,7 +29,7 @@ This produces a `.vsix` file which can be installed in VS Code via the Command P
 
 1. Open `extensions/vscode-npp/` in a fresh VS Code window.
 2. Press `F5`. This will launch an "Extension Development Host" window with the extension active.
-3. The extension will automatically look for `neuron-lsp.exe` in your `PATH` or in the standard build output directory (`%LOCALAPPDATA%\NeuronPP\workspaces\NPP\build-mingw\bin\`).
+3. The extension will automatically look for `neuron-lsp.exe` in your `PATH` or in the standard build output directory (`%LOCALAPPDATA%\Neuron\workspaces\Neuron\build-mingw\bin\`).
 
 ## Adding Syntax Highlighting Features
 

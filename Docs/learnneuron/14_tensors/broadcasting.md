@@ -6,7 +6,7 @@ Rules for operating on tensors of different shapes, and extracting sub-tensors.
 
 ## Broadcasting
 
-When performing operations between tensors of different shapes, Neuron++ automatically broadcasts the smaller tensor:
+When performing operations between tensors of different shapes, Neuron automatically broadcasts the smaller tensor:
 
 ```npp
 a is Tensor<float>.Random(3, 3);    // 3×3

@@ -1,6 +1,6 @@
 # NCON Overview
 
-NCON (Neuron Container) is a portable bytecode container format for running Neuron++ programs in a sandboxed virtual machine.
+NCON (Neuron Container) is a portable bytecode container format for running Neuron programs in a sandboxed virtual machine.
 
 ---
 
@@ -9,7 +9,7 @@ NCON (Neuron Container) is a portable bytecode container format for running Neur
 NCON is an alternative execution path to LLVM native compilation:
 
 ```
-Source (.npp) → NIR → Bytecode → .ncon Container → VM Execution
+Source (.nr) → NIR → Bytecode → .ncon Container → VM Execution
 ```
 
 ---

@@ -25,7 +25,7 @@ If no GPU is available, the same code runs on the CPU — no code changes needed
 
 ## Real Example
 
-From `GpuBlockTensorOps.npp`:
+From `GpuBlockTensorOps.nr`:
 
 ```npp
 Init method() {

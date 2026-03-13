@@ -10,11 +10,11 @@ This folder specifies expression grammar: precedence, associativity, unary forms
 | --- | --- |
 | `N1100-N1199` | malformed expression grammar |
 | `N1000-N1099` | token-level issues inside expressions |
-| `NPP1002` | current coarse parser fallback |
+| `NR1002` | current coarse parser fallback |
 
 ## Test List
 
-| Name | `.npp` input code | Expected output or error | Why important |
+| Name | `.nr` input code | Expected output or error | Why important |
 | --- | --- | --- | --- |
 | `expr__precedence_mul_over_add` | `value is 1 + 2 * 3;` | Parse succeeds with `*` tighter than `+` | Prevents precedence drift |
 | `expr__parenthesized_grouping` | `value is (1 + 2) * 3;` | Parse succeeds with explicit grouping | Confirms parentheses override precedence |

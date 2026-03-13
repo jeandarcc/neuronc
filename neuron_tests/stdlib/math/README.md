@@ -2,7 +2,7 @@
 
 ## Scope
 
-This folder covers user-visible behavior of `Math` and math-adjacent standard facilities used from `.npp` source.
+This folder covers user-visible behavior of `Math` and math-adjacent standard facilities used from `.nr` source.
 
 Covered behavior:
 
@@ -17,11 +17,11 @@ Covered behavior:
 | `N4000-N4099` | missing math module usage |
 | `N2000-N2499` | wrong argument types or counts for math APIs |
 | `N5000-N5099` | runtime-visible math execution failure |
-| `NPP2001`, `NPP4001`, `NPP0001` | current fallbacks |
+| `NR2001`, `NR4001`, `NR0001` | current fallbacks |
 
 ## Test List
 
-| Name | `.npp` input code | Expected output or error | Why important |
+| Name | `.nr` input code | Expected output or error | Why important |
 | --- | --- | --- | --- |
 | `math__sqrt_baseline` | `module System; module Math; Init is method() { Print(Math.sqrt(9)); }` | Prints normalized representation of `3` | Canonical math-module smoke test |
 | `math__pi_constant` | `module System; module Math; Init is method() { Print(Math.PI); }` | Prints stable normalized constant value or prefix | Keeps constant exposure stable |

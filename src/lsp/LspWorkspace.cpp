@@ -24,7 +24,7 @@ void collectWorkspaceModuleFiles(
 
   for (fs::recursive_directory_iterator it(dir, ec), end; it != end;
        it.increment(ec)) {
-    if (ec || !it->is_regular_file() || it->path().extension() != ".npp") {
+    if (ec || !it->is_regular_file() || it->path().extension() != ".nr") {
       continue;
     }
     const std::string moduleName =
@@ -97,7 +97,7 @@ std::unordered_set<std::string> collectAvailableModules(const fs::path &root,
       return;
     }
     for (const auto &entry : fs::recursive_directory_iterator(dir, ec)) {
-      if (ec || !entry.is_regular_file() || entry.path().extension() != ".npp") {
+      if (ec || !entry.is_regular_file() || entry.path().extension() != ".nr") {
         continue;
       }
       addStem(entry.path().stem().string());

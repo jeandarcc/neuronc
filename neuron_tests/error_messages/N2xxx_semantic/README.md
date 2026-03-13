@@ -14,11 +14,11 @@ This folder covers message quality for semantic errors and warnings unrelated to
 | `N2300-N2399` | generic diagnostics excluding ownership-specific cases |
 | `N2400-N2499` | overload diagnostics |
 | `W2000-W2099` | semantic warnings |
-| `NPP2001` | current fallback |
+| `NR2001` | current fallback |
 
 ## Test List
 
-| Name | `.npp` input code | Expected output or error | Why important |
+| Name | `.nr` input code | Expected output or error | Why important |
 | --- | --- | --- | --- |
 | `diag_semantic__string_plus_int` | `Init is method() { value is "a" + 1; }` | Message names incompatible operand types | Type mismatch diagnostics should teach, not merely reject |
 | `diag_semantic__unknown_identifier` | `Init is method() { Print(missing); }` | Message includes unresolved name `missing` | Identifier text must survive formatting changes |

@@ -2,7 +2,7 @@
 
 ## Scope
 
-This folder covers generic classes, generic methods, generic constraints, generic arity, and built-in generic APIs used from `.npp` source.
+This folder covers generic classes, generic methods, generic constraints, generic arity, and built-in generic APIs used from `.nr` source.
 
 ## Error Codes
 
@@ -10,11 +10,11 @@ This folder covers generic classes, generic methods, generic constraints, generi
 | --- | --- |
 | `N2300-N2399` | generic arity, constraint, or substitution failure |
 | `N2100-N2199` | generic inference ambiguity |
-| `NPP2001` | current semantic fallback |
+| `NR2001` | current semantic fallback |
 
 ## Test List
 
-| Name | `.npp` input code | Expected output or error | Why important |
+| Name | `.nr` input code | Expected output or error | Why important |
 | --- | --- | --- | --- |
 | `generics__generic_class_roundtrip` | `Box class<T> { value is T; } Init is method() { boxValue is Box<int>(); boxValue.value is 123; Print(boxValue.value); }` | Compiles and prints `123` | Canonical generic class scenario |
 | `generics__generic_method_identity` | `Identity method<T>(value as T) as T { return value; } Init is method() { Print(Identity(42)); }` | Compiles and prints `42` | Canonical generic method scenario |

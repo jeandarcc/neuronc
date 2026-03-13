@@ -1,4 +1,3 @@
-#include "../../src/main/UsageText.h"
 #include "../../src/main/UsageTextBuilder.h"
 
 #include <filesystem>
@@ -13,7 +12,7 @@ struct ScopedHelpTomlRoot {
   fs::path root;
 
   ScopedHelpTomlRoot() {
-    root = fs::temp_directory_path() / "npp_usage_text_builder_tests";
+    root = fs::temp_directory_path() / "neuron_usage_text_builder_tests";
     fs::remove_all(root);
     fs::create_directories(root / "config" / "cli");
   }
@@ -64,11 +63,3 @@ TEST(UsageTextBuilderLoadsTomlAndRendersOrderedSections) {
   ASSERT_TRUE(rendered.find("first entry") != std::string::npos);
   return true;
 }
-
-TEST(UsageTextBuilderFallsBackToEmbeddedUsageWhenTomlMissing) {
-  const std::string usage = neuron::cli::buildUsageText(
-      fs::temp_directory_path() / "npp_usage_text_builder_missing_root");
-  ASSERT_EQ(usage, std::string(neuron::cli::kUsageText));
-  return true;
-}
-

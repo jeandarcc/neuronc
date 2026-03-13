@@ -34,7 +34,7 @@ TEST(WebBuildPipelinePassesGraphicsShaderOptionsAndRuntimeSources) {
                         ("npp_web_build_pipeline_graphics_" + uniqueSuffix);
   std::error_code ec;
   fs::remove_all(root, ec);
-  ASSERT_TRUE(writeWebBuildTestFile(root / "src" / "Main.npp",
+  ASSERT_TRUE(writeWebBuildTestFile(root / "src" / "Main.nr",
                                     "Init method() {\n}\n"));
   ASSERT_TRUE(writeWebBuildTestFile(root / "examples" / "assets" / "quad.obj",
                                     "v 0 0 0\n"));
@@ -42,7 +42,7 @@ TEST(WebBuildPipelinePassesGraphicsShaderOptionsAndRuntimeSources) {
                                     "png"));
 
   neuron::ProjectConfig config;
-  config.mainFile = "src/Main.npp";
+  config.mainFile = "src/Main.nr";
   config.buildDir = "build";
   config.web.wgslCache = false;
 

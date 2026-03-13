@@ -23,16 +23,16 @@ fs::path defaultRuntimeObjectCacheDir() {
 #ifdef _WIN32
   const char *localAppData = std::getenv("LOCALAPPDATA");
   if (localAppData != nullptr && *localAppData != '\0') {
-    return fs::path(localAppData) / "NeuronPP" / "runtime";
+    return fs::path(localAppData) / "Neuron" / "runtime";
   }
 #else
   const char *xdgCache = std::getenv("XDG_CACHE_HOME");
   if (xdgCache != nullptr && *xdgCache != '\0') {
-    return fs::path(xdgCache) / "neuronpp" / "runtime";
+    return fs::path(xdgCache) / "Neuron" / "runtime";
   }
   const char *home = std::getenv("HOME");
   if (home != nullptr && *home != '\0') {
-    return fs::path(home) / ".cache" / "neuronpp" / "runtime";
+    return fs::path(home) / ".cache" / "Neuron" / "runtime";
   }
 #endif
 

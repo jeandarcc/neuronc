@@ -5,12 +5,12 @@ display_name = "의미론적 진단"
 inherits_contract = "N2xxx_semantic"
 
 [contracts]
-allowed_exact_codes = ["NPP2001"]
+allowed_exact_codes = ["NR2001"]
 allowed_n_range = "2000-2499"
 allowed_w_range = "2000-2099"
 future_addition_rule = "이 파일에는 N2000-N2499, W2000-W2099 및 위에서 나열된 정확한 기존 의미론적 코드만 나타날 수 있습니다."
 
-[messages.NPP2001]
+[messages.nr2001]
 severity = "error"
 phase = "semantic"
 slug = "legacy_semantic_error"

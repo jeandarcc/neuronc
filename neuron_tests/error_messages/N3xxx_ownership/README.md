@@ -12,11 +12,11 @@ This folder covers message quality for move, borrow, alias, and lifetime diagnos
 | `N3100-N3199` | borrow/alias diagnostics |
 | `N3200-N3299` | lifetime and escape diagnostics |
 | `W3000-W3099` | ownership warnings |
-| `NPP2001` | current fallback |
+| `NR2001` | current fallback |
 
 ## Test List
 
-| Name | `.npp` input code | Expected output or error | Why important |
+| Name | `.nr` input code | Expected output or error | Why important |
 | --- | --- | --- | --- |
 | `diag_owner__use_after_move_mentions_origin` | `x is 1; y is move x; Print(x);` | Message states value was moved and, if possible, points to move origin | Ownership diagnostics need provenance |
 | `diag_owner__double_move` | two `move x` uses | Message makes clear the second move is invalid because ownership already transferred | Avoids vague duplicate-use wording |

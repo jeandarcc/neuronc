@@ -1,4 +1,4 @@
-# Neuron++ source rules
+﻿# Neuron source rules
 max_classes_per_file = 1
 max_lines_per_file = 1000
 require_method_uppercase_start = true

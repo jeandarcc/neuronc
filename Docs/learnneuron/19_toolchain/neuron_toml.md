@@ -10,10 +10,10 @@ The `neuron.toml` file is the primary project configuration.
 [project]
 name = "my_project"
 version = "0.1.0"
-description = "A Neuron++ project"
+description = "A Neuron project"
 
 [build]
-main = "src/Main.npp"              # Entry point file
+main = "src/Main.nr"              # Entry point file
 build_dir = "build"                # Output directory
 optimize = "aggressive"            # none, basic, aggressive
 emit_ir = "optimized"              # none, raw, optimized

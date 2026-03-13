@@ -1,12 +1,12 @@
-# What Is Neuron++?
+# What Is Neuron?
 
-Neuron++ (NPP) is a high-performance, compiled programming language designed for artificial intelligence, scientific computing, and GPU-accelerated workloads.
+Neuron (Neuron) is a high-performance, compiled programming language designed for artificial intelligence, scientific computing, and GPU-accelerated workloads.
 
 ---
 
 ## Design Goals
 
-Neuron++ is built around four core principles:
+Neuron is built around four core principles:
 
 | Principle | Description |
 |-----------|-------------|
@@ -19,14 +19,14 @@ Neuron++ is built around four core principles:
 
 ## How It Works
 
-Neuron++ supports two execution paths:
+Neuron supports two execution paths:
 
 ### 1. LLVM Native Compilation
 
 For maximum-performance production builds:
 
 ```
-Source (.npp) → Lexer → Parser → AST → Semantic Analysis → NIR → LLVM IR → Native Binary
+Source (.nr) → Lexer → Parser → AST → Semantic Analysis → NIR → LLVM IR → Native Binary
 ```
 
 This path produces platform-native executables that run at full hardware speed.
@@ -36,7 +36,7 @@ This path produces platform-native executables that run at full hardware speed.
 For portable, sandboxed, and hot-reloadable execution:
 
 ```
-Source (.npp) → Lexer → Parser → AST → NIR → Bytecode → .ncon Container → VM
+Source (.nr) → Lexer → Parser → AST → NIR → Bytecode → .ncon Container → VM
 ```
 
 NCON containers run inside a sandboxed virtual machine with security isolation and live hot-reload support. This is the default path used by `neuron run`.
@@ -67,7 +67,7 @@ module Math;
 Init method() {
     x is 42;
     y is another x;
-    name is "Neuron++" as string;
+    name is "Neuron" as string;
 
     Print(name);
     Print(x + y);
@@ -78,12 +78,12 @@ This program:
 1. Imports the `Math` module
 2. Declares `x` as an alias-bound integer
 3. Creates `y` as an independent copy of `x`
-4. Prints `"Neuron++"` and `84`
+4. Prints `"Neuron"` and `84`
 
 ---
 
 ## Next Steps
 
-- [Installation](installation.md) — Set up the Neuron++ toolchain
+- [Installation](installation.md) — Set up the Neuron toolchain
 - [Hello World](hello_world.md) — Create and run your first project
 - [Project Structure](project_structure.md) — Understand the directory layout

@@ -1,6 +1,6 @@
 # Layers
 
-Neuron++ provides built-in neural network layers through the NN module.
+Neuron provides built-in neural network layers through the NN module.
 
 ---
 

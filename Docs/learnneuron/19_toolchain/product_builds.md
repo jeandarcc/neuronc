@@ -1,6 +1,6 @@
 # Product Builds
 
-Neuron++ includes a built-in production build system designed to convert your (`.npp`) sources into distributable desktop applications with a single command. 
+Neuron includes a built-in production build system designed to convert your (`.nr`) sources into distributable desktop applications with a single command. 
 
 ---
 
@@ -32,7 +32,7 @@ product_name = "My Application"
 product_version = "1.0.0"
 product_build_version = 1
 product_publisher = "Publisher Name"
-product_description = "A Neuron++ application"
+product_description = "A Neuron application"
 product_website = "https://example.com"
 
 # ── Branding ──

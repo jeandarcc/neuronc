@@ -97,8 +97,8 @@ int runCompilePipelineWithOptions(const std::string &filepath,
                                    : sourcePath.parent_path().parent_path();
   neuron::ModuleResolverOptions resolverOptions;
   resolverOptions.autoAddMissingPackages = settings.packageAutoAddMissing;
-  resolverOptions.autoIncludeBuiltinLibraries = true;
-  resolverOptions.builtinLibrariesRoot = toolRoot / "BuiltinLibraries";
+  resolverOptions.autoIncludebuiltin_libraries = true;
+  resolverOptions.builtin_librariesRoot = toolRoot / "builtin_libraries";
   const neuron::ModuleResolverResult resolved =
       neuron::ModuleResolver::resolve(
           sourcePath, projectConfig,
@@ -194,7 +194,7 @@ int runCompilePipelineWithOptions(const std::string &filepath,
     if (!projectConfig.has_value()) {
       if (!hasBuiltinNativeProvider) {
         configErrors.push_back(
-            "modulecpp imports require a neuron.toml project configuration unless the module is resolved from BuiltinNativeLibraries");
+            "modulecpp imports require a neuron.toml project configuration unless the module is resolved from builtin_native_libraries");
       }
     } else {
       if (!neuron::loadProjectModuleCppModules(
@@ -203,7 +203,7 @@ int runCompilePipelineWithOptions(const std::string &filepath,
       }
       if (!projectConfig->ncon.native.enabled && !hasBuiltinNativeProvider) {
         configErrors.push_back(
-            "modulecpp imports require [ncon.native].enabled = true in neuron.toml unless the module is resolved from BuiltinNativeLibraries");
+            "modulecpp imports require [ncon.native].enabled = true in neuron.toml unless the module is resolved from builtin_native_libraries");
       }
     }
   }

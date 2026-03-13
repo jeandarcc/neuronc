@@ -36,7 +36,7 @@ for platform capabilities.
 
 ## Adding a New Platform Port
 
-To port Neuron++ to a new OS (e.g., a real-time OS or a new console):
+To port Neuron to a new OS (e.g., a real-time OS or a new console):
 1. Create `runtime/src/platform/<new_os>/`.
 2. Implement all functions required by `platform_manager_internal.h`.
 3. Update `CMakeLists.txt` to compile your folder when the target matches.

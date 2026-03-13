@@ -1,6 +1,6 @@
 # Constants
 
-Neuron++ provides `const` and `constexpr` for declaring immutable values.
+Neuron provides `const` and `constexpr` for declaring immutable values.
 
 ---
 

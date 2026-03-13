@@ -27,13 +27,13 @@ These tests are not duplicates of the behavior folders. They assert the quality 
 
 ## Test List
 
-| Name | `.npp` input code | Expected output or error | Why important |
+| Name | `.nr` input code | Expected output or error | Why important |
 | --- | --- | --- | --- |
 | `diag_baseline__primary_span_is_precise` | malformed single-line binding | Diagnostic points at the offending token, not line start only | Source mapping quality matters as much as the message text |
 | `diag_baseline__message_explains_expected_form` | malformed parameter syntax | Message explains what syntax was expected | Keeps diagnostics teachable |
 | `diag_baseline__warning_does_not_block_execution` | warning-only program | Warning emitted, binary still runs | Confirms severity handling |
 | `diag_baseline__multiple_errors_are_stable` | file with two independent failures | Two diagnostics in stable order or stable set | Prevents regressions in recovery behavior |
-| `diag_baseline__fallback_code_is_allowed_temporarily` | known coarse-code scenario | Accepts `NPPxxxx` fallback while demanding message intent | Bridges current implementation to future taxonomy |
+| `diag_baseline__fallback_code_is_allowed_temporarily` | known coarse-code scenario | Accepts `Neuronxxxx` fallback while demanding message intent | Bridges current implementation to future taxonomy |
 
 ## Edge Cases
 

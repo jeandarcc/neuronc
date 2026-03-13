@@ -47,7 +47,7 @@ Use `as` after the parameter list to specify the return type:
 
 ```npp
 GetName method() as string {
-    return "Neuron++";
+    return "Neuron";
 }
 
 // No return type (void)

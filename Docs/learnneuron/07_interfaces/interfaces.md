@@ -41,7 +41,7 @@ Player class inherits Drawable, Serializable {
 
 ## Real Example
 
-From `CSharpFeatures.npp`:
+From `CSharpFeatures.nr`:
 
 ```npp
 CSharpFeatures interface {

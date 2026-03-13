@@ -22,7 +22,7 @@ TEST(NconManifestRoundTripsNativeModules) {
   ncon::NativeModuleManifestInfo module;
   module.name = "Tensorflow";
   module.abi = "c";
-  module.exports.push_back({"Version", "npp_tf_version", {}, "string"});
+  module.exports.push_back({"Version", "neuron_tf_version", {}, "string"});
   module.artifacts.push_back(
       {"windows_x64", "__nativemodules__/Tensorflow/windows_x64/tf.dll",
        "tf.dll", 42, 99, "deadbeef"});
@@ -39,7 +39,7 @@ TEST(NconManifestRoundTripsNativeModules) {
   ASSERT_EQ(parsed.nativeModules.size(), 1u);
   ASSERT_EQ(parsed.nativeModules[0].name, "Tensorflow");
   ASSERT_EQ(parsed.nativeModules[0].exports.size(), 1u);
-  ASSERT_EQ(parsed.nativeModules[0].exports[0].symbol, "npp_tf_version");
+  ASSERT_EQ(parsed.nativeModules[0].exports[0].symbol, "neuron_tf_version");
   ASSERT_EQ(parsed.nativeModules[0].artifacts.size(), 1u);
   ASSERT_EQ(parsed.nativeModules[0].artifacts[0].platform, "windows_x64");
   return true;

@@ -1,9 +1,9 @@
-# Neuron++ (NPP)
+?# Neuron (Neuron)
 
 [![CI](https://github.com/your-org/neuron-pp/actions/workflows/ci.yml/badge.svg)](https://github.com/your-org/neuron-pp/actions/workflows/ci.yml)
 [![License](https://img.shields.io/badge/license-MIT-green)](#license)
 
-**Neuron++ (NPP)** is a high-performance, statically-typed programming language for native systems programming, neural computations, and real-time graphics — powered by LLVM, Vulkan/CUDA, and a self-hosted package manager (`ncon`).
+**Neuron (Neuron)** is a high-performance, statically-typed programming language for native systems programming, neural computations, and real-time graphics — powered by LLVM, Vulkan/CUDA, and a self-hosted package manager (`ncon`).
 
 ## Key Features
 
@@ -24,7 +24,7 @@ include/          Public API headers (ABI boundary: include/neuronc/)
 tests/            Single-binary test suite (mirrors src/ layout)
 scripts/          Canonical build/test scripts — the ONLY way to build
 config/           Diagnostics catalog (multi-locale TOML) + CLI config
-extensions/       IDE plugins: vscode-npp, intellij-npp
+extensions/       IDE plugins: vscode-neuron, intellij-neuron
 docs/             Architecture docs, ADRs, guides, specs
 benchmarks/       Performance benchmarking suite
 plans/            Long-horizon design documents
@@ -57,7 +57,7 @@ scripts\build.bat
 
 ```powershell
 powershell -NoProfile -ExecutionPolicy Bypass -File scripts/build_tests.ps1 `
-  -BuildDir "$env:LOCALAPPDATA\NeuronPP\workspaces\NPP\build-mingw" `
+  -BuildDir "$env:LOCALAPPDATA\Neuron\workspaces\Neuron\build-mingw" `
   -Filter "*" `
   -LlvmDir "C:\msys64\mingw64\lib\cmake\llvm"
 ```

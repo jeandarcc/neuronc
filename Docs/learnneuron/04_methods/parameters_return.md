@@ -52,7 +52,7 @@ Use `as` after the parameter list:
 
 ```npp
 GetName method() as string {
-    return "Neuron++";
+    return "Neuron";
 }
 
 Square method(x as int) as int {

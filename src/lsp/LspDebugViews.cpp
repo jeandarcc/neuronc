@@ -356,7 +356,8 @@ DebugViewContent buildDebugView(const DocumentState &document,
   if (viewKind == "expanded") {
     DebugViewContent view;
     view.title = document.path.filename().string() + " [Expanded Source]";
-    view.languageId = "npp";
+    // Use canonical language id 'neuron' for editor debug views
+    view.languageId = "neuron";
     view.content = buildExpandedSourceContent(document);
     return view;
   }

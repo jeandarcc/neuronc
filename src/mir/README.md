@@ -18,7 +18,7 @@ high-level optimizations (tensor fusion, loop-lifting) have completed.
 
 ## The Ownership Enforcement (`MIROwnershipPass`)
 
-Neuron++ does not use a tracing garbage collector. Instead, ownership semantics
+Neuron does not use a tracing garbage collector. Instead, ownership semantics
 dictate object lifespans. 
 
 While ownership violations (use-after-move, borrow-checker errors) are caught in

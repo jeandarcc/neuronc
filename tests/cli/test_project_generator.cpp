@@ -38,7 +38,7 @@ TEST(ProjectGeneratorCreatesLibraryScaffold) {
                                               true));
   ASSERT_TRUE(fs::exists(projectRoot / "README.md"));
   ASSERT_TRUE(fs::exists(projectRoot / "LICENSE"));
-  ASSERT_TRUE(fs::exists(projectRoot / "src" / "Main.npp"));
+  ASSERT_TRUE(fs::exists(projectRoot / "src" / "Main.nr"));
 
   ProjectConfig config;
   ProjectConfigParser parser;
@@ -61,7 +61,7 @@ TEST(ProjectGeneratorCreatesLibraryScaffold) {
   ASSERT_TRUE(fs::exists(learnNeuronDoc));
   ASSERT_TRUE(readWholeFile(learnNeuronDoc).find("Hello") != std::string::npos);
 
-  const std::string mainSource = readWholeFile(projectRoot / "src" / "Main.npp");
+  const std::string mainSource = readWholeFile(projectRoot / "src" / "Main.nr");
   ASSERT_TRUE(mainSource.find("ComputeGreeting") != std::string::npos);
 
   removeGeneratedProjectNoThrow(projectRoot);

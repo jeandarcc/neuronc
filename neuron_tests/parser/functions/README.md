@@ -11,11 +11,11 @@ This folder specifies parsing of method and callable declarations, including par
 | `N1300-N1399` | malformed method/declaration syntax |
 | `N1400-N1499` | malformed type syntax within signatures |
 | `N1500-N1599` | incomplete declarations requiring recovery |
-| `NPP1002` | current parser fallback |
+| `NR1002` | current parser fallback |
 
 ## Test List
 
-| Name | `.npp` input code | Expected output or error | Why important |
+| Name | `.nr` input code | Expected output or error | Why important |
 | --- | --- | --- | --- |
 | `func__simple_method` | `Echo method(value as string) { Print(value); }` | Parse succeeds | Smallest named method baseline |
 | `func__method_with_return_type` | `Add method(a as int, b as int) as int { return a + b; }` | Parse succeeds | Pins return-type annotation placement |

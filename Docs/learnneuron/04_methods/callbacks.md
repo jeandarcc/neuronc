@@ -1,6 +1,6 @@
 # Callbacks
 
-A callback is a method passed as an argument to another method. In Neuron++, use the `method` type for callback parameters.
+A callback is a method passed as an argument to another method. In Neuron, use the `method` type for callback parameters.
 
 ---
 

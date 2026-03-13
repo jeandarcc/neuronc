@@ -39,7 +39,7 @@ Print(p.x);    // 10
 
 ## Real Example
 
-From `StructFeature.npp`:
+From `StructFeature.nr`:
 
 ```npp
 StructFeature struct {

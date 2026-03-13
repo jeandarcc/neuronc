@@ -60,7 +60,7 @@ b move a;       // move without 'is'
 
 ## C++ Equivalent
 
-| Neuron++ | C++ |
+| Neuron | C++ |
 |----------|-----|
 | `y is move x;` | `T y = std::move(x);` |
 

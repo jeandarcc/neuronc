@@ -49,7 +49,7 @@ int cmdNir(const std::string &filepath);
 
 // ── Derleme komutları ────────────────────────────────────────────────────────
 
-/// Tek .npp dosyasını derler.
+/// Tek .nr dosyasını derler.
 int cmdCompile(const std::string &filepath,
                neuron::LLVMCodeGenOptions *outRuntimeOptions = nullptr);
 

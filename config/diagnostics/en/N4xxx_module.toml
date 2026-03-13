@@ -5,12 +5,12 @@ display_name = "Module diagnostics"
 inherits_contract = "N4xxx_module"
 
 [contracts]
-allowed_exact_codes = ["NPP4001"]
+allowed_exact_codes = ["NR4001"]
 allowed_n_range = "4000-4099"
 allowed_w_range = "4000-4099"
 future_addition_rule = "Only N4000-N4099, W4000-W4099, and the exact legacy module code listed above may appear in this file."
 
-[messages.NPP4001]
+[messages.nr4001]
 severity = "error"
 phase = "module"
 slug = "legacy_module_error"

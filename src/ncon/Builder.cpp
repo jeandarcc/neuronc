@@ -245,7 +245,7 @@ void collectModulesFromDir(const fs::path &dir,
   }
 
   for (const auto &entry : fs::recursive_directory_iterator(dir)) {
-    if (!entry.is_regular_file() || entry.path().extension() != ".npp") {
+    if (!entry.is_regular_file() || entry.path().extension() != ".nr") {
       continue;
     }
 
@@ -484,7 +484,7 @@ bool resolveBuild(const BuildRequest &request, ResolvedBuild *outBuild,
 
     outBuild->sourcePath =
         outBuild->projectRoot /
-        fs::path(config.mainFile.empty() ? "src/Main.npp" : config.mainFile);
+        fs::path(config.mainFile.empty() ? "src/Main.nr" : config.mainFile);
     outBuild->entryModule = outBuild->sourcePath.stem().string();
     outBuild->appName =
         config.name.empty() ? outBuild->projectRoot.filename().string() : config.name;
@@ -504,9 +504,9 @@ bool resolveBuild(const BuildRequest &request, ResolvedBuild *outBuild,
     return true;
   }
 
-  if (!fs::exists(input) || input.extension() != ".npp") {
+  if (!fs::exists(input) || input.extension() != ".nr") {
     if (outError != nullptr) {
-      *outError = "ncon build expected a project directory or .npp file";
+      *outError = "ncon build expected a project directory or .nr file";
     }
     return false;
   }
@@ -590,8 +590,8 @@ bool buildContainerFromInput(const BuildRequest &request,
 
   ModuleResolverOptions resolverOptions;
   resolverOptions.autoAddMissingPackages = true;
-  resolverOptions.autoIncludeBuiltinLibraries = true;
-  resolverOptions.builtinLibrariesRoot = build.projectRoot / "BuiltinLibraries";
+  resolverOptions.autoIncludebuiltin_libraries = true;
+  resolverOptions.builtin_librariesRoot = build.projectRoot / "builtin_libraries";
   const ModuleResolverResult resolved = ModuleResolver::resolve(
       build.sourcePath, build.config,
       [&](const fs::path &path, std::string *readError) {
@@ -719,7 +719,7 @@ bool buildContainerFromInput(const BuildRequest &request,
         !hasBuiltinNativeProvider) {
       if (outError != nullptr) {
         *outError =
-            "modulecpp imports require [ncon.native].enabled = true in neuron.toml unless the module is resolved from BuiltinNativeLibraries";
+            "modulecpp imports require [ncon.native].enabled = true in neuron.toml unless the module is resolved from builtin_native_libraries";
       }
       return false;
     }

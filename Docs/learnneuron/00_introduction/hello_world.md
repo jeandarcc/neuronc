@@ -1,6 +1,6 @@
 # Hello World
 
-Create and run your first Neuron++ project in under a minute.
+Create and run your first Neuron project in under a minute.
 
 ---
 
@@ -18,7 +18,7 @@ myproject/
 ├── .neuronsettings
 ├── .gitignore
 ├── src/
-│   └── Main.npp
+│   └── Main.nr
 ├── docs/scripts/
 │   └── Main.md
 ├── tests/
@@ -33,12 +33,12 @@ myproject/
 
 ---
 
-## Step 2: Explore Main.npp
+## Step 2: Explore Main.nr
 
-Open `src/Main.npp`. You will see:
+Open `src/Main.nr`. You will see:
 
 ```npp
-// myproject - Neuron++ Project
+// myproject - Neuron Project
 
 Init method()
 {
@@ -72,7 +72,7 @@ Hello Neuron!
 
 ## Step 4: Modify the Program
 
-Edit `src/Main.npp`:
+Edit `src/Main.nr`:
 
 ```npp
 Init method() {

@@ -81,7 +81,7 @@ enum class InstKind {
   GpuScopeBegin,
   GpuScopeEnd,
 
-  // Neuron++ specific
+  // Neuron specific
   TensorAdd,
   TensorSub,
   TensorMul,

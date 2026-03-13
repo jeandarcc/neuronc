@@ -1,6 +1,6 @@
 # GPU Performance
 
-Tips for maximizing GPU compute throughput in Neuron++.
+Tips for maximizing GPU compute throughput in Neuron.
 
 ---
 

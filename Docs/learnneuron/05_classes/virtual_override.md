@@ -1,6 +1,6 @@
 # Virtual, Override, and Overload
 
-These three modifiers enable polymorphism in Neuron++.
+These three modifiers enable polymorphism in Neuron.
 
 ---
 
@@ -52,7 +52,7 @@ Calculator class {
 
 ## Real Example
 
-From `VirtualOverrideOverload.npp`:
+From `VirtualOverrideOverload.nr`:
 
 ```npp
 VirtualOverrideOverload class {

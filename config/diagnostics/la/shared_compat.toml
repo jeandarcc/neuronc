@@ -5,10 +5,10 @@ display_name = "Diagnostica de compatibilitate communis"
 inherits_contract = "shared_compat"
 
 [contracts]
-allowed_exact_codes = ["NPP0001", "NPP3001", "NPP9000", "NPP9001", "NPP9002"]
+allowed_exact_codes = ["NR0001", "NR3001", "NR9000", "NR9001", "NR9002"]
 future_addition_rule = "Solum codices compatibilitatis exacti supra recensiti in hoc archivo apparere possunt."
 
-[messages.NPP0001]
+[messages.nr0001]
 severity = "error"
 phase = "generic"
 slug = "legacy_generic_error"
@@ -18,7 +18,7 @@ default_message = "Compilator defecit, sed nulla familia diagnostica certa huic 
 recovery = "Primum locum fontis nuntiatum inspice, deinde diagnosticum ad familiam certam move cum implementatio exactior fiet."
 tags = ["legacy", "fallback", "generic"]
 
-[messages.NPP3001]
+[messages.nr3001]
 severity = "error"
 phase = "config"
 slug = "legacy_project_configuration_error"
@@ -28,7 +28,7 @@ default_message = "Configuratio proiecti invalida aut incompleta est pro operati
 recovery = "Recognosce neuron.toml, occasus moduli, et quemvis apparatum aedificationis vel executionis requisitum prope locum nuntiatum."
 tags = ["legacy", "config", "fallback"]
 
-[messages.NPP9000]
+[messages.nr9000]
 severity = "warning"
 phase = "generic"
 slug = "legacy_generic_warning"
@@ -38,7 +38,7 @@ default_message = "Compilator programma accepit, sed monitionem deprehendit quae
 recovery = "Lege textum monitionis et eam ad familiam monitionum certam migra cum implementatio eam patefaciet."
 tags = ["legacy", "warning", "fallback"]
 
-[messages.NPP9001]
+[messages.nr9001]
 severity = "warning"
 phase = "config"
 slug = "legacy_project_configuration_warning"
@@ -48,7 +48,7 @@ default_message = "Configuratio proiecti cum monitione accepta est."
 recovery = "Recognosce occasum monitum et configurationem astringe si mores determinati requiruntur."
 tags = ["legacy", "warning", "config"]
 
-[messages.NPP9002]
+[messages.nr9002]
 severity = "warning"
 phase = "semantic"
 slug = "unused_binding_warning"

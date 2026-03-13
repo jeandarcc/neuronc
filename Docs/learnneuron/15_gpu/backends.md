@@ -1,6 +1,6 @@
 # GPU Backends
 
-Neuron++ selects GPU computing backends in priority order with CPU fallback.
+Neuron selects GPU computing backends in priority order with CPU fallback.
 
 ---
 

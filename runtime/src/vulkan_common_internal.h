@@ -1,10 +1,10 @@
-#ifndef NPP_RUNTIME_VULKAN_COMMON_INTERNAL_H
-#define NPP_RUNTIME_VULKAN_COMMON_INTERNAL_H
+#ifndef Neuron_RUNTIME_VULKAN_COMMON_INTERNAL_H
+#define Neuron_RUNTIME_VULKAN_COMMON_INTERNAL_H
 
 #include "vulkan_common.h"
 #include "neuron_platform.h"
 
-#if NPP_VK_COMMON_HAS_HEADERS
+#if Neuron_VK_COMMON_HAS_HEADERS
 
 typedef struct {
   NeuronPlatformLibraryHandle loader;

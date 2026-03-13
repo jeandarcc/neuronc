@@ -18,7 +18,7 @@ Place `module` statements at the top of the file, before any code.
 
 ## Module Resolution Order
 
-1. **`src/` directory** — Searches recursively for `<Name>.npp`
+1. **`src/` directory** — Searches recursively for `<Name>.nr`
 2. **`modules/` directory** — Installed package dependencies
 3. **Standard library** — Built-in modules (`System`, `Math`, etc.)
 
@@ -45,7 +45,7 @@ A file cannot import itself — the compiler reports an error.
 
 ## Real Example
 
-From `TensorTest.npp`:
+From `TensorTest.nr`:
 
 ```npp
 module System;

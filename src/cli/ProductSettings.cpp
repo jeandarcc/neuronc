@@ -300,7 +300,7 @@ std::string generateDefaultProductSettings(const std::string &projectName) {
      << "product_version = \"1.0.0\"\n"
      << "product_build_version = 1\n"
      << "product_publisher = \"\"\n"
-     << "product_description = \"A Neuron++ application\"\n"
+     << "product_description = \"A Neuron application\"\n"
      << "product_website = \"\"\n"
      << "\n"
      << "# ── Branding ──\n"

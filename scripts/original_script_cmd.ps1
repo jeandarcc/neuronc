@@ -1,7 +1,7 @@
 $ErrorActionPreference = "Stop"
 
 $env:Path = "C:\msys64\mingw64\bin;C:\msys64\usr\bin;" + $env:Path
-$runtimeDefines = @("-DNPP_ENABLE_CUDA_BACKEND=1", "-DNPP_ENABLE_VULKAN_BACKEND=1")
+$runtimeDefines = @("-DNeuron_ENABLE_CUDA_BACKEND=1", "-DNeuron_ENABLE_VULKAN_BACKEND=1")
 $includes = @("-Iruntime/include", "-Iruntime/src")
 gcc -c runtime/src/runtime.c $includes $runtimeDefines -o runtime/runtime.o
 gcc -c runtime/src/gpu.c $includes $runtimeDefines -o runtime/gpu.o

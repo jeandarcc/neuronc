@@ -1,6 +1,6 @@
 # Arithmetic Operators
 
-Neuron++ supports standard arithmetic operations plus a special matrix multiplication operator.
+Neuron supports standard arithmetic operations plus a special matrix multiplication operator.
 
 ---
 

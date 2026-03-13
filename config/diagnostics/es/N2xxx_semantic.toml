@@ -5,12 +5,12 @@ display_name = "Diagnósticos semánticos"
 inherits_contract = "N2xxx_semantic"
 
 [contracts]
-allowed_exact_codes = ["NPP2001"]
+allowed_exact_codes = ["NR2001"]
 allowed_n_range = "2000-2499"
 allowed_w_range = "2000-2099"
 future_addition_rule = "Solo N2000-N2499, W2000-W2099 y el código semántico legado exacto enumerado arriba pueden aparecer en este archivo."
 
-[messages.NPP2001]
+[messages.nr2001]
 severity = "error"
 phase = "semantic"
 slug = "legacy_semantic_error"

@@ -1,6 +1,6 @@
 # Ownership
 
-Neuron++ provides a clear ownership model through its memory primitives.
+Neuron provides a clear ownership model through its memory primitives.
 
 ---
 

@@ -8,18 +8,18 @@ Rules that control file-level organization and project structure.
 
 | Rule | Default | Effect |
 |------|---------|--------|
-| `max_classes_per_file` | `1` | At most 1 class per `.npp` file |
+| `max_classes_per_file` | `1` | At most 1 class per `.nr` file |
 | `max_lines_per_file` | `1000` | Maximum source file length |
-| `forbid_root_scripts` | `true` | `.npp` files cannot exist in the project root |
+| `forbid_root_scripts` | `true` | `.nr` files cannot exist in the project root |
 
 ---
 
 ## `max_classes_per_file = 1`
 
-The most fundamental structural rule in Neuron++. Each `.npp` file contains exactly **one class**.
+The most fundamental structural rule in Neuron. Each `.nr` file contains exactly **one class**.
 
 ```npp
-// ✅ Player.npp — one class
+// ✅ Player.nr — one class
 Player public class {
     health private is 100 as int;
 }
@@ -30,7 +30,7 @@ Enemy public class { }
 ```
 
 ```
-neuronc: error: Multiple classes defined in module. Each .npp file may
+neuronc: error: Multiple classes defined in module. Each .nr file may
 contain only one class.
 ```
 
@@ -43,7 +43,7 @@ contain only one class.
 No source file can exceed 1000 lines.
 
 ```
-neuronc: error: File 'src/Engine.npp' exceeds maximum allowed length
+neuronc: error: File 'src/Engine.nr' exceeds maximum allowed length
 (1000 lines). Configure max_lines_per_file in .neuronsettings.
 ```
 
@@ -53,11 +53,11 @@ neuronc: error: File 'src/Engine.npp' exceeds maximum allowed length
 
 ## `forbid_root_scripts = true`
 
-`.npp` files cannot be placed directly in the project root directory. They must live in subdirectories like `src/`, `modules/`, or `tests/`.
+`.nr` files cannot be placed directly in the project root directory. They must live in subdirectories like `src/`, `modules/`, or `tests/`.
 
 ```
 Error: Scripts cannot live at repository root when
-forbid_root_scripts = true: 'MyCode.npp'.
+forbid_root_scripts = true: 'MyCode.nr'.
 For agents: Move root scripts under folders like src/, modules/, or tests/.
 ```
 

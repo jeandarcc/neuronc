@@ -3,7 +3,7 @@
 #include <stdio.h>
 #include <string.h>
 
-#if NPP_VK_COMMON_HAS_HEADERS
+#if Neuron_VK_COMMON_HAS_HEADERS
 
 int initialize_runtime(NeuronGpuScopeMode scope_mode,
                        NeuronGpuDeviceClass preferred_device_class,

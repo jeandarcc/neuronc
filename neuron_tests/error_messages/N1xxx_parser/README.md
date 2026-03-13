@@ -12,11 +12,11 @@ This folder covers the quality of parser-facing diagnostics: syntax errors, reco
 | `N1100-N1499` | malformed expression/statement/declaration/type diagnostics |
 | `N1500-N1599` | incomplete-source and recovery diagnostics |
 | `W1000-W1099` | recovery warnings |
-| `NPP1001`, `NPP1002` | current fallbacks |
+| `NR1001`, `NR1002` | current fallbacks |
 
 ## Test List
 
-| Name | `.npp` input code | Expected output or error | Why important |
+| Name | `.nr` input code | Expected output or error | Why important |
 | --- | --- | --- | --- |
 | `diag_parser__missing_semicolon_message` | `x is 1\ny is 2;` | Diagnostic explains statement terminator expectation and points near line 1 end | Common user error; wording must be actionable |
 | `diag_parser__unterminated_string_span` | `name is "Neuron;` | Diagnostic points at string start or end consistently with `N1000-N1099` | Span quality matters more than prose polish |

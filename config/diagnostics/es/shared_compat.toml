@@ -5,10 +5,10 @@ display_name = "Diagnósticos de compatibilidad compartida"
 inherits_contract = "shared_compat"
 
 [contracts]
-allowed_exact_codes = ["NPP0001", "NPP3001", "NPP9000", "NPP9001", "NPP9002"]
+allowed_exact_codes = ["NR0001", "NR3001", "NR9000", "NR9001", "NR9002"]
 future_addition_rule = "Solo los códigos de compatibilidad exactos enumerados arriba pueden aparecer en este archivo."
 
-[messages.NPP0001]
+[messages.nr0001]
 severity = "error"
 phase = "generic"
 slug = "legacy_generic_error"
@@ -18,7 +18,7 @@ default_message = "El compilador falló, pero aún no se ha asignado ninguna fam
 recovery = "Inspeccione primero la ubicación del código fuente reportado y luego mueva el diagnóstico a una familia específica cuando la implementación sea más precisa."
 tags = ["legacy", "fallback", "generic"]
 
-[messages.NPP3001]
+[messages.nr3001]
 severity = "error"
 phase = "config"
 slug = "legacy_project_configuration_error"
@@ -28,7 +28,7 @@ default_message = "La configuración del proyecto es inválida o incompleta para
 recovery = "Revise neuron.toml, ajustes del módulo y cualquier configuración de construcción o ejecución requerida cerca de la ubicación reportada."
 tags = ["legacy", "config", "fallback"]
 
-[messages.NPP9000]
+[messages.nr9000]
 severity = "warning"
 phase = "generic"
 slug = "legacy_generic_warning"
@@ -38,7 +38,7 @@ default_message = "El compilador aceptó el programa, pero detectó una adverten
 recovery = "Lea el texto de la advertencia y mígrelo a una familia de advertencias específica una vez que la implementación exponga una."
 tags = ["legacy", "warning", "fallback"]
 
-[messages.NPP9001]
+[messages.nr9001]
 severity = "warning"
 phase = "config"
 slug = "legacy_project_configuration_warning"
@@ -48,7 +48,7 @@ default_message = "La configuración del proyecto fue aceptada con una advertenc
 recovery = "Revise el ajuste advertido y ajuste la configuración si se requiere un comportamiento determinista."
 tags = ["legacy", "warning", "config"]
 
-[messages.NPP9002]
+[messages.nr9002]
 severity = "warning"
 phase = "semantic"
 slug = "unused_binding_warning"

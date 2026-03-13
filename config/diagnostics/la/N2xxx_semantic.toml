@@ -5,12 +5,12 @@ display_name = "Diagnostica semantica"
 inherits_contract = "N2xxx_semantic"
 
 [contracts]
-allowed_exact_codes = ["NPP2001"]
+allowed_exact_codes = ["NR2001"]
 allowed_n_range = "2000-2499"
 allowed_w_range = "2000-2099"
 future_addition_rule = "Solum N2000-N2499, W2000-W2099, et codex semanticus priscae exactus supra recensitus in hoc archivo apparere possunt."
 
-[messages.NPP2001]
+[messages.nr2001]
 severity = "error"
 phase = "semantic"
 slug = "legacy_semantic_error"

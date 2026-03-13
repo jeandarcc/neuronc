@@ -1,6 +1,6 @@
 # Tensor Core (`runtime/src/tensor.c` & `runtime/src/tensor/`)
 
-The Tensor subsystem is the mathematical heart of the Neuron++ runtime. It handles
+The Tensor subsystem is the mathematical heart of the Neuron runtime. It handles
 N-dimensional array representation, memory layouts, strides, broadcasting, and
 high-performance mathematical operations.
 
@@ -17,7 +17,7 @@ by the GCC/Clang compilers.
 
 ## Data Layout & Contiguity
 
-Tensors in NPP are not always contiguous in memory. A tensor is defined by:
+Tensors in Neuron are not always contiguous in memory. A tensor is defined by:
 - A `data` pointer
 - A shape array (e.g. `[128, 64]`)
 - A stride array (e.g. `[64, 1]`)

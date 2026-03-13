@@ -21,11 +21,11 @@ Covered rules:
 | `N2000-N2099` | direct type mismatch or invalid operator pair |
 | `N2100-N2199` | type-related ambiguity caused by insufficient context |
 | `W2000-W2099` | warning-only type quality issues such as unreachable code or redundant casts |
-| `NPP2001` | current coarse semantic fallback |
+| `NR2001` | current coarse semantic fallback |
 
 ## Test List
 
-| Name | `.npp` input code | Expected output or error | Why important |
+| Name | `.nr` input code | Expected output or error | Why important |
 | --- | --- | --- | --- |
 | `typecheck__valid_integer_arithmetic` | `Init is method() { value is 1 + 2; Print(value); }` | Compiles and prints `3` | Baseline successful typing |
 | `typecheck__invalid_string_plus_int` | `Init is method() { value is "a" + 1; }` | `N2000-N2099` | Classic incompatible operator test |

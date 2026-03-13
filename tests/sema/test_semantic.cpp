@@ -83,7 +83,7 @@ TEST(SemanticRejectsMultipleClassesWhenRuleEnabled) {
       "module System;\n"
       "A is class { x is 1 as int; }\n"
       "B is class { y is 2 as int; }\n",
-      &errors, "ManyClasses.npp");
+      &errors, "ManyClasses.nr");
   ASSERT_TRUE(errors.empty());
   ASSERT_TRUE(ast != nullptr);
 
@@ -111,7 +111,7 @@ TEST(SemanticClassLimitSupportsCustomMax) {
       "module System;\n"
       "A is class { x is 1 as int; }\n"
       "B is class { y is 2 as int; }\n",
-      &errors, "TwoClasses.npp");
+      &errors, "TwoClasses.nr");
   ASSERT_TRUE(errors.empty());
   ASSERT_TRUE(ast != nullptr);
 
@@ -135,7 +135,7 @@ TEST(SemanticInheritanceResolvesBaseMembers) {
       "    return this.age;\n"
       "  }\n"
       "}\n",
-      &errors, "Inheritance.npp");
+      &errors, "Inheritance.nr");
   ASSERT_TRUE(errors.empty());
   ASSERT_TRUE(ast != nullptr);
 
@@ -152,7 +152,7 @@ TEST(SemanticInheritanceRejectsSelfAndDuplicateBases) {
   auto ast = parseForSemanticTests(
       "Dog is class inherits Dog, Animal, Animal {\n"
       "}\n",
-      &errors, "Dog.npp");
+      &errors, "Dog.nr");
   ASSERT_TRUE(errors.empty());
   ASSERT_TRUE(ast != nullptr);
 
@@ -183,7 +183,7 @@ TEST(SemanticMethodNameUppercaseRuleCanBeToggled) {
       "foo is method() {\n"
       "  return;\n"
       "}\n",
-      &errors, "MethodName.npp");
+      &errors, "MethodName.nr");
   ASSERT_TRUE(errors.empty());
   ASSERT_TRUE(ast != nullptr);
 
@@ -201,7 +201,7 @@ TEST(SemanticMethodNameUppercaseRuleCanBeToggled) {
 
 TEST(SemanticRejectsBindingThatUsesExistingMethodName) {
   std::vector<std::string> errors;
-  auto ast = parseForSemanticTests("Print;\n", &errors, "BareMethodName.npp");
+  auto ast = parseForSemanticTests("Print;\n", &errors, "BareMethodName.nr");
   ASSERT_TRUE(errors.empty());
   ASSERT_TRUE(ast != nullptr);
 
@@ -220,7 +220,7 @@ TEST(SemanticRejectsBindingThatUsesExistingMethodName) {
 
 TEST(SemanticTreatsInputAsBuiltinMethodName) {
   std::vector<std::string> errors;
-  auto ast = parseForSemanticTests("Input;\n", &errors, "BareInputName.npp");
+  auto ast = parseForSemanticTests("Input;\n", &errors, "BareInputName.nr");
   ASSERT_TRUE(errors.empty());
   ASSERT_TRUE(ast != nullptr);
 
@@ -243,7 +243,7 @@ TEST(SemanticMethodNameRejectsNonAlnum) {
       "Foo_Bar is method() {\n"
       "  return;\n"
       "}\n",
-      &errors, "MethodUnderscore.npp");
+      &errors, "MethodUnderscore.nr");
   ASSERT_TRUE(errors.empty());
   ASSERT_TRUE(ast != nullptr);
 
@@ -292,19 +292,19 @@ TEST(SemanticTracksDefinitionAndReferencesForBindings) {
       "  Print(value);\n"
       "  value 2;\n"
       "}\n",
-      &errors, "NavBinding.npp");
+      &errors, "NavBinding.nr");
   ASSERT_TRUE(errors.empty());
   ASSERT_TRUE(ast != nullptr);
 
   SemanticAnalyzer sema;
   sema.analyze(ast.get());
 
-  const auto definition = sema.getDefinitionLocation({3, 9, "NavBinding.npp"});
+  const auto definition = sema.getDefinitionLocation({3, 9, "NavBinding.nr"});
   ASSERT_TRUE(definition.has_value());
   ASSERT_EQ(definition->location.line, 2);
   ASSERT_EQ(definition->location.column, 3);
 
-  const auto references = sema.getReferenceLocations({2, 3, "NavBinding.npp"});
+  const auto references = sema.getReferenceLocations({2, 3, "NavBinding.nr"});
   ASSERT_EQ(references.size(), 2u);
   ASSERT_EQ(references[0].location.line, 3);
   ASSERT_EQ(references[1].location.line, 4);
@@ -320,7 +320,7 @@ TEST(SemanticTracksDefinitionForMemberAccessAndParameters) {
       "    return this.value + input;\n"
       "  }\n"
       "}\n",
-      &errors, "NavMember.npp");
+      &errors, "NavMember.nr");
   ASSERT_TRUE(errors.empty());
   ASSERT_TRUE(ast != nullptr);
 
@@ -360,7 +360,7 @@ TEST(SemanticResolvedSymbolsExposeKindsForDefinitionsAndReferences) {
       "    return this.value + input + local;\n"
       "  }\n"
       "}\n",
-      &errors, "ResolvedKinds.npp");
+      &errors, "ResolvedKinds.nr");
   ASSERT_TRUE(errors.empty());
   ASSERT_TRUE(ast != nullptr);
 
@@ -428,14 +428,14 @@ TEST(SemanticProgramViewResolvesImportedSymbolsAcrossFiles) {
       "Box is class {\n"
       "  value is 1 as int;\n"
       "}\n",
-      &errors, "Box.npp");
+      &errors, "Box.nr");
   auto useAst = parseForSemanticTests(
       "module Box;\n"
       "Init is method() as int {\n"
       "  box is Box();\n"
       "  return box.value;\n"
       "}\n",
-      &errors, "UseBox.npp");
+      &errors, "UseBox.nr");
   ASSERT_TRUE(errors.empty());
   ASSERT_TRUE(boxAst != nullptr);
   ASSERT_TRUE(useAst != nullptr);
@@ -457,7 +457,7 @@ TEST(SemanticProgramViewResolvesImportedSymbolsAcrossFiles) {
   auto *member = static_cast<MemberAccessNode *>(returnStmt->value.get());
 
   ProgramView programView;
-  programView.location = {1, 1, "UseBox.npp"};
+  programView.location = {1, 1, "UseBox.nr"};
   programView.moduleName = "UseBox";
   programView.declarations = declarations;
 
@@ -471,14 +471,14 @@ TEST(SemanticProgramViewResolvesImportedSymbolsAcrossFiles) {
   ASSERT_TRUE(classSymbol.has_value());
   ASSERT_EQ(classSymbol->kind, SymbolKind::Class);
   ASSERT_TRUE(classSymbol->definition.has_value());
-  ASSERT_EQ(classSymbol->definition->location.file, "Box.npp");
+  ASSERT_EQ(classSymbol->definition->location.file, "Box.nr");
   ASSERT_EQ(classSymbol->definition->location.line, 1);
 
   const auto fieldSymbol = sema.getResolvedSymbol(member->memberLocation);
   ASSERT_TRUE(fieldSymbol.has_value());
   ASSERT_EQ(fieldSymbol->kind, SymbolKind::Field);
   ASSERT_TRUE(fieldSymbol->definition.has_value());
-  ASSERT_EQ(fieldSymbol->definition->location.file, "Box.npp");
+  ASSERT_EQ(fieldSymbol->definition->location.file, "Box.nr");
   ASSERT_EQ(fieldSymbol->definition->location.line, 2);
   ASSERT_EQ(fieldSymbol->definition->location.column, 3);
   return true;
@@ -490,13 +490,13 @@ TEST(SemanticProgramViewResolvesImportedMethodCallsAcrossFiles) {
       "PrintValue is method(value as int) {\n"
       "  return;\n"
       "}\n",
-      &errors, "Util.npp");
+      &errors, "Util.nr");
   auto useAst = parseForSemanticTests(
       "module Util;\n"
       "Init is method() {\n"
       "  PrintValue(1);\n"
       "}\n",
-      &errors, "UseUtil.npp");
+      &errors, "UseUtil.nr");
   ASSERT_TRUE(errors.empty());
   ASSERT_TRUE(utilAst != nullptr);
   ASSERT_TRUE(useAst != nullptr);
@@ -515,7 +515,7 @@ TEST(SemanticProgramViewResolvesImportedMethodCallsAcrossFiles) {
   auto *callee = static_cast<IdentifierNode *>(call->callee.get());
 
   ProgramView programView;
-  programView.location = {1, 1, "UseUtil.npp"};
+  programView.location = {1, 1, "UseUtil.nr"};
   programView.moduleName = "UseUtil";
   programView.declarations = declarations;
 
@@ -529,7 +529,7 @@ TEST(SemanticProgramViewResolvesImportedMethodCallsAcrossFiles) {
   ASSERT_TRUE(methodSymbol.has_value());
   ASSERT_EQ(methodSymbol->kind, SymbolKind::Method);
   ASSERT_TRUE(methodSymbol->definition.has_value());
-  ASSERT_EQ(methodSymbol->definition->location.file, "Util.npp");
+  ASSERT_EQ(methodSymbol->definition->location.file, "Util.nr");
   ASSERT_EQ(methodSymbol->definition->location.line, 1);
   ASSERT_EQ(methodSymbol->definition->location.column, 1);
   return true;
@@ -544,7 +544,7 @@ TEST(FrontendNavigationApisResolveDefinitionsReferencesAndDocumentSymbols) {
       "  }\n"
       "}\n";
   const std::filesystem::path path =
-      writeNavigationTestFile("npp_frontend_navigation_test.npp", source);
+      writeNavigationTestFile("neuron_frontend_navigation_test.nr", source);
 
   const auto definition =
       frontend::getDefinition(path.string(), 4, 12);
@@ -577,14 +577,14 @@ TEST(SemanticScopeSnapshotTracksVisibleSymbolsByLocation) {
       "  }\n"
       "  Print(value);\n"
       "}\n",
-      &errors, "ScopeSnapshot.npp");
+      &errors, "ScopeSnapshot.nr");
   ASSERT_TRUE(errors.empty());
   ASSERT_TRUE(ast != nullptr);
 
   SemanticAnalyzer sema;
   sema.analyze(ast.get());
 
-  const auto beforeIf = sema.getScopeSnapshot({3, 3, "ScopeSnapshot.npp"});
+  const auto beforeIf = sema.getScopeSnapshot({3, 3, "ScopeSnapshot.nr"});
   ASSERT_TRUE(std::any_of(beforeIf.begin(), beforeIf.end(),
                           [](const VisibleSymbolInfo &info) {
                             return info.name == "value";
@@ -594,7 +594,7 @@ TEST(SemanticScopeSnapshotTracksVisibleSymbolsByLocation) {
                             return info.name == "input";
                           }));
 
-  const auto afterIf = sema.getScopeSnapshot({6, 3, "ScopeSnapshot.npp"});
+  const auto afterIf = sema.getScopeSnapshot({6, 3, "ScopeSnapshot.nr"});
   ASSERT_FALSE(std::any_of(afterIf.begin(), afterIf.end(),
                            [](const VisibleSymbolInfo &info) {
                              return info.name == "inner";
@@ -611,7 +611,7 @@ TEST(SemanticTypeMemberLookupExposesClassMembers) {
       "    return value;\n"
       "  }\n"
       "}\n",
-      &errors, "TypeMembers.npp");
+      &errors, "TypeMembers.nr");
   ASSERT_TRUE(errors.empty());
   ASSERT_TRUE(ast != nullptr);
 
@@ -638,7 +638,7 @@ TEST(SemanticCallableSignaturesExposeParameterNamesAndTypes) {
       "Sum is method(left as int, right as float) as double {\n"
       "  return left + right;\n"
       "}\n",
-      &errors, "SignatureInfo.npp");
+      &errors, "SignatureInfo.nr");
   ASSERT_TRUE(errors.empty());
   ASSERT_TRUE(ast != nullptr);
 
@@ -664,7 +664,7 @@ TEST(SemanticVariableNameEnforcesCSharpStyle) {
       "  _cacheValue is 2 as int;\n"
       "  return;\n"
       "}\n",
-      &errors, "VarNameOk.npp");
+      &errors, "VarNameOk.nr");
   ASSERT_TRUE(errors.empty());
   ASSERT_TRUE(ast != nullptr);
 
@@ -682,7 +682,7 @@ TEST(SemanticVariableNameRejectsUppercaseAndMidUnderscore) {
       "  test_Object is 2 as int;\n"
       "  return;\n"
       "}\n",
-      &errors, "VarNameBad.npp");
+      &errors, "VarNameBad.nr");
   ASSERT_TRUE(errors.empty());
   ASSERT_TRUE(ast != nullptr);
 
@@ -699,7 +699,7 @@ TEST(SemanticRejectsSelfModuleImportWhenStrictNamingEnabled) {
       "Box is class {\n"
       "  value is 0 as int;\n"
       "}\n",
-      &errors, "Box.npp");
+      &errors, "Box.nr");
   ASSERT_TRUE(errors.empty());
   ASSERT_TRUE(ast != nullptr);
 
@@ -724,7 +724,7 @@ TEST(SemanticRejectsLowercaseOrUnderscoreFileStemWhenStrictNamingEnabled) {
   std::vector<std::string> errors;
   auto ast = parseForSemanticTests(
       "Init is method() { return; }\n",
-      &errors, "bad_file.npp");
+      &errors, "bad_file.nr");
   ASSERT_TRUE(errors.empty());
   ASSERT_TRUE(ast != nullptr);
 
@@ -755,7 +755,7 @@ TEST(SemanticRejectsClassFilenameMismatchWhenStrictNamingEnabled) {
       "Vec2 is class {\n"
       "  x is 0 as int;\n"
       "}\n",
-      &errors, "Vector2.npp");
+      &errors, "Vector2.nr");
   ASSERT_TRUE(errors.empty());
   ASSERT_TRUE(ast != nullptr);
 
@@ -784,7 +784,7 @@ TEST(SemanticConstVariableRejectsMutation) {
       "  const count is 2 as int;\n"
       "  count--;\n"
       "}\n",
-      &errors, "ConstMutation.npp");
+      &errors, "ConstMutation.nr");
   ASSERT_TRUE(errors.empty());
   ASSERT_TRUE(ast != nullptr);
 
@@ -809,7 +809,7 @@ TEST(SemanticStaticAssertFalseProducesError) {
       "Init is method() {\n"
       "  static_assert(false, \"must fail\");\n"
       "}\n",
-      &errors, "StaticAssertFail.npp");
+      &errors, "StaticAssertFail.nr");
   ASSERT_TRUE(errors.empty());
   ASSERT_TRUE(ast != nullptr);
 
@@ -835,7 +835,7 @@ TEST(SemanticTypeofExpressionIsValid) {
       "  typeName is typeof(1);\n"
       "  Print(typeName);\n"
       "}\n",
-      &errors, "TypeofOk.npp");
+      &errors, "TypeofOk.nr");
   ASSERT_TRUE(errors.empty());
   ASSERT_TRUE(ast != nullptr);
 
@@ -852,7 +852,7 @@ TEST(SemanticAllowsExternMethodUsage) {
       "Init is method() {\n"
       "  y is cSqrt(9.0);\n"
       "}\n",
-      &errors, "ExternUse.npp");
+      &errors, "ExternUse.nr");
   ASSERT_TRUE(errors.empty());
   ASSERT_TRUE(ast != nullptr);
 
@@ -869,7 +869,7 @@ TEST(SemanticRejectsRemovedModuleCppDeclaration) {
       "Init is method() {\n"
       "  version is Tensorflow.Version() as string;\n"
       "}\n",
-      &errors, "ModuleCppOk.npp");
+      &errors, "ModuleCppOk.nr");
   ASSERT_FALSE(errors.empty());
   ASSERT_TRUE(ast != nullptr);
   ASSERT_TRUE(errors[0].find("modulecpp") != std::string::npos);
@@ -881,7 +881,7 @@ TEST(SemanticRejectsRemovedModuleCppDeclarationWithoutFallback) {
   auto ast = parseForSemanticTests(
       "modulecpp Tensorflow;\n"
       "Init is method() { return; }\n",
-      &errors, "ModuleCppMissing.npp");
+      &errors, "ModuleCppMissing.nr");
   ASSERT_FALSE(errors.empty());
   ASSERT_TRUE(ast != nullptr);
   ASSERT_TRUE(errors[0].find("modulecpp") != std::string::npos);
@@ -897,7 +897,7 @@ TEST(SemanticAcceptsDynamicDeclarationsAndShorthandBindings) {
       "  c as dynamic;\n"
       "  d is 0 as dynamic;\n"
       "}\n",
-      &errors, "DynamicShort.npp");
+      &errors, "DynamicShort.nr");
   ASSERT_TRUE(errors.empty());
   ASSERT_TRUE(ast != nullptr);
 
@@ -915,7 +915,7 @@ TEST(SemanticTreatsRebindingAsAssignmentUpdate) {
       "  a 10;\n"
       "  Print(a);\n"
       "}\n",
-      &errors, "RebindDynamic.npp");
+      &errors, "RebindDynamic.nr");
   ASSERT_TRUE(errors.empty());
   ASSERT_TRUE(ast != nullptr);
 
@@ -938,7 +938,7 @@ TEST(SemanticAcceptsEnumInterfaceStructAndDictionaryType) {
       "Init method() {\n"
       "  palette as Dictionary<string, int>;\n"
       "}\n",
-      &errors, "CSharpDecls.npp");
+      &errors, "CSharpDecls.nr");
   ASSERT_TRUE(errors.empty());
   ASSERT_TRUE(ast != nullptr);
 
@@ -965,7 +965,7 @@ TEST(SemanticAcceptsMatchAndCastPipeline) {
       "    }\n"
       "  }\n"
       "}\n",
-      &errors, "MatchCastOk.npp");
+      &errors, "MatchCastOk.nr");
   ASSERT_TRUE(errors.empty());
   ASSERT_TRUE(ast != nullptr);
 
@@ -983,7 +983,7 @@ TEST(SemanticAcceptsMultiBindingDeclarationAndUpdate) {
       "  y is 2 as int;\n"
       "  x, y is 0;\n"
       "}\n",
-      &errors, "MultiBindOk.npp");
+      &errors, "MultiBindOk.nr");
   ASSERT_TRUE(errors.empty());
   ASSERT_TRUE(ast != nullptr);
 
@@ -1006,7 +1006,7 @@ TEST(SemanticAcceptsMultiSelectorMatchExpression) {
       "  };\n"
       "  Print(result);\n"
       "}\n",
-      &errors, "MultiMatchExprOk.npp");
+      &errors, "MultiMatchExprOk.nr");
   ASSERT_TRUE(errors.empty());
   ASSERT_TRUE(ast != nullptr);
 
@@ -1033,7 +1033,7 @@ TEST(SemanticAcceptsImplicitSingleStatementBodies) {
       "  }\n"
       "  try Print(\"try\"); catch(error) Print(error); finally Print(\"finally\");\n"
       "}\n",
-      &errors, "ImplicitBodiesOk.npp");
+      &errors, "ImplicitBodiesOk.nr");
   ASSERT_TRUE(errors.empty());
   ASSERT_TRUE(ast != nullptr);
 
@@ -1050,7 +1050,7 @@ TEST(SemanticRejectsImpossibleMandatoryCast) {
       "  flag is true as bool;\n"
       "  flag as Tensor<float>;\n"
       "}\n",
-      &errors, "BadCast.npp");
+      &errors, "BadCast.nr");
   ASSERT_TRUE(errors.empty());
   ASSERT_TRUE(ast != nullptr);
 
@@ -1077,7 +1077,7 @@ TEST(SemanticAcceptsGpuBlockInsideMethod) {
       "    value is 1 as int;\n"
       "  }\n"
       "}\n",
-      &errors, "GpuBlockOk.npp");
+      &errors, "GpuBlockOk.nr");
   ASSERT_TRUE(errors.empty());
   ASSERT_TRUE(ast != nullptr);
 
@@ -1097,7 +1097,7 @@ TEST(SemanticNamedArgumentsBindByParameterName) {
       "  result is Sum(second: 2, first: 1);\n"
       "  Print(result);\n"
       "}\n",
-      &errors, "NamedArgsOk.npp");
+      &errors, "NamedArgsOk.nr");
   ASSERT_TRUE(errors.empty());
   ASSERT_TRUE(ast != nullptr);
 
@@ -1117,7 +1117,7 @@ TEST(SemanticNamedArgumentsRejectUnknownParameterName) {
       "  result is Sum(third: 2, first: 1);\n"
       "  Print(result);\n"
       "}\n",
-      &errors, "NamedArgsBad.npp");
+      &errors, "NamedArgsBad.nr");
   ASSERT_TRUE(errors.empty());
   ASSERT_TRUE(ast != nullptr);
 
@@ -1152,7 +1152,7 @@ TEST(SemanticAllowsFusionChainSyntax) {
       "Init is method() {\n"
       "  result is Normalize-Relu-Softmax(1);\n"
       "}\n",
-      &errors, "FusionChainOk.npp");
+      &errors, "FusionChainOk.nr");
   ASSERT_TRUE(errors.empty());
   ASSERT_TRUE(ast != nullptr);
 
@@ -1173,7 +1173,7 @@ TEST(SemanticAllowsRegisteredBuiltinFusionChainSyntax) {
       "      input, kernel, bias, gamma, beta, mean, variance,\n"
       "      0.001, 1, 1, 0, 0);\n"
       "}\n",
-      &errors, "BuiltinFusionChainOk.npp");
+      &errors, "BuiltinFusionChainOk.nr");
   ASSERT_TRUE(errors.empty());
   ASSERT_TRUE(ast != nullptr);
 
@@ -1190,7 +1190,7 @@ TEST(SemanticInputGenericFluentChainAcceptsValidUsage) {
       "  age is Input<int>(\"Age: \").Min(18).Max(99).Default(21).TimeoutMs(5000);\n"
       "  password is Input<string>(\"Password: \").Secret().Default(\"guest\");\n"
       "}\n",
-      &errors, "InputFluentOk.npp");
+      &errors, "InputFluentOk.nr");
   ASSERT_TRUE(errors.empty());
   ASSERT_TRUE(ast != nullptr);
 
@@ -1207,7 +1207,7 @@ TEST(SemanticInputGenericAcceptsEnumUsage) {
       "Init is method() {\n"
       "  choice is Input<Color>(\"Color: \").Default(Color.Green).TimeoutMs(4000);\n"
       "}\n",
-      &errors, "InputEnumOk.npp");
+      &errors, "InputEnumOk.nr");
   ASSERT_TRUE(errors.empty());
   ASSERT_TRUE(ast != nullptr);
 
@@ -1223,7 +1223,7 @@ TEST(SemanticInputDefaultsMissingGenericToString) {
       "Init is method() {\n"
       "  value is Input(\"Enter: \").Secret().Default(\"guest\");\n"
       "}\n",
-      &errors, "InputDefaultStringOk.npp");
+      &errors, "InputDefaultStringOk.nr");
   ASSERT_TRUE(errors.empty());
   ASSERT_TRUE(ast != nullptr);
 
@@ -1239,7 +1239,7 @@ TEST(SemanticInputGenericRejectsInvalidFluentMethodForType) {
       "Init is method() {\n"
       "  name is Input<string>(\"Name: \").Min(2);\n"
       "}\n",
-      &errors, "InputFluentBadType.npp");
+      &errors, "InputFluentBadType.nr");
   ASSERT_TRUE(errors.empty());
   ASSERT_TRUE(ast != nullptr);
 
@@ -1266,7 +1266,7 @@ TEST(SemanticInputGenericRejectsSecretForEnumType) {
       "Init is method() {\n"
       "  choice is Input<Color>(\"Color: \").Secret();\n"
       "}\n",
-      &errors, "InputEnumSecretBad.npp");
+      &errors, "InputEnumSecretBad.nr");
   ASSERT_TRUE(errors.empty());
   ASSERT_TRUE(ast != nullptr);
 
@@ -1292,7 +1292,7 @@ TEST(SemanticInputGenericRejectsInvalidGenericArity) {
       "Init is method() {\n"
       "  age is Input<int, float>(\"Age: \").Default(\"oops\");\n"
       "}\n",
-      &errors, "InputFluentBadGeneric.npp");
+      &errors, "InputFluentBadGeneric.nr");
   ASSERT_TRUE(errors.empty());
   ASSERT_TRUE(ast != nullptr);
 
@@ -1318,7 +1318,7 @@ TEST(SemanticInputGenericRejectsInvalidDefaultType) {
       "Init is method() {\n"
       "  age is Input<int>(\"Age: \").Default(\"oops\");\n"
       "}\n",
-      &errors, "InputFluentBadDefault.npp");
+      &errors, "InputFluentBadDefault.nr");
   ASSERT_TRUE(errors.empty());
   ASSERT_TRUE(ast != nullptr);
 
@@ -1344,7 +1344,7 @@ TEST(SemanticMethodNameMinLengthRuleRejectsShortNames) {
       "Ab is method() {\n"
       "  return;\n"
       "}\n",
-      &errors, "ShortMethod.npp");
+      &errors, "ShortMethod.nr");
   ASSERT_TRUE(errors.empty());
   ASSERT_TRUE(ast != nullptr);
 
@@ -1361,7 +1361,7 @@ TEST(SemanticClassVisibilityRuleRequiresExplicitModifier) {
   auto ast = parseForSemanticTests(
       "Thing is class {\n"
       "}\n",
-      &errors, "ClassVisibility.npp");
+      &errors, "ClassVisibility.nr");
   ASSERT_TRUE(errors.empty());
   ASSERT_TRUE(ast != nullptr);
 
@@ -1381,7 +1381,7 @@ TEST(SemanticPropertyVisibilityRuleRequiresExplicitModifier) {
       "    return value;\n"
       "  }\n"
       "}\n",
-      &errors, "MemberVisibility.npp");
+      &errors, "MemberVisibility.nr");
   ASSERT_TRUE(errors.empty());
   ASSERT_TRUE(ast != nullptr);
 
@@ -1399,7 +1399,7 @@ TEST(SemanticConstUppercaseRuleAllowsUpperSnakeCase) {
       "  const MAX_BUFFER_SIZE is 4 as int;\n"
       "  return;\n"
       "}\n",
-      &errors, "ConstUpperOk.npp");
+      &errors, "ConstUpperOk.nr");
   ASSERT_TRUE(errors.empty());
   ASSERT_TRUE(ast != nullptr);
 
@@ -1417,7 +1417,7 @@ TEST(SemanticConstUppercaseRuleRejectsLowercaseConst) {
       "  const maxBufferSize is 4 as int;\n"
       "  return;\n"
       "}\n",
-      &errors, "ConstUpperBad.npp");
+      &errors, "ConstUpperBad.nr");
   ASSERT_TRUE(errors.empty());
   ASSERT_TRUE(ast != nullptr);
 
@@ -1437,7 +1437,7 @@ TEST(SemanticMaxLinesPerMethodRuleRejectsLongMethod) {
       "  c is 3 as int;\n"
       "  d is 4 as int;\n"
       "}\n",
-      &errors, "MethodLength.npp");
+      &errors, "MethodLength.nr");
   ASSERT_TRUE(errors.empty());
   ASSERT_TRUE(ast != nullptr);
 
@@ -1457,7 +1457,7 @@ TEST(SemanticMaxLinesPerBlockRuleRejectsLongBlock) {
       "    b is 2 as int;\n"
       "  }\n"
       "}\n",
-      &errors, "BlockLength.npp");
+      &errors, "BlockLength.nr");
   ASSERT_TRUE(errors.empty());
   ASSERT_TRUE(ast != nullptr);
 
@@ -1482,7 +1482,7 @@ TEST(SemanticMaxNestingDepthRuleRejectsDeepControlFlow) {
       "    }\n"
       "  }\n"
       "}\n",
-      &errors, "NestingDepth.npp");
+      &errors, "NestingDepth.nr");
   ASSERT_TRUE(errors.empty());
   ASSERT_TRUE(ast != nullptr);
 
@@ -1499,7 +1499,7 @@ TEST(SemanticPublicMethodDocsRuleRequiresSummaryComments) {
       "  return;\n"
       "}\n";
   std::vector<std::string> errors;
-  auto ast = parseForSemanticTests(source, &errors, "PublicDocsBad.npp");
+  auto ast = parseForSemanticTests(source, &errors, "PublicDocsBad.nr");
   ASSERT_TRUE(errors.empty());
   ASSERT_TRUE(ast != nullptr);
 
@@ -1520,7 +1520,7 @@ TEST(SemanticPublicMethodDocsRuleAcceptsSummaryComments) {
       "  return;\n"
       "}\n";
   std::vector<std::string> errors;
-  auto ast = parseForSemanticTests(source, &errors, "PublicDocsOk.npp");
+  auto ast = parseForSemanticTests(source, &errors, "PublicDocsOk.nr");
   ASSERT_TRUE(errors.empty());
   ASSERT_TRUE(ast != nullptr);
 
@@ -1542,7 +1542,7 @@ TEST(SemanticCanvasRejectsDuplicateInlineEventHandlers) {
       "    OnFrame { Print(\"b\"); }\n"
       "  }\n"
       "}\n",
-      &errors, "CanvasDuplicateInline.npp");
+      &errors, "CanvasDuplicateInline.nr");
   ASSERT_TRUE(errors.empty());
   ASSERT_TRUE(ast != nullptr);
 
@@ -1573,7 +1573,7 @@ TEST(SemanticCanvasRejectsParameterizedInlineEventHandler) {
       "    }\n"
       "  }\n"
       "}\n",
-      &errors, "CanvasInlineParams.npp");
+      &errors, "CanvasInlineParams.nr");
   ASSERT_TRUE(errors.empty());
   ASSERT_TRUE(ast != nullptr);
 
@@ -1605,7 +1605,7 @@ TEST(SemanticCanvasRejectsExternalHandlerWithNonVoidReturn) {
       "    OnClose { Print(\"done\"); }\n"
       "  }\n"
       "}\n",
-      &errors, "CanvasExternalReturn.npp");
+      &errors, "CanvasExternalReturn.nr");
   ASSERT_TRUE(errors.empty());
   ASSERT_TRUE(ast != nullptr);
 
@@ -1637,7 +1637,7 @@ TEST(SemanticCanvasAllowsInlineAndExternalForSameEvent) {
       "    OnFrame { Print(\"inline\"); }\n"
       "  }\n"
       "}\n",
-      &errors, "CanvasInlinePrecedence.npp");
+      &errors, "CanvasInlinePrecedence.nr");
   ASSERT_TRUE(errors.empty());
   ASSERT_TRUE(ast != nullptr);
 
@@ -1654,7 +1654,7 @@ TEST(SemanticRejectsUninitializedVariableRead) {
       "  value as int;\n"
       "  return value;\n"
       "}\n",
-      &errors, "UninitializedRead.npp");
+      &errors, "UninitializedRead.nr");
   ASSERT_TRUE(errors.empty());
   ASSERT_TRUE(ast != nullptr);
 
@@ -1684,7 +1684,7 @@ TEST(SemanticRejectsPossiblyUninitializedVariableAfterBranch) {
       "  }\n"
       "  return value;\n"
       "}\n",
-      &errors, "MaybeUninitialized.npp");
+      &errors, "MaybeUninitialized.nr");
   ASSERT_TRUE(errors.empty());
   ASSERT_TRUE(ast != nullptr);
 
@@ -1711,7 +1711,7 @@ TEST(SemanticRejectsNullUnsafeUse) {
       "  value is null;\n"
       "  Print(value.Length);\n"
       "}\n",
-      &errors, "NullUnsafeUse.npp");
+      &errors, "NullUnsafeUse.nr");
   ASSERT_TRUE(errors.empty());
   ASSERT_TRUE(ast != nullptr);
 
@@ -1741,7 +1741,7 @@ TEST(SemanticRejectsPossiblyNullUseAfterBranch) {
       "  }\n"
       "  Print(value.Length);\n"
       "}\n",
-      &errors, "MaybeNullUse.npp");
+      &errors, "MaybeNullUse.nr");
   ASSERT_TRUE(errors.empty());
   ASSERT_TRUE(ast != nullptr);
 
@@ -1768,7 +1768,7 @@ TEST(SemanticRejectsUnreachableCodeAfterReturn) {
       "  return;\n"
       "  Print(\"dead\");\n"
       "}\n",
-      &errors, "UnreachableAfterReturn.npp");
+      &errors, "UnreachableAfterReturn.nr");
   ASSERT_TRUE(errors.empty());
   ASSERT_TRUE(ast != nullptr);
 
@@ -1795,7 +1795,7 @@ TEST(SemanticShaderRequiresFragmentStage) {
       "    return position;\n"
       "  }\n"
       "}\n",
-      &errors, "ShaderMissingFragment.npp");
+      &errors, "ShaderMissingFragment.nr");
   ASSERT_TRUE(errors.empty());
   ASSERT_TRUE(ast != nullptr);
 
@@ -1827,7 +1827,7 @@ TEST(SemanticShaderRejectsPassMismatchWithFragmentParams) {
       "    return normal;\n"
       "  }\n"
       "}\n",
-      &errors, "ShaderPassMismatch.npp");
+      &errors, "ShaderPassMismatch.nr");
   ASSERT_TRUE(errors.empty());
   ASSERT_TRUE(ast != nullptr);
 
@@ -1872,7 +1872,7 @@ TEST(SemanticCanvasOnFrameAcceptsTypedGraphicsV2Commands) {
       "    }\n"
       "  }\n"
       "}\n",
-      &errors, "GraphicsV2TypedCanvas.npp");
+      &errors, "GraphicsV2TypedCanvas.nr");
   ASSERT_TRUE(errors.empty());
   ASSERT_TRUE(ast != nullptr);
 
@@ -1898,7 +1898,7 @@ TEST(SemanticRejectsInvalidMaterialBindingName) {
       "  material is Material<BasicLit>();\n"
       "  material.albedo is Color(1.0, 1.0, 1.0, 1.0);\n"
       "}\n",
-      &errors, "GraphicsMaterialBindingMismatch.npp");
+      &errors, "GraphicsMaterialBindingMismatch.nr");
   ASSERT_TRUE(errors.empty());
   ASSERT_TRUE(ast != nullptr);
 
@@ -1940,7 +1940,7 @@ TEST(SemanticAcceptsSamplerBindingsOnShadersAndMaterials) {
       "  material.albedo is texture;\n"
       "  material.linearSampler is sampler;\n"
       "}\n",
-      &errors, "GraphicsSamplerBindings.npp");
+      &errors, "GraphicsSamplerBindings.nr");
   ASSERT_TRUE(errors.empty());
   ASSERT_TRUE(ast != nullptr);
 
@@ -1965,7 +1965,7 @@ TEST(SemanticAcceptsTextureSamplingInFragmentStage) {
       "    return albedo.Sample(linearSampler, uv) * tint;\n"
       "  }\n"
       "}\n",
-      &errors, "GraphicsTextureSampling.npp");
+      &errors, "GraphicsTextureSampling.nr");
   ASSERT_TRUE(errors.empty());
   ASSERT_TRUE(ast != nullptr);
 
@@ -1988,7 +1988,7 @@ TEST(SemanticRejectsTextureSamplingOutsideFragmentStage) {
       "    return Color(1.0, 1.0, 1.0, 1.0);\n"
       "  }\n"
       "}\n",
-      &errors, "GraphicsTextureSampleInVertex.npp");
+      &errors, "GraphicsTextureSampleInVertex.nr");
   ASSERT_TRUE(errors.empty());
   ASSERT_TRUE(ast != nullptr);
 
@@ -2039,7 +2039,7 @@ TEST(SemanticAcceptsScene2DFlowInsideOnFrame) {
       "    }\n"
       "  }\n"
       "}\n",
-      &errors, "Scene2DFlow.npp");
+      &errors, "Scene2DFlow.nr");
   ASSERT_TRUE(errors.empty());
   ASSERT_TRUE(ast != nullptr);
 
@@ -2057,7 +2057,7 @@ TEST(SemanticRejectsRenderer2DRenderOutsideFrame) {
       "  renderer is Renderer2D.Create();\n"
       "  renderer.Render(scene);\n"
       "}\n",
-      &errors, "Scene2DRenderOutsideFrame.npp");
+      &errors, "Scene2DRenderOutsideFrame.nr");
   ASSERT_TRUE(errors.empty());
   ASSERT_TRUE(ast != nullptr);
 
@@ -2086,7 +2086,7 @@ TEST(SemanticRejectsDuplicateBuiltInScene2DComponents) {
       "  entity.AddSpriteRenderer2D();\n"
       "  entity.AddSpriteRenderer2D();\n"
       "}\n",
-      &errors, "Scene2DDuplicateComponent.npp");
+      &errors, "Scene2DDuplicateComponent.nr");
   ASSERT_TRUE(errors.empty());
   ASSERT_TRUE(ast != nullptr);
 
@@ -2118,7 +2118,7 @@ TEST(SemanticRejectsTransformParentCycles) {
       "  childTransform.SetParent(parentEntity);\n"
       "  parentTransform.SetParent(childEntity);\n"
       "}\n",
-      &errors, "Scene2DParentCycle.npp");
+      &errors, "Scene2DParentCycle.nr");
   ASSERT_TRUE(errors.empty());
   ASSERT_TRUE(ast != nullptr);
 
@@ -2154,7 +2154,7 @@ TEST(SemanticRejectsSamplerBindingTypeMismatch) {
       "  material is Material<Textured>();\n"
       "  material.linearSampler is Color(1.0, 1.0, 1.0, 1.0);\n"
       "}\n",
-      &errors, "GraphicsSamplerBindingMismatch.npp");
+      &errors, "GraphicsSamplerBindingMismatch.nr");
   ASSERT_TRUE(errors.empty());
   ASSERT_TRUE(ast != nullptr);
 
@@ -2190,7 +2190,7 @@ TEST(SemanticRejectsMatrixBindingTypeMismatch) {
       "  material is Material<Effect>();\n"
       "  material.transform is Color(1.0, 1.0, 1.0, 1.0);\n"
       "}\n",
-      &errors, "GraphicsMatrixBindingMismatch.npp");
+      &errors, "GraphicsMatrixBindingMismatch.nr");
   ASSERT_TRUE(errors.empty());
   ASSERT_TRUE(ast != nullptr);
 
@@ -2224,7 +2224,7 @@ TEST(SemanticRejectsDirectShaderInstantiationN2011) {
       "Init method() {\n"
       "  bad is Effect();\n"
       "}\n",
-      &errors, "ShaderDirectInstantiation.npp");
+      &errors, "ShaderDirectInstantiation.nr");
   ASSERT_TRUE(errors.empty());
   ASSERT_TRUE(ast != nullptr);
 
@@ -2261,7 +2261,7 @@ TEST(SemanticAcceptsShaderDescriptorStaticMethodCall) {
       "Init method() {\n"
       "  tintColor is Effect.DefaultTint();\n"
       "}\n",
-      &errors, "ShaderStaticDescriptorMethod.npp");
+      &errors, "ShaderStaticDescriptorMethod.nr");
   ASSERT_TRUE(errors.empty());
   ASSERT_TRUE(ast != nullptr);
 
@@ -2287,7 +2287,7 @@ TEST(SemanticRejectsPassInCpuSideDescriptorMethod) {
       "    return Color(1.0, 1.0, 1.0, 1.0);\n"
       "  }\n"
       "}\n",
-      &errors, "ShaderCpuMethodPassInvalid.npp");
+      &errors, "ShaderCpuMethodPassInvalid.nr");
   ASSERT_TRUE(errors.empty());
   ASSERT_TRUE(ast != nullptr);
 
@@ -2320,7 +2320,7 @@ TEST(SemanticRejectsMvpInCpuSideDescriptorMethod) {
       "    return Color(1.0, 1.0, 1.0, 1.0);\n"
       "  }\n"
       "}\n",
-      &errors, "ShaderCpuMethodMvpInvalid.npp");
+      &errors, "ShaderCpuMethodMvpInvalid.nr");
   ASSERT_TRUE(errors.empty());
   ASSERT_TRUE(ast != nullptr);
 
@@ -2346,7 +2346,7 @@ TEST(SemanticRejectsLegacyGraphicsDrawApi) {
       "Init method() {\n"
       "  Graphics.Draw(null, null);\n"
       "}\n",
-      &errors, "LegacyGraphicsDraw.npp");
+      &errors, "LegacyGraphicsDraw.nr");
   ASSERT_TRUE(errors.empty());
   ASSERT_TRUE(ast != nullptr);
 
@@ -2373,13 +2373,13 @@ TEST(SemanticModuleMemberLookupResolvesQualifiedMethodAccess) {
       "Sqrt is method(value as int) as int {\n"
       "  return value;\n"
       "}\n",
-      &errors, "Math.npp");
+      &errors, "Math.nr");
   auto useAst = parseForSemanticTests(
       "module Math;\n"
       "Init is method() as int {\n"
       "  return Math.Sqrt(9);\n"
       "}\n",
-      &errors, "UseMath.npp");
+      &errors, "UseMath.nr");
   ASSERT_TRUE(errors.empty());
   ASSERT_TRUE(mathAst != nullptr);
   ASSERT_TRUE(useAst != nullptr);
@@ -2399,7 +2399,7 @@ TEST(SemanticModuleMemberLookupResolvesQualifiedMethodAccess) {
   auto *callee = static_cast<MemberAccessNode *>(call->callee.get());
 
   ProgramView programView;
-  programView.location = {1, 1, "UseMath.npp"};
+  programView.location = {1, 1, "UseMath.nr"};
   programView.moduleName = "UseMath";
   programView.declarations = declarations;
 
@@ -2420,13 +2420,13 @@ TEST(SemanticExpandModuleInjectsMembersIntoGlobalScope) {
       "DoubleIt is method(value as int) as int {\n"
       "  return value + value;\n"
       "}\n",
-      &errors, "MathCore.npp");
+      &errors, "MathCore.nr");
   auto useAst = parseForSemanticTests(
       "expand module MathCore;\n"
       "Init is method() as int {\n"
       "  return DoubleIt(4);\n"
       "}\n",
-      &errors, "UseExpand.npp");
+      &errors, "UseExpand.nr");
   ASSERT_TRUE(errors.empty());
   ASSERT_TRUE(coreAst != nullptr);
   ASSERT_TRUE(useAst != nullptr);
@@ -2446,7 +2446,7 @@ TEST(SemanticExpandModuleInjectsMembersIntoGlobalScope) {
   auto *callee = static_cast<IdentifierNode *>(call->callee.get());
 
   ProgramView programView;
-  programView.location = {1, 1, "UseExpand.npp"};
+  programView.location = {1, 1, "UseExpand.nr"};
   programView.moduleName = "UseExpand";
   programView.declarations = declarations;
 
@@ -2467,7 +2467,7 @@ TEST(SemanticCaretPowInfersFloatType) {
       "Init is method() {\n"
       "  value is 2 ^ 3;\n"
       "}\n",
-      &errors, "CaretPow.npp");
+      &errors, "CaretPow.nr");
   ASSERT_TRUE(errors.empty());
   ASSERT_TRUE(ast != nullptr);
 
@@ -2489,7 +2489,7 @@ TEST(SemanticCaretCaretRejectsNonIntegerRhs) {
       "Init is method() {\n"
       "  value is 9 ^^ 2.5;\n"
       "}\n",
-      &errors, "CaretRootBad.npp");
+      &errors, "CaretRootBad.nr");
   ASSERT_TRUE(errors.empty());
   ASSERT_TRUE(ast != nullptr);
 
@@ -2513,7 +2513,7 @@ TEST(SemanticExternDeclarationAnalyzesWithoutBody) {
   std::vector<std::string> errors;
   auto ast = parseForSemanticTests(
       "extern FileExists method(path as string) as bool;\n",
-      &errors, "ExternContract.npp");
+      &errors, "ExternContract.nr");
   ASSERT_TRUE(errors.empty());
   ASSERT_TRUE(ast != nullptr);
 
@@ -2528,7 +2528,7 @@ TEST(SemanticInlineSymbolExternDeclarationAnalyzesWithoutBody) {
   std::vector<std::string> errors;
   auto ast = parseForSemanticTests(
       "extern(\"fs_file_exists\") FileExists method(path as string) as bool;\n",
-      &errors, "ExternInlineContract.npp");
+      &errors, "ExternInlineContract.nr");
   ASSERT_TRUE(errors.empty());
   ASSERT_TRUE(ast != nullptr);
 

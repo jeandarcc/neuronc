@@ -184,7 +184,7 @@ public:
   }
 
   bool initialize(const InstallManifest &manifest) override {
-    const char *className = "NPPInstallerClass";
+    const char *className = "NeuronInstallerClass";
     WNDCLASSA wc = {};
     wc.lpfnWndProc = WndProc;
     wc.hInstance = GetModuleHandle(NULL);

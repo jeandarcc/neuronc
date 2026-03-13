@@ -1,6 +1,6 @@
 # How to Write a Compiler Pass
 
-Passes in Neuron++ operate at two levels: **NIR passes** (optimizer) and
+Passes in Neuron operate at two levels: **NIR passes** (optimizer) and
 **Sema passes** (semantic analysis). This guide covers both.
 
 ---
@@ -51,7 +51,7 @@ target_sources(neuronc_nir PRIVATE
 The pass can be tested by dumping NIR before/after:
 
 ```powershell
-neuron nir path/to/test.npp   # dumps NIR to stdout
+neuron nir path/to/test.nr   # dumps NIR to stdout
 ```
 
 Use `src/nir/OptimizerUtils.cpp` utilities for common patterns (instruction
@@ -123,7 +123,7 @@ Add a test in `tests/sema/` or `tests/nir/`:
 
 ```cpp
 TEST("MyPass: <description>") {
-    auto result = compile("... .npp snippet ...");
+    auto result = compile("... .nr snippet ...");
     // Assert no diagnostics, or specific diagnostics
     EXPECT_CLEAN(result);
 }

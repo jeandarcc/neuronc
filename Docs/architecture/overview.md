@@ -1,8 +1,8 @@
-# Neuron++ Compiler Architecture Overview
+# Neuron Compiler Architecture Overview
 
-## What is Neuron++?
+## What is Neuron?
 
-Neuron++ (NPP) is a statically-typed, ahead-of-time compiled systems language
+Neuron (Neuron) is a statically-typed, ahead-of-time compiled systems language
 targeting native performance (via LLVM), Vulkan/WebGPU GPU compute, and WASM.
 The compiler toolchain consists of three main executables:
 
@@ -85,7 +85,7 @@ src/lexer  src/parser  src/sema    src/nir    src/mir
 ## Data Flow Summary
 
 ```
-Source (.npp)
+Source (.nr)
   → Lexer (Tokens)
   → Parser (AST)
   → Frontend (source + diagnostic setup)

@@ -1,21 +1,21 @@
-# Neuron++ Language Guide
+?# Neuron Language Guide
 
 ## Overview
 
-Neuron++ (NPP) is a high-performance, compiled programming language designed for artificial intelligence, scientific computing, and GPU-accelerated workloads. It combines the raw performance of C++ with the readability of modern high-level languages.
+Neuron (Neuron) is a high-performance, compiled programming language designed for artificial intelligence, scientific computing, and GPU-accelerated workloads. It combines the raw performance of C++ with the readability of modern high-level languages.
 
 ### Execution Paths
 
-Neuron++ supports **two execution paths**:
+Neuron supports **two execution paths**:
 
 **1. LLVM Native Compilation** — For maximum performance production builds:
 ```
-Neuron++ Source → Lexer → Parser → AST → Semantic Analysis → NIR → LLVM IR → Native Binary
+Neuron Source → Lexer → Parser → AST → Semantic Analysis → NIR → LLVM IR → Native Binary
 ```
 
 **2. NCON Bytecode Containers** — For sandboxed, portable, and hot-reloadable execution:
 ```
-Neuron++ Source → Lexer → Parser → AST → NIR → Bytecode → .ncon Container → VM Execution
+Neuron Source → Lexer → Parser → AST → NIR → Bytecode → .ncon Container → VM Execution
 ```
 
 The NCON path compiles source into portable bytecode containers (`.ncon` files) that run inside a sandboxed virtual machine with security isolation, resource control, and live hot-reload support. This is the default path used by `neuron run` and `neuron ncon watch`.
@@ -28,7 +28,7 @@ The NCON path compiles source into portable bytecode containers (`.ncon` files) 
 
 All variable declarations and assignments use the `is` keyword:
 
-```npp
+```nr
 x is 10;
 y is 3.14 as float;
 name is "Neuron" as string;
@@ -38,7 +38,7 @@ name is "Neuron" as string;
 
 Explicit types are specified with `as`. When omitted, the compiler infers the type automatically:
 
-```npp
+```nr
 counter is 0 as int;       // explicit type
 ratio is 0.5;              // inferred as float
 ```
@@ -47,7 +47,7 @@ ratio is 0.5;              // inferred as float
 
 Use `another` to create an independent deep copy:
 
-```npp
+```nr
 original is 42;
 copied is another original;  // separate memory, same value
 ```
@@ -56,7 +56,7 @@ copied is another original;  // separate memory, same value
 
 Assigning without `another` creates a reference alias — both names share the same memory:
 
-```npp
+```nr
 x is 10;
 y is x;      // y is an alias of x (shared memory)
 y is 20;     // x is now also 20
@@ -66,7 +66,7 @@ y is 20;     // x is now also 20
 
 ## Memory Model
 
-Neuron++ provides four fundamental memory primitives:
+Neuron provides four fundamental memory primitives:
 
 | Keyword        | Meaning                           | C++ Equivalent  |
 |----------------|-----------------------------------|-----------------|
@@ -77,7 +77,7 @@ Neuron++ provides four fundamental memory primitives:
 
 ### Pointer Example
 
-```npp
+```nr
 x is 10;
 p is address of x;
 Print(value of p);      // prints 10
@@ -90,7 +90,7 @@ value of p is 99;       // x is now 99
 
 All callable units — named functions, lambdas, and callbacks — are declared with `method`:
 
-```npp
+```nr
 Add is method(a as int, b as int) as int {
     return a + b;
 };
@@ -103,7 +103,7 @@ Run(method() {
 
 ### Callback Pattern
 
-```npp
+```nr
 Execute is method(action as method) {
     action();
 };
@@ -115,8 +115,8 @@ Execute is method(action as method) {
 
 Classes follow a one-class-per-file rule. The class name **must** match the filename:
 
-```npp
-// File: Vector2.npp
+```nr
+// File: Vector2.nr
 Vector2 is public class {
     x is 0.0 as float;
     y is 0.0 as float;
@@ -134,7 +134,7 @@ Vector2 is public class {
 
 ### Inheritance
 
-```npp
+```nr
 Dog is public class inherits Animal, ISerializable {
     Speak is public method() {
         Print("Woof");
@@ -156,7 +156,7 @@ Dog is public class inherits Animal, ISerializable {
 | `break`          | Exit loop early                            |
 | `continue`       | Skip to next iteration                     |
 
-```npp
+```nr
 for(i is 0; i < 100; i++) {
     if(i == 50) { break; }
     Print(i);
@@ -171,9 +171,9 @@ for(element in collection) {
 
 ## Tensor and GPU Computing
 
-Neuron++ has first-class support for multi-dimensional tensors and GPU execution:
+Neuron has first-class support for multi-dimensional tensors and GPU execution:
 
-```npp
+```nr
 A is Tensor<float>.Random(1024, 1024);
 B is Tensor<float>.Ones(1024, 1024);
 
@@ -193,9 +193,9 @@ The `gpu { ... }` block opts into GPU-prefer execution with automatic CPU fallba
 
 ## Module System
 
-Every `.npp` file is a module. Import modules with the `module` keyword:
+Every `.nr` file is a module. Import modules with the `module` keyword:
 
-```npp
+```nr
 module Vector2;
 module Math;
 
@@ -207,11 +207,11 @@ Init is method() {
 
 ### Program Entry Point
 
-Execution begins at the `Init` method inside `src/Main.npp`. When a project is run, the runtime locates `Main.npp`, finds the `Init` method, and executes it:
+Execution begins at the `Init` method inside `src/Main.nr`. When a project is run, the runtime locates `Main.nr`, finds the `Init` method, and executes it:
 
-```npp
+```nr
 Init is method() {
-    Print("Hello, Neuron++!");
+    Print("Hello, Neuron!");
 };
 ```
 
@@ -219,9 +219,9 @@ Init is method() {
 
 ## Error Handling
 
-Neuron++ supports structured exception handling:
+Neuron supports structured exception handling:
 
-```npp
+```nr
 try {
     result is Divide(10, 0);
 }
@@ -242,7 +242,7 @@ finally {
 
 Generic types and methods use angle-bracket syntax with optional constraints:
 
-```npp
+```nr
 Swap is method<T>(a as T, b as T) {
     temp is another a;
     a is b;
@@ -258,7 +258,7 @@ Add<T:Numeric> is method(a as T, b as T) as T {
 
 ## Concurrency
 
-```npp
+```nr
 // Parallel CPU loop
 parallel for(i is 0; i < data.Length; i++) {
     data[i] is data[i] * 2;
@@ -295,13 +295,13 @@ The `neuron` command is the unified entry point for all toolchain operations:
 
 | Command                  | Description                                    |
 |--------------------------|------------------------------------------------|
-| `neuron new <name>`      | Create a new Neuron++ project                  |
+| `neuron new <name>`      | Create a new Neuron project                  |
 | `neuron build`           | Build the current project (LLVM native)        |
 | `neuron run`             | Build and run via NCON container               |
 | `neuron add <package>`   | Add a package dependency                       |
 | `neuron remove <package>`| Remove a package dependency                    |
 | `neuron update`          | Update all dependencies                        |
-| `neuron publish`         | Create a `.nppkg` package artifact             |
+| `neuron publish`         | Create a `.nrkg` package artifact             |
 | `neuron packages`        | List registry packages                         |
 | `neuron release`         | Build, test, and package a release bundle      |
 
@@ -325,10 +325,10 @@ The NCON sandbox provides security isolation via restricted process tokens, job 
 
 | Command                  | Description                                   |
 |--------------------------|-----------------------------------------------|
-| `neuron lex <file>`      | Tokenize a `.npp` file                        |
+| `neuron lex <file>`      | Tokenize a `.nr` file                        |
 | `neuron parse <file>`    | Parse and print AST                           |
 | `neuron nir <file>`      | Generate and print NIR                        |
-| `neuron compile <file>`  | Compile a `.npp` file to native executable    |
+| `neuron compile <file>`  | Compile a `.nr` file to native executable    |
 
 All debug commands accept `--trace-errors` for source-context traces.
 

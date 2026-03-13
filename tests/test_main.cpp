@@ -1,4 +1,4 @@
-// Neuron++ Minimal Test Framework
+// Neuron Minimal Test Framework
 #include <algorithm>
 #include <iostream>
 #include <string>

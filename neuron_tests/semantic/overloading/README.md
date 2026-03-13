@@ -18,11 +18,11 @@ Covered behaviors:
 | --- | --- |
 | `N2400-N2499` | no viable overload, ambiguous overload, duplicate overload set member |
 | `N2000-N2099` | downstream type mismatch after candidate selection |
-| `NPP2001` | current semantic fallback |
+| `NR2001` | current semantic fallback |
 
 ## Test List
 
-| Name | `.npp` input code | Expected output or error | Why important |
+| Name | `.nr` input code | Expected output or error | Why important |
 | --- | --- | --- | --- |
 | `overload__select_by_type` | `MathOps class { overload Add method(a as int, b as int) as int { return a + b; } overload Add method(a as float, b as float) as float { return a + b; } } Init is method() { ops is MathOps(); Print(ops.Add(1, 2)); }` | Compiles and prints `3` | Core overload dispatch case |
 | `overload__select_by_arity` | `MathOps class { overload Sum method(a as int) as int { return a; } overload Sum method(a as int, b as int) as int { return a + b; } } Init is method() { ops is MathOps(); Print(ops.Sum(5)); }` | Compiles and prints `5` | Ensures arity participates in resolution |

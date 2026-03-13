@@ -146,7 +146,7 @@ int cmdRepl() {
   neuron::cli::ReplSession session;
   std::string buffer;
 
-  std::cout << "neuron++ " << kNeuronReplVersion << " (" << __DATE__ << ", "
+  std::cout << "Neuron " << kNeuronReplVersion << " (" << __DATE__ << ", "
             << __TIME__ << ") on " << replPlatformLabel() << std::endl;
   std::cout << "Type :help for more information." << std::endl;
 

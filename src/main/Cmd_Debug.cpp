@@ -15,7 +15,6 @@
 #include "RuntimePaths.h"
 #include "SettingsLoader.h"
 #include "ToolchainUtils.h"
-#include "UsageText.h"
 #include "UsageTextBuilder.h"
 
 #include "neuronc/cli/commands/DebugCommands.h"

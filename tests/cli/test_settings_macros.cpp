@@ -123,8 +123,8 @@ void printErrors(const std::vector<std::string> &errors) {
 
 TEST(SettingsMacroExpandsQualifiedMethodMacroWithComments) {
   ScopedProjectDir project("tmp_settings_macro_method");
-  writeProjectToml(project.path, "macro_method", "src/Main.npp");
-  writeTextFile(project.path / "src/Main.npp",
+  writeProjectToml(project.path, "macro_method", "src/Main.nr");
+  writeTextFile(project.path / "src/Main.nr",
                 "Init is method() {\n"
                 "  value is Main.PRINT_COPYRIGHT();\n"
                 "}\n");
@@ -138,7 +138,7 @@ TEST(SettingsMacroExpandsQualifiedMethodMacroWithComments) {
 
   std::vector<std::string> errors;
   neuron::cli::SettingsMacroProcessor processor(repoRootPath(),
-                                                project.path / "src/Main.npp");
+                                                project.path / "src/Main.nr");
   const bool initOk = processor.initialize(&errors);
   if (!initOk) {
     printErrors(errors);
@@ -150,7 +150,7 @@ TEST(SettingsMacroExpandsQualifiedMethodMacroWithComments) {
       "Init is method() {\n"
       "  value is Main.PRINT_COPYRIGHT();\n"
       "}\n";
-  const bool expandOk = expandSource(&processor, project.path / "src/Main.npp",
+  const bool expandOk = expandSource(&processor, project.path / "src/Main.nr",
                                      source, &expanded, &errors);
   if (!expandOk) {
     printErrors(errors);
@@ -159,7 +159,7 @@ TEST(SettingsMacroExpandsQualifiedMethodMacroWithComments) {
   ASSERT_TRUE(containsTokenValue(expanded, "method"));
   ASSERT_TRUE(containsTokenValue(expanded, "7"));
 
-  Parser parser(expanded, (project.path / "src/Main.npp").string());
+  Parser parser(expanded, (project.path / "src/Main.nr").string());
   auto ast = parser.parse();
   (void)ast;
   if (!parser.errors().empty()) {
@@ -171,8 +171,8 @@ TEST(SettingsMacroExpandsQualifiedMethodMacroWithComments) {
 
 TEST(SettingsMacroReportsExpansionTraceForQualifiedUse) {
   ScopedProjectDir project("tmp_settings_macro_trace");
-  writeProjectToml(project.path, "macro_trace", "src/Main.npp");
-  writeTextFile(project.path / "src/Main.npp",
+  writeProjectToml(project.path, "macro_trace", "src/Main.nr");
+  writeTextFile(project.path / "src/Main.nr",
                 "Init is method() {\n"
                 "  value is Main.PORT;\n"
                 "}\n");
@@ -182,13 +182,13 @@ TEST(SettingsMacroReportsExpansionTraceForQualifiedUse) {
 
   std::vector<std::string> errors;
   neuron::cli::SettingsMacroProcessor processor(repoRootPath(),
-                                                project.path / "src/Main.npp");
+                                                project.path / "src/Main.nr");
   ASSERT_TRUE(processor.initialize(&errors));
 
   std::vector<Token> expanded;
   std::vector<neuron::cli::MacroExpansionTrace> traces;
   const bool expandOk = expandSourceWithTrace(
-      &processor, project.path / "src/Main.npp",
+      &processor, project.path / "src/Main.nr",
       "Init is method() { value is Main.PORT; }\n", &expanded, &traces, &errors);
   if (!expandOk) {
     printErrors(errors);
@@ -204,15 +204,15 @@ TEST(SettingsMacroReportsExpansionTraceForQualifiedUse) {
 
 TEST(SettingsMacroRejectsUnknownOverrideKey) {
   ScopedProjectDir project("tmp_settings_macro_unknown_key");
-  writeProjectToml(project.path, "macro_unknown", "src/Main.npp");
-  writeTextFile(project.path / "src/Main.npp", "Init is method() {}\n");
+  writeProjectToml(project.path, "macro_unknown", "src/Main.nr");
+  writeTextFile(project.path / "src/Main.nr", "Init is method() {}\n");
   writeTextFile(project.path / ".projectsettings",
                 "[IO]\n"
                 "GIVE_ME_ERROR = 1;\n");
 
   std::vector<std::string> errors;
   neuron::cli::SettingsMacroProcessor processor(repoRootPath(),
-                                                project.path / "src/Main.npp");
+                                                project.path / "src/Main.nr");
   ASSERT_FALSE(processor.initialize(&errors));
   ASSERT_FALSE(errors.empty());
   ASSERT_TRUE(errors.front().find("Unknown override key 'IO.GIVE_ME_ERROR'") !=
@@ -222,15 +222,15 @@ TEST(SettingsMacroRejectsUnknownOverrideKey) {
 
 TEST(SettingsMacroRejectsInvalidImportanceLevel) {
   ScopedProjectDir project("tmp_settings_macro_bad_importance");
-  writeProjectToml(project.path, "macro_bad_importance", "src/Main.npp");
-  writeTextFile(project.path / "src/Main.npp", "Init is method() {}\n");
+  writeProjectToml(project.path, "macro_bad_importance", "src/Main.nr");
+  writeTextFile(project.path / "src/Main.nr", "Init is method() {}\n");
   writeTextFile(project.path / ".projectsettings",
                 "[IO]\n"
                 "important(0) ENUM_INPUT_NEXT_KEY = 99;\n");
 
   std::vector<std::string> errors;
   neuron::cli::SettingsMacroProcessor processor(repoRootPath(),
-                                                project.path / "src/Main.npp");
+                                                project.path / "src/Main.nr");
   ASSERT_FALSE(processor.initialize(&errors));
   ASSERT_FALSE(errors.empty());
   ASSERT_TRUE(errors.front().find("level >= 1") != std::string::npos);
@@ -239,13 +239,13 @@ TEST(SettingsMacroRejectsInvalidImportanceLevel) {
 
 TEST(SettingsMacroBareLookupReportsAmbiguity) {
   ScopedProjectDir project("tmp_settings_macro_ambiguity");
-  writeProjectToml(project.path, "macro_ambiguity", "src/Main.npp");
-  writeTextFile(project.path / "src/Main.npp",
+  writeProjectToml(project.path, "macro_ambiguity", "src/Main.nr");
+  writeTextFile(project.path / "src/Main.nr",
                 "Init is method() {\n"
                 "  value is VALUE;\n"
                 "}\n");
-  writeTextFile(project.path / "src/A.npp", "Ping is method() {}\n");
-  writeTextFile(project.path / "src/B.npp", "Pong is method() {}\n");
+  writeTextFile(project.path / "src/A.nr", "Ping is method() {}\n");
+  writeTextFile(project.path / "src/B.nr", "Pong is method() {}\n");
   writeTextFile(project.path / ".modulesettings",
                 "[A]\n"
                 "VALUE = 1;\n"
@@ -254,7 +254,7 @@ TEST(SettingsMacroBareLookupReportsAmbiguity) {
 
   std::vector<std::string> errors;
   neuron::cli::SettingsMacroProcessor processor(repoRootPath(),
-                                                project.path / "src/Main.npp");
+                                                project.path / "src/Main.nr");
   const bool initOk = processor.initialize(&errors);
   if (!initOk) {
     printErrors(errors);
@@ -263,7 +263,7 @@ TEST(SettingsMacroBareLookupReportsAmbiguity) {
 
   std::vector<Token> expanded;
   const bool expandOk =
-      expandSource(&processor, project.path / "src/Main.npp",
+      expandSource(&processor, project.path / "src/Main.nr",
                    "Init is method() { value is VALUE; }\n", &expanded, &errors);
   ASSERT_FALSE(expandOk);
   ASSERT_FALSE(errors.empty());
@@ -275,10 +275,10 @@ TEST(SettingsMacroBareLookupReportsAmbiguity) {
 
 TEST(SettingsMacroDependencyLocalOverrideWinsAtEqualImportance) {
   ScopedProjectDir project("tmp_settings_macro_equal_importance");
-  writeProjectToml(project.path, "macro_equal", "src/Main.npp");
-  writeProjectToml(project.path / "modules/dep", "dep", "src/Dep.npp");
-  writeTextFile(project.path / "src/Main.npp", "Init is method() {}\n");
-  writeTextFile(project.path / "modules/dep/src/Dep.npp",
+  writeProjectToml(project.path, "macro_equal", "src/Main.nr");
+  writeProjectToml(project.path / "modules/dep", "dep", "src/Dep.nr");
+  writeTextFile(project.path / "src/Main.nr", "Init is method() {}\n");
+  writeTextFile(project.path / "modules/dep/src/Dep.nr",
                 "DepValue is method() { value is ENUM_INPUT_NEXT_KEY; }\n");
   writeTextFile(project.path / ".projectsettings",
                 "[IO]\n"
@@ -289,7 +289,7 @@ TEST(SettingsMacroDependencyLocalOverrideWinsAtEqualImportance) {
 
   std::vector<std::string> errors;
   neuron::cli::SettingsMacroProcessor processor(repoRootPath(),
-                                                project.path / "src/Main.npp");
+                                                project.path / "src/Main.nr");
   const bool initOk = processor.initialize(&errors);
   if (!initOk) {
     printErrors(errors);
@@ -298,7 +298,7 @@ TEST(SettingsMacroDependencyLocalOverrideWinsAtEqualImportance) {
 
   std::vector<Token> expanded;
   const bool expandOk = expandSource(
-      &processor, project.path / "modules/dep/src/Dep.npp",
+      &processor, project.path / "modules/dep/src/Dep.nr",
       "DepValue is method() { value is ENUM_INPUT_NEXT_KEY; }\n", &expanded,
       &errors);
   if (!expandOk) {
@@ -312,10 +312,10 @@ TEST(SettingsMacroDependencyLocalOverrideWinsAtEqualImportance) {
 
 TEST(SettingsMacroHigherImportanceAncestorOverrideWins) {
   ScopedProjectDir project("tmp_settings_macro_high_importance");
-  writeProjectToml(project.path, "macro_high", "src/Main.npp");
-  writeProjectToml(project.path / "modules/dep", "dep", "src/Dep.npp");
-  writeTextFile(project.path / "src/Main.npp", "Init is method() {}\n");
-  writeTextFile(project.path / "modules/dep/src/Dep.npp",
+  writeProjectToml(project.path, "macro_high", "src/Main.nr");
+  writeProjectToml(project.path / "modules/dep", "dep", "src/Dep.nr");
+  writeTextFile(project.path / "src/Main.nr", "Init is method() {}\n");
+  writeTextFile(project.path / "modules/dep/src/Dep.nr",
                 "DepValue is method() { value is ENUM_INPUT_NEXT_KEY; }\n");
   writeTextFile(project.path / ".projectsettings",
                 "[IO]\n"
@@ -326,7 +326,7 @@ TEST(SettingsMacroHigherImportanceAncestorOverrideWins) {
 
   std::vector<std::string> errors;
   neuron::cli::SettingsMacroProcessor processor(repoRootPath(),
-                                                project.path / "src/Main.npp");
+                                                project.path / "src/Main.nr");
   const bool initOk = processor.initialize(&errors);
   if (!initOk) {
     printErrors(errors);
@@ -335,7 +335,7 @@ TEST(SettingsMacroHigherImportanceAncestorOverrideWins) {
 
   std::vector<Token> expanded;
   const bool expandOk = expandSource(
-      &processor, project.path / "modules/dep/src/Dep.npp",
+      &processor, project.path / "modules/dep/src/Dep.nr",
       "DepValue is method() { value is ENUM_INPUT_NEXT_KEY; }\n", &expanded,
       &errors);
   if (!expandOk) {
@@ -349,10 +349,10 @@ TEST(SettingsMacroHigherImportanceAncestorOverrideWins) {
 
 TEST(SettingsMacroParentLocalOverrideDoesNotBreakDependencyExpansion) {
   ScopedProjectDir project("tmp_settings_macro_parent_local");
-  writeProjectToml(project.path, "macro_parent_local", "src/Main.npp");
-  writeProjectToml(project.path / "modules/dep", "dep", "src/Dep.npp");
-  writeTextFile(project.path / "src/Main.npp", "Init is method() {}\n");
-  writeTextFile(project.path / "modules/dep/src/Dep.npp",
+  writeProjectToml(project.path, "macro_parent_local", "src/Main.nr");
+  writeProjectToml(project.path / "modules/dep", "dep", "src/Dep.nr");
+  writeTextFile(project.path / "src/Main.nr", "Init is method() {}\n");
+  writeTextFile(project.path / "modules/dep/src/Dep.nr",
                 "DepValue is method() { value is ENUM_INPUT_NEXT_KEY; }\n");
   writeTextFile(project.path / ".modulesettings",
                 "[Main]\n"
@@ -366,7 +366,7 @@ TEST(SettingsMacroParentLocalOverrideDoesNotBreakDependencyExpansion) {
 
   std::vector<std::string> errors;
   neuron::cli::SettingsMacroProcessor processor(repoRootPath(),
-                                                project.path / "src/Main.npp");
+                                                project.path / "src/Main.nr");
   const bool initOk = processor.initialize(&errors);
   if (!initOk) {
     printErrors(errors);
@@ -375,7 +375,7 @@ TEST(SettingsMacroParentLocalOverrideDoesNotBreakDependencyExpansion) {
 
   std::vector<Token> expanded;
   const bool expandOk = expandSource(
-      &processor, project.path / "modules/dep/src/Dep.npp",
+      &processor, project.path / "modules/dep/src/Dep.nr",
       "DepValue is method() { value is ENUM_INPUT_NEXT_KEY; }\n", &expanded,
       &errors);
   if (!expandOk) {

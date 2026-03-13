@@ -1,6 +1,6 @@
-# Neuron++ Naming Conventions
+?# Neuron Naming Conventions
 
-This document defines the official naming standards for all identifiers in Neuron++ projects. Following these conventions ensures consistency, readability, and compatibility with compiler validation rules.
+This document defines the official naming standards for all identifiers in Neuron projects. Following these conventions ensures consistency, readability, and compatibility with compiler validation rules.
 
 ---
 
@@ -68,18 +68,18 @@ camelCase is the standard for local and instance variables across many modern la
 | Rule | Description |
 |------|-------------|
 | **Casing** | PascalCase |
-| **File Rule** | Class name must exactly match the filename (without `.npp` extension) |
+| **File Rule** | Class name must exactly match the filename (without `.nr` extension) |
 | **Visibility** | Must include `public` or `private` when explicit visibility is required |
 
 ### Examples
 
 ```
-✅  Vector2.npp       →  Vector2 is public class { ... }
-✅  NeuralNetwork.npp →  NeuralNetwork is public class { ... }
-✅  DataLoader.npp    →  DataLoader is public class { ... }
+✅  Vector2.nr       →  Vector2 is public class { ... }
+✅  NeuralNetwork.nr →  NeuralNetwork is public class { ... }
+✅  DataLoader.nr    →  DataLoader is public class { ... }
 
-❌  vector2.npp       →  vector2 is public class { ... }    (lowercase filename)
-❌  Vector2.npp       →  Vec2 is public class { ... }       (name mismatch)
+❌  vector2.nr       →  vector2 is public class { ... }    (lowercase filename)
+❌  Vector2.nr       →  Vec2 is public class { ... }       (name mismatch)
 ```
 
 ---
@@ -93,7 +93,7 @@ camelCase is the standard for local and instance variables across many modern la
 
 ### Examples
 
-```npp
+```nr
 MAX_BUFFER_SIZE is 4096;
 PI is 3.14159265;
 DEFAULT_LEARNING_RATE is 0.001;
@@ -110,7 +110,7 @@ DEFAULT_LEARNING_RATE is 0.001;
 
 ### Examples
 
-```npp
+```nr
 module Vector2;
 module NeuralNetwork;
 module System;
@@ -128,7 +128,7 @@ module Math;
 
 ### Examples
 
-```npp
+```nr
 Array<T> is public class { ... }
 HashMap<K, V> is public class { ... }
 Tensor<ElementType> is public class { ... }
@@ -145,7 +145,7 @@ Add<T:Numeric> is method(T a, T b) as T { ... };
 
 ### Examples
 
-```npp
+```nr
 DivideByZeroError is public class { }
 FileNotFoundError is public class { }
 IndexOutOfRangeError is public class { }
@@ -157,11 +157,11 @@ IndexOutOfRangeError is public class { }
 
 | Item | Convention | Example |
 |------|-----------|---------|
-| Source files | PascalCase `.npp` | `Vector2.npp`, `DataLoader.npp` |
+| Source files | PascalCase `.nr` | `Vector2.nr`, `DataLoader.nr` |
 | Source directory | lowercase | `src/` |
 | Module directory | lowercase | `modules/` |
 | Build directory | lowercase | `build/` |
-| Test files | PascalCase with `Test` prefix | `TestVector2.npp` |
+| Test files | PascalCase with `Test` prefix | `TestVector2.nr` |
 | Documentation | PascalCase `.md` matching script | `docs/scripts/Main.md` |
 
 ---
@@ -177,7 +177,7 @@ IndexOutOfRangeError is public class { }
 | Module import       | PascalCase   | `module Vector2;`     |
 | Generic parameter   | T / PascalCase | `<T>`, `<ElementType>` |
 | Error class         | PascalCase + `Error` | `FileNotFoundError` |
-| File name           | PascalCase   | `Vector2.npp`         |
+| File name           | PascalCase   | `Vector2.nr`         |
 
 ---
 
@@ -185,7 +185,7 @@ IndexOutOfRangeError is public class { }
 
 These naming rules are enforced at two levels:
 
-1. **Compiler validation** — The Neuron++ compiler checks method names, variable names, and class-filename matches at compile time.
+1. **Compiler validation** — The Neuron compiler checks method names, variable names, and class-filename matches at compile time.
 2. **`.neuronsettings` configuration** — Project-level settings toggle specific rules such as uppercase method starts, constant naming, and minimum name lengths.
 
 Violations produce clear compiler diagnostics with expected vs. found values. See `ERROR_GUIDE.md` for specific error codes and resolution steps.

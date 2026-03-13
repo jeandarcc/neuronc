@@ -10,7 +10,7 @@ Build NCON containers and execute them in the bytecode VM.
 neuron ncon build
 ```
 
-This compiles all `.npp` source files into a single `.ncon` container file in the build directory.
+This compiles all `.nr` source files into a single `.ncon` container file in the build directory.
 
 ---
 

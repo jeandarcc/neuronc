@@ -1,6 +1,6 @@
 # Async / Await
 
-Neuron++ supports asynchronous programming with the `async` and `await` keywords.
+Neuron supports asynchronous programming with the `async` and `await` keywords.
 
 ---
 

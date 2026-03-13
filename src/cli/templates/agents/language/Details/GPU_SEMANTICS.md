@@ -1,14 +1,14 @@
-# Neuron++ GPU Semantics
+?# Neuron GPU Semantics
 
-This document describes the GPU execution model in Neuron++, including block semantics, backend selection, kernel dispatch, and performance tuning options.
+This document describes the GPU execution model in Neuron, including block semantics, backend selection, kernel dispatch, and performance tuning options.
 
 ---
 
 ## 1. Overview
 
-Neuron++ provides first-class GPU support through the `gpu { ... }` block construct. Code inside a `gpu` block is eligible for GPU-accelerated execution, with automatic fallback to CPU when no compatible GPU backend is available.
+Neuron provides first-class GPU support through the `gpu { ... }` block construct. Code inside a `gpu` block is eligible for GPU-accelerated execution, with automatic fallback to CPU when no compatible GPU backend is available.
 
-```npp
+```nr
 gpu {
     C is A @ B;       // matrix multiplication — GPU-preferred
     D is C + bias;    // element-wise addition — GPU-preferred
@@ -57,7 +57,7 @@ The compiler lowers `gpu { ... }` blocks by emitting `neuron_gpu_scope_begin` / 
 - Loops inside a `gpu` block naturally batch into one scope.
 - Multiple operations are dispatched together, reducing kernel launch overhead.
 
-```npp
+```nr
 gpu {
     for(i is 0; i < batchCount; i++) {
         results[i] is Process(inputs[i]);   // all iterations in one GPU scope
@@ -100,7 +100,7 @@ GPU dispatch supports fused activation for the following functions:
 | `RELU`     | Rectified Linear Unit       |
 | `GELU`     | Gaussian Error Linear Unit  |
 
-```npp
+```nr
 gpu {
     Y is ReLU(X @ W + b);   // fused matmul + bias + ReLU on GPU
 }
@@ -169,7 +169,7 @@ The `parallel for` construct is distinct from `gpu { ... }`:
 | `parallel for`  | CPU multi-threading (OpenMP-style)  |
 | `gpu { ... }`   | GPU kernel dispatch                 |
 
-```npp
+```nr
 // CPU parallelism
 parallel for(i is 0; i < n; i++) {
     data[i] is data[i] * 2;

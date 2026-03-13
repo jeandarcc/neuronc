@@ -1,6 +1,6 @@
 # Pointers
 
-Neuron++ uses readable keywords `address of` and `value of` instead of `&` and `*`.
+Neuron uses readable keywords `address of` and `value of` instead of `&` and `*`.
 
 ---
 
@@ -32,7 +32,7 @@ Print(x);              // 99
 
 ## Real Example
 
-From `Node.npp`:
+From `Node.nr`:
 
 ```npp
 Init method() {
@@ -46,7 +46,7 @@ Init method() {
 
 ## C++ Comparison
 
-| Neuron++ | C++ | Description |
+| Neuron | C++ | Description |
 |----------|-----|-------------|
 | `p is address of x;` | `auto p = &x;` | Get memory address |
 | `value of p` | `*p` | Dereference pointer |
@@ -55,7 +55,7 @@ Init method() {
 | `q is another p;` | `int* q = p;` | Pointer copy |
 
 ## Pointer Chains
-Neuron++ supports natural pointer chains:
+Neuron supports natural pointer chains:
 `pp is address of address of x;`
 
 To access the value:

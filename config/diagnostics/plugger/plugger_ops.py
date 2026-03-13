@@ -61,7 +61,7 @@ def get_registry():
     return registry
 
 def validate_code_format(code):
-    return bool(re.match(r'^(N|W)\d+$', code) or re.match(r'^NPP\d+$', code))
+    return bool(re.match(r'^(N|W)\d+$', code) or re.match(r'^Neuron\d+$', code))
 
 def take_backup():
     timestamp = datetime.datetime.now().strftime("%Y-%m-%d_%H%M%S")
