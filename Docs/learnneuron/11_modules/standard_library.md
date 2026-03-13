@@ -1,4 +1,4 @@
-﻿# Standard Library
+# Standard Library
 
 Neuron includes built-in modules for common operations.
 

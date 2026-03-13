@@ -1,4 +1,4 @@
-﻿# Runtime Arithmetic Specification
+# Runtime Arithmetic Specification
 
 ## Scope
 

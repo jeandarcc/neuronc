@@ -1,4 +1,4 @@
-﻿# Ownership Lifetime Specification
+# Ownership Lifetime Specification
 
 ## Scope
 

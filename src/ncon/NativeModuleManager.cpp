@@ -1,4 +1,4 @@
-﻿#include "neuronc/ncon/NativeModuleManager.h"
+#include "neuronc/ncon/NativeModuleManager.h"
 #include "neuronc/ncon/Sha256.h"
 
 #include "neuronc/ncon/Sandbox.h"

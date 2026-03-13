@@ -1,4 +1,4 @@
-﻿﻿# Neuron (Neuron) Syntax Highlighter
+?# Neuron (Neuron) Syntax Highlighter
 
 This extension provides syntax highlighting and a minimal language-server client
 for the Neuron programming language.

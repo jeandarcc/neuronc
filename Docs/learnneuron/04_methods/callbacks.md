@@ -1,4 +1,4 @@
-﻿# Callbacks
+# Callbacks
 
 A callback is a method passed as an argument to another method. In Neuron, use the `method` type for callback parameters.
 
@@ -12,7 +12,7 @@ Execute method(action as method) {
 }
 ```
 
-The parameter `action` has type `method` â€” it accepts any callable.
+The parameter `action` has type `method` — it accepts any callable.
 
 ---
 
@@ -71,4 +71,4 @@ OnClick(method() {
 
 ## Next Steps
 
-- [Async/Await](async_await.md) â€” Asynchronous methods
+- [Async/Await](async_await.md) — Asynchronous methods

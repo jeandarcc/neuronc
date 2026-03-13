@@ -1,4 +1,4 @@
-﻿#include "neuronc/cli/CommandDispatcher.h"
+#include "neuronc/cli/CommandDispatcher.h"
 
 #include <cctype>
 #include <iostream>

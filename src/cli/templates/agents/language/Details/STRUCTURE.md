@@ -1,4 +1,4 @@
-﻿# Neuron Project Structure
+# Neuron Project Structure
 
 This document defines the recommended directory layout for Neuron projects and explains the purpose of each directory and configuration file.
 
@@ -10,38 +10,38 @@ When you create a new project with `neuron new <name>`, the following structure 
 
 ```
 my_project/
-â”‚
-â”œâ”€ neuron.toml              # Project configuration and build settings
-â”œâ”€ .neuronsettings          # Source code rules and lint configuration
-â”œâ”€ .gitignore               # Git exclusion rules
-â”‚
-â”œâ”€ src/                     # Source code directory
-â”‚   â””â”€ Main.nr             # Program entry point (Init method)
-â”‚
-â”œâ”€ modules/                 # External module dependencies
-â”‚
-â”œâ”€ build/                   # Build output directory (auto-generated)
-â”‚
-â”œâ”€ docs/                    # Project documentation
-â”‚   â””â”€ scripts/             # Per-script documentation files
-â”‚       â””â”€ Main.md          # Documentation for Main.nr
-â”‚
-â”œâ”€ tests/                   # Test suites
-â”‚   â”œâ”€ auto/                # Automated integration tests
-â”‚   â””â”€ unit/                # Unit test files
-â”‚
-â””â”€ agents/                  # Agent and tooling reference documents
-    â”œâ”€ language/             # Language-level documentation
-    â”‚   â”œâ”€ LanguageGuide.md  # Complete language overview
-    â”‚   â””â”€ Details/          # In-depth topic guides
-    â”‚       â”œâ”€ RULES.md
-    â”‚       â”œâ”€ ERROR_GUIDE.md
-    â”‚       â”œâ”€ NAMING.md
-    â”‚       â”œâ”€ GPU_SEMANTICS.md
-    â”‚       â””â”€ STRUCTURE.md
-    â””â”€ project/              # Project-specific documentation
-        â”œâ”€ ARCHITECTURE.md
-        â””â”€ RULES.md
+│
+├─ neuron.toml              # Project configuration and build settings
+├─ .neuronsettings          # Source code rules and lint configuration
+├─ .gitignore               # Git exclusion rules
+│
+├─ src/                     # Source code directory
+│   └─ Main.nr             # Program entry point (Init method)
+│
+├─ modules/                 # External module dependencies
+│
+├─ build/                   # Build output directory (auto-generated)
+│
+├─ docs/                    # Project documentation
+│   └─ scripts/             # Per-script documentation files
+│       └─ Main.md          # Documentation for Main.nr
+│
+├─ tests/                   # Test suites
+│   ├─ auto/                # Automated integration tests
+│   └─ unit/                # Unit test files
+│
+└─ agents/                  # Agent and tooling reference documents
+    ├─ language/             # Language-level documentation
+    │   ├─ LanguageGuide.md  # Complete language overview
+    │   └─ Details/          # In-depth topic guides
+    │       ├─ RULES.md
+    │       ├─ ERROR_GUIDE.md
+    │       ├─ NAMING.md
+    │       ├─ GPU_SEMANTICS.md
+    │       └─ STRUCTURE.md
+    └─ project/              # Project-specific documentation
+        ├─ ARCHITECTURE.md
+        └─ RULES.md
 ```
 
 ---
@@ -56,17 +56,17 @@ Contains all `.nr` source files. The main entry point is always `src/Main.nr`, w
 
 ```
 src/
-â”œâ”€ Main.nr
-â”œâ”€ Math/
-â”‚   â”œâ”€ Vector2.nr
-â”‚   â”œâ”€ Vector3.nr
-â”‚   â””â”€ Matrix.nr
-â”œâ”€ AI/
-â”‚   â”œâ”€ Tensor.nr
-â”‚   â”œâ”€ Layer.nr
-â”‚   â””â”€ Optimizer.nr
-â””â”€ Utils/
-    â””â”€ Logger.nr
+├─ Main.nr
+├─ Math/
+│   ├─ Vector2.nr
+│   ├─ Vector3.nr
+│   └─ Matrix.nr
+├─ AI/
+│   ├─ Tensor.nr
+│   ├─ Layer.nr
+│   └─ Optimizer.nr
+└─ Utils/
+    └─ Logger.nr
 ```
 
 Each `.nr` file defines exactly one class, and the class name must match the filename.
@@ -85,8 +85,8 @@ Per-script documentation files. When `require_script_docs = true` in `.neuronset
 
 ### `tests/`
 
-- **`tests/auto/`** â€” Automated integration tests that run during `neuron release`
-- **`tests/unit/`** â€” Unit test files for individual modules
+- **`tests/auto/`** — Automated integration tests that run during `neuron release`
+- **`tests/unit/`** — Unit test files for individual modules
 
 Test files matching patterns in `require_script_docs_exclude` (default: `Test*`) are exempt from documentation requirements.
 
@@ -165,11 +165,11 @@ When `enforce_strict_file_naming = true`, the compiler validates that all file a
 
 When a `module <Name>;` statement is encountered, the compiler searches for the module in the following order:
 
-1. **`src/` directory** â€” Recursively searches for `<Name>.nr`
-2. **`modules/` directory** â€” Checks installed package dependencies
-3. **Standard library** â€” Built-in modules like `System`, `Math`, `IO`
+1. **`src/` directory** — Recursively searches for `<Name>.nr`
+2. **`modules/` directory** — Checks installed package dependencies
+3. **Standard library** — Built-in modules like `System`, `Math`, `IO`
 
-A file must not import itself â€” the compiler reports a semantic error for self-import attempts.
+A file must not import itself — the compiler reports a semantic error for self-import attempts.
 
 ---
 
@@ -179,11 +179,11 @@ After running `neuron build` or `neuron run`, the `build/` directory contains:
 
 ```
 build/
-â”œâ”€ Main.ll          # LLVM IR (when emit_ir is configured)
-â”œâ”€ Main.obj         # Object file
-â”œâ”€ Main.exe         # Native executable (platform-dependent extension)
-â””â”€ .neuron_cache/   # Tensor kernel cache and build artifacts
-    â””â”€ tensor/
+├─ Main.ll          # LLVM IR (when emit_ir is configured)
+├─ Main.obj         # Object file
+├─ Main.exe         # Native executable (platform-dependent extension)
+└─ .neuron_cache/   # Tensor kernel cache and build artifacts
+    └─ tensor/
 ```
 
 For NCON execution, containers are placed in a temporary session directory managed by the runtime.
@@ -192,9 +192,9 @@ For NCON execution, containers are placed in a temporary session directory manag
 
 ## 7. Scaling Guidelines
 
-- **Keep one class per file** â€” This is enforced by the compiler
-- **Organize by domain** â€” Group related modules into subdirectories under `src/`
-- **Use modules for reuse** â€” Extract shared code into the `modules/` directory
-- **Document public APIs** â€” Maintain `docs/scripts/` files for all public source files
-- **Limit file size** â€” Stay within `max_lines_per_file` (default: 1000)
-- **Limit method size** â€” Stay within `max_lines_per_method` (default: 50)
+- **Keep one class per file** — This is enforced by the compiler
+- **Organize by domain** — Group related modules into subdirectories under `src/`
+- **Use modules for reuse** — Extract shared code into the `modules/` directory
+- **Document public APIs** — Maintain `docs/scripts/` files for all public source files
+- **Limit file size** — Stay within `max_lines_per_file` (default: 1000)
+- **Limit method size** — Stay within `max_lines_per_method` (default: 50)

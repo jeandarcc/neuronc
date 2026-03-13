@@ -1,4 +1,4 @@
-﻿// SettingsLoader.cpp â€” .neuronsettings yÃ¼kleme ve politika doÄŸrulama
+// SettingsLoader.cpp — .neuronsettings yükleme ve politika doğrulama
 // implementasyonu. Bkz. SettingsLoader.h
 #include "SettingsLoader.h"
 #include "AppGlobals.h"
@@ -21,7 +21,7 @@
 #include <unistd.h>
 #endif
 
-// â”€â”€ Internal string helpers â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// ── Internal string helpers ──────────────────────────────────────────────────
 
 static std::string trimStr(std::string text) {
   auto notSpace = [](unsigned char c) { return !std::isspace(c); };
@@ -170,7 +170,7 @@ static std::string withAgentHint(const NeuronSettings &settings,
   return message + " For agents: " + hint;
 }
 
-// â”€â”€ Flag parsing â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// ── Flag parsing ────────────────────────────────────────────────────────────
 
 bool parseTraceFlagValue(const std::string &value, bool *outEnabled) {
   if (outEnabled == nullptr) {
@@ -274,7 +274,7 @@ void initializeDiagnosticColorFromEnv() {
 #endif
 }
 
-// â”€â”€ Argument parsing â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// ── Argument parsing ────────────────────────────────────────────────────────
 
 std::optional<std::string>
 parseFileArgWithTraceFlags(int argc, char *argv[], int startIndex,
@@ -314,7 +314,7 @@ parseFileArgWithTraceFlags(int argc, char *argv[], int startIndex,
   return fileArg;
 }
 
-// â”€â”€ Find / load settings file â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// ── Find / load settings file ──────────────────────────────────────────────
 
 std::optional<fs::path> findNearestSettingsFile(const fs::path &startDir) {
   std::error_code ec;
@@ -408,7 +408,7 @@ NeuronSettings loadNeuronSettings(const fs::path &pathHint) {
       return static_cast<char>(std::tolower(c));
     });
 
-    // â”€â”€ Rule keys â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+    // ── Rule keys ─────────────────────────────────────────────────────────
 
     if (key == "max_lines_per_file" || key == "rules.max_lines_per_file") {
       int p = 0;
@@ -628,7 +628,7 @@ NeuronSettings loadNeuronSettings(const fs::path &pathHint) {
   return settings;
 }
 
-// â”€â”€ Policy verification â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// ── Policy verification ──────────────────────────────────────────────────────
 
 bool validateScriptPolicy(const fs::path &sourcePath,
                           const NeuronSettings &settings) {

@@ -1,4 +1,4 @@
-﻿#include "neuronc/ncon/NconCLI.h"
+#include "neuronc/ncon/NconCLI.h"
 
 #include "neuronc/cli/PackageManager.h"
 #include "neuronc/ncon/Builder.h"

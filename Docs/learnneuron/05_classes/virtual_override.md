@@ -1,4 +1,4 @@
-﻿# Virtual, Override, and Overload
+# Virtual, Override, and Overload
 
 These three modifiers enable polymorphism in Neuron.
 
@@ -84,5 +84,5 @@ VirtualOverrideOverload class {
 
 ## Next Steps
 
-- [Structs](../06_structs/structs.md) â€” Value-type classes
-- [Interfaces](../07_interfaces/interfaces.md) â€” Contracts
+- [Structs](../06_structs/structs.md) — Value-type classes
+- [Interfaces](../07_interfaces/interfaces.md) — Contracts

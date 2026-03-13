@@ -1,4 +1,4 @@
-﻿# Module Diagnostic Specification
+# Module Diagnostic Specification
 
 ## Scope
 

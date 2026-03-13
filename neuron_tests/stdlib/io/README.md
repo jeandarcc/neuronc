@@ -1,4 +1,4 @@
-﻿# Standard Library I/O Specification
+# Standard Library I/O Specification
 
 ## Scope
 

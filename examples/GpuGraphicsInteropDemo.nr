@@ -14,7 +14,7 @@ InteropLit is shader {
 // gpu work can still run in-frame, but render submission now uses typed
 // mesh/material commands instead of dynamic Graphics.Draw(...).
 Init method() {
-  win is Window.Create(960, 540, "Neuron GPU Graphics Interop Demo");
+  win is Window.Create(960, 540, "NPP GPU Graphics Interop Demo");
   mesh is Mesh.Load("examples/assets/triangle.obj");
   material is Material<InteropLit>();
   material.tint is Color(0.12, 0.82, 0.48, 1.0);

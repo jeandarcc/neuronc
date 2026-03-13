@@ -1,4 +1,4 @@
-﻿# Neuron IR (`src/nir/`)
+# Neuron IR (`src/nir/`)
 
 NIR (Neuron Intermediate Representation) is the high-level, typed, SSA-based
 intermediate language of Neuron. It sits between the AST (`src/sema/`) and

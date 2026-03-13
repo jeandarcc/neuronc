@@ -1,4 +1,4 @@
-﻿#include "neuronc/nir/NIRBuilder.h"
+#include "neuronc/nir/NIRBuilder.h"
 
 #include "../detail/NIRBuilderShared.h"
 

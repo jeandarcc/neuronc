@@ -1,4 +1,4 @@
-﻿# NCON Build & Run
+# NCON Build & Run
 
 Build NCON containers and execute them in the bytecode VM.
 
@@ -30,7 +30,7 @@ Builds (if needed) and executes the container in the NCON virtual machine.
 neuron run
 ```
 
-Equivalent to `neuron ncon run` â€” builds and runs in one step.
+Equivalent to `neuron ncon run` — builds and runs in one step.
 
 ---
 
@@ -38,8 +38,8 @@ Equivalent to `neuron ncon run` â€” builds and runs in one step.
 
 ```
 build/
-â”œâ”€â”€ project.ncon          # The bytecode container
-â””â”€â”€ .neuron_cache/        # Build cache
+├── project.ncon          # The bytecode container
+└── .neuron_cache/        # Build cache
 ```
 
 ---
@@ -57,5 +57,5 @@ hot_reload = false
 
 ## Next Steps
 
-- [Watch & Hot Reload](watch_hotreload.md) â€” Live development
-- [Inspect](inspect.md) â€” Examining container contents
+- [Watch & Hot Reload](watch_hotreload.md) — Live development
+- [Inspect](inspect.md) — Examining container contents

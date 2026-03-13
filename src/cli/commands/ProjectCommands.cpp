@@ -1,4 +1,4 @@
-﻿#include "neuronc/cli/commands/ProjectCommands.h"
+#include "neuronc/cli/commands/ProjectCommands.h"
 
 #include <filesystem>
 #include <fstream>

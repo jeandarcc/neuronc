@@ -1,4 +1,4 @@
-﻿# Windows Installer
+# Windows Installer
 
 Build the Windows installer from the repo root with:
 

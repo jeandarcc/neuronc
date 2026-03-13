@@ -1,4 +1,4 @@
-﻿// Semantic analyzer tests - included from tests/test_main.cpp
+// Semantic analyzer tests - included from tests/test_main.cpp
 #include "neuronc/frontend/Frontend.h"
 #include "neuronc/lexer/Lexer.h"
 #include "neuronc/parser/Parser.h"

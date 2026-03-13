@@ -1,4 +1,4 @@
-﻿﻿# Neuron Language Guide
+?# Neuron Language Guide
 
 ## Overview
 
@@ -8,14 +8,14 @@ Neuron (Neuron) is a high-performance, compiled programming language designed fo
 
 Neuron supports **two execution paths**:
 
-**1. LLVM Native Compilation** â€” For maximum performance production builds:
+**1. LLVM Native Compilation** — For maximum performance production builds:
 ```
-Neuron Source â†’ Lexer â†’ Parser â†’ AST â†’ Semantic Analysis â†’ NIR â†’ LLVM IR â†’ Native Binary
+Neuron Source → Lexer → Parser → AST → Semantic Analysis → NIR → LLVM IR → Native Binary
 ```
 
-**2. NCON Bytecode Containers** â€” For sandboxed, portable, and hot-reloadable execution:
+**2. NCON Bytecode Containers** — For sandboxed, portable, and hot-reloadable execution:
 ```
-Neuron Source â†’ Lexer â†’ Parser â†’ AST â†’ NIR â†’ Bytecode â†’ .ncon Container â†’ VM Execution
+Neuron Source → Lexer → Parser → AST → NIR → Bytecode → .ncon Container → VM Execution
 ```
 
 The NCON path compiles source into portable bytecode containers (`.ncon` files) that run inside a sandboxed virtual machine with security isolation, resource control, and live hot-reload support. This is the default path used by `neuron run` and `neuron ncon watch`.
@@ -54,7 +54,7 @@ copied is another original;  // separate memory, same value
 
 ### Aliasing (`is` without `another`)
 
-Assigning without `another` creates a reference alias â€” both names share the same memory:
+Assigning without `another` creates a reference alias — both names share the same memory:
 
 ```nr
 x is 10;
@@ -88,7 +88,7 @@ value of p is 99;       // x is now 99
 
 ## Functions (Methods)
 
-All callable units â€” named functions, lambdas, and callbacks â€” are declared with `method`:
+All callable units — named functions, lambdas, and callbacks — are declared with `method`:
 
 ```nr
 Add is method(a as int, b as int) as int {
@@ -338,8 +338,8 @@ All debug commands accept `--trace-errors` for source-context traces.
 
 Refer to the files in `agents/language/Details/` for in-depth coverage of specific topics:
 
-- **RULES.md** â€” Core language rules and compiler constraints
-- **NAMING.md** â€” Naming conventions for methods, variables, classes, and constants
-- **STRUCTURE.md** â€” Recommended project layout and file organization
-- **ERROR_GUIDE.md** â€” Common compiler diagnostics and how to resolve them
-- **GPU_SEMANTICS.md** â€” GPU block execution model, backend selection, and kernel dispatch
+- **RULES.md** — Core language rules and compiler constraints
+- **NAMING.md** — Naming conventions for methods, variables, classes, and constants
+- **STRUCTURE.md** — Recommended project layout and file organization
+- **ERROR_GUIDE.md** — Common compiler diagnostics and how to resolve them
+- **GPU_SEMANTICS.md** — GPU block execution model, backend selection, and kernel dispatch

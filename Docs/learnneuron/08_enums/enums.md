@@ -1,4 +1,4 @@
-﻿# Enums
+# Enums
 
 An `enum` defines a set of named constant values.
 
@@ -72,4 +72,4 @@ Status enum { Pending, Running, Done };
 
 ## Next Steps
 
-- [Control Flow](../09_control_flow/if_else.md) â€” Branching and looping
+- [Control Flow](../09_control_flow/if_else.md) — Branching and looping

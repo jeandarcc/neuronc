@@ -1,4 +1,4 @@
-﻿# Diagnostics Engine (`src/diagnostics/`)
+# Diagnostics Engine (`src/diagnostics/`)
 
 This directory houses the multi-locale error reporting system for the Neuron
 compiler. Rather than hardcoding English error messages into the compiler passes,
@@ -9,7 +9,7 @@ runtime.
 
 | File | Purpose |
 |------|---------|
-| `DiagnosticLocale.cpp` | Represents a single loaded locale (e.g., `de`, `zh`, `en-US`), holding the parsed dictionary of ID â†’ Message templates derived from the TOML files in `config/diagnostics/`. |
+| `DiagnosticLocale.cpp` | Represents a single loaded locale (e.g., `de`, `zh`, `en-US`), holding the parsed dictionary of ID → Message templates derived from the TOML files in `config/diagnostics/`. |
 | `DiagnosticLocalizer.cpp` | The core engine. Discovers locale definition files on disk, handles fallback (always falls back to `en` if a string is missing in the target locale), and formats templates by substituting `{keys}`. |
 
 ## The Data Flow

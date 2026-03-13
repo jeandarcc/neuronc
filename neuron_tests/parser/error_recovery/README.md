@@ -1,4 +1,4 @@
-﻿# Parser Error Recovery Specification
+# Parser Error Recovery Specification
 
 ## Scope
 

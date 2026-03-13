@@ -1,28 +1,28 @@
-﻿﻿# Neuron (Neuron)
+?# Neuron (Neuron)
 
 [![CI](https://github.com/your-org/neuron-pp/actions/workflows/ci.yml/badge.svg)](https://github.com/your-org/neuron-pp/actions/workflows/ci.yml)
 [![License](https://img.shields.io/badge/license-MIT-green)](#license)
 
-**Neuron (Neuron)** is a high-performance, statically-typed programming language for native systems programming, neural computations, and real-time graphics â€” powered by LLVM, Vulkan/CUDA, and a self-hosted package manager (`ncon`).
+**Neuron (Neuron)** is a high-performance, statically-typed programming language for native systems programming, neural computations, and real-time graphics — powered by LLVM, Vulkan/CUDA, and a self-hosted package manager (`ncon`).
 
 ## Key Features
 
 | Feature | Detail |
 |---------|--------|
-| âš¡ Native performance | LLVM-backed codegen (x86-64, WASM, future RISC-V) |
-| ðŸ§  Neural-native | First-class tensor types, GPU fusion optimizer, CUDA/Vulkan compute |
-| ðŸŽ® Built-in graphics | Vulkan 2D/3D scene graph, WebGPU web target |
-| ðŸ”Œ Full toolchain | `neuron` compiler + `ncon` package manager + `neuron-lsp` LSP server |
-| ðŸ–Šï¸ IDE support | VS Code + IntelliJ extensions included |
+| ⚡ Native performance | LLVM-backed codegen (x86-64, WASM, future RISC-V) |
+| 🧠 Neural-native | First-class tensor types, GPU fusion optimizer, CUDA/Vulkan compute |
+| 🎮 Built-in graphics | Vulkan 2D/3D scene graph, WebGPU web target |
+| 🔌 Full toolchain | `neuron` compiler + `ncon` package manager + `neuron-lsp` LSP server |
+| 🖊️ IDE support | VS Code + IntelliJ extensions included |
 
 ## Repository Layout
 
 ```
-src/              Compiler: lexer â†’ parser â†’ sema â†’ NIR â†’ MIR â†’ codegen + lsp + ncon
+src/              Compiler: lexer → parser → sema → NIR → MIR → codegen + lsp + ncon
 runtime/          C runtime: tensor, nn, graphics, platform (win32/linux/macos), gpu
 include/          Public API headers (ABI boundary: include/neuronc/)
 tests/            Single-binary test suite (mirrors src/ layout)
-scripts/          Canonical build/test scripts â€” the ONLY way to build
+scripts/          Canonical build/test scripts — the ONLY way to build
 config/           Diagnostics catalog (multi-locale TOML) + CLI config
 extensions/       IDE plugins: vscode-neuron, intellij-neuron
 docs/             Architecture docs, ADRs, guides, specs
@@ -51,7 +51,7 @@ set "NEURON_TOOLCHAIN_BIN=C:\msys64\mingw64\bin"
 scripts\build.bat
 ```
 
-> âš ï¸ **Do not invoke CMake directly.** Always use `scripts/`. See [`scripts/README.md`](scripts/README.md).
+> ⚠️ **Do not invoke CMake directly.** Always use `scripts/`. See [`scripts/README.md`](scripts/README.md).
 
 ### Run Tests
 
@@ -82,4 +82,4 @@ See [CONTRIBUTING.md](CONTRIBUTING.md), [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md)
 
 ## License
 
-MIT License â€” see [LICENSE](LICENSE).
+MIT License — see [LICENSE](LICENSE).

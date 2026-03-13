@@ -1,6 +1,6 @@
-﻿# Assignment & Alias Semantics
+# Assignment & Alias Semantics
 
-In Neuron, the default assignment behavior creates an **alias** â€” both names share the same memory.
+In Neuron, the default assignment behavior creates an **alias** — both names share the same memory.
 
 ---
 
@@ -10,7 +10,7 @@ When you assign one variable to another using `is`, they become aliases:
 
 ```npp
 x is 10;
-y is x;       // y is an ALIAS of x â€” shared memory
+y is x;       // y is an ALIAS of x — shared memory
 
 y is 20;      // x is now ALSO 20
 Print(x);     // prints 20
@@ -79,7 +79,7 @@ constructor public method(x as float, y as float) {
 |----------|-------------------|
 | **C++** | Copy the value |
 | **Python** | Share the reference (for objects) |
-| **Neuron** | **Alias** â€” shared memory for all types |
+| **Neuron** | **Alias** — shared memory for all types |
 
 To get C++-style copy behavior in Neuron, use [`another`](copying.md).
 
@@ -87,5 +87,5 @@ To get C++-style copy behavior in Neuron, use [`another`](copying.md).
 
 ## Next Steps
 
-- [Copying](copying.md) â€” Create independent copies with `another`
-- [Move](move.md) â€” Transfer ownership with `move`
+- [Copying](copying.md) — Create independent copies with `another`
+- [Move](move.md) — Transfer ownership with `move`

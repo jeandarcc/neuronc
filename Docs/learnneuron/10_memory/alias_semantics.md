@@ -1,6 +1,6 @@
-﻿# Alias Semantics
+# Alias Semantics
 
-In Neuron, the default `is` assignment creates an **alias** â€” both names share the same underlying memory.
+In Neuron, the default `is` assignment creates an **alias** — both names share the same underlying memory.
 
 ---
 
@@ -8,7 +8,7 @@ In Neuron, the default `is` assignment creates an **alias** â€” both names 
 
 ```npp
 x is 10;
-y is x;       // alias â€” y and x share memory
+y is x;       // alias — y and x share memory
 y is 20;
 Print(x);     // 20 (x changed too!)
 ```
@@ -28,13 +28,13 @@ Print(x);     // 20 (x changed too!)
 
 ## Why Alias-by-Default?
 
-- No unnecessary copies â†’ **faster by default**
-- Explicit `another` when you need a copy â†’ **clear intent**
+- No unnecessary copies → **faster by default**
+- Explicit `another` when you need a copy → **clear intent**
 - Matches the language philosophy of performance-first design
 
 ---
 
 ## Next Steps
 
-- [Pointers](pointers.md) â€” `address of` and `value of`
-- [Ownership](ownership.md) â€” Lifetime model
+- [Pointers](pointers.md) — `address of` and `value of`
+- [Ownership](ownership.md) — Lifetime model

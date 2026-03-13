@@ -1,4 +1,4 @@
-﻿# Standard Library Math Specification
+# Standard Library Math Specification
 
 ## Scope
 

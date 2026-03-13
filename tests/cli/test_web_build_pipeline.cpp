@@ -1,4 +1,4 @@
-﻿#include "neuronc/cli/WebBuildPipeline.h"
+#include "neuronc/cli/WebBuildPipeline.h"
 
 #include <chrono>
 #include <filesystem>

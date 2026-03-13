@@ -1,4 +1,4 @@
-﻿# Class Declaration
+# Class Declaration
 
 Classes in Neuron define objects with fields and methods.
 
@@ -84,6 +84,6 @@ See [Generic Classes](../13_generics/generic_classes.md).
 
 ## Next Steps
 
-- [Fields](fields.md) â€” Class fields and `this`
-- [Constructors](constructors.md) â€” Initialization methods
-- [Inheritance](inheritance.md) â€” Extending classes
+- [Fields](fields.md) — Class fields and `this`
+- [Constructors](constructors.md) — Initialization methods
+- [Inheritance](inheritance.md) — Extending classes

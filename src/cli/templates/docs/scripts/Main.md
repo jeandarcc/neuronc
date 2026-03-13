@@ -1,4 +1,4 @@
-﻿# Main Script
+# Main Script
 
 This document describes `src/Main.nr`, the program entry point for this Neuron project.
 
@@ -8,7 +8,7 @@ This document describes `src/Main.nr`, the program entry point for this Neuron p
 
 ## Entry Point
 
-The `Init` method is the program's entry point â€” analogous to `main()` in C/C++ or `Main()` in C#. It is automatically invoked by the Neuron runtime during program startup; no manual call is required.
+The `Init` method is the program's entry point — analogous to `main()` in C/C++ or `Main()` in C#. It is automatically invoked by the Neuron runtime during program startup; no manual call is required.
 
 ```nr
 Init is method() {

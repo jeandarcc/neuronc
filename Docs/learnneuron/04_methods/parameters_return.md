@@ -1,4 +1,4 @@
-﻿# Parameters & Return Types
+# Parameters & Return Types
 
 Methods accept parameters using `name as type` syntax and return values using `as type`.
 
@@ -91,5 +91,5 @@ Max method(a as int, b as int) as int {
 
 ## Next Steps
 
-- [Constructor](constructor.md) â€” Initialization method
-- [Lambdas](lambdas.md) â€” Anonymous methods
+- [Constructor](constructor.md) — Initialization method
+- [Lambdas](lambdas.md) — Anonymous methods

@@ -27,10 +27,10 @@ enum class ModuleProviderKind {
 
 struct ModuleResolverOptions {
   bool autoAddMissingPackages = false;
-  bool autoIncludeBuiltinLibraries = true;
-  bool autoIncludeBuiltinNativeLibraries = true;
-  std::filesystem::path builtinLibrariesRoot;
-  std::filesystem::path builtinNativeLibrariesRoot;
+  bool autoIncludebuiltin_libraries = true;
+  bool autoIncludebuiltin_native_libraries = true;
+  std::filesystem::path builtin_librariesRoot;
+  std::filesystem::path builtin_native_librariesRoot;
 };
 
 struct ModuleResolverResult {

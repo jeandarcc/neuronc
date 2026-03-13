@@ -1,4 +1,4 @@
-﻿# Standard Library String Specification
+# Standard Library String Specification
 
 ## Scope
 

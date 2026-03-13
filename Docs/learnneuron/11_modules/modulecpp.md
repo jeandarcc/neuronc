@@ -1,4 +1,4 @@
-﻿# ModuleCpp (C++ Interop)
+# ModuleCpp (C++ Interop)
 
 The `modulecpp` keyword allows importing native C++ libraries into Neuron.
 

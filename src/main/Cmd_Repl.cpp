@@ -1,4 +1,4 @@
-﻿#include "CommandHandlers.h"
+#include "CommandHandlers.h"
 
 #include "BuildSupport.h"
 #include "DiagnosticEngine.h"

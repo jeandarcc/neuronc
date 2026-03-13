@@ -1,10 +1,10 @@
-﻿﻿# Neuron Error Guide
+?# Neuron Error Guide
 
 This document catalogs the most common compiler diagnostics emitted by the Neuron toolchain, explains their root causes, and provides actionable resolution steps.
 
 ---
 
-## E001 â€” Multiple Classes in Module
+## E001 — Multiple Classes in Module
 
 **Diagnostic:**
 ```
@@ -17,14 +17,14 @@ Each .nr file may contain only one class.
 **Fix:** Split each class into its own `.nr` file. The filename must match the class name.
 
 ```
-âŒ  Shapes.nr  â†’  Circle is public class { }  +  Square is public class { }
-âœ…  Circle.nr  â†’  Circle is public class { }
-âœ…  Square.nr  â†’  Square is public class { }
+❌  Shapes.nr  →  Circle is public class { }  +  Square is public class { }
+✅  Circle.nr  →  Circle is public class { }
+✅  Square.nr  →  Square is public class { }
 ```
 
 ---
 
-## E002 â€” Class Name / Filename Mismatch
+## E002 — Class Name / Filename Mismatch
 
 **Diagnostic:**
 ```
@@ -38,13 +38,13 @@ Found: <ClassName>
 **Fix:** Rename either the file or the class so they match exactly (case-sensitive).
 
 ```
-âŒ  Vector2.nr  â†’  Vec2 is public class { }
-âœ…  Vector2.nr  â†’  Vector2 is public class { }
+❌  Vector2.nr  →  Vec2 is public class { }
+✅  Vector2.nr  →  Vector2 is public class { }
 ```
 
 ---
 
-## E003 â€” Self-Import
+## E003 — Self-Import
 
 **Diagnostic:**
 ```
@@ -57,7 +57,7 @@ ERROR: Module cannot import itself.
 
 ---
 
-## E004 â€” Method Name Violation
+## E004 — Method Name Violation
 
 **Diagnostic:**
 ```
@@ -69,13 +69,13 @@ ERROR: Method name must start with an uppercase letter.
 **Fix:** Rename the method to start with an uppercase letter.
 
 ```
-âŒ  calculateSum is method(a as int, b as int) as int { ... };
-âœ…  CalculateSum is method(a as int, b as int) as int { ... };
+❌  calculateSum is method(a as int, b as int) as int { ... };
+✅  CalculateSum is method(a as int, b as int) as int { ... };
 ```
 
 ---
 
-## E005 â€” Variable Name Violation
+## E005 — Variable Name Violation
 
 **Diagnostic:**
 ```
@@ -87,16 +87,16 @@ ERROR: Invalid variable name.
 **Fix:**
 
 ```
-âŒ  TestObject        // starts with uppercase
-âŒ  test_object       // underscore in the middle
-âŒ  __cache           // double underscore
-âœ…  testObject
-âœ…  _testObject
+❌  TestObject        // starts with uppercase
+❌  test_object       // underscore in the middle
+❌  __cache           // double underscore
+✅  testObject
+✅  _testObject
 ```
 
 ---
 
-## E006 â€” Missing Access Modifier
+## E006 — Missing Access Modifier
 
 **Diagnostic:**
 ```
@@ -108,16 +108,16 @@ ERROR: Class/property requires explicit visibility modifier.
 **Fix:** Add `public` or `private` before the declaration.
 
 ```
-âŒ  Player is class { ... }
-âœ…  Player is public class { ... }
+❌  Player is class { ... }
+✅  Player is public class { ... }
 
-âŒ  health is int;
-âœ…  health is private int;
+❌  health is int;
+✅  health is private int;
 ```
 
 ---
 
-## E007 â€” Script Documentation Missing or Too Short
+## E007 — Script Documentation Missing or Too Short
 
 **Diagnostic:**
 ```
@@ -143,7 +143,7 @@ is executed via `neuron run`. No manual call is required.
 
 ---
 
-## E008 â€” File Too Long
+## E008 — File Too Long
 
 **Diagnostic:**
 ```
@@ -156,7 +156,7 @@ ERROR: File exceeds maximum line count (N > max_lines_per_file).
 
 ---
 
-## E009 â€” Method Too Long
+## E009 — Method Too Long
 
 **Diagnostic:**
 ```
@@ -169,7 +169,7 @@ ERROR: Method body exceeds maximum line count (N > max_lines_per_method).
 
 ---
 
-## E010 â€” Nesting Too Deep
+## E010 — Nesting Too Deep
 
 **Diagnostic:**
 ```
@@ -181,16 +181,16 @@ ERROR: Block nesting exceeds maximum depth (N > max_nesting_depth).
 **Fix:** Use early returns, guard clauses, or extract nested logic into separate methods.
 
 ```nr
-// âŒ Too deeply nested
+// ❌ Too deeply nested
 if(a) {
     if(b) {
         if(c) {
-            if(d) { ... }   // depth 4 â€” exceeds limit
+            if(d) { ... }   // depth 4 — exceeds limit
         }
     }
 }
 
-// âœ… Flattened with early returns
+// ✅ Flattened with early returns
 if(!a) { return; }
 if(!b) { return; }
 if(!c) { return; }
@@ -199,7 +199,7 @@ Process(d);
 
 ---
 
-## E011 â€” Undefined Variable
+## E011 — Undefined Variable
 
 **Diagnostic:**
 ```
@@ -212,11 +212,11 @@ ERROR: Use of undeclared identifier '<name>'.
 
 ---
 
-## E012 â€” Type Mismatch
+## E012 — Type Mismatch
 
 **Diagnostic:**
 ```
-ERROR: Type mismatch â€” expected '<TypeA>', found '<TypeB>'.
+ERROR: Type mismatch — expected '<TypeA>', found '<TypeB>'.
 ```
 
 **Cause:** An operation or assignment involves incompatible types.
@@ -232,11 +232,11 @@ z is (x as float) + y;  // explicit cast
 
 ---
 
-## E013 â€” Invalid `gpu` Block Usage
+## E013 — Invalid `gpu` Block Usage
 
 **Diagnostic:**
 ```
-WARNING: GPU backend unavailable â€” falling back to CPU.
+WARNING: GPU backend unavailable — falling back to CPU.
 ```
 
 **Cause:** A `gpu { ... }` block was used, but no GPU backend (CUDA or Vulkan) is available on the target system.
@@ -249,7 +249,7 @@ NEURON_GPU_FORCE_BACKEND=auto|cpu|vulkan|cuda
 
 ---
 
-## E014 â€” Constant Naming Violation
+## E014 — Constant Naming Violation
 
 **Diagnostic:**
 ```
@@ -261,16 +261,16 @@ ERROR: Constant name must be UPPER_CASE.
 **Fix:**
 
 ```
-âŒ  maxSize is 1024;
-âœ…  MAX_SIZE is 1024;
+❌  maxSize is 1024;
+✅  MAX_SIZE is 1024;
 ```
 
 ---
 
 ## General Debugging Tips
 
-1. **Read the full error message** â€” Neuron diagnostics include the file, line number, and expected vs. found values.
-2. **Check `.neuronsettings`** â€” Many errors are caused by project-level rule configurations.
-3. **One class per file** â€” This is the most common mistake for newcomers from C++ or Java.
-4. **Alias vs. copy** â€” If two variables unexpectedly share state, you may need `another` for an independent copy.
-5. **Module self-import** â€” A file cannot import itself; its own symbols are already in scope.
+1. **Read the full error message** — Neuron diagnostics include the file, line number, and expected vs. found values.
+2. **Check `.neuronsettings`** — Many errors are caused by project-level rule configurations.
+3. **One class per file** — This is the most common mistake for newcomers from C++ or Java.
+4. **Alias vs. copy** — If two variables unexpectedly share state, you may need `another` for an independent copy.
+5. **Module self-import** — A file cannot import itself; its own symbols are already in scope.

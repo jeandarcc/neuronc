@@ -1,4 +1,4 @@
-﻿# Machine IR (`src/mir/`)
+# Machine IR (`src/mir/`)
 
 > **Status:** Bridging High-Level NIR to Low-Level LLVM IR.
 

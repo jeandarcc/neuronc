@@ -1,4 +1,4 @@
-﻿# Platform Abstraction (`runtime/src/platform/`)
+# Platform Abstraction (`runtime/src/platform/`)
 
 The `platform/` directory is the **copper wall** of the runtime. No other part of the
 runtime (`io.c`, `tensor.c`, etc.) is permitted to include OS-specific headers

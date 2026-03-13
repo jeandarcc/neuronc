@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 #include "neuronc/ncon/Permissions.h"
 

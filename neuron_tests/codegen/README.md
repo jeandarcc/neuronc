@@ -1,4 +1,4 @@
-﻿# Runtime and Code Generation Behavior Specification
+# Runtime and Code Generation Behavior Specification
 
 ## Scope
 

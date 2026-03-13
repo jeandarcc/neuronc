@@ -1,4 +1,4 @@
-﻿#include "SettingsMacroInternal.h"
+#include "SettingsMacroInternal.h"
 
 #include "neuronc/cli/ProjectConfig.h"
 

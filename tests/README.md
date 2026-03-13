@@ -1,4 +1,4 @@
-﻿# Neuron Test Suite (`tests/`)
+# Neuron Test Suite (`tests/`)
 
 Neuron ships a unified, single-binary test suite. Instead of compiling hundreds of
 tiny executables, all tests are linked into the `neuron_tests.exe` binary.

@@ -1,4 +1,4 @@
-﻿# NCON Overview
+# NCON Overview
 
 NCON (Neuron Container) is a portable bytecode container format for running Neuron programs in a sandboxed virtual machine.
 
@@ -9,7 +9,7 @@ NCON (Neuron Container) is a portable bytecode container format for running Neur
 NCON is an alternative execution path to LLVM native compilation:
 
 ```
-Source (.nr) â†’ NIR â†’ Bytecode â†’ .ncon Container â†’ VM Execution
+Source (.nr) → NIR → Bytecode → .ncon Container → VM Execution
 ```
 
 ---
@@ -21,7 +21,7 @@ Source (.nr) â†’ NIR â†’ Bytecode â†’ .ncon Container â†’ VM
 | Performance | Maximum | Good (bytecode VM) |
 | Portability | Platform-specific | Cross-platform |
 | Security | Full OS access | Sandboxed |
-| Hot Reload | âŒ No | âœ… Yes |
+| Hot Reload | ❌ No | ✅ Yes |
 | File Extension | `.exe` / binary | `.ncon` |
 
 ---
@@ -41,15 +41,15 @@ neuron build        # builds native LLVM binary
 
 A `.ncon` file is a binary container with:
 
-- **Header** â€” Magic number, version, flags
-- **Module table** â€” List of compiled modules
-- **Bytecode** â€” Compiled VM instructions
-- **Constants** â€” String/numeric constant pool
-- **Metadata** â€” Source maps for debugging
+- **Header** — Magic number, version, flags
+- **Module table** — List of compiled modules
+- **Bytecode** — Compiled VM instructions
+- **Constants** — String/numeric constant pool
+- **Metadata** — Source maps for debugging
 
 ---
 
 ## Next Steps
 
-- [Build & Run](build_run.md) â€” Building and running NCON containers
-- [Watch & Hot Reload](watch_hotreload.md) â€” Live development
+- [Build & Run](build_run.md) — Building and running NCON containers
+- [Watch & Hot Reload](watch_hotreload.md) — Live development

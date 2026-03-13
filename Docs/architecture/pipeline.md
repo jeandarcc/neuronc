@@ -1,24 +1,24 @@
-﻿# Compiler Pipeline â€” Pass-by-Pass Reference
+# Compiler Pipeline — Pass-by-Pass Reference
 
 ## Overview
 
 ```
-Source (.nr)  â†’  [Lexer]  â†’  [Parser]  â†’  [Frontend]  â†’  [Sema]
-                                                              â†“
+Source (.nr)  →  [Lexer]  →  [Parser]  →  [Frontend]  →  [Sema]
+                                                              ↓
                                                         [NIR Builder]
-                                                              â†“
+                                                              ↓
                                                         [Optimizer]
-                                                              â†“
+                                                              ↓
                                                         [MIR Builder]
-                                                              â†“
+                                                              ↓
                                                         [LLVMCodeGen]
-                                                              â†“
+                                                              ↓
                                                        Native Binary
 ```
 
 ---
 
-## Stage 1 â€” Lexer (`src/lexer/`)
+## Stage 1 — Lexer (`src/lexer/`)
 
 **Input:** Raw source bytes (`std::string` / file path)  
 **Output:** Flat `std::vector<Token>` stream
@@ -29,16 +29,16 @@ Source (.nr)  â†’  [Lexer]  â†’  [Parser]  â†’  [Frontend]  â†
 | `Token.cpp` | `Token` struct: kind, value, source range (`line:col`), interned string |
 
 **Key behaviors:**
-- Single-pass, no lookahead required â€” contextual keywords resolved by parser.
+- Single-pass, no lookahead required — contextual keywords resolved by parser.
 - Source locations (`SourceRange`) are attached at this stage and propagated to all subsequent passes for accurate diagnostics.
-- Operator sequences (e.g. `>>`) are NOT eagerly coalesced â€” the parser handles context-sensitive splitting.
+- Operator sequences (e.g. `>>`) are NOT eagerly coalesced — the parser handles context-sensitive splitting.
 
 ---
 
-## Stage 2 â€” Parser (`src/parser/`)
+## Stage 2 — Parser (`src/parser/`)
 
 **Input:** Token stream  
-**Output:** Abstract Syntax Tree (AST) nodes â€” heap-allocated, arena-backed
+**Output:** Abstract Syntax Tree (AST) nodes — heap-allocated, arena-backed
 
 | File/Directory | Role |
 |----------------|------|
@@ -51,12 +51,12 @@ Source (.nr)  â†’  [Lexer]  â†’  [Parser]  â†’  [Frontend]  â†
 
 **Key behaviors:**
 - Recursive-descent, hand-written (no parser generator).
-- Produces a **typed, source-annotated** AST â€” node types preserve the semantic category.
+- Produces a **typed, source-annotated** AST — node types preserve the semantic category.
 - Error recovery: on parse error, attempts to sync to next statement boundary to continue reporting multiple errors.
 
 ---
 
-## Stage 3 â€” Frontend (`src/frontend/`)
+## Stage 3 — Frontend (`src/frontend/`)
 
 **Input:** File path(s), CLI options  
 **Output:** Loaded source, pre-processed include graph, initial `DiagnosticContext`
@@ -72,7 +72,7 @@ Source (.nr)  â†’  [Lexer]  â†’  [Parser]  â†’  [Frontend]  â†
 
 ---
 
-## Stage 4 â€” Semantic Analysis (`src/sema/`)
+## Stage 4 — Semantic Analysis (`src/sema/`)
 
 **Input:** AST  
 **Output:** Fully annotated, type-checked AST + symbol table
@@ -102,7 +102,7 @@ Source (.nr)  â†’  [Lexer]  â†’  [Parser]  â†’  [Frontend]  â†
 
 ---
 
-## Stage 5 â€” NIR Construction + Optimization (`src/nir/`)
+## Stage 5 — NIR Construction + Optimization (`src/nir/`)
 
 **Input:** Annotated AST  
 **Output:** Optimized NIR module
@@ -115,7 +115,7 @@ Source (.nr)  â†’  [Lexer]  â†’  [Parser]  â†’  [Frontend]  â†
 | `decls/` | NIR-level declaration lowering |
 | `types/` | NIR type system |
 | `detail/` | Internal helpers |
-| `lowering/` | AST â†’ NIR lowering passes |
+| `lowering/` | AST → NIR lowering passes |
 | `Optimizer.cpp` | Pass manager; runs enabled passes on the NIR module |
 | `OptimizerCleanup.cpp` | Dead code elimination, constant folding, trivial inlining |
 | `OptimizerGpuScopeLifting.cpp` | Promotes GPU-bound computations to GPU scope |
@@ -124,7 +124,7 @@ Source (.nr)  â†’  [Lexer]  â†’  [Parser]  â†’  [Frontend]  â†
 
 ---
 
-## Stage 6 â€” MIR Construction (`src/mir/`)
+## Stage 6 — MIR Construction (`src/mir/`)
 
 **Input:** Optimized NIR module  
 **Output:** MIR module ready for LLVM code generation
@@ -139,14 +139,14 @@ Source (.nr)  â†’  [Lexer]  â†’  [Parser]  â†’  [Frontend]  â†
 
 ---
 
-## Stage 7 â€” LLVM Code Generation (`src/codegen/`)
+## Stage 7 — LLVM Code Generation (`src/codegen/`)
 
 **Input:** MIR module  
 **Output:** Object file or JIT-executed native code
 
 | File | Role |
 |------|------|
-| `LLVMCodeGen.cpp` | MIR â†’ LLVM IR translation; target machine setup; optimization passes |
+| `LLVMCodeGen.cpp` | MIR → LLVM IR translation; target machine setup; optimization passes |
 | `JITEngine.cpp` | OrcJIT setup; used by ncon hot-reload and REPL |
 | `llvm/` | LLVM utility wrappers |
 

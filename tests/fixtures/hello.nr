@@ -1,3 +1,3 @@
 Init is method() {
-    Print("Hello Neuron");
+    Print("Hello NPP");
 }

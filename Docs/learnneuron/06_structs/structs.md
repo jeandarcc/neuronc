@@ -1,6 +1,6 @@
-﻿# Structs
+# Structs
 
-A `struct` is a value-type class â€” a lightweight data container.
+A `struct` is a value-type class — a lightweight data container.
 
 ---
 
@@ -21,8 +21,8 @@ Point struct {
 |---------|---------|----------|
 | Semantics | Reference type (alias) | Value type (copy) |
 | Default assignment | Alias (shared memory) | Copy (independent) |
-| Inheritance | âœ… Supported | Limited |
-| Methods | âœ… Full support | âœ… Supported |
+| Inheritance | ✅ Supported | Limited |
+| Methods | ✅ Full support | ✅ Supported |
 
 ---
 

@@ -1,4 +1,4 @@
-﻿#include "neuronc/ncon/Builder.h"
+#include "neuronc/ncon/Builder.h"
 
 #include "neuronc/ncon/Bytecode.h"
 #include "neuronc/cli/ProjectConfig.h"
@@ -590,8 +590,8 @@ bool buildContainerFromInput(const BuildRequest &request,
 
   ModuleResolverOptions resolverOptions;
   resolverOptions.autoAddMissingPackages = true;
-  resolverOptions.autoIncludeBuiltinLibraries = true;
-  resolverOptions.builtinLibrariesRoot = build.projectRoot / "BuiltinLibraries";
+  resolverOptions.autoIncludebuiltin_libraries = true;
+  resolverOptions.builtin_librariesRoot = build.projectRoot / "builtin_libraries";
   const ModuleResolverResult resolved = ModuleResolver::resolve(
       build.sourcePath, build.config,
       [&](const fs::path &path, std::string *readError) {
@@ -719,7 +719,7 @@ bool buildContainerFromInput(const BuildRequest &request,
         !hasBuiltinNativeProvider) {
       if (outError != nullptr) {
         *outError =
-            "modulecpp imports require [ncon.native].enabled = true in neuron.toml unless the module is resolved from BuiltinNativeLibraries";
+            "modulecpp imports require [ncon.native].enabled = true in neuron.toml unless the module is resolved from builtin_native_libraries";
       }
       return false;
     }

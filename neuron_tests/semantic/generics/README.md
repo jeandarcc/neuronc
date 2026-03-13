@@ -1,4 +1,4 @@
-﻿# Semantic Generics Specification
+# Semantic Generics Specification
 
 ## Scope
 

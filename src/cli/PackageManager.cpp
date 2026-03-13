@@ -1,4 +1,4 @@
-﻿#include "neuronc/cli/PackageManager.h"
+#include "neuronc/cli/PackageManager.h"
 
 #include <algorithm>
 #include <array>

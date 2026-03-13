@@ -1,4 +1,4 @@
-﻿# Parser Behavior Specification
+# Parser Behavior Specification
 
 ## Scope
 
@@ -46,7 +46,7 @@ Subfolders:
 | `parser_baseline__empty_file` | `` | Parse succeeds or produces a well-defined empty program result | Defines the lower bound for source acceptance |
 | `parser_baseline__module_and_method` | `module System; Init is method() { Print("ok"); }` | Parse succeeds with no syntax diagnostics | Establishes the canonical well-formed file |
 | `parser_baseline__missing_semicolon` | `x is 1\ny is 2;` | Parser error in `N1200-N1299` and recovery into later declarations | Validates statement-boundary recovery |
-| `parser_baseline__bad_parameter_form` | `sum is method(int a) as int { return a; }` | Parser error in `N1300-N1399` | Pins the languageâ€™s parameter grammar |
+| `parser_baseline__bad_parameter_form` | `sum is method(int a) as int { return a; }` | Parser error in `N1300-N1399` | Pins the language’s parameter grammar |
 | `parser_baseline__unclosed_block` | `Init is method() { Print("x");` | Parser error in `N1500-N1599` | Ensures incomplete files report useful diagnostics |
 | `parser_baseline__nested_expression_precedence` | `value is 1 + 2 * 3;` | Parse succeeds with multiplication binding tighter than addition | Keeps precedence rules stable |
 | `parser_baseline__generic_type_spelling` | `box as Array<int>;` | Parse succeeds | Confirms type argument syntax is accepted |

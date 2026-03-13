@@ -1,4 +1,4 @@
-﻿#include "neuronc/cli/SettingsMacros.h"
+#include "neuronc/cli/SettingsMacros.h"
 #include "neuronc/lexer/Lexer.h"
 #include "neuronc/parser/Parser.h"
 

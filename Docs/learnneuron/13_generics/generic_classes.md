@@ -1,4 +1,4 @@
-﻿# Generic Classes
+# Generic Classes
 
 Generic classes accept type parameters, enabling type-safe reusable containers.
 

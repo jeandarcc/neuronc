@@ -1,4 +1,4 @@
-﻿# Pointers
+# Pointers
 
 Neuron uses readable keywords `address of` and `value of` instead of `&` and `*`.
 
@@ -64,4 +64,4 @@ To access the value:
 ---
 
 ## Next Steps
-- [Ownership](ownership.md) â€” Lifetime model
+- [Ownership](ownership.md) — Lifetime model

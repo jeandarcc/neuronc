@@ -1,4 +1,4 @@
-﻿# Ownership Behavior Specification
+# Ownership Behavior Specification
 
 ## Scope
 
@@ -37,7 +37,7 @@ Excluded:
 
 | Name | `.nr` input code | Expected output or error | Why important |
 | --- | --- | --- | --- |
-| `ownership_baseline__alias_by_default` | `Init is method() { x is 10; y is x; y is 20; Print(x); }` | Compiles and prints `20` | Documents the languageâ€™s alias-by-default contract |
+| `ownership_baseline__alias_by_default` | `Init is method() { x is 10; y is x; y is 20; Print(x); }` | Compiles and prints `20` | Documents the language’s alias-by-default contract |
 | `ownership_baseline__deep_copy_via_another` | `Init is method() { x is 10; y is another x; y is 20; Print(x); }` | Compiles and prints `10` | Distinguishes copy from alias |
 | `ownership_baseline__use_after_move` | `Init is method() { x is 10; y is move x; Print(x); }` | `N3000-N3099` | Core ownership safety rule |
 | `ownership_baseline__return_valid_owner` | return moved or copied value from helper | Compiles and returns/prints expected value | Validates transfer across call boundaries |

@@ -1,4 +1,4 @@
-﻿# Standard Library Collections Specification
+# Standard Library Collections Specification
 
 ## Scope
 

@@ -36,7 +36,7 @@ inline constexpr const char *kUsageText = R"(
     neuron remove <package> [--global]
                                  Remove a package dependency or global package
     neuron update [package]      Update one/all dependencies
-    neuron publish               Create a .nppkg package artifact
+    neuron publish               Create a .nrkg package artifact
     neuron packages              List installed local/global packages
     neuron settings-of <builtin-module|package-name|owner/repo|url>
                                  Print effective .modulesettings content for a builtin or installed package
@@ -51,13 +51,13 @@ inline constexpr const char *kUsageText = R"(
                                  Build single-file nucleus runtime for .ncon execution
     neuron ncon <command>        Build/run/inspect NCON containers
     neuron lex <file> [--trace-errors] [--bypass-rules]
-                                 Tokenize a .npp file (debug)
+                                 Tokenize a .nr file (debug)
     neuron parse <file> [--trace-errors] [--bypass-rules]
-                                 Parse a .npp file (debug)
+                                 Parse a .nr file (debug)
     neuron nir <file> [--trace-errors] [--bypass-rules]
-                                 Generate and print NIR for a .npp file (debug)
+                                 Generate and print NIR for a .nr file (debug)
     neuron compile <file> [--trace-errors] [--bypass-rules]
-                                 Compile a .npp file to native executable
+                                 Compile a .nr file to native executable
     neuron help                  Show this help message
 
   REPL:

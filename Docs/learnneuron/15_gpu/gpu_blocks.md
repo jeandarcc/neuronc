@@ -1,4 +1,4 @@
-﻿# GPU Blocks
+# GPU Blocks
 
 The `gpu { }` block offloads tensor operations to the GPU, with automatic CPU fallback.
 
@@ -19,7 +19,7 @@ Everything inside the block runs on the GPU when available.
 
 ## CPU Fallback
 
-If no GPU is available, the same code runs on the CPU â€” no code changes needed.
+If no GPU is available, the same code runs on the CPU — no code changes needed.
 
 ---
 
@@ -58,5 +58,5 @@ Init method() {
 
 ## Next Steps
 
-- [GPU Selectors](gpu_selectors.md) â€” Device preferences
-- [Backends](backends.md) â€” GPU backend selection
+- [GPU Selectors](gpu_selectors.md) — Device preferences
+- [Backends](backends.md) — GPU backend selection

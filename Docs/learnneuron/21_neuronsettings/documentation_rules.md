@@ -1,4 +1,4 @@
-﻿# Documentation Rules
+# Documentation Rules
 
 Rules that enforce documentation as a first-class requirement.
 
@@ -25,7 +25,7 @@ expected 'docs/scripts/Player.md'.
 For agents: Create docs/scripts/<ScriptName>.md before compiling.
 ```
 
-**Why:** This prevents the universal problem of "we'll document it later" â€” which means never. Documentation is enforced **at compile time**.
+**Why:** This prevents the universal problem of "we'll document it later" — which means never. Documentation is enforced **at compile time**.
 
 For AI agents: if an agent creates a new `.nr` file, it **must** also create the matching documentation file or the project won't compile.
 
@@ -39,7 +39,7 @@ Files matching these glob patterns are exempt from the documentation requirement
 require_script_docs_exclude = ["Test*"]
 ```
 
-This means `TestPlayer.nr`, `TestVector.nr`, etc. don't need doc files â€” test files are self-documenting.
+This means `TestPlayer.nr`, `TestVector.nr`, etc. don't need doc files — test files are self-documenting.
 
 ---
 

@@ -1,8 +1,8 @@
-﻿# Semantic Behavior Specification
+# Semantic Behavior Specification
 
 ## Scope
 
-This folder covers meaning-level validation of `.nr` programs after successful parse. It specifies what source programs are well-typed, well-resolved, and semantically executable from the userâ€™s perspective.
+This folder covers meaning-level validation of `.nr` programs after successful parse. It specifies what source programs are well-typed, well-resolved, and semantically executable from the user’s perspective.
 
 Subfolders:
 

@@ -1,4 +1,4 @@
-﻿# Tensor Operations
+# Tensor Operations
 
 Neuron supports element-wise arithmetic and matrix multiplication on tensors.
 
@@ -62,5 +62,5 @@ TensorDemo method(t1 as Tensor<float>, t2 as Tensor<float>) {
 
 ## Next Steps
 
-- [Broadcasting](broadcasting.md) â€” Shape rules
-- [Neural Ops](neural_ops.md) â€” Activation functions, BLAS
+- [Broadcasting](broadcasting.md) — Shape rules
+- [Neural Ops](neural_ops.md) — Activation functions, BLAS

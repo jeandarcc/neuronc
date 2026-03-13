@@ -1,4 +1,4 @@
-﻿# Tensor Core (`runtime/src/tensor.c` & `runtime/src/tensor/`)
+# Tensor Core (`runtime/src/tensor.c` & `runtime/src/tensor/`)
 
 The Tensor subsystem is the mathematical heart of the Neuron runtime. It handles
 N-dimensional array representation, memory layouts, strides, broadcasting, and

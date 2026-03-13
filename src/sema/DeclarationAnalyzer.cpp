@@ -1,4 +1,4 @@
-﻿#include "DeclarationAnalyzer.h"
+#include "DeclarationAnalyzer.h"
 
 #include "AnalysisHelpers.h"
 #include "SemanticDriver.h"

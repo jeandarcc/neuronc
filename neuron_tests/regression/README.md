@@ -1,4 +1,4 @@
-﻿# Regression Specification
+# Regression Specification
 
 ## Scope
 

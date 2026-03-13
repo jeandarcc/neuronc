@@ -1,15 +1,15 @@
-﻿// Cmd_Build.cpp â€” Derleme, build-nucleus, build-product, run ve release komutlarÄ±.
+// Cmd_Build.cpp — Derleme, build-nucleus, build-product, run ve release komutları.
 //
-// Bu dosya ÅŸunlarÄ± iÃ§erir:
-//   makeProjectDeps   â†’ ProjectCommandDependencies fabrikasÄ± (dahili)
-//   cmdBuildMinimal   â†’ ncon runtime iÃ§in tek dosya derleme
-//   cmdBuildProduct   â†’ .productsettings ile Ã¼rÃ¼n paketi oluÅŸturma
-//   cmdBuild          â†’ proje build komutu
-//   cmdRun            â†’ proje run komutu
-//   cmdRelease        â†’ proje release komutu
+// Bu dosya şunları içerir:
+//   makeProjectDeps   → ProjectCommandDependencies fabrikası (dahili)
+//   cmdBuildMinimal   → ncon runtime için tek dosya derleme
+//   cmdBuildProduct   → .productsettings ile ürün paketi oluşturma
+//   cmdBuild          → proje build komutu
+//   cmdRun            → proje run komutu
+//   cmdRelease        → proje release komutu
 //
-// makeCompileDeps() Cmd_Debug.cpp'de tanÄ±mlÄ±dÄ±r; buradan forward-declare ile
-// kullanÄ±lÄ±r.
+// makeCompileDeps() Cmd_Debug.cpp'de tanımlıdır; buradan forward-declare ile
+// kullanılır.
 #include "CommandHandlers.h"
 #include "AppGlobals.h"
 #include "BuildSupport.h"
@@ -36,7 +36,7 @@
 
 namespace fs = std::filesystem;
 
-// Forward declaration â€” tanÄ±m Cmd_Debug.cpp'dedir.
+// Forward declaration — tanım Cmd_Debug.cpp'dedir.
 neuron::cli::CompilePipelineDependencies makeCompileDeps();
 
 namespace {
@@ -147,7 +147,7 @@ int runWebBuildTargetInternal(int argc, char *argv[],
 
 } // namespace
 
-// â”€â”€ ProjectCommand baÄŸÄ±mlÄ±lÄ±k fabrikasÄ± â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// ── ProjectCommand bağımlılık fabrikası ──────────────────────────────────────
 
 static neuron::cli::ProjectCommandDependencies makeProjectDeps() {
   neuron::cli::ProjectCommandDependencies deps;
@@ -174,7 +174,7 @@ static neuron::cli::ProjectCommandDependencies makeProjectDeps() {
   return deps;
 }
 
-// â”€â”€ build-nucleus â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// ── build-nucleus ────────────────────────────────────────────────────────────
 
 int cmdBuildMinimal(int argc, char *argv[]) {
   const std::string hostPlatform = currentHostPlatform();
@@ -304,7 +304,7 @@ int cmdBuildMinimal(int argc, char *argv[]) {
   return 0;
 }
 
-// â”€â”€ build-product â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// ── build-product ────────────────────────────────────────────────────────────
 
 int cmdBuildProduct(int argc, char *argv[]) {
   const std::string hostPlatform = currentHostPlatform();
@@ -358,7 +358,7 @@ int cmdBuildProduct(int argc, char *argv[]) {
   return 0;
 }
 
-// â”€â”€ build / run / release â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// ── build / run / release ────────────────────────────────────────────────────
 
 int cmdBuild() {
   return neuron::cli::runBuildCommand(makeProjectDeps());

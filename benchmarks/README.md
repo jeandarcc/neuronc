@@ -1,4 +1,4 @@
-﻿# Benchmark Suite (`benchmarks/`)
+# Benchmark Suite (`benchmarks/`)
 
 This directory contains the automated performance tracking suite for the Neuron
 compiler, specifically targeting tensor ops and AI workloads compared against

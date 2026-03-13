@@ -1,4 +1,4 @@
-﻿#include "neuronc/cli/repl/ReplPipeline.h"
+#include "neuronc/cli/repl/ReplPipeline.h"
 
 #include "neuronc/codegen/JITEngine.h"
 #include "neuronc/lexer/Lexer.h"

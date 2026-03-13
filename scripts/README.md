@@ -1,4 +1,4 @@
-﻿# Build & Orchestration Scripts (`scripts/`)
+# Build & Orchestration Scripts (`scripts/`)
 
 This directory contains the **only** supported way to build, test, and package
 the Neuron compiler on Windows.

@@ -1,4 +1,4 @@
-﻿# Architecture Decision Record 0001: Use LLVM as the Code Generation Backend
+# Architecture Decision Record 0001: Use LLVM as the Code Generation Backend
 
 **Status:** Accepted  
 **Date:** 2025 (initial implementation)  
@@ -38,7 +38,7 @@ Alternative backends considered:
 ## Consequences
 
 **Positive:**
-- Access to LLVM's full optimizer pipeline (O0â€“O3, LTO)
+- Access to LLVM's full optimizer pipeline (O0–O3, LTO)
 - Multi-target support (x86, WASM, future RISC-V) via `llvm-config --targets-built`
 - OrcJIT enables `ncon`'s hot-reload feature
 

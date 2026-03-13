@@ -1,4 +1,4 @@
-﻿# Move Semantics
+# Move Semantics
 
 The `move` keyword transfers ownership of a value from one variable to another. After the move, the original variable is invalidated.
 
@@ -11,7 +11,7 @@ x is 100;
 y is move x;    // ownership transferred to y
 
 Print(y);       // 100
-Print(x);       // undefined â€” x has been moved
+Print(x);       // undefined — x has been moved
 ```
 
 ---
@@ -20,7 +20,7 @@ Print(x);       // undefined â€” x has been moved
 
 | Statement | Behavior | Original after? |
 |-----------|----------|----------------|
-| `y is x;` | Alias â€” shared memory | Still valid (shared) |
+| `y is x;` | Alias — shared memory | Still valid (shared) |
 | `y is another x;` | Deep copy | Still valid (independent) |
 | `y is move x;` | Transfer ownership | **Invalidated** |
 
@@ -68,5 +68,5 @@ b move a;       // move without 'is'
 
 ## Next Steps
 
-- [Primitive Types](../02_types/primitive_types.md) â€” Available data types
-- [Memory Model](../10_memory/alias_semantics.md) â€” Deep dive into alias, copy, and move
+- [Primitive Types](../02_types/primitive_types.md) — Available data types
+- [Memory Model](../10_memory/alias_semantics.md) — Deep dive into alias, copy, and move

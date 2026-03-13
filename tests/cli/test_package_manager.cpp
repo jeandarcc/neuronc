@@ -1,4 +1,4 @@
-﻿// Package manager tests - included from tests/test_main.cpp
+// Package manager tests - included from tests/test_main.cpp
 #include "neuronc/cli/PackageManager.h"
 #include "neuronc/cli/ProjectConfig.h"
 

@@ -1,4 +1,4 @@
-﻿# Semantic Type Checking Specification
+# Semantic Type Checking Specification
 
 ## Scope
 

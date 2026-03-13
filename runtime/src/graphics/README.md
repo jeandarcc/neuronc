@@ -1,4 +1,4 @@
-﻿# Graphics Subsystem (`runtime/src/graphics/`)
+# Graphics Subsystem (`runtime/src/graphics/`)
 
 The graphics subsystem provides the rendering backend for the language's native
 UI capabilities, 2D/3D visualizations, and windowing integration.

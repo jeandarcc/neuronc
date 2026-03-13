@@ -1,4 +1,4 @@
-﻿# Configuration System (`config/`)
+# Configuration System (`config/`)
 
 This directory holds environment-independent configuration data used by the
 Neuron toolchain.

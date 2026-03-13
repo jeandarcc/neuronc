@@ -1,4 +1,4 @@
-﻿#include "neuronc/cli/ModuleResolver.h"
+#include "neuronc/cli/ModuleResolver.h"
 
 #include "neuronc/cli/PackageManager.h"
 
@@ -88,20 +88,20 @@ fs::path detectWorkspaceRoot(const fs::path &entryFile) {
   return entryFile.parent_path();
 }
 
-fs::path builtinLibrariesRootFor(const fs::path &entryFile,
+fs::path builtin_librariesRootFor(const fs::path &entryFile,
                                  const ModuleResolverOptions &options) {
-  if (!options.builtinLibrariesRoot.empty()) {
-    return options.builtinLibrariesRoot;
+  if (!options.builtin_librariesRoot.empty()) {
+    return options.builtin_librariesRoot;
   }
-  return detectWorkspaceRoot(entryFile) / "BuiltinLibraries";
+  return detectWorkspaceRoot(entryFile) / "builtin_libraries";
 }
 
-fs::path builtinNativeLibrariesRootFor(const fs::path &entryFile,
+fs::path builtin_native_librariesRootFor(const fs::path &entryFile,
                                        const ModuleResolverOptions &options) {
-  if (!options.builtinNativeLibrariesRoot.empty()) {
-    return options.builtinNativeLibrariesRoot;
+  if (!options.builtin_native_librariesRoot.empty()) {
+    return options.builtin_native_librariesRoot;
   }
-  return detectWorkspaceRoot(entryFile) / "BuiltinNativeLibraries";
+  return detectWorkspaceRoot(entryFile) / "builtin_native_libraries";
 }
 
 void addBuiltins(std::unordered_set<std::string> *outModules) {
@@ -249,17 +249,17 @@ void buildModuleIndex(const fs::path &projectRoot,
                       std::unordered_map<std::string, ModuleIndexEntry> *outIndex,
                       std::unordered_set<std::string> *outAvailableModules,
                       std::vector<std::string> *outErrors,
-                      const fs::path &builtinLibrariesRoot,
-                      const fs::path &builtinNativeLibrariesRoot) {
+                      const fs::path &builtin_librariesRoot,
+                      const fs::path &builtin_native_librariesRoot) {
   if (outIndex == nullptr || outAvailableModules == nullptr) {
     return;
   }
   outIndex->clear();
   outAvailableModules->clear();
   addBuiltins(outAvailableModules);
-  collectBuiltinLibraryFacadeModules(builtinLibrariesRoot, outIndex,
+  collectBuiltinLibraryFacadeModules(builtin_librariesRoot, outIndex,
                                      outAvailableModules, outErrors);
-  collectBuiltinNativeLibraryContracts(builtinNativeLibrariesRoot, outIndex,
+  collectBuiltinNativeLibraryContracts(builtin_native_librariesRoot, outIndex,
                                        outAvailableModules, outErrors);
 
   const std::string projectSourceDir =
@@ -338,19 +338,19 @@ ModuleResolver::resolve(const std::filesystem::path &entryFile,
   ModuleResolverResult result;
   result.projectRoot =
       config.has_value() ? detectProjectRoot(entryFile) : detectProjectRoot(entryFile);
-  const fs::path builtinLibrariesRoot =
-      options.autoIncludeBuiltinLibraries
-          ? builtinLibrariesRootFor(entryFile, options)
+  const fs::path builtin_librariesRoot =
+      options.autoIncludebuiltin_libraries
+          ? builtin_librariesRootFor(entryFile, options)
           : fs::path();
-  const fs::path builtinNativeLibrariesRoot =
-      options.autoIncludeBuiltinNativeLibraries
-          ? builtinNativeLibrariesRootFor(entryFile, options)
+  const fs::path builtin_native_librariesRoot =
+      options.autoIncludebuiltin_native_libraries
+          ? builtin_native_librariesRootFor(entryFile, options)
           : fs::path();
 
   std::unordered_map<std::string, ModuleIndexEntry> index;
   buildModuleIndex(result.projectRoot, config, &index, &result.availableModules,
-                   &result.errors, builtinLibrariesRoot,
-                   builtinNativeLibrariesRoot);
+                   &result.errors, builtin_librariesRoot,
+                   builtin_native_librariesRoot);
   for (const auto &entry : index) {
     result.moduleProviders[entry.first] = entry.second.provider;
   }
@@ -390,7 +390,7 @@ ModuleResolver::resolve(const std::filesystem::path &entryFile,
                                                  imported.name, &message)) {
           buildModuleIndex(result.projectRoot, config, &index,
                            &result.availableModules, &result.errors,
-                           builtinLibrariesRoot, builtinNativeLibrariesRoot);
+                           builtin_librariesRoot, builtin_native_librariesRoot);
           result.moduleProviders.clear();
           for (const auto &entry : index) {
             result.moduleProviders[entry.first] = entry.second.provider;

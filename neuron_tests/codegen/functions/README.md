@@ -1,4 +1,4 @@
-﻿# Runtime Function Call Specification
+# Runtime Function Call Specification
 
 ## Scope
 

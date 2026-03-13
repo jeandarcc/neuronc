@@ -1,4 +1,4 @@
-﻿// Cmd_Surgeon.cpp â€” Toolchain health report and installation guide command.
+// Cmd_Surgeon.cpp — Toolchain health report and installation guide command.
 //
 // This file contains:
 //   runSurgeonReport   -> checks toolchain components, prints [OK]/[WARN]/[FAIL]
@@ -19,7 +19,7 @@
 
 namespace fs = std::filesystem;
 
-// â”€â”€ Helpers â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// ── Helpers ─────────────────────────────────────────────────────────────────────
 
 namespace {
 
@@ -48,7 +48,7 @@ const char *vulkanSdkEnv() {
 
 } // namespace
 
-// â”€â”€ Health report â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// ── Health report ────────────────────────────────────────────────────────────────────
 
 static int runSurgeonReport() {
   bool anyFail = false;
@@ -138,7 +138,7 @@ static int runSurgeonReport() {
   return 0;
 }
 
-// â”€â”€ Installation instructions â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// ── Installation instructions ─────────────────────────────────────────────────
 
 static int runSurgeonInstall(const std::string &component) {
   if (component == "vulkan" || component == "vk") {
@@ -235,7 +235,7 @@ static int runSurgeonInstall(const std::string &component) {
   return 1;
 }
 
-// â”€â”€ Top-level command router â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// ── Top-level command router ──────────────────────────────────────────────────
 
 int cmdSurgeon(int argc, char *argv[]) {
   // neuron surgeon                     -> health report

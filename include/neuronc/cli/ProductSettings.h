@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 #include <filesystem>
 #include <string>
@@ -7,7 +7,7 @@
 namespace neuron {
 
 struct ProductSettings {
-  // â”€â”€ Identity â”€â”€
+  // ── Identity ──
   std::string productName = "My Application";
   std::string productVersion = "1.0.0";
   int productBuildVersion = 1;
@@ -15,17 +15,17 @@ struct ProductSettings {
   std::string productDescription = "A Neuron application";
   std::string productWebsite;
 
-  // â”€â”€ Branding â”€â”€
+  // ── Branding ──
   std::filesystem::path iconWindows = "assets/icon.ico";
   std::filesystem::path iconLinux = "assets/icon.png";
   std::filesystem::path iconMacos = "assets/icon.icns";
   std::filesystem::path splashImage;
 
-  // â”€â”€ Output â”€â”€
+  // ── Output ──
   std::string outputName = "MyApp";
   std::filesystem::path outputDir = "build/product";
 
-  // â”€â”€ Installer â”€â”€
+  // ── Installer ──
   bool installerEnabled = true;
   std::string installerStyle = "modern";
   std::filesystem::path installerLicenseFile;
@@ -36,14 +36,14 @@ struct ProductSettings {
   bool createStartMenuEntry = true;
   std::vector<std::string> fileAssociations;
 
-  // â”€â”€ Update System â”€â”€
+  // ── Update System ──
   bool updateEnabled = false;
   std::string updateUrl;
   int updateCheckIntervalHours = 24;
   std::string updateChannel = "stable";
   std::string updatePublicKey;
 
-  // â”€â”€ Uninstaller â”€â”€
+  // ── Uninstaller ──
   bool uninstallerEnabled = true;
   std::string uninstallerName;
 };

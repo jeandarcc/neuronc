@@ -1,4 +1,4 @@
-﻿# Try / Catch / Finally
+# Try / Catch / Finally
 
 Neuron provides structured error handling with `try`, `catch`, and `finally`.
 
@@ -94,4 +94,4 @@ try {
 
 ## Next Steps
 
-- [Throw](throw.md) â€” Throwing errors
+- [Throw](throw.md) — Throwing errors

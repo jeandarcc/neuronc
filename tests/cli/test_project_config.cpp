@@ -1,4 +1,4 @@
-﻿// Project config parser tests - included from tests/test_main.cpp
+// Project config parser tests - included from tests/test_main.cpp
 #include "neuronc/cli/ProjectConfig.h"
 #include <string>
 

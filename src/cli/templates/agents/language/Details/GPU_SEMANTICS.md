@@ -1,4 +1,4 @@
-﻿﻿# Neuron GPU Semantics
+?# Neuron GPU Semantics
 
 This document describes the GPU execution model in Neuron, including block semantics, backend selection, kernel dispatch, and performance tuning options.
 
@@ -10,8 +10,8 @@ Neuron provides first-class GPU support through the `gpu { ... }` block construc
 
 ```nr
 gpu {
-    C is A @ B;       // matrix multiplication â€” GPU-preferred
-    D is C + bias;    // element-wise addition â€” GPU-preferred
+    C is A @ B;       // matrix multiplication — GPU-preferred
+    D is C + bias;    // element-wise addition — GPU-preferred
 }
 ```
 
@@ -27,7 +27,7 @@ When a `gpu { ... }` block is entered, the runtime selects a backend using the f
 CUDA  >  Vulkan  >  CPU (fallback)
 ```
 
-Both CUDA and Vulkan backends are enabled by default in Phase-2B. If neither is available, execution falls back to the CPU path without error â€” only a diagnostic warning is emitted.
+Both CUDA and Vulkan backends are enabled by default in Phase-2B. If neither is available, execution falls back to the CPU path without error — only a diagnostic warning is emitted.
 
 ### Overriding Backend Selection
 
@@ -138,9 +138,9 @@ set NEURON_GPU_SCOPE_FUSION=1    # default: off
 ```
 
 Currently supported fusion patterns:
-- `binary â†’ binary`
-- `binary â†’ fma`
-- `binary â†’ binary â†’ fma`
+- `binary → binary`
+- `binary → fma`
+- `binary → binary → fma`
 
 ---
 
@@ -153,10 +153,10 @@ set NEURON_GPU_SCOPE_METRICS=1
 ```
 
 This prints per-scope statistics:
-- **Dispatch count** â€” Number of GPU kernel dispatches
-- **Barrier count** â€” Number of synchronization barriers
-- **Descriptor writes** â€” Number of descriptor set writes
-- **Readback bytes** â€” Total bytes transferred from device to host
+- **Dispatch count** — Number of GPU kernel dispatches
+- **Barrier count** — Number of synchronization barriers
+- **Descriptor writes** — Number of descriptor set writes
+- **Readback bytes** — Total bytes transferred from device to host
 
 ---
 
@@ -187,17 +187,17 @@ Both can coexist in the same program. The runtime manages resource allocation fo
 
 ## 9. Best Practices
 
-1. **Batch operations in a single `gpu` block** â€” Multiple operations inside one `gpu { ... }` block share a single scope submit, minimizing overhead.
+1. **Batch operations in a single `gpu` block** — Multiple operations inside one `gpu { ... }` block share a single scope submit, minimizing overhead.
 
-2. **Use fused operations** â€” Prefer `Y is ReLU(X @ W + b);` over separate matmul, add, and activation steps.
+2. **Use fused operations** — Prefer `Y is ReLU(X @ W + b);` over separate matmul, add, and activation steps.
 
-3. **Profile with scope metrics** â€” Use `NEURON_GPU_SCOPE_METRICS=1` to identify bottlenecks in dispatch count and readback volume.
+3. **Profile with scope metrics** — Use `NEURON_GPU_SCOPE_METRICS=1` to identify bottlenecks in dispatch count and readback volume.
 
-4. **Minimize readback** â€” Enable `NEURON_GPU_SCOPE_READBACK_SINK_ONLY=1` when intermediate tensors are not needed on the CPU.
+4. **Minimize readback** — Enable `NEURON_GPU_SCOPE_READBACK_SINK_ONLY=1` when intermediate tensors are not needed on the CPU.
 
-5. **Choose the right backend** â€” CUDA generally offers better performance on NVIDIA hardware. Vulkan provides broader hardware compatibility.
+5. **Choose the right backend** — CUDA generally offers better performance on NVIDIA hardware. Vulkan provides broader hardware compatibility.
 
-6. **Tensor size matters** â€” GPU dispatch provides the most benefit for large tensors (typically 256Ã—256 and above). For small tensors, CPU execution may be faster due to launch overhead.
+6. **Tensor size matters** — GPU dispatch provides the most benefit for large tensors (typically 256×256 and above). For small tensors, CPU execution may be faster due to launch overhead.
 
 ---
 

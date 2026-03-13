@@ -1,4 +1,4 @@
-﻿#include "neuronc/cli/installer/InstallerBuilder.h"
+#include "neuronc/cli/installer/InstallerBuilder.h"
 
 #include <fstream>
 #include <iostream>

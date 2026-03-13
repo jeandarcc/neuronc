@@ -1,4 +1,4 @@
-﻿# Semantic Type Inference Specification
+# Semantic Type Inference Specification
 
 ## Scope
 

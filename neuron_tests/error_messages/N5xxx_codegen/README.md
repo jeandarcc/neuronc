@@ -1,4 +1,4 @@
-﻿# Runtime and Codegen Diagnostic Specification
+# Runtime and Codegen Diagnostic Specification
 
 ## Scope
 

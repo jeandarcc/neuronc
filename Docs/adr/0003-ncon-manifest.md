@@ -1,4 +1,4 @@
-﻿# Architecture Decision Record 0003: ncon Package Manifest Format (neuron.toml)
+# Architecture Decision Record 0003: ncon Package Manifest Format (neuron.toml)
 
 **Status:** Accepted  
 **Date:** 2025  
@@ -50,10 +50,10 @@ A companion lockfile pins all resolved dependency versions and content hashes
 to guarantee deterministic builds across machines.
 
 ### Key files in `src/ncon/`:
-- `Manifest.cpp` â€” TOML parsing and validation
-- `Builder.cpp` â€” dependency graph construction and resolution
-- `Sandbox.cpp` â€” isolated execution environment
-- `VMExecutorLifecycle.cpp` + siblings â€” bytecode execution engine
+- `Manifest.cpp` — TOML parsing and validation
+- `Builder.cpp` — dependency graph construction and resolution
+- `Sandbox.cpp` — isolated execution environment
+- `VMExecutorLifecycle.cpp` + siblings — bytecode execution engine
 
 ## Consequences
 
@@ -64,5 +64,5 @@ to guarantee deterministic builds across machines.
 
 **Negative:**
 - A TOML parser (currently custom/embedded) must be maintained.
-- Legacy `[ncon.modulecpp.<Name>]` syntax still parses as an alias â€”
+- Legacy `[ncon.modulecpp.<Name>]` syntax still parses as an alias —
   this backward compatibility creates two valid syntaxes for the same thing.

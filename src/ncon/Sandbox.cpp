@@ -1,4 +1,4 @@
-﻿#include "neuronc/ncon/Sandbox.h"
+#include "neuronc/ncon/Sandbox.h"
 
 #include <algorithm>
 #include <cctype>

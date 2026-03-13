@@ -1,4 +1,4 @@
-﻿# Layers
+# Layers
 
 Neuron provides built-in neural network layers through the NN module.
 
@@ -56,4 +56,4 @@ MyNetwork class {
 
 ## Next Steps
 
-- [Training](training.md) â€” Training loop and optimization
+- [Training](training.md) — Training loop and optimization

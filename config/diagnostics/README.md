@@ -1,4 +1,4 @@
-﻿# Diagnostic Message Library
+# Diagnostic Message Library
 
 This directory contains the source-of-truth diagnostic dictionary for Neuron.
 

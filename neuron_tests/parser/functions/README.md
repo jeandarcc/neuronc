@@ -1,4 +1,4 @@
-﻿# Parser Functions Specification
+# Parser Functions Specification
 
 ## Scope
 

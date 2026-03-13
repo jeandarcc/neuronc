@@ -1,4 +1,4 @@
-﻿# Installation
+# Installation
 
 This guide covers how to install the Neuron compiler and toolchain on your system.
 
@@ -28,7 +28,7 @@ This guide covers how to install the Neuron compiler and toolchain on your syste
 neuron help
 ```
 
-The bundled toolchain includes MinGW GCC â€” no separate compiler installation is required.
+The bundled toolchain includes MinGW GCC — no separate compiler installation is required.
 
 ### Linux
 
@@ -80,4 +80,4 @@ You should see the Neuron ASCII banner and a list of available commands.
 
 ## Next Steps
 
-- [Hello World](hello_world.md) â€” Create your first Neuron project
+- [Hello World](hello_world.md) — Create your first Neuron project

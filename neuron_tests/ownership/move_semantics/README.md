@@ -1,4 +1,4 @@
-﻿# Ownership Move Semantics Specification
+# Ownership Move Semantics Specification
 
 ## Scope
 

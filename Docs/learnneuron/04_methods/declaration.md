@@ -1,4 +1,4 @@
-﻿# Method Declaration
+# Method Declaration
 
 All functions in Neuron are declared with the `method` keyword.
 
@@ -7,12 +7,12 @@ All functions in Neuron are declared with the `method` keyword.
 ## Basic Syntax
 
 ```npp
-// Without 'is' â€” recommended for methods
+// Without 'is' — recommended for methods
 MethodName method() {
     // body
 }
 
-// With 'is' â€” also valid
+// With 'is' — also valid
 MethodName is method() {
     // body
 };
@@ -65,11 +65,11 @@ No return type, no parameters. Automatically invoked by the runtime.
 - Minimum name length: 4 characters (configurable)
 
 ```npp
-CalculateSum method(a as int, b as int) as int {   // âœ… correct
+CalculateSum method(a as int, b as int) as int {   // ✅ correct
     return a + b;
 }
 
-add method(a as int, b as int) as int {   // âŒ must start uppercase
+add method(a as int, b as int) as int {   // ❌ must start uppercase
     return a + b;
 }
 ```
@@ -92,6 +92,6 @@ Player class {
 
 ## Next Steps
 
-- [Parameters & Return Types](parameters_return.md) â€” Detailed parameter syntax
-- [Constructor](constructor.md) â€” Special initialization method
-- [Access Modifiers](access_modifiers.md) â€” public / private
+- [Parameters & Return Types](parameters_return.md) — Detailed parameter syntax
+- [Constructor](constructor.md) — Special initialization method
+- [Access Modifiers](access_modifiers.md) — public / private

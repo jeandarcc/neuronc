@@ -1,4 +1,4 @@
-﻿# Variable Declaration
+# Variable Declaration
 
 Variables in Neuron are declared using the `is` keyword, or optionally without it using bare declaration syntax.
 
@@ -22,11 +22,11 @@ active is true;
 In Neuron, `is` is **optional**. You can declare variables without it:
 
 ```npp
-// With 'is' â€” recommended for variables
+// With 'is' — recommended for variables
 x is 10;
 name is "hello";
 
-// Without 'is' â€” shorthand form
+// Without 'is' — shorthand form
 y 20;
 count 0;
 ```
@@ -35,10 +35,10 @@ count 0;
 
 | Context | Recommendation |
 |---------|---------------|
-| Variable declaration | **Use `is`** â€” e.g., `x is 10;` |
-| Variable reassignment | **Use `is`** â€” e.g., `x is 20;` |
-| Method declaration | **Omit `is`** â€” e.g., `Run method() { }` |
-| Class declaration | **Omit `is`** â€” e.g., `Player class { }` |
+| Variable declaration | **Use `is`** — e.g., `x is 10;` |
+| Variable reassignment | **Use `is`** — e.g., `x is 20;` |
+| Method declaration | **Omit `is`** — e.g., `Run method() { }` |
+| Class declaration | **Omit `is`** — e.g., `Player class { }` |
 
 Both forms compile identically. The convention improves readability.
 
@@ -81,7 +81,7 @@ Init is method() {
     Print(x);
 };
 
-// From IsOptionalDynamic.nr â€” all valid declarations
+// From IsOptionalDynamic.nr — all valid declarations
 a;              // bare declaration (dynamic)
 b 10;           // shorthand (int, value 10)
 c as dynamic;   // typed declaration (dynamic, no value)
@@ -92,6 +92,6 @@ d is 0 as dynamic;  // full form
 
 ## Next Steps
 
-- [Assignment](assignment.md) â€” Reassigning variables and alias semantics
-- [Copying](copying.md) â€” Creating independent copies with `another`
-- [Move](move.md) â€” Transferring ownership with `move`
+- [Assignment](assignment.md) — Reassigning variables and alias semantics
+- [Copying](copying.md) — Creating independent copies with `another`
+- [Move](move.md) — Transferring ownership with `move`

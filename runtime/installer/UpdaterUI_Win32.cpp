@@ -1,4 +1,4 @@
-﻿#include "UpdaterUI.h"
+#include "UpdaterUI.h"
 
 #ifdef _WIN32
 #ifndef NOMINMAX

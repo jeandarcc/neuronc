@@ -1,4 +1,4 @@
-﻿#include "DocumentManager.h"
+#include "DocumentManager.h"
 
 #include "lsp/LspDebugViews.h"
 #include "lsp/LspDocumentQueries.h"

@@ -1,4 +1,4 @@
-﻿# Runtime Control Flow Specification
+# Runtime Control Flow Specification
 
 ## Scope
 

@@ -1,4 +1,4 @@
-﻿# Semantic Analysis (`src/sema/`)
+# Semantic Analysis (`src/sema/`)
 
 The Semantic Analyzer (`sema`) is the most complex phase of the Neuron compiler.
 It takes a raw, syntactic AST from `src/parser/` and produces a fully type-checked,

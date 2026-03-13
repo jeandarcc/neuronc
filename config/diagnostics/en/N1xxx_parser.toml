@@ -1,4 +1,4 @@
-﻿[catalog]
+[catalog]
 locale = "en"
 bucket = "N1xxx_parser"
 display_name = "Parser diagnostics"

@@ -1,4 +1,4 @@
-﻿#include "UserProfileSettings.h"
+#include "UserProfileSettings.h"
 
 #include <algorithm>
 #include <cctype>

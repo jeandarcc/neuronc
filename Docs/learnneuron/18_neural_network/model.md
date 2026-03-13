@@ -1,4 +1,4 @@
-﻿# Neural Network Model
+# Neural Network Model
 
 Build neural networks using Neuron's built-in NN module.
 
@@ -62,5 +62,5 @@ Init method() {
 
 ## Next Steps
 
-- [Layers](layers.md) â€” Available layer types
-- [Training](training.md) â€” Training loop
+- [Layers](layers.md) — Available layer types
+- [Training](training.md) — Training loop

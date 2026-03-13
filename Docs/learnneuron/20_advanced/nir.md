@@ -1,4 +1,4 @@
-﻿# NIR (Neuron Intermediate Representation)
+# NIR (Neuron Intermediate Representation)
 
 NIR is the compiler's internal representation between the AST and final code generation.
 
@@ -7,7 +7,7 @@ NIR is the compiler's internal representation between the AST and final code gen
 ## Pipeline Position
 
 ```
-Source â†’ Lexer â†’ Parser â†’ AST â†’ Semantic Analysis â†’ NIR â†’ {LLVM IR | NCON Bytecode}
+Source → Lexer → Parser → AST → Semantic Analysis → NIR → {LLVM IR | NCON Bytecode}
 ```
 
 NIR sits between semantic analysis and code generation, serving both the LLVM and NCON paths.
@@ -24,10 +24,10 @@ neuron nir file.nr
 
 ## What NIR Contains
 
-- **Functions** â€” Typed, validated method representations
-- **Types** â€” Resolved type information
-- **Constants** â€” Evaluated constant expressions
-- **Instructions** â€” Simplified operations (no sugar syntax)
+- **Functions** — Typed, validated method representations
+- **Types** — Resolved type information
+- **Constants** — Evaluated constant expressions
+- **Instructions** — Simplified operations (no sugar syntax)
 
 ---
 
@@ -44,4 +44,4 @@ neuron nir file.nr
 
 ## Next Steps
 
-- [Optimizations](optimizations.md) â€” Compiler optimization passes
+- [Optimizations](optimizations.md) — Compiler optimization passes

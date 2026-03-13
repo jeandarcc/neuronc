@@ -1,4 +1,4 @@
-﻿# Compiler Optimizations
+# Compiler Optimizations
 
 Neuron applies multiple optimization passes to produce efficient code.
 
@@ -8,10 +8,10 @@ Neuron applies multiple optimization passes to produce efficient code.
 
 | Pass | Description | Example |
 |------|-------------|---------|
-| **Constant Folding** | Evaluate constant expressions at compile time | `2 + 3` â†’ `5` |
+| **Constant Folding** | Evaluate constant expressions at compile time | `2 + 3` → `5` |
 | **Dead Code Elimination** | Remove unreachable or unused code | Unused variables removed |
 | **Vectorization** | Auto-vectorize loops with SIMD | Element-wise tensor ops |
-| **Operation Fusion** | Combine compatible operations | `a * b + c` â†’ FMA |
+| **Operation Fusion** | Combine compatible operations | `a * b + c` → FMA |
 | **Inlining** | Inline small method calls | Reduces call overhead |
 
 ---
@@ -58,9 +58,9 @@ optimize = "aggressive"    # none, basic, aggressive
 
 ## Tensor-Specific Optimizations
 
-- **FMA fusion** â€” `(a * b) + c` becomes a single fused multiply-add
-- **Kernel caching** â€” Compiled GPU kernels cached to disk
-- **Auto-tuning** â€” Runtime selection of optimal kernel parameters
+- **FMA fusion** — `(a * b) + c` becomes a single fused multiply-add
+- **Kernel caching** — Compiled GPU kernels cached to disk
+- **Auto-tuning** — Runtime selection of optimal kernel parameters
 
 ---
 

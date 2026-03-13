@@ -1,4 +1,4 @@
-﻿﻿# Neuron Naming Conventions
+?# Neuron Naming Conventions
 
 This document defines the official naming standards for all identifiers in Neuron projects. Following these conventions ensures consistency, readability, and compatibility with compiler validation rules.
 
@@ -9,23 +9,23 @@ This document defines the official naming standards for all identifiers in Neuro
 | Rule | Description |
 |------|-------------|
 | **Casing** | PascalCase (first letter uppercase, each subsequent word capitalized) |
-| **Characters** | Letters and digits only â€” no underscores or special characters |
+| **Characters** | Letters and digits only — no underscores or special characters |
 | **Start** | Must begin with an uppercase letter (when `require_method_uppercase_start = true`) |
 | **Reserved** | `constructor` is the special constructor name and is exempt from PascalCase |
 
 ### Examples
 
 ```
-âœ…  CalculateLength
-âœ…  Init
-âœ…  ProcessBatch
-âœ…  GetX
-âœ…  constructor
+✅  CalculateLength
+✅  Init
+✅  ProcessBatch
+✅  GetX
+✅  constructor
 
-âŒ  calculateLength     (lowercase start)
-âŒ  calculate_length    (underscore)
-âŒ  2ndPass             (starts with digit)
-âŒ  get-value           (hyphen)
+❌  calculateLength     (lowercase start)
+❌  calculate_length    (underscore)
+❌  2ndPass             (starts with digit)
+❌  get-value           (hyphen)
 ```
 
 ### Rationale
@@ -41,20 +41,20 @@ PascalCase method names visually distinguish method calls from variable access, 
 | **Casing** | camelCase (first letter lowercase, each subsequent word capitalized) |
 | **Characters** | Letters and digits only, except an optional leading `_` |
 | **Start** | Must begin with a lowercase letter, or `_` followed by a lowercase letter |
-| **Underscores** | Only allowed as the very first character â€” never in the middle |
+| **Underscores** | Only allowed as the very first character — never in the middle |
 
 ### Examples
 
 ```
-âœ…  playerHealth
-âœ…  xPosition
-âœ…  itemCount
-âœ…  _internalState
+✅  playerHealth
+✅  xPosition
+✅  itemCount
+✅  _internalState
 
-âŒ  PlayerHealth        (uppercase start â€” this is a method name pattern)
-âŒ  player_health       (mid-name underscore)
-âŒ  __cache             (double underscore)
-âŒ  3dPosition          (starts with digit)
+❌  PlayerHealth        (uppercase start — this is a method name pattern)
+❌  player_health       (mid-name underscore)
+❌  __cache             (double underscore)
+❌  3dPosition          (starts with digit)
 ```
 
 ### Rationale
@@ -74,12 +74,12 @@ camelCase is the standard for local and instance variables across many modern la
 ### Examples
 
 ```
-âœ…  Vector2.nr       â†’  Vector2 is public class { ... }
-âœ…  NeuralNetwork.nr â†’  NeuralNetwork is public class { ... }
-âœ…  DataLoader.nr    â†’  DataLoader is public class { ... }
+✅  Vector2.nr       →  Vector2 is public class { ... }
+✅  NeuralNetwork.nr →  NeuralNetwork is public class { ... }
+✅  DataLoader.nr    →  DataLoader is public class { ... }
 
-âŒ  vector2.nr       â†’  vector2 is public class { ... }    (lowercase filename)
-âŒ  Vector2.nr       â†’  Vec2 is public class { ... }       (name mismatch)
+❌  vector2.nr       →  vector2 is public class { ... }    (lowercase filename)
+❌  Vector2.nr       →  Vec2 is public class { ... }       (name mismatch)
 ```
 
 ---
@@ -185,7 +185,7 @@ IndexOutOfRangeError is public class { }
 
 These naming rules are enforced at two levels:
 
-1. **Compiler validation** â€” The Neuron compiler checks method names, variable names, and class-filename matches at compile time.
-2. **`.neuronsettings` configuration** â€” Project-level settings toggle specific rules such as uppercase method starts, constant naming, and minimum name lengths.
+1. **Compiler validation** — The Neuron compiler checks method names, variable names, and class-filename matches at compile time.
+2. **`.neuronsettings` configuration** — Project-level settings toggle specific rules such as uppercase method starts, constant naming, and minimum name lengths.
 
 Violations produce clear compiler diagnostics with expected vs. found values. See `ERROR_GUIDE.md` for specific error codes and resolution steps.

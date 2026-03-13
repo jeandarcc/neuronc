@@ -1,4 +1,4 @@
-﻿// RuntimePaths.cpp â€” Runtime dizin ve platform yardÄ±mcÄ±larÄ±nÄ±n implementasyonu.
+// RuntimePaths.cpp — Runtime dizin ve platform yardımcılarının implementasyonu.
 // Bkz. RuntimePaths.h
 #include "RuntimePaths.h"
 #include "AppGlobals.h"
@@ -12,7 +12,7 @@
 #include <string>
 #include <vector>
 
-// â”€â”€ Directory helpers â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// ── Directory helpers ───────────────────────────────────────────────────────
 
 fs::path defaultRuntimeObjectCacheDir() {
   const char *overridePath = std::getenv("NEURON_RUNTIME_CACHE_DIR");
@@ -78,7 +78,7 @@ fs::path runtimeObjectDirectory() {
   return g_runtimeObjectDir;
 }
 
-// â”€â”€ Platform detection â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// ── Platform detection ──────────────────────────────────────────────────────
 
 std::string currentHostPlatform() {
 #if defined(_WIN32) && (defined(_M_X64) || defined(__x86_64__))
@@ -92,7 +92,7 @@ std::string currentHostPlatform() {
 #endif
 }
 
-// â”€â”€ Artifact discovery â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// ── Artifact discovery ──────────────────────────────────────────────────────
 
 std::vector<fs::path> candidateLibraryNames(const std::string &targetName) {
   if (targetName.empty()) {
@@ -143,7 +143,7 @@ bool findBuiltNativeArtifact(const fs::path &buildDir,
   return false;
 }
 
-// â”€â”€ ModuleCpp compilation â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// ── ModuleCpp compilation ───────────────────────────────────────────────────
 
 bool buildModuleCppFromSource(const fs::path &projectRoot,
                               const neuron::LoadedModuleCppModule &module,

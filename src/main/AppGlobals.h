@@ -1,7 +1,7 @@
-﻿// AppGlobals.h â€” Uygulama genelindeki global durum deÄŸiÅŸkenleri.
-// TÃ¼m main/ modÃ¼lleri bu header'Ä± include eder; tanÄ±mlar AppGlobals.cpp'de
-// yapÄ±lÄ±r. Yeni bir global eklemek istersen buraya ekle ve AppGlobals.cpp'de
-// tanÄ±mÄ±nÄ± yap.
+// AppGlobals.h — Uygulama genelindeki global durum değişkenleri.
+// Tüm main/ modülleri bu header'ı include eder; tanımlar AppGlobals.cpp'de
+// yapılır. Yeni bir global eklemek istersen buraya ekle ve AppGlobals.cpp'de
+// tanımını yap.
 #pragma once
 
 #include <filesystem>
@@ -9,21 +9,21 @@
 
 namespace fs = std::filesystem;
 
-// Derleyici araÃ§ zincirinin bin dizini (boÅŸsa PATH Ã¼zerinden aranÄ±r).
+// Derleyici araç zincirinin bin dizini (boşsa PATH üzerinden aranır).
 extern std::string g_toolchainBinDir;
 
-// Neuron araÃ§larÄ±nÄ±n kÃ¶k dizini (runtime, toolchain vb. buradan Ã§Ã¶zÃ¼mlenir).
+// Neuron araçlarının kök dizini (runtime, toolchain vb. buradan çözümlenir).
 extern fs::path g_toolRoot;
 
-// DerlenmiÅŸ runtime objelerinin Ã¶nbellek dizini.
+// Derlenmiş runtime objelerinin önbellek dizini.
 extern fs::path g_runtimeObjectDir;
 
-// --trace-errors / NEURON_TRACE_ERRORS ile etkinleÅŸtirilen iz modu.
+// --trace-errors / NEURON_TRACE_ERRORS ile etkinleştirilen iz modu.
 extern bool g_traceErrors;
 
-// TanÄ± mesajlarÄ±nda ANSI renklendirme etkin mi?
+// Tanı mesajlarında ANSI renklendirme etkin mi?
 extern bool g_colorDiagnostics;
 
-// --bypass-rules ile kural denetimi devre dÄ±ÅŸÄ± mÄ±?
+// --bypass-rules ile kural denetimi devre dışı mı?
 extern bool g_bypassRules;
 

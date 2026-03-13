@@ -1,4 +1,4 @@
-﻿# Standard Library Behavior Specification
+# Standard Library Behavior Specification
 
 ## Scope
 

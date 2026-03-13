@@ -1,4 +1,4 @@
-﻿# Public C/C++ API (`include/`)
+# Public C/C++ API (`include/`)
 
 This directory contains the single source of truth for the Neuron public
 Application Binary Interface (ABI).

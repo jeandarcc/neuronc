@@ -225,7 +225,7 @@ class DebugViewContentProvider {
   buildUri(sourceUri, viewKind) {
     const source = vscode.Uri.parse(sourceUri);
     const fileName =
-      path.basename(source.fsPath || source.path || "document.npp") || "document.npp";
+      path.basename(source.fsPath || source.path || "document.nr") || "document.nr";
     const extension = viewKind === "expanded" ? "npp" : "txt";
     return vscode.Uri.from({
       scheme: DEBUG_VIEW_SCHEME,

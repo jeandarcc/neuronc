@@ -1,6 +1,6 @@
 # Builtin FileSystem Library
 
-Bu kütüphane `BuiltinLibraries/FileSystem` altında modüler olarak düzenlenmiştir.
+Bu kütüphane `builtin_libraries/FileSystem` altında modüler olarak düzenlenmiştir.
 
 ## Yapı
 - `Core/`: separator ve mod sabitleri

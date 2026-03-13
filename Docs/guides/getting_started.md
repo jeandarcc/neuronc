@@ -1,4 +1,4 @@
-﻿﻿# Getting Started with Neuron Development
+?# Getting Started with Neuron Development
 
 ## Prerequisites
 
@@ -56,7 +56,7 @@ powershell -NoProfile -ExecutionPolicy Bypass -File scripts/build_tests.ps1 `
   -LlvmDir "C:\msys64\mingw64\lib\cmake\llvm"
 ```
 
-> âš ï¸ **Never invoke CMake directly.** Always use scripts in `scripts/`. See `scripts/README.md`.
+> ⚠️ **Never invoke CMake directly.** Always use scripts in `scripts/`. See `scripts/README.md`.
 
 ---
 
@@ -64,7 +64,7 @@ powershell -NoProfile -ExecutionPolicy Bypass -File scripts/build_tests.ps1 `
 
 1. Open the repo folder in VS Code.
 2. Install recommended extensions when prompted (`clangd`, `cmake-tools`, `editorconfig`).
-3. Press **Ctrl+Shift+B** â†’ select **Build (Full)** to build.
+3. Press **Ctrl+Shift+B** → select **Build (Full)** to build.
 4. Use **Run Tests (Filtered)** task for targeted test runs.
 
 The `compile_commands.json` is generated in the build dir and picked up by clangd automatically.
@@ -95,4 +95,4 @@ plans/        Long-horizon design plans
 3. Add or update a test in the matching `tests/<module>/` directory.
 4. Run `scripts\build.bat` to verify build.
 5. Run the targeted test filter to verify your test passes.
-6. Open a PR â€” fill in the `.github/PULL_REQUEST_TEMPLATE.md` checklist.
+6. Open a PR — fill in the `.github/PULL_REQUEST_TEMPLATE.md` checklist.

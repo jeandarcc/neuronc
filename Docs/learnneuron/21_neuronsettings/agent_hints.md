@@ -1,4 +1,4 @@
-﻿# Agent Hints
+# Agent Hints
 
 AI-specific compiler guidance that helps coding assistants fix violations.
 
@@ -52,12 +52,12 @@ modules/, or tests/.
 
 ## Why This Exists
 
-AI coding assistants read compiler output to determine their next action. Standard error messages are written for humans â€” they assume context that an agent may not have.
+AI coding assistants read compiler output to determine their next action. Standard error messages are written for humans — they assume context that an agent may not have.
 
 Agent hints add the **missing context**:
 - They tell the agent **exactly what to do** to fix the error
 - They use the **exact syntax** the agent should write
-- They match the agent's mental model of "read error â†’ apply fix"
+- They match the agent's mental model of "read error → apply fix"
 
 This turns the Neuron compiler into a **real-time tutor** for AI agents, ensuring they learn from each error and produce compliant code on subsequent attempts.
 
@@ -75,4 +75,4 @@ When disabled, error messages contain only the standard developer-facing text wi
 
 ## Next Steps
 
-- [Overview](overview.md) â€” Back to neuronsettings overview
+- [Overview](overview.md) — Back to neuronsettings overview

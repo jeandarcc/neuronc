@@ -1,4 +1,4 @@
-﻿# Semantic Scope Specification
+# Semantic Scope Specification
 
 ## Scope
 

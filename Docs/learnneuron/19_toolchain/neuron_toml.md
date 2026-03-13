@@ -1,4 +1,4 @@
-﻿# neuron.toml Reference
+# neuron.toml Reference
 
 The `neuron.toml` file is the primary project configuration.
 
@@ -35,16 +35,16 @@ hot_reload = false                 # Enable hot reload
 ## Sections
 
 ### `[project]`
-Project identity â€” name, version, description.
+Project identity — name, version, description.
 
 ### `[build]`
-Compiler settings â€” optimization level, output format, tensor configuration.
+Compiler settings — optimization level, output format, tensor configuration.
 
 ### `[dependencies]`
 External package dependencies.
 
 ### `[ncon]`
-NCON container settings â€” hot reload, sandbox configuration.
+NCON container settings — hot reload, sandbox configuration.
 
 ---
 
@@ -60,4 +60,4 @@ NCON container settings â€” hot reload, sandbox configuration.
 
 ## Next Steps
 
-- [.neuronsettings](../21_neuronsettings/overview.md) â€” Source code rules
+- [.neuronsettings](../21_neuronsettings/overview.md) — Source code rules

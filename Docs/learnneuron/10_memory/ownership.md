@@ -1,4 +1,4 @@
-﻿# Ownership
+# Ownership
 
 Neuron provides a clear ownership model through its memory primitives.
 
@@ -45,4 +45,4 @@ backup is another original;   // completely independent
 
 ## Next Steps
 
-- [Modules](../11_modules/importing.md) â€” Importing code
+- [Modules](../11_modules/importing.md) — Importing code

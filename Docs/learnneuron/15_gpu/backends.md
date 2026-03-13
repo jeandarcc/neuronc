@@ -1,4 +1,4 @@
-﻿# GPU Backends
+# GPU Backends
 
 Neuron selects GPU computing backends in priority order with CPU fallback.
 
@@ -32,4 +32,4 @@ The runtime automatically detects available GPUs. Use `NEURON_GPU_DUMP_METRICS=1
 
 ## Next Steps
 
-- [Scope Batching](scope_batching.md) â€” Batched GPU dispatch
+- [Scope Batching](scope_batching.md) — Batched GPU dispatch

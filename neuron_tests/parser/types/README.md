@@ -1,4 +1,4 @@
-﻿# Parser Types Specification
+# Parser Types Specification
 
 ## Scope
 

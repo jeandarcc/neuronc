@@ -1,4 +1,4 @@
-﻿# Language Server Protocol (`src/lsp/`)
+# Language Server Protocol (`src/lsp/`)
 
 The `neuron-lsp` binary (built from this directory) is a fully compliant Language Server Protocol 3.17 server providing IDE intelligence for Neuron.
 

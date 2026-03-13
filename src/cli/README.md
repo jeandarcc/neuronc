@@ -1,4 +1,4 @@
-﻿# CLI, Build, & Web Pipeline (`src/cli/`)
+# CLI, Build, & Web Pipeline (`src/cli/`)
 
 Despite its name, `src/cli/` is the orchestrator for the entire compiler. It handles
 command parsing, project generation, package dependency fetching, macro expansion

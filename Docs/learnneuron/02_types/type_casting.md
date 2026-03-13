@@ -1,4 +1,4 @@
-﻿# Type Casting
+# Type Casting
 
 Neuron uses the `as` keyword for type conversions, with `maybe` for safe (nullable) casts and `then` for chaining multiple conversion steps.
 
@@ -10,14 +10,14 @@ Convert a value to a different type using `as`:
 
 ```npp
 value is 10 as int;
-value as float;          // convert int â†’ float
+value as float;          // convert int → float
 ```
 
 ---
 
 ## Nullable Cast with `maybe`
 
-The `maybe` modifier makes a cast safe â€” if the conversion fails, the result is `null` instead of an error:
+The `maybe` modifier makes a cast safe — if the conversion fails, the result is `null` instead of an error:
 
 ```npp
 value is "hello";
@@ -38,7 +38,7 @@ value as maybe dynamic then string then float;
 ```
 
 This performs a **cast pipeline**:
-1. Cast `value` to `dynamic` (nullable â€” `maybe` applies to the whole pipeline)
+1. Cast `value` to `dynamic` (nullable — `maybe` applies to the whole pipeline)
 2. Then convert to `string`
 3. Then convert to `float`
 
@@ -64,7 +64,7 @@ value as (maybe float);      // nullable cast to float
 | `x as int` | Cast `x` to `int` (error on failure) |
 | `x as maybe int` | Cast `x` to `int` (null on failure) |
 | `x as int then string` | Cast to `int`, then to `string` |
-| `x as maybe int then float` | Nullable pipeline: `int` â†’ `float` |
+| `x as maybe int then float` | Nullable pipeline: `int` → `float` |
 | `x as (maybe int)` | Parenthesized nullable single cast |
 
 ---
@@ -82,4 +82,4 @@ value as maybe dynamic then string then float;
 
 ## Next Steps
 
-- [Constants](constants.md) â€” Compile-time constant values
+- [Constants](constants.md) — Compile-time constant values

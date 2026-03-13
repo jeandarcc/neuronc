@@ -1,4 +1,4 @@
-﻿# Structure Rules
+# Structure Rules
 
 Rules that control file-level organization and project structure.
 
@@ -19,12 +19,12 @@ Rules that control file-level organization and project structure.
 The most fundamental structural rule in Neuron. Each `.nr` file contains exactly **one class**.
 
 ```npp
-// âœ… Player.nr â€” one class
+// ✅ Player.nr — one class
 Player public class {
     health private is 100 as int;
 }
 
-// âŒ Rejected â€” two classes in one file
+// ❌ Rejected — two classes in one file
 Player public class { }
 Enemy public class { }
 ```
@@ -34,7 +34,7 @@ neuronc: error: Multiple classes defined in module. Each .nr file may
 contain only one class.
 ```
 
-**Why:** One class per file makes the project navigable. You can find any class by its filename â€” no grepping, no guessing. This is equally important for humans and AI agents.
+**Why:** One class per file makes the project navigable. You can find any class by its filename — no grepping, no guessing. This is equally important for humans and AI agents.
 
 ---
 

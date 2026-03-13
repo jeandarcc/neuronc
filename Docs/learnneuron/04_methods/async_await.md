@@ -1,4 +1,4 @@
-﻿# Async / Await
+# Async / Await
 
 Neuron supports asynchronous programming with the `async` and `await` keywords.
 
@@ -64,4 +64,4 @@ Init method() {
 
 ## Next Steps
 
-- [Classes](../05_classes/declaration.md) â€” Object-oriented programming
+- [Classes](../05_classes/declaration.md) — Object-oriented programming

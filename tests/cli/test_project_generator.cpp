@@ -1,4 +1,4 @@
-﻿// Project generator smoke tests - included from tests/test_main.cpp
+// Project generator smoke tests - included from tests/test_main.cpp
 #include "neuronc/cli/ProjectGenerator.h"
 #include "neuronc/cli/ProjectConfig.h"
 

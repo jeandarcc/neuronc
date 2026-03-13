@@ -1,4 +1,4 @@
-﻿# Semantic Overloading Specification
+# Semantic Overloading Specification
 
 ## Scope
 

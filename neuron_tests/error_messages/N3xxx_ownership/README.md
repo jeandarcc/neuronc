@@ -1,4 +1,4 @@
-﻿# Ownership Diagnostic Specification
+# Ownership Diagnostic Specification
 
 ## Scope
 

@@ -23,7 +23,7 @@
           "npp"
         ],
         "extensions": [
-          ".npp"
+          ".nr"
         ],
         "configuration": "./language-configuration.json"
       }
@@ -31,7 +31,7 @@
     "grammars": [
       {
         "language": "npp",
-        "scopeName": "source.npp",
+        "scopeName": "source.nr",
         "path": "./syntaxes/npp.tmLanguage.json"
       }
     ],

@@ -1,4 +1,4 @@
-﻿// NeuronDemoProject - Neuron Project
+// NeuronDemoProject - Neuron++ Project
 
 Init is method()
 {

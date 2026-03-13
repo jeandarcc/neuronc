@@ -1,4 +1,4 @@
-﻿﻿# Neuron JetBrains Plugin
+?# Neuron JetBrains Plugin
 
 This plugin provides support for the Neuron (Neuron) language in JetBrains IDEs (IntelliJ IDEA, CLion, etc.) using the Language Server Protocol (LSP).
 

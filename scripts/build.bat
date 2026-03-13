@@ -81,7 +81,7 @@ if "%JOBS%"=="" (
 )
 
 echo [build] cmake --build "%BUILD_DIR%" --config Release --verbose --parallel %JOBS%
-cmake --build "%BUILD_DIR%" --config Release --parallel %JOBS%
+powershell -NoProfile -Command "cmake --build '%BUILD_DIR%' --config Release --parallel %JOBS% 2>&1 | Tee-Object -FilePath '%LOG_FILE%'"
 set "BUILD_EXIT=!ERRORLEVEL!"
 
 if not "!BUILD_EXIT!"=="0" (

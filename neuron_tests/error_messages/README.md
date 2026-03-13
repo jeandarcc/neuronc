@@ -1,4 +1,4 @@
-﻿# Diagnostic Quality Specification
+# Diagnostic Quality Specification
 
 ## Scope
 

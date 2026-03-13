@@ -1,4 +1,4 @@
-﻿# Access Modifiers
+# Access Modifiers
 
 Neuron uses `public` and `private` to control visibility of methods and fields.
 
@@ -17,7 +17,7 @@ Player class {
 
 // External code
 p is Player();
-Print(p.GetName());   // âœ… accessible
+Print(p.GetName());   // ✅ accessible
 ```
 
 ---
@@ -35,14 +35,14 @@ Counter class {
     }
 
     GetCount public method() as int {
-        Increment();      // âœ… internal access OK
+        Increment();      // ✅ internal access OK
         return count;
     }
 }
 
 c is Counter();
-c.GetCount();         // âœ… public
-c.Increment();        // âŒ compile error â€” private
+c.GetCount();         // ✅ public
+c.Increment();        // ❌ compile error — private
 ```
 
 ---
@@ -79,5 +79,5 @@ Player public class { }
 
 ## Next Steps
 
-- [Lambdas](lambdas.md) â€” Anonymous methods
-- [Callbacks](callbacks.md) â€” Passing methods as arguments
+- [Lambdas](lambdas.md) — Anonymous methods
+- [Callbacks](callbacks.md) — Passing methods as arguments

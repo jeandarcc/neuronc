@@ -1,4 +1,4 @@
-﻿# Build Pipeline
+# Build Pipeline
 
 Neuron supports two compilation paths.
 
@@ -10,14 +10,14 @@ For production builds with maximum performance:
 
 ```
 Source (.nr)
-   â”‚
-   â”œâ”€â”€ Lexer â†’ Tokens
-   â”œâ”€â”€ Parser â†’ AST
-   â”œâ”€â”€ Semantic Analysis â†’ Validated AST
-   â”œâ”€â”€ NIR Builder â†’ NIR (Neuron IR)
-   â”œâ”€â”€ LLVM CodeGen â†’ LLVM IR
-   â”œâ”€â”€ LLVM Optimizer â†’ Optimized IR
-   â””â”€â”€ LLVM Backend â†’ Native Binary (.exe)
+   │
+   ├── Lexer → Tokens
+   ├── Parser → AST
+   ├── Semantic Analysis → Validated AST
+   ├── NIR Builder → NIR (Neuron IR)
+   ├── LLVM CodeGen → LLVM IR
+   ├── LLVM Optimizer → Optimized IR
+   └── LLVM Backend → Native Binary (.exe)
 ```
 
 Command: `neuron build`
@@ -30,13 +30,13 @@ For development, portability, and hot-reload:
 
 ```
 Source (.nr)
-   â”‚
-   â”œâ”€â”€ Lexer â†’ Tokens
-   â”œâ”€â”€ Parser â†’ AST
-   â”œâ”€â”€ Semantic Analysis â†’ Validated AST
-   â”œâ”€â”€ NIR Builder â†’ NIR
-   â”œâ”€â”€ Bytecode Lowerer â†’ NCON Bytecode
-   â””â”€â”€ Builder â†’ .ncon Container â†’ VM Execution
+   │
+   ├── Lexer → Tokens
+   ├── Parser → AST
+   ├── Semantic Analysis → Validated AST
+   ├── NIR Builder → NIR
+   ├── Bytecode Lowerer → NCON Bytecode
+   └── Builder → .ncon Container → VM Execution
 ```
 
 Command: `neuron run` or `neuron ncon build`
@@ -51,8 +51,8 @@ Command: `neuron run` or `neuron ncon build`
 | Output | `.exe` binary | `.ncon` container |
 | Performance | Maximum | Good |
 | Portability | Platform-specific | Cross-platform |
-| Hot Reload | âŒ | âœ… |
-| Sandbox | âŒ | âœ… |
+| Hot Reload | ❌ | ✅ |
+| Sandbox | ❌ | ✅ |
 
 ---
 
@@ -71,4 +71,4 @@ neuron compile file.nr    # Stage 4: LLVM IR
 
 ## Next Steps
 
-- [Advanced](../20_advanced/unsafe.md) â€” Low-level features
+- [Advanced](../20_advanced/unsafe.md) — Low-level features

@@ -1,4 +1,4 @@
-﻿# Runtime Structs Specification
+# Runtime Structs Specification
 
 ## Scope
 

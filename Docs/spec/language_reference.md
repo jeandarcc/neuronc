@@ -1,6 +1,6 @@
-﻿# Neuron Language Reference
+# Neuron Language Reference
 
-> **Status:** Living document â€” updated alongside language evolution.
+> **Status:** Living document — updated alongside language evolution.
 
 ## Type System
 
@@ -13,7 +13,7 @@
 | `f32`, `f64` | 4/8 bytes | IEEE 754 floating point |
 | `bool` | 1 byte | Boolean (`true`/`false`) |
 | `char` | 4 bytes | Unicode scalar value |
-| `void` | â€” | Unit/no-value type |
+| `void` | — | Unit/no-value type |
 
 ### Composite Types
 
@@ -113,7 +113,7 @@ continue
 ```neuron
 // Declare a GPU kernel
 gpu fn matmul(a: tensor<f32, dyn>, b: tensor<f32, dyn>) -> tensor<f32, dyn> {
-    // Runs on GPU â€” tensor ops auto-mapped to Vulkan/CUDA
+    // Runs on GPU — tensor ops auto-mapped to Vulkan/CUDA
 }
 
 // Fused kernel (optimizer eligible)

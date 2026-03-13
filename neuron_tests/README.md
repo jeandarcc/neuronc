@@ -1,4 +1,4 @@
-﻿# Neuron Source Behavior Test Architecture
+# Neuron Source Behavior Test Architecture
 
 ## Scope
 

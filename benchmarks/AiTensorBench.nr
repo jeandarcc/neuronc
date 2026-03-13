@@ -41,8 +41,8 @@ Init is method() {
     fmaMs is RunFmaBench();
     matmulMs is RunMatMulBench();
 
-    Print("Neuron_FMA_MS");
+    Print("NPP_FMA_MS");
     Print(fmaMs);
-    Print("Neuron_MATMUL_MS");
+    Print("NPP_MATMUL_MS");
     Print(matmulMs);
 }

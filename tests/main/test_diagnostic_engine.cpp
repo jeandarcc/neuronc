@@ -1,4 +1,4 @@
-﻿#include "main/DiagnosticEngine.h"
+#include "main/DiagnosticEngine.h"
 #include "main/AppGlobals.h"
 #include "main/UserProfileSettings.h"
 

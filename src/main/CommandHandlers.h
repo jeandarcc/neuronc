@@ -1,16 +1,16 @@
-﻿// CommandHandlers.h â€” CLI komut iÅŸleyicilerinin ortak arayÃ¼zÃ¼.
+// CommandHandlers.h — CLI komut işleyicilerinin ortak arayüzü.
 //
-// Implementasyonlar 3 dosyaya bÃ¶lÃ¼nmÃ¼ÅŸtÃ¼r:
-//   Cmd_Package.cpp  â†’ paket yÃ¶netimi + proje oluÅŸturma
-//   Cmd_Debug.cpp    â†’ lex/parse/nir/compile + usage metni
-//   Cmd_Build.cpp    â†’ build-nucleus / build-product / build / run / release
+// Implementasyonlar 3 dosyaya bölünmüştür:
+//   Cmd_Package.cpp  → paket yönetimi + proje oluşturma
+//   Cmd_Debug.cpp    → lex/parse/nir/compile + usage metni
+//   Cmd_Build.cpp    → build-nucleus / build-product / build / run / release
 //
-// YardÄ±m metni (usage) â†’ UsageText.h â€” SADECE orayÄ± dÃ¼zenle, buraya dokunma.
+// Yardım metni (usage) → UsageText.h — SADECE orayı düzenle, buraya dokunma.
 //
-// Yeni bir komut eklemek iÃ§in:
+// Yeni bir komut eklemek için:
 //   1. Prototipi buraya ekle.
-//   2. Uygun Cmd_*.cpp dosyasÄ±na implementasyonu yaz.
-//   3. main_new.cpp iÃ§indeki AppServices nesnesine kaydet.
+//   2. Uygun Cmd_*.cpp dosyasına implementasyonu yaz.
+//   3. main_new.cpp içindeki AppServices nesnesine kaydet.
 #pragma once
 
 #include "neuronc/cli/PackageManager.h"
@@ -19,13 +19,13 @@
 #include <optional>
 #include <string>
 
-// â”€â”€ YardÄ±m mesajÄ± â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
-// Ä°Ã§erik UsageText.h'dan gelir â€” metni deÄŸiÅŸtirmek iÃ§in oraya git.
+// ── Yardım mesajı ────────────────────────────────────────────────────────────
+// İçerik UsageText.h'dan gelir — metni değiştirmek için oraya git.
 
 void printUsage();
 int cmdRepl();
 
-// â”€â”€ Paket yÃ¶netimi â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// ── Paket yönetimi ───────────────────────────────────────────────────────────
 
 int cmdPackages();
 int cmdInstall();
@@ -37,19 +37,19 @@ int cmdPublish(std::string *outArtifactPath = nullptr);
 int cmdSettingsOf(const std::string &target);
 int cmdDependenciesOf(const std::string &target);
 
-// â”€â”€ Proje oluÅŸturma â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// ── Proje oluşturma ──────────────────────────────────────────────────────────
 
 int cmdNew(const std::string &name, bool library = false);
 
-// â”€â”€ Hata ayÄ±klama komutlarÄ± â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// ── Hata ayıklama komutları ──────────────────────────────────────────────────
 
 int cmdLex(const std::string &filepath);
 int cmdParse(const std::string &filepath);
 int cmdNir(const std::string &filepath);
 
-// â”€â”€ Derleme komutlarÄ± â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// ── Derleme komutları ────────────────────────────────────────────────────────
 
-/// Tek .nr dosyasÄ±nÄ± derler.
+/// Tek .nr dosyasını derler.
 int cmdCompile(const std::string &filepath,
                neuron::LLVMCodeGenOptions *outRuntimeOptions = nullptr);
 
@@ -61,7 +61,7 @@ int cmdRun();
 int cmdRunTarget(int argc, char *argv[]);
 int cmdRelease();
 
-// â”€â”€ Surgeon (tanÄ± & kurulum rehberi) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// ── Surgeon (tanı & kurulum rehberi) ────────────────────────────────────────
 
 int cmdSurgeon(int argc, char *argv[]);
 

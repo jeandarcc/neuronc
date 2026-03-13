@@ -1,4 +1,4 @@
-﻿# Contributing Guide
+# Contributing Guide
 
 ## Language Feature Example Rule
 - Any new language feature (keyword, syntax form, type system feature, runtime-visible behavior) MUST ship with at least one runnable `.nr` example in `examples/` in the same change.

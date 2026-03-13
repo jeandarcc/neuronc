@@ -1,4 +1,4 @@
-﻿#include "LspWorkspace.h"
+#include "LspWorkspace.h"
 
 #include "LspPath.h"
 

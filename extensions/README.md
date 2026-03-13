@@ -1,4 +1,4 @@
-﻿﻿# Official IDE Extensions (`extensions/`)
+?# Official IDE Extensions (`extensions/`)
 
 This directory houses the source code for the official IDE extensions that provide
 language intelligence for Neuron.

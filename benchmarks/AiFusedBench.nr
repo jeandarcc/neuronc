@@ -23,6 +23,6 @@ RunFusedBench is method() as int {
 
 Init is method() {
     fusedMs is RunFusedBench();
-    Print("Neuron_FUSED_MS");
+    Print("NPP_FUSED_MS");
     Print(fusedMs);
 }

@@ -1,4 +1,4 @@
-﻿// Project command tests - included from tests/test_main.cpp
+// Project command tests - included from tests/test_main.cpp
 #include "neuronc/cli/commands/ProjectCommands.h"
 
 #include <filesystem>

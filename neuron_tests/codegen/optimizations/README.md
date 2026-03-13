@@ -1,4 +1,4 @@
-﻿# Runtime Optimization Semantics Specification
+# Runtime Optimization Semantics Specification
 
 ## Scope
 

@@ -1,4 +1,4 @@
-﻿# Frontend (`src/frontend/`)
+# Frontend (`src/frontend/`)
 
 The Frontend bridges the gap between the user's invocation (CLI/LSP) and the
 actual compiler pipeline. It handles source file loading, include graphs, and

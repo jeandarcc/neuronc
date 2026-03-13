@@ -1,4 +1,4 @@
-﻿# Parser Literals Specification
+# Parser Literals Specification
 
 ## Scope
 

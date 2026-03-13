@@ -1,4 +1,4 @@
-﻿# Primitive Types
+# Primitive Types
 
 Neuron provides four fundamental primitive types.
 
@@ -88,5 +88,5 @@ When no `as` annotation is provided, the compiler infers the type:
 
 ## Next Steps
 
-- [Type Annotation](type_annotation.md) â€” Explicitly specifying types with `as`
-- [Dynamic](dynamic.md) â€” Untyped / late-bound variables
+- [Type Annotation](type_annotation.md) — Explicitly specifying types with `as`
+- [Dynamic](dynamic.md) — Untyped / late-bound variables

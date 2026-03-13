@@ -1,4 +1,4 @@
-﻿# Ownership Borrowing and Aliasing Specification
+# Ownership Borrowing and Aliasing Specification
 
 ## Scope
 
