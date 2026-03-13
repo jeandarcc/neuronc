@@ -1,9 +1,10 @@
 ---
 name: Bug Report
 about: Report a reproducible bug in neuronc, ncon, neuron-lsp, or the runtime
-title: '[BUG] <short description>'
-labels: bug, needs-triage
+title: "[BUG] <short description>"
+labels: bug
 assignees: ''
+
 ---
 
 ## Environment

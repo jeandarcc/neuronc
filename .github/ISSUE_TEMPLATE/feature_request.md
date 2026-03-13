@@ -1,12 +1,13 @@
 ---
 name: Feature Request
 about: Suggest a new language feature, compiler pass, runtime API, or tooling improvement
-title: '[FEAT] <short description>'
+title: "<short description>"
 labels: enhancement
-assignees: ''
+assignees: jeandarcc
+
 ---
 
-## Motivation
+## Rationale
 
 <!-- What problem does this solve? Why is it needed? -->
 
@@ -29,7 +30,7 @@ assignees: ''
 - [ ] NIR / MIR / Optimizer
 - [ ] LLVM backend / codegen
 - [ ] Runtime (nn, tensor, graphics, platform)
-- [ ] `ncon` package manager
+- [ ] `ncon` containers
 - [ ] LSP / IDE extensions
 - [ ] Docs / examples
 
