@@ -1,4 +1,4 @@
----
+﻿---
 name: Feature Request
 about: Suggest a new language feature, compiler pass, runtime API, or tooling improvement
 title: '[FEAT] <short description>'
@@ -15,7 +15,7 @@ assignees: ''
 <!-- Describe the feature you'd like. Include syntax examples for language changes. -->
 
 ```neuron
-// Optional: show how the feature would look in Neuron++ code
+// Optional: show how the feature would look in Neuron code
 ```
 
 ## Alternatives Considered

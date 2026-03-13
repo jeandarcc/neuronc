@@ -9,11 +9,11 @@
 #include <stdlib.h>
 #include <string.h>
 
-#ifndef NPP_ENABLE_CUDA_BACKEND
-#define NPP_ENABLE_CUDA_BACKEND 1
+#ifndef Neuron_ENABLE_CUDA_BACKEND
+#define Neuron_ENABLE_CUDA_BACKEND 1
 #endif
 
-#if NPP_ENABLE_CUDA_BACKEND
+#if Neuron_ENABLE_CUDA_BACKEND
 
 
 typedef int CUresult;

@@ -21,4 +21,4 @@ target_include_directories(neuronc_nir PUBLIC
     ${CMAKE_SOURCE_DIR}/include
 )
 target_link_libraries(neuronc_nir PUBLIC ${LLVM_LIBS})
-target_compile_definitions(neuronc_nir PUBLIC ${NPP_LLVM_DEFINES})
+target_compile_definitions(neuronc_nir PUBLIC ${Neuron_LLVM_DEFINES})

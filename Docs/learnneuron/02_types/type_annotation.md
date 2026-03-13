@@ -1,4 +1,4 @@
-# Type Annotation with `as`
+﻿# Type Annotation with `as`
 
 The `as` keyword explicitly specifies the type of a variable, parameter, or return value.
 
@@ -47,7 +47,7 @@ Use `as` after the parameter list to specify the return type:
 
 ```npp
 GetName method() as string {
-    return "Neuron++";
+    return "Neuron";
 }
 
 // No return type (void)
@@ -74,8 +74,8 @@ Player class {
 
 | Situation | Recommendation |
 |-----------|---------------|
-| Type is obvious from value | Omit `as` — `x is 10;` |
-| Type needs clarification | Use `as` — `x is 0 as float;` |
+| Type is obvious from value | Omit `as` â€” `x is 10;` |
+| Type needs clarification | Use `as` â€” `x is 0 as float;` |
 | Method parameters | Always specify types |
 | Method return values | Always specify if non-void |
 
@@ -83,5 +83,5 @@ Player class {
 
 ## Next Steps
 
-- [Type Inference](type_inference.md) — How the compiler deduces types
-- [Type Casting](type_casting.md) — Converting between types with `as`, `maybe`, and `then`
+- [Type Inference](type_inference.md) â€” How the compiler deduces types
+- [Type Casting](type_casting.md) â€” Converting between types with `as`, `maybe`, and `then`

@@ -2,7 +2,7 @@
 
 **Status:** Accepted  
 **Date:** 2025  
-**Deciders:** NPP core team  
+**Deciders:** Neuron core team  
 **Categories:** Compiler, IR
 
 ---

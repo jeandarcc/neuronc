@@ -1,4 +1,4 @@
-#include "neuronc/nir/NIRBuilder.h"
+﻿#include "neuronc/nir/NIRBuilder.h"
 
 #include "../detail/NIRBuilderShared.h"
 
@@ -187,7 +187,7 @@ void NIRBuilder::buildThrowStmt(ThrowStmtNode *node) {
     errorVal = buildExpression(node->value.get());
   }
   if (!errorVal) {
-    errorVal = new ConstantString("Unhandled Neuron++ throw");
+    errorVal = new ConstantString("Unhandled Neuron throw");
   }
 
   Instruction *throwCall = createInst(InstKind::Call, NType::makeVoid(), "");

@@ -1,4 +1,4 @@
-# Platform Abstraction (`runtime/src/platform/`)
+﻿# Platform Abstraction (`runtime/src/platform/`)
 
 The `platform/` directory is the **copper wall** of the runtime. No other part of the
 runtime (`io.c`, `tensor.c`, etc.) is permitted to include OS-specific headers
@@ -36,7 +36,7 @@ for platform capabilities.
 
 ## Adding a New Platform Port
 
-To port Neuron++ to a new OS (e.g., a real-time OS or a new console):
+To port Neuron to a new OS (e.g., a real-time OS or a new console):
 1. Create `runtime/src/platform/<new_os>/`.
 2. Implement all functions required by `platform_manager_internal.h`.
 3. Update `CMakeLists.txt` to compile your folder when the target matches.

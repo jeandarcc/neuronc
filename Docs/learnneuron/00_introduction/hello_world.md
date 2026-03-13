@@ -1,6 +1,6 @@
-# Hello World
+﻿# Hello World
 
-Create and run your first Neuron++ project in under a minute.
+Create and run your first Neuron project in under a minute.
 
 ---
 
@@ -14,31 +14,31 @@ This generates the following structure:
 
 ```
 myproject/
-├── neuron.toml
-├── .neuronsettings
-├── .gitignore
-├── src/
-│   └── Main.npp
-├── docs/scripts/
-│   └── Main.md
-├── tests/
-│   ├── auto/
-│   └── unit/
-├── agents/
-│   ├── language/
-│   └── project/
-├── modules/
-└── build/
+â”œâ”€â”€ neuron.toml
+â”œâ”€â”€ .neuronsettings
+â”œâ”€â”€ .gitignore
+â”œâ”€â”€ src/
+â”‚   â””â”€â”€ Main.nr
+â”œâ”€â”€ docs/scripts/
+â”‚   â””â”€â”€ Main.md
+â”œâ”€â”€ tests/
+â”‚   â”œâ”€â”€ auto/
+â”‚   â””â”€â”€ unit/
+â”œâ”€â”€ agents/
+â”‚   â”œâ”€â”€ language/
+â”‚   â””â”€â”€ project/
+â”œâ”€â”€ modules/
+â””â”€â”€ build/
 ```
 
 ---
 
-## Step 2: Explore Main.npp
+## Step 2: Explore Main.nr
 
-Open `src/Main.npp`. You will see:
+Open `src/Main.nr`. You will see:
 
 ```npp
-// myproject - Neuron++ Project
+// myproject - Neuron Project
 
 Init method()
 {
@@ -48,7 +48,7 @@ Init method()
 
 ### What's Happening?
 
-- **`Init`** is the program's entry point — like `main()` in C/C++
+- **`Init`** is the program's entry point â€” like `main()` in C/C++
 - **`method()`** declares it as a function with no parameters and no return type
 - **`Print(...)`** is a built-in function that outputs to the console
 - The `is` keyword is omitted here for the method declaration (it's optional)
@@ -72,7 +72,7 @@ Hello Neuron!
 
 ## Step 4: Modify the Program
 
-Edit `src/Main.npp`:
+Edit `src/Main.nr`:
 
 ```npp
 Init method() {
@@ -100,12 +100,12 @@ Hello, World!
 Both of these are valid and equivalent:
 
 ```npp
-// With 'is' — more explicit
+// With 'is' â€” more explicit
 Init is method() {
     Print("Hello!");
 };
 
-// Without 'is' — recommended for methods
+// Without 'is' â€” recommended for methods
 Init method() {
     Print("Hello!");
 }
@@ -117,5 +117,5 @@ Init method() {
 
 ## Next Steps
 
-- [Project Structure](project_structure.md) — Understand every file and directory
-- [Variables](../01_variables/declaration.md) — Learn how variables work
+- [Project Structure](project_structure.md) â€” Understand every file and directory
+- [Variables](../01_variables/declaration.md) â€” Learn how variables work

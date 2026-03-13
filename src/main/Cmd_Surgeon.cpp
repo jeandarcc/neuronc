@@ -1,4 +1,4 @@
-// Cmd_Surgeon.cpp — Toolchain health report and installation guide command.
+﻿// Cmd_Surgeon.cpp â€” Toolchain health report and installation guide command.
 //
 // This file contains:
 //   runSurgeonReport   -> checks toolchain components, prints [OK]/[WARN]/[FAIL]
@@ -19,7 +19,7 @@
 
 namespace fs = std::filesystem;
 
-// ── Helpers ───────────────────────────────────────────────────────────────────
+// â”€â”€ Helpers â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
 namespace {
 
@@ -48,13 +48,13 @@ const char *vulkanSdkEnv() {
 
 } // namespace
 
-// ── Health report ─────────────────────────────────────────────────────────────
+// â”€â”€ Health report â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
 static int runSurgeonReport() {
   bool anyFail = false;
   bool anyWarn = false;
 
-  std::cout << "\nNeuron++ Surgical Report\n";
+  std::cout << "\nNeuron Surgical Report\n";
   std::cout << "------------------------------------\n";
 
   // Compiler (neuron binary)
@@ -138,7 +138,7 @@ static int runSurgeonReport() {
   return 0;
 }
 
-// ── Installation instructions ─────────────────────────────────────────────────
+// â”€â”€ Installation instructions â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
 static int runSurgeonInstall(const std::string &component) {
   if (component == "vulkan" || component == "vk") {
@@ -161,8 +161,8 @@ static int runSurgeonInstall(const std::string &component) {
   if (component == "lsp") {
     std::cout << "\n[lsp] neuron-lsp Installation\n";
     std::cout << "------------------------------------\n";
-    std::cout << "1. Download neuron-lsp from the Neuron++ releases page:\n";
-    std::cout << "     https://github.com/neuronpp/neuron/releases\n";
+    std::cout << "1. Download neuron-lsp from the Neuron releases page:\n";
+    std::cout << "     https://github.com/Neuron/neuron/releases\n";
     std::cout << "2. Copy the binary to a directory on your PATH.\n";
 #ifdef _WIN32
     std::cout << "   Example:\n";
@@ -173,20 +173,20 @@ static int runSurgeonInstall(const std::string &component) {
 #endif
     std::cout << "3. Verify the installation:\n";
     std::cout << "     neuron-lsp --version\n";
-    std::cout << "4. For IDE integration see: extensions/vscode-npp\n\n";
+    std::cout << "4. For IDE integration see: extensions/vscode-neuron\n\n";
     return 0;
   }
 
   if (component == "toolchain") {
     std::cout << "\n[toolchain] GCC Toolchain Installation\n";
     std::cout << "------------------------------------\n";
-    std::cout << "Neuron++ requires GCC 12+ and binutils.\n\n";
+    std::cout << "Neuron requires GCC 12+ and binutils.\n\n";
 #ifdef _WIN32
     std::cout << "Windows:\n";
     std::cout << "  1. Install MSYS2: https://www.msys2.org\n";
     std::cout << "  2. In the MSYS2 terminal:\n";
     std::cout << "       pacman -S mingw-w64-x86_64-gcc\n";
-    std::cout << "  3. Point Neuron++ to the toolchain:\n";
+    std::cout << "  3. Point Neuron to the toolchain:\n";
     std::cout << "       set NEURON_TOOLCHAIN_BIN=C:\\msys64\\mingw64\\bin\n\n";
 #elif defined(__APPLE__)
     std::cout << "macOS:\n";
@@ -206,7 +206,7 @@ static int runSurgeonInstall(const std::string &component) {
   if (component == "llvm") {
     std::cout << "\n[llvm] LLVM Installation\n";
     std::cout << "------------------------------------\n";
-    std::cout << "Neuron++ requires LLVM 14+.\n\n";
+    std::cout << "Neuron requires LLVM 14+.\n\n";
 #ifdef _WIN32
     std::cout << "Windows:\n";
     std::cout << "  1. Download the official LLVM installer:\n";
@@ -235,7 +235,7 @@ static int runSurgeonInstall(const std::string &component) {
   return 1;
 }
 
-// ── Top-level command router ──────────────────────────────────────────────────
+// â”€â”€ Top-level command router â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
 int cmdSurgeon(int argc, char *argv[]) {
   // neuron surgeon                     -> health report

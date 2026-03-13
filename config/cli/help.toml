@@ -1,17 +1,17 @@
-title = "Neuron++ CLI help text"
+title = "Neuron CLI help text"
 version = "0.1.0"
 
 [[section]]
 order = 10
 header = "banner"
 lines = [
-  "  _   _                              _     _",
-  "  | \\ | | ___ _   _ _ __ ___  _ __  _| |_ _| |_",
-  "  |  \\| |/ _ \\ | | | '__/ _ \\| '_ \\(_   _|_   _)",
-  "  | |\\  |  __/ |_| | | | (_) | | | | |_|   |_|",
+  "  _   _",
+  "  | \\ | | ___ _   _ _ __ ___  _ __",
+  "  |  \\| |/ _ \\ | | | '__/ _ \\| '_ \\",
+  "  | |\\  |  __/ |_| | | | (_) | | | |",
   "  |_| \\_|\\___|\\__,_|_|  \\___/|_| |_|",
   "",
-  "  Neuron++ Compiler v0.1.0"
+  "  Neuron Compiler v0.1.0"
 ]
 
 [[section]]
@@ -41,13 +41,13 @@ detail = "Follow OS language when available, else fallback to English"
 [[section.entry]]
 order = 50
 command = "neuron new <project-name> [--lib]"
-detail = "Create a new Neuron++ project or library"
+detail = "Create a new Neuron project or library"
 multiline = true
 
 [[section.entry]]
 order = 60
 command = "neuron init <project-name> [--lib]"
-detail = "Create a new Neuron++ project or library"
+detail = "Create a new Neuron project or library"
 multiline = true
 
 [[section.entry]]
@@ -75,7 +75,7 @@ detail = "Update one/all dependencies"
 [[section.entry]]
 order = 110
 command = "neuron publish"
-detail = "Create a .nppkg package artifact"
+detail = "Create a .nrkg package artifact"
 
 [[section.entry]]
 order = 120
@@ -144,25 +144,25 @@ detail = "Build/run/inspect NCON containers"
 [[section.entry]]
 order = 220
 command = "neuron lex <file> [--trace-errors] [--bypass-rules]"
-detail = "Tokenize a .npp file (debug)"
+detail = "Tokenize a .nr file (debug)"
 multiline = true
 
 [[section.entry]]
 order = 230
 command = "neuron parse <file> [--trace-errors] [--bypass-rules]"
-detail = "Parse a .npp file (debug)"
+detail = "Parse a .nr file (debug)"
 multiline = true
 
 [[section.entry]]
 order = 240
 command = "neuron nir <file> [--trace-errors] [--bypass-rules]"
-detail = "Generate and print NIR for a .npp file (debug)"
+detail = "Generate and print NIR for a .nr file (debug)"
 multiline = true
 
 [[section.entry]]
 order = 250
 command = "neuron compile <file> [--trace-errors] [--bypass-rules]"
-detail = "Compile a .npp file to native executable"
+detail = "Compile a .nr file to native executable"
 multiline = true
 
 [[section.entry]]

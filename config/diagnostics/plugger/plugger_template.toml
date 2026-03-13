@@ -14,7 +14,7 @@
 
 [meta]
 action   = "add"          # "add" or "update" — set by plugger.py, do not change
-code     = "NXXXX"        # e.g. N1099, W2003, NPP9002 — set by plugger.py
+code     = "NXXXX"        # e.g. N1099, W2003, NR9002 — set by plugger.py
 bucket   = "BUCKET"       # set by plugger.py
 severity = "error"        # "error" | "warning"
 phase    = "parser"       # e.g. lexer, parser, semantic, ownership, module, codegen, runtime, link, config, generic

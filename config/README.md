@@ -1,7 +1,7 @@
-# Configuration System (`config/`)
+﻿# Configuration System (`config/`)
 
 This directory holds environment-independent configuration data used by the
-Neuron++ toolchain.
+Neuron toolchain.
 
 ## Directory Layout
 
@@ -13,7 +13,7 @@ Neuron++ toolchain.
 
 ## Why configuration lives here instead of source code
 
-Neuron++ separates strings, default paths, and error catalogs from C++ source code.
+Neuron separates strings, default paths, and error catalogs from C++ source code.
 This has three major advantages:
 1. **Localization:** Translators can edit TOML files without needing a C++ compiler (`config/diagnostics/`).
 2. **Re-skinning:** Tooling vendors embedding the compiler can swap `help.toml` to brand the CLI dynamically.

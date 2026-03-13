@@ -4,7 +4,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-#if NPP_VK_COMMON_HAS_HEADERS
+#if Neuron_VK_COMMON_HAS_HEADERS
 
 int select_queue_families(VkPhysicalDevice device, uint32_t *out_compute_family,
                           uint32_t *out_graphics_family,

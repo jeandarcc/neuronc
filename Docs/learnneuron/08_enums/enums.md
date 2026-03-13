@@ -1,4 +1,4 @@
-# Enums
+﻿# Enums
 
 An `enum` defines a set of named constant values.
 
@@ -56,7 +56,7 @@ Init method() as int {
 
 ## Real Example
 
-From `CSharpFeatures.npp`:
+From `CSharpFeatures.nr`:
 
 ```npp
 Color enum {
@@ -72,4 +72,4 @@ Status enum { Pending, Running, Done };
 
 ## Next Steps
 
-- [Control Flow](../09_control_flow/if_else.md) — Branching and looping
+- [Control Flow](../09_control_flow/if_else.md) â€” Branching and looping

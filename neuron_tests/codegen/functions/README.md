@@ -1,4 +1,4 @@
-# Runtime Function Call Specification
+﻿# Runtime Function Call Specification
 
 ## Scope
 
@@ -10,11 +10,11 @@ This folder covers executable behavior of function and method calls, parameter p
 | --- | --- |
 | `N5000-N5099` | call-lowering/runtime failure after semantic success |
 | `N2400-N2499` | overload-related semantic rejection before codegen |
-| `NPP0001`, `NPP2001` | current fallbacks |
+| `NR0001`, `NR2001` | current fallbacks |
 
 ## Test List
 
-| Name | `.npp` input code | Expected output or error | Why important |
+| Name | `.nr` input code | Expected output or error | Why important |
 | --- | --- | --- | --- |
 | `func_runtime__simple_call` | `module System; Add method(a as int, b as int) as int { return a + b; } Init is method() { Print(Add(2, 3)); }` | Prints `5` | Baseline free-function call |
 | `func_runtime__nested_calls` | `module System; Inc method(v as int) as int { return v + 1; } Init is method() { Print(Inc(Inc(1))); }` | Prints `3` | Covers nested call sequencing |

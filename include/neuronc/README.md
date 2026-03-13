@@ -1,6 +1,6 @@
-# Public C/C++ API (`include/`)
+﻿# Public C/C++ API (`include/`)
 
-This directory contains the single source of truth for the Neuron++ public
+This directory contains the single source of truth for the Neuron public
 Application Binary Interface (ABI).
 
 All headers in this directory must map to the `neuronc` namespace (i.e., they sit

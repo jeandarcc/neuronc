@@ -1,4 +1,4 @@
-# Parameters & Return Types
+﻿# Parameters & Return Types
 
 Methods accept parameters using `name as type` syntax and return values using `as type`.
 
@@ -52,7 +52,7 @@ Use `as` after the parameter list:
 
 ```npp
 GetName method() as string {
-    return "Neuron++";
+    return "Neuron";
 }
 
 Square method(x as int) as int {
@@ -91,5 +91,5 @@ Max method(a as int, b as int) as int {
 
 ## Next Steps
 
-- [Constructor](constructor.md) — Initialization method
-- [Lambdas](lambdas.md) — Anonymous methods
+- [Constructor](constructor.md) â€” Initialization method
+- [Lambdas](lambdas.md) â€” Anonymous methods

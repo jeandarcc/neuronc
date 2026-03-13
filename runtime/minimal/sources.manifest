@@ -1,5 +1,5 @@
 # Minimal runtime source manifest for `neuron build-nucleus`.
-# Paths are relative to the NeuronPP tool root.
+# Paths are relative to the Neuron tool root.
 
 runtime/src/runtime.c
 runtime/src/modulecpp_runtime.cpp

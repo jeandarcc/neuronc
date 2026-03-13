@@ -1,16 +1,16 @@
-[catalog]
+﻿[catalog]
 locale = "la"
 bucket = "N4xxx_module"
 display_name = "Diagnostica moduli"
 inherits_contract = "N4xxx_module"
 
 [contracts]
-allowed_exact_codes = ["NPP4001"]
+allowed_exact_codes = ["NR4001"]
 allowed_n_range = "4000-4099"
 allowed_w_range = "4000-4099"
 future_addition_rule = "Solum N4000-N4099, W4000-W4099, et codex moduli priscae exactus supra recensitus in hoc archivo apparere possunt."
 
-[messages.NPP4001]
+[messages.nr4001]
 severity = "error"
 phase = "module"
 slug = "legacy_module_error"

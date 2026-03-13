@@ -1,4 +1,4 @@
-#include "neuronc/cli/installer/InstallerBuilder.h"
+﻿#include "neuronc/cli/installer/InstallerBuilder.h"
 
 #include <fstream>
 #include <iostream>
@@ -123,7 +123,7 @@ buildInstaller(const ProductSettings &settings,
   const fs::path updaterExe = outputDir / (settings.outputName + "-Updater.exe");
 
   // Compile installer exe using g++ directly since build-nucleus orchestrator
-  // is geared towards Neuron++ linking
+  // is geared towards Neuron linking
   std::cout << "  [i] Compiling installer executable..." << std::endl;
   const fs::path compilerPath = resolveCompilerPath(options.compilerPath, toolRoot);
   const fs::path compilerBinDir = compilerPath.has_parent_path()
@@ -310,7 +310,7 @@ buildInstaller(const ProductSettings &settings,
 
   outExe.write(reinterpret_cast<const char *>(&manifestSize), sizeof(uint64_t));
   outExe.write(reinterpret_cast<const char *>(&payloadBlobSize), sizeof(uint64_t));
-  const char magic[] = "NPPINST1";
+  const char magic[] = "NeuronINST1";
   outExe.write(magic, 8);
   outExe.close();
 

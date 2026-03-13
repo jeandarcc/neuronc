@@ -1,4 +1,4 @@
-# Runtime Control Flow Specification
+﻿# Runtime Control Flow Specification
 
 ## Scope
 
@@ -10,11 +10,11 @@ This folder covers observable behavior of branching, loops, early exits, and exc
 | --- | --- |
 | `N5000-N5099` | runtime-visible control-flow lowering failure |
 | `N2000-N2099` | semantic rejection of invalid control-flow inputs |
-| `NPP0001`, `NPP2001` | current fallbacks |
+| `NR0001`, `NR2001` | current fallbacks |
 
 ## Test List
 
-| Name | `.npp` input code | Expected output or error | Why important |
+| Name | `.nr` input code | Expected output or error | Why important |
 | --- | --- | --- | --- |
 | `flow__if_else_true_branch` | `module System; Init is method() { if(true) { Print("T"); } else { Print("F"); } }` | Prints `T` | Smallest branch correctness test |
 | `flow__if_else_false_branch` | same as above with `false` | Prints `F` | Ensures both branch directions execute correctly |

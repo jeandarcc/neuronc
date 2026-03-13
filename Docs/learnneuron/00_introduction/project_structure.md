@@ -1,6 +1,6 @@
-# Project Structure
+﻿# Project Structure
 
-Every Neuron++ project follows a standard directory layout created by `neuron new`.
+Every Neuron project follows a standard directory layout created by `neuron new`.
 
 ---
 
@@ -8,29 +8,29 @@ Every Neuron++ project follows a standard directory layout created by `neuron ne
 
 ```
 my_project/
-│
-├── neuron.toml              # Project configuration and build settings
-├── .neuronsettings          # Source code rules and lint configuration
-├── .gitignore               # Git exclusion rules
-│
-├── src/                     # Source code
-│   └── Main.npp             # Program entry point (Init method)
-│
-├── modules/                 # External package dependencies
-│
-├── build/                   # Build output (auto-generated)
-│
-├── docs/                    # Documentation
-│   └── scripts/             # Per-script documentation
-│       └── Main.md          # Docs for Main.npp
-│
-├── tests/                   # Tests
-│   ├── auto/                # Automated integration tests
-│   └── unit/                # Unit tests
-│
-└── agents/                  # Agent reference (generated, gitignored)
-    ├── language/             # Language guides
-    └── project/              # Project-specific docs
+â”‚
+â”œâ”€â”€ neuron.toml              # Project configuration and build settings
+â”œâ”€â”€ .neuronsettings          # Source code rules and lint configuration
+â”œâ”€â”€ .gitignore               # Git exclusion rules
+â”‚
+â”œâ”€â”€ src/                     # Source code
+â”‚   â””â”€â”€ Main.nr             # Program entry point (Init method)
+â”‚
+â”œâ”€â”€ modules/                 # External package dependencies
+â”‚
+â”œâ”€â”€ build/                   # Build output (auto-generated)
+â”‚
+â”œâ”€â”€ docs/                    # Documentation
+â”‚   â””â”€â”€ scripts/             # Per-script documentation
+â”‚       â””â”€â”€ Main.md          # Docs for Main.nr
+â”‚
+â”œâ”€â”€ tests/                   # Tests
+â”‚   â”œâ”€â”€ auto/                # Automated integration tests
+â”‚   â””â”€â”€ unit/                # Unit tests
+â”‚
+â””â”€â”€ agents/                  # Agent reference (generated, gitignored)
+    â”œâ”€â”€ language/             # Language guides
+    â””â”€â”€ project/              # Project-specific docs
 ```
 
 ---
@@ -47,7 +47,7 @@ name = "my_project"
 version = "0.1.0"
 
 [build]
-main = "src/Main.npp"
+main = "src/Main.nr"
 build_dir = "build"
 optimize = "aggressive"
 emit_ir = "optimized"
@@ -81,7 +81,7 @@ require_public_method_docs = true
 
 See [.neuronsettings Reference](../19_toolchain/neuronsettings.md) for all available settings.
 
-### `src/Main.npp`
+### `src/Main.nr`
 
 The program entry point. Must contain an `Init` method:
 
@@ -93,22 +93,22 @@ Init method() {
 
 ### `docs/scripts/Main.md`
 
-Documentation for `Main.npp`. Required when `require_script_docs = true`. Must have at least 5 non-empty lines (configurable).
+Documentation for `Main.nr`. Required when `require_script_docs = true`. Must have at least 5 non-empty lines (configurable).
 
 ---
 
 ## Source Organization
 
-Each `.npp` file contains exactly **one class**. The class name must match the filename:
+Each `.nr` file contains exactly **one class**. The class name must match the filename:
 
 ```
 src/
-├── Main.npp          → Init method (entry point)
-├── Vector2.npp       → Vector2 class
-├── Player.npp        → Player class
-└── AI/
-    ├── Brain.npp     → Brain class
-    └── Neuron.npp    → Neuron class
+â”œâ”€â”€ Main.nr          â†’ Init method (entry point)
+â”œâ”€â”€ Vector2.nr       â†’ Vector2 class
+â”œâ”€â”€ Player.nr        â†’ Player class
+â””â”€â”€ AI/
+    â”œâ”€â”€ Brain.nr     â†’ Brain class
+    â””â”€â”€ Neuron.nr    â†’ Neuron class
 ```
 
 Subdirectories are allowed for organizing larger projects.
@@ -121,10 +121,10 @@ After `neuron build` or `neuron run`:
 
 ```
 build/
-├── Main.ll           # LLVM IR (if emit_ir configured)
-├── Main.obj          # Compiled object file
-├── Main.exe          # Native executable
-└── .neuron_cache/    # Tensor kernel cache
+â”œâ”€â”€ Main.ll           # LLVM IR (if emit_ir configured)
+â”œâ”€â”€ Main.obj          # Compiled object file
+â”œâ”€â”€ Main.exe          # Native executable
+â””â”€â”€ .neuron_cache/    # Tensor kernel cache
 ```
 
 ---
@@ -143,4 +143,4 @@ The `agents/` directory is regenerated from templates on project creation.
 
 ## Next Steps
 
-- [Variables](../01_variables/declaration.md) — Start writing Neuron++ code
+- [Variables](../01_variables/declaration.md) â€” Start writing Neuron code

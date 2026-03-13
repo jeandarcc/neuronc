@@ -1,12 +1,12 @@
-@echo off
+﻿@echo off
 setlocal enabledelayedexpansion
 
-:: dev-neuron.bat — Shortcut to the locally built neuron.exe
+:: dev-neuron.bat â€” Shortcut to the locally built neuron.exe
 :: Usage: dev-neuron.bat [args...]
 :: Example: dev-neuron.bat help
-::          dev-neuron.bat compile foo.npp
+::          dev-neuron.bat compile foo.nr
 
-set "BIN_DIR=%LOCALAPPDATA%\NeuronPP\workspaces\NPP\build-mingw\bin"
+set "BIN_DIR=%LOCALAPPDATA%\Neuron\workspaces\Neuron\build-mingw\bin"
 set "NEURON_EXE=!BIN_DIR!\neuron.exe"
 
 if not exist "!NEURON_EXE!" (

@@ -1,4 +1,4 @@
-// Project config parser tests - included from tests/test_main.cpp
+﻿// Project config parser tests - included from tests/test_main.cpp
 #include "neuronc/cli/ProjectConfig.h"
 #include <string>
 
@@ -11,7 +11,7 @@ TEST(ProjectConfigBasic) {
       "version = \"1.2.3\"\n"
       "\n"
       "[build]\n"
-      "main = \"app/Main.npp\"\n"
+      "main = \"app/Main.nr\"\n"
       "build_dir = \"out\"\n"
       "optimize = \"O2\"\n"
       "emit_ir = \"both\"\n"
@@ -36,7 +36,7 @@ TEST(ProjectConfigBasic) {
   ASSERT_TRUE(parser.errors().empty());
   ASSERT_EQ(config.name, "demo");
   ASSERT_EQ(config.version, "1.2.3");
-  ASSERT_EQ(config.mainFile, "app/Main.npp");
+  ASSERT_EQ(config.mainFile, "app/Main.nr");
   ASSERT_EQ(config.buildDir, "out");
   ASSERT_EQ(config.optimizeLevel, BuildOptimizeLevel::O2);
   ASSERT_EQ(config.emitIR, BuildEmitIR::Both);
@@ -69,7 +69,7 @@ TEST(ProjectConfigCommentsAndUnknownSection) {
   ASSERT_TRUE(parser.parseString(content, "<config_test>", &config));
   ASSERT_TRUE(parser.errors().empty());
   ASSERT_EQ(config.name, "demo");
-  ASSERT_EQ(config.mainFile, "src/Main.npp");
+  ASSERT_EQ(config.mainFile, "src/Main.nr");
   ASSERT_EQ(config.optimizeLevel, BuildOptimizeLevel::Aggressive);
   ASSERT_EQ(config.emitIR, BuildEmitIR::Optimized);
   ASSERT_EQ(config.targetCPU, BuildTargetCPU::Native);

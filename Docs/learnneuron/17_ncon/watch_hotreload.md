@@ -1,4 +1,4 @@
-# Watch & Hot Reload
+﻿# Watch & Hot Reload
 
 The `ncon watch` command monitors source files and automatically rebuilds and hot-reloads the running program.
 
@@ -14,10 +14,10 @@ neuron ncon watch
 
 ## How It Works
 
-1. **Watches** all `.npp` files in `src/`
-2. On file change → **rebuilds** the NCON container
-3. If the change is **compatible** → **hot patches** the running VM
-4. If the change is **structural** → **full restart**
+1. **Watches** all `.nr` files in `src/`
+2. On file change â†’ **rebuilds** the NCON container
+3. If the change is **compatible** â†’ **hot patches** the running VM
+4. If the change is **structural** â†’ **full restart**
 
 ---
 
@@ -48,5 +48,5 @@ hot_reload = true
 
 ## Next Steps
 
-- [Sandbox](sandbox.md) — Security isolation
-- [Inspect](inspect.md) — Container analysis
+- [Sandbox](sandbox.md) â€” Security isolation
+- [Inspect](inspect.md) â€” Container analysis

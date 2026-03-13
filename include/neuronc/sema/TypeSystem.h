@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 #include "neuronc/lexer/Token.h"
 
 #include <string>
@@ -9,9 +9,9 @@
 
 namespace neuron {
 
-// ══════════════════════════════════════════════════════
-// Type system for Neuron++
-// ══════════════════════════════════════════════════════
+// â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+// Type system for Neuron
+// â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
 
 enum class TypeKind {
     Void,
@@ -46,11 +46,11 @@ enum class TypeKind {
 struct NType;
 using NTypePtr = std::shared_ptr<NType>;
 
-// ── Type representation ──
+// â”€â”€ Type representation â”€â”€
 struct NType {
     TypeKind kind;
     std::string name;                       // "int", "float", "Vector2", "Array", etc.
-    std::vector<NTypePtr> genericArgs;      // Array<float> → genericArgs = [float]
+    std::vector<NTypePtr> genericArgs;      // Array<float> â†’ genericArgs = [float]
     NTypePtr pointeeType;                   // for Pointer: the pointed-to type
     NTypePtr returnType;                    // for Method: return type
     std::vector<NTypePtr> paramTypes;       // for Method: parameter types
@@ -85,7 +85,7 @@ struct NType {
     // Equality check
     bool equals(const NType& other) const;
 
-    // ── Factory methods ──
+    // â”€â”€ Factory methods â”€â”€
     static NTypePtr makeVoid()   { return std::make_shared<NType>(TypeKind::Void,   "void"); }
     static NTypePtr makeInt()    { return std::make_shared<NType>(TypeKind::Int,    "int"); }
     static NTypePtr makeFloat()  { return std::make_shared<NType>(TypeKind::Float,  "float"); }
@@ -161,9 +161,9 @@ struct NType {
     }
 };
 
-// ══════════════════════════════════════════════════════
+// â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
 // Symbol table
-// ══════════════════════════════════════════════════════
+// â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
 
 enum class SymbolKind {
     Variable,
@@ -200,7 +200,7 @@ struct Symbol {
         : name(std::move(n)), kind(k), type(std::move(t)) {}
 };
 
-// ── Scope — hierarchical symbol table ──
+// â”€â”€ Scope â€” hierarchical symbol table â”€â”€
 class Scope {
 public:
     explicit Scope(std::shared_ptr<Scope> parent = nullptr, const std::string& name = "")
@@ -232,9 +232,9 @@ private:
     std::unordered_map<std::string, Symbol> m_symbols;
 };
 
-// ══════════════════════════════════════════════════════
+// â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
 // Class metadata (for class type resolution)
-// ══════════════════════════════════════════════════════
+// â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
 
 struct ClassInfo {
     std::string name;

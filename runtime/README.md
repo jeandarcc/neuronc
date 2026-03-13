@@ -1,6 +1,6 @@
-# Neuron++ Runtime (`runtime/`)
+﻿# Neuron Runtime (`runtime/`)
 
-This directory contains the high-performance C runtime library for Neuron++.
+This directory contains the high-performance C runtime library for Neuron.
 The runtime provides the execution environment, memory management, I/O, platform
 abstractions, and the neural/tensor core.
 

@@ -20,7 +20,7 @@ By keeping `#include <llvm/...>` out of the AST, `sema`, and NIR layers,
 the overall compiler remains portable and compilation times stay low.
 
 ### Pass Management
-NPP relies on LLVM for all standard target-independent optimizations (O1-O3):
+Neuron relies on LLVM for all standard target-independent optimizations (O1-O3):
 - Instruction combining (InstCombine)
 - Dead code elimination (DCE)
 - Function inlining

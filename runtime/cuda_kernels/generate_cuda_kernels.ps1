@@ -48,8 +48,8 @@ out_header = Path(sys.argv[2])
 text = ptx_path.read_text(encoding="utf-8")
 
 lines = []
-lines.append("#ifndef NPP_RUNTIME_CUDA_KERNELS_H")
-lines.append("#define NPP_RUNTIME_CUDA_KERNELS_H")
+lines.append("#ifndef Neuron_RUNTIME_CUDA_KERNELS_H")
+lines.append("#define Neuron_RUNTIME_CUDA_KERNELS_H")
 lines.append("")
 lines.append("static const char kCudaTensorOpsPtx[] =")
 for raw in text.splitlines():
@@ -57,7 +57,7 @@ for raw in text.splitlines():
     lines.append(f'    "{escaped}\\n"')
 lines.append("    ;")
 lines.append("")
-lines.append("#endif // NPP_RUNTIME_CUDA_KERNELS_H")
+lines.append("#endif // Neuron_RUNTIME_CUDA_KERNELS_H")
 lines.append("")
 
 out_header.write_text("\n".join(lines), encoding="utf-8")

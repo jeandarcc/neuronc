@@ -1,8 +1,8 @@
-# Regression Specification
+﻿# Regression Specification
 
 ## Scope
 
-This folder contains permanently retained reproductions of bugs that have already occurred in the `.npp` source experience. Every regression test must explain the original failure mode and the user-visible contract that now must remain stable.
+This folder contains permanently retained reproductions of bugs that have already occurred in the `.nr` source experience. Every regression test must explain the original failure mode and the user-visible contract that now must remain stable.
 
 Included:
 
@@ -14,7 +14,7 @@ Included:
 
 Excluded:
 
-- Internal-only bugs that cannot be observed from `.npp` source behavior
+- Internal-only bugs that cannot be observed from `.nr` source behavior
 - LSP-only regressions
 
 ## Error Codes
@@ -27,7 +27,7 @@ Regression tests inherit the codes from the behavior area they exercise. Every r
 
 ## Test List
 
-| Name | `.npp` input code | Expected output or error | Why important |
+| Name | `.nr` input code | Expected output or error | Why important |
 | --- | --- | --- | --- |
 | `regression_template__parse_crash_now_reports_error` | smallest source that once crashed the parser | Stable parser error instead of crash | Prevents catastrophic failures from returning |
 | `regression_template__semantic_false_negative_now_rejected` | source that was accepted but should not be | Stable semantic error | Captures safety fixes |

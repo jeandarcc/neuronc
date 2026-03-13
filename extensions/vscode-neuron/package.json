@@ -1,0 +1,66 @@
+﻿{
+  "name": "vscode-neuron",
+  "displayName": "Neuron",
+  "description": "Syntax highlighting and language server support for the Neuron language",
+  "version": "0.1.0",
+  "publisher": "yusuf",
+  "main": "./extension.js",
+  "engines": {
+    "vscode": "^1.70.0"
+  },
+  "activationEvents": [
+    "onLanguage:neuron"
+  ],
+  "categories": [
+    "Programming Languages"
+  ],
+  "contributes": {
+    "languages": [
+      {
+        "id": "neuron",
+        "aliases": [
+          "Neuron",
+          "neuron"
+        ],
+        "extensions": [
+          ".nr"
+        ],
+        "configuration": "./language-configuration.json"
+      }
+    ],
+    "grammars": [
+      {
+        "language": "neuron",
+        "scopeName": "source.nr",
+        "path": "./syntaxes/npp.tmLanguage.json"
+      }
+    ],
+    "commands": [
+      {
+        "command": "neuron.showExpandedSource",
+        "title": "Neuron: Show Expanded Source"
+      },
+      {
+        "command": "neuron.showNir",
+        "title": "Neuron: Show NIR"
+      },
+      {
+        "command": "neuron.showMir",
+        "title": "Neuron: Show MIR"
+      }
+    ],
+    "configuration": {
+      "title": "Neuron",
+      "properties": {
+        "neuron.lsp.path": {
+          "type": "string",
+          "default": "",
+          "description": "Absolute path to the neuron-lsp executable. When empty, the extension looks for neuron-lsp in the workspace build output or on PATH."
+        }
+      }
+    }
+  },
+  "scripts": {
+    "lint": "echo lint-not-configured"
+  }
+}

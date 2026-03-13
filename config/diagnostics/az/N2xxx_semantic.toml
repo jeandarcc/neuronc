@@ -5,12 +5,12 @@ display_name = "Semantik diaqnostika"
 inherits_contract = "N2xxx_semantic"
 
 [contracts]
-allowed_exact_codes = ["NPP2001"]
+allowed_exact_codes = ["NR2001"]
 allowed_n_range = "2000-2499"
 allowed_w_range = "2000-2099"
 future_addition_rule = "Bu faylda yalnız N2000-N2499, W2000-W2099 və yuxarıda sadalanan dəqiq köhnə semantik kod görünə bilər."
 
-[messages.NPP2001]
+[messages.nr2001]
 severity = "error"
 phase = "semantic"
 slug = "legacy_semantic_error"

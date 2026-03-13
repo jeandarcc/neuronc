@@ -1,4 +1,4 @@
-# Dynamic Type
+﻿# Dynamic Type
 
 The `dynamic` keyword declares a variable with a runtime-determined type. Dynamic variables can hold any value and their type can change during execution.
 
@@ -11,7 +11,7 @@ The `dynamic` keyword declares a variable with a runtime-determined type. Dynami
 x is 0 as dynamic;
 y as dynamic;
 
-// Bare declaration — implicitly dynamic
+// Bare declaration â€” implicitly dynamic
 a;                  // dynamic, uninitialized
 ```
 
@@ -34,7 +34,7 @@ value is true;       // now holds a bool
 
 ## Real Example
 
-From `IsOptionalDynamic.npp`:
+From `IsOptionalDynamic.nr`:
 
 ```npp
 RunFmaBench method() as int {
@@ -63,4 +63,4 @@ RunFmaBench method() as int {
 
 ## Next Steps
 
-- [Type Casting](type_casting.md) — Converting between types with `as`, `maybe`, and `then`
+- [Type Casting](type_casting.md) â€” Converting between types with `as`, `maybe`, and `then`

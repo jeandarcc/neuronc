@@ -1,4 +1,4 @@
-#include "neuronc/cli/WebBuildPipeline.h"
+﻿#include "neuronc/cli/WebBuildPipeline.h"
 
 #include "neuronc/cli/WebShaderTranspiler.h"
 
@@ -248,7 +248,7 @@ WebBuildResult runWebBuildPipeline(const WebBuildRequest &request,
   }
 
   const std::string mainFile = request.projectConfig.mainFile.empty()
-                                   ? "src/Main.npp"
+                                   ? "src/Main.nr"
                                    : request.projectConfig.mainFile;
   const fs::path mainPath = (projectRoot / mainFile).lexically_normal();
   if (!fs::exists(mainPath)) {
@@ -330,9 +330,9 @@ WebBuildResult runWebBuildPipeline(const WebBuildRequest &request,
   linkCmd << " -sINITIAL_MEMORY=" << initialMemoryBytes;
   linkCmd << " -sMAXIMUM_MEMORY=" << std::max(maxMemoryBytes, initialMemoryBytes);
   linkCmd << " -sENVIRONMENT=web";
-  linkCmd << " -DNPP_ENABLE_CUDA_BACKEND=0";
-  linkCmd << " -DNPP_ENABLE_VULKAN_BACKEND=0";
-  linkCmd << " -DNPP_ENABLE_WEBGPU_BACKEND=1";
+  linkCmd << " -DNeuron_ENABLE_CUDA_BACKEND=0";
+  linkCmd << " -DNeuron_ENABLE_VULKAN_BACKEND=0";
+  linkCmd << " -DNeuron_ENABLE_WEBGPU_BACKEND=1";
   linkCmd << " -I" << deps.quotePath(request.toolRoot / "runtime/include");
   linkCmd << " -I" << deps.quotePath(request.toolRoot / "runtime/src");
   linkCmd << " " << deps.quotePath(programObjectPath);

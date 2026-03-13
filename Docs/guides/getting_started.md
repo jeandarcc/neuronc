@@ -1,4 +1,4 @@
-# Getting Started with Neuron++ Development
+﻿﻿# Getting Started with Neuron Development
 
 ## Prerequisites
 
@@ -36,7 +36,7 @@ $env:NEURON_TOOLCHAIN_BIN = "C:\msys64\mingw64\bin"
 scripts\build.bat
 ```
 
-The build output lands in `%LOCALAPPDATA%\NeuronPP\workspaces\NPP\build-mingw\bin\`.
+The build output lands in `%LOCALAPPDATA%\Neuron\workspaces\Neuron\build-mingw\bin\`.
 
 ---
 
@@ -45,18 +45,18 @@ The build output lands in `%LOCALAPPDATA%\NeuronPP\workspaces\NPP\build-mingw\bi
 ```powershell
 # Run all tests
 powershell -NoProfile -ExecutionPolicy Bypass -File scripts/build_tests.ps1 `
-  -BuildDir "$env:LOCALAPPDATA\NeuronPP\workspaces\NPP\build-mingw" `
+  -BuildDir "$env:LOCALAPPDATA\Neuron\workspaces\Neuron\build-mingw" `
   -Filter "*" `
   -LlvmDir "C:\msys64\mingw64\lib\cmake\llvm"
 
 # Run only sema tests
 powershell -NoProfile -ExecutionPolicy Bypass -File scripts/build_tests.ps1 `
-  -BuildDir "$env:LOCALAPPDATA\NeuronPP\workspaces\NPP\build-mingw" `
+  -BuildDir "$env:LOCALAPPDATA\Neuron\workspaces\Neuron\build-mingw" `
   -Filter "sema*" `
   -LlvmDir "C:\msys64\mingw64\lib\cmake\llvm"
 ```
 
-> ⚠️ **Never invoke CMake directly.** Always use scripts in `scripts/`. See `scripts/README.md`.
+> âš ï¸ **Never invoke CMake directly.** Always use scripts in `scripts/`. See `scripts/README.md`.
 
 ---
 
@@ -64,7 +64,7 @@ powershell -NoProfile -ExecutionPolicy Bypass -File scripts/build_tests.ps1 `
 
 1. Open the repo folder in VS Code.
 2. Install recommended extensions when prompted (`clangd`, `cmake-tools`, `editorconfig`).
-3. Press **Ctrl+Shift+B** → select **Build (Full)** to build.
+3. Press **Ctrl+Shift+B** â†’ select **Build (Full)** to build.
 4. Use **Run Tests (Filtered)** task for targeted test runs.
 
 The `compile_commands.json` is generated in the build dir and picked up by clangd automatically.
@@ -80,7 +80,7 @@ include/      Public headers (ABI boundary: include/neuronc/)
 tests/        Single-binary test suite (mirrors src/ layout)
 scripts/      Canonical build/test scripts (the ONLY way to build)
 config/       Runtime config and diagnostics catalog
-extensions/   IDE plugins (vscode-npp, intellij-npp)
+extensions/   IDE plugins (vscode-neuron, intellij-neuron)
 docs/         Architecture docs, ADRs, guides, specs
 benchmarks/   Performance benchmarking suite
 plans/        Long-horizon design plans
@@ -95,4 +95,4 @@ plans/        Long-horizon design plans
 3. Add or update a test in the matching `tests/<module>/` directory.
 4. Run `scripts\build.bat` to verify build.
 5. Run the targeted test filter to verify your test passes.
-6. Open a PR — fill in the `.github/PULL_REQUEST_TEMPLATE.md` checklist.
+6. Open a PR â€” fill in the `.github/PULL_REQUEST_TEMPLATE.md` checklist.

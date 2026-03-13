@@ -1,6 +1,6 @@
 #include "graphics/backend/vulkan/graphics_vk_internal.h"
 
-#if NPP_GRAPHICS_VK_ENABLED
+#if Neuron_GRAPHICS_VK_ENABLED
 #ifndef WIN32_LEAN_AND_MEAN
 #define WIN32_LEAN_AND_MEAN
 #endif

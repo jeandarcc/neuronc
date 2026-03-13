@@ -1,15 +1,15 @@
-// Cmd_Build.cpp — Derleme, build-nucleus, build-product, run ve release komutları.
+﻿// Cmd_Build.cpp â€” Derleme, build-nucleus, build-product, run ve release komutlarÄ±.
 //
-// Bu dosya şunları içerir:
-//   makeProjectDeps   → ProjectCommandDependencies fabrikası (dahili)
-//   cmdBuildMinimal   → ncon runtime için tek dosya derleme
-//   cmdBuildProduct   → .productsettings ile ürün paketi oluşturma
-//   cmdBuild          → proje build komutu
-//   cmdRun            → proje run komutu
-//   cmdRelease        → proje release komutu
+// Bu dosya ÅŸunlarÄ± iÃ§erir:
+//   makeProjectDeps   â†’ ProjectCommandDependencies fabrikasÄ± (dahili)
+//   cmdBuildMinimal   â†’ ncon runtime iÃ§in tek dosya derleme
+//   cmdBuildProduct   â†’ .productsettings ile Ã¼rÃ¼n paketi oluÅŸturma
+//   cmdBuild          â†’ proje build komutu
+//   cmdRun            â†’ proje run komutu
+//   cmdRelease        â†’ proje release komutu
 //
-// makeCompileDeps() Cmd_Debug.cpp'de tanımlıdır; buradan forward-declare ile
-// kullanılır.
+// makeCompileDeps() Cmd_Debug.cpp'de tanÄ±mlÄ±dÄ±r; buradan forward-declare ile
+// kullanÄ±lÄ±r.
 #include "CommandHandlers.h"
 #include "AppGlobals.h"
 #include "BuildSupport.h"
@@ -36,7 +36,7 @@
 
 namespace fs = std::filesystem;
 
-// Forward declaration — tanım Cmd_Debug.cpp'dedir.
+// Forward declaration â€” tanÄ±m Cmd_Debug.cpp'dedir.
 neuron::cli::CompilePipelineDependencies makeCompileDeps();
 
 namespace {
@@ -147,7 +147,7 @@ int runWebBuildTargetInternal(int argc, char *argv[],
 
 } // namespace
 
-// ── ProjectCommand bağımlılık fabrikası ──────────────────────────────────────
+// â”€â”€ ProjectCommand baÄŸÄ±mlÄ±lÄ±k fabrikasÄ± â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
 static neuron::cli::ProjectCommandDependencies makeProjectDeps() {
   neuron::cli::ProjectCommandDependencies deps;
@@ -174,7 +174,7 @@ static neuron::cli::ProjectCommandDependencies makeProjectDeps() {
   return deps;
 }
 
-// ── build-nucleus ────────────────────────────────────────────────────────────
+// â”€â”€ build-nucleus â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
 int cmdBuildMinimal(int argc, char *argv[]) {
   const std::string hostPlatform = currentHostPlatform();
@@ -304,7 +304,7 @@ int cmdBuildMinimal(int argc, char *argv[]) {
   return 0;
 }
 
-// ── build-product ────────────────────────────────────────────────────────────
+// â”€â”€ build-product â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
 int cmdBuildProduct(int argc, char *argv[]) {
   const std::string hostPlatform = currentHostPlatform();
@@ -331,7 +331,7 @@ int cmdBuildProduct(int argc, char *argv[]) {
   const fs::path settingsPath = projectRoot / ".productsettings";
   if (!fs::exists(settingsPath)) {
     std::cerr << "Error: .productsettings not found in current directory.\n"
-              << "Are you in a Neuron++ project directory?" << std::endl;
+              << "Are you in a Neuron project directory?" << std::endl;
     return 1;
   }
 
@@ -358,7 +358,7 @@ int cmdBuildProduct(int argc, char *argv[]) {
   return 0;
 }
 
-// ── build / run / release ────────────────────────────────────────────────────
+// â”€â”€ build / run / release â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
 int cmdBuild() {
   return neuron::cli::runBuildCommand(makeProjectDeps());

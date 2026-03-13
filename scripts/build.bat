@@ -4,9 +4,9 @@ setlocal EnableExtensions EnableDelayedExpansion
 for %%I in ("%~dp0..") do set "ROOT=%%~fI"
 for %%I in ("%ROOT%") do set "REPO_NAME=%%~nxI"
 
-set "STATE_ROOT=%LOCALAPPDATA%\NeuronPP\workspaces\%REPO_NAME%"
+set "STATE_ROOT=%LOCALAPPDATA%\Neuron\workspaces\%REPO_NAME%"
 if "%LOCALAPPDATA%"=="" (
-  set "STATE_ROOT=%TEMP%\NeuronPP\workspaces\%REPO_NAME%"
+  set "STATE_ROOT=%TEMP%\Neuron\workspaces\%REPO_NAME%"
 )
 
 set "BUILD_DIR=%STATE_ROOT%\build-mingw"
@@ -67,7 +67,7 @@ if not "!PROBE_EXIT!"=="0" (
 )
 
 if not exist "%BUILD_DIR%\CMakeCache.txt" (
-  cmake -S "%ROOT%" -B "%BUILD_DIR%" -G "!GENERATOR!" > "%LOG_FILE%" 2>&1
+  cmake -S "%ROOT%" -B "%BUILD_DIR%" -G "!GENERATOR!"
   if errorlevel 1 (
     copy /Y "%LOG_FILE%" "%ERR_FILE%" >nul
     type "%ERR_FILE%"
@@ -81,7 +81,7 @@ if "%JOBS%"=="" (
 )
 
 echo [build] cmake --build "%BUILD_DIR%" --config Release --verbose --parallel %JOBS%
-cmake --build "%BUILD_DIR%" --config Release --verbose --parallel %JOBS% > "%LOG_FILE%" 2>&1
+cmake --build "%BUILD_DIR%" --config Release --parallel %JOBS%
 set "BUILD_EXIT=!ERRORLEVEL!"
 
 if not "!BUILD_EXIT!"=="0" (

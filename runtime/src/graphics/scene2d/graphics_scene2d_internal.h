@@ -1,5 +1,5 @@
-#ifndef NPP_RUNTIME_GRAPHICS_SCENE2D_INTERNAL_H
-#define NPP_RUNTIME_GRAPHICS_SCENE2D_INTERNAL_H
+#ifndef Neuron_RUNTIME_GRAPHICS_SCENE2D_INTERNAL_H
+#define Neuron_RUNTIME_GRAPHICS_SCENE2D_INTERNAL_H
 
 #include "graphics/graphics_core_internal.h"
 #include "graphics/graphics_assets_internal.h"

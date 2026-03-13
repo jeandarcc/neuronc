@@ -1,5 +1,5 @@
-#ifndef NPP_RUNTIME_VULKAN_SHADERS_H
-#define NPP_RUNTIME_VULKAN_SHADERS_H
+#ifndef Neuron_RUNTIME_VULKAN_SHADERS_H
+#define Neuron_RUNTIME_VULKAN_SHADERS_H
 
 #include <stdint.h>
 #include <stddef.h>
@@ -983,4 +983,4 @@ static const uint32_t kMatMulPackedSpirv[] = {
 };
 static const size_t kMatMulPackedSpirvWordCount = sizeof(kMatMulPackedSpirv) / sizeof(kMatMulPackedSpirv[0]);
 
-#endif // NPP_RUNTIME_VULKAN_SHADERS_H
+#endif // Neuron_RUNTIME_VULKAN_SHADERS_H

@@ -77,7 +77,7 @@ elseif(UNIX)
         src/platform/posix/platform_posix_window_x11.c
     )
 endif()
-if(NPP_ENABLE_VULKAN_BACKEND)
+if(Neuron_ENABLE_VULKAN_BACKEND)
     list(APPEND NEURON_RUNTIME_SOURCES
         src/gpu_vulkan/gpu_vulkan_core.c
         src/gpu_vulkan/gpu_vulkan_engine.c
@@ -92,7 +92,7 @@ if(NPP_ENABLE_VULKAN_BACKEND)
         src/vulkan_common_api.c
     )
 endif()
-if(NPP_ENABLE_CUDA_BACKEND)
+if(Neuron_ENABLE_CUDA_BACKEND)
     list(APPEND NEURON_RUNTIME_SOURCES src/gpu_cuda.c)
 endif()
 
@@ -100,14 +100,14 @@ function(npp_configure_runtime_target target_name)
     target_include_directories(${target_name} PUBLIC
         ${CMAKE_CURRENT_SOURCE_DIR}/include
         ${CMAKE_CURRENT_SOURCE_DIR}/src
-        ${NPP_FFI_INCLUDE_DIR}
+        ${Neuron_FFI_INCLUDE_DIR}
     )
     target_compile_definitions(${target_name} PRIVATE
-        NPP_ENABLE_CUDA_BACKEND=$<BOOL:${NPP_ENABLE_CUDA_BACKEND}>
-        NPP_ENABLE_VULKAN_BACKEND=$<BOOL:${NPP_ENABLE_VULKAN_BACKEND}>
-        NPP_ENABLE_WEBGPU_BACKEND=$<BOOL:${EMSCRIPTEN}>
+        Neuron_ENABLE_CUDA_BACKEND=$<BOOL:${Neuron_ENABLE_CUDA_BACKEND}>
+        Neuron_ENABLE_VULKAN_BACKEND=$<BOOL:${Neuron_ENABLE_VULKAN_BACKEND}>
+        Neuron_ENABLE_WEBGPU_BACKEND=$<BOOL:${EMSCRIPTEN}>
     )
-    target_link_libraries(${target_name} PUBLIC ${NPP_FFI_LIBRARY})
+    target_link_libraries(${target_name} PUBLIC ${Neuron_FFI_LIBRARY})
     if(UNIX AND NOT APPLE AND NOT EMSCRIPTEN)
         target_link_libraries(${target_name} PUBLIC dl m)
     endif()

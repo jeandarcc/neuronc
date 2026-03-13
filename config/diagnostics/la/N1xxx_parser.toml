@@ -1,16 +1,16 @@
-[catalog]
+﻿[catalog]
 locale = "la"
 bucket = "N1xxx_parser"
 display_name = "Diagnostica parseris"
 inherits_contract = "N1xxx_parser"
 
 [contracts]
-allowed_exact_codes = ["NPP1001", "NPP1002"]
+allowed_exact_codes = ["NR1001", "NR1002"]
 allowed_n_range = "1000-1599"
 allowed_w_range = "1000-1099"
 future_addition_rule = "Solum N1000-N1599, W1000-W1099, et codices parseris priscae exacti supra recensiti in hoc archivo apparere possunt."
 
-[messages.NPP1001]
+[messages.nr1001]
 severity = "error"
 phase = "lexer"
 slug = "legacy_lexer_error"
@@ -20,13 +20,13 @@ default_message = "Fons tessera (token) invalida, litteralis male formata, aut s
 recovery = "Inspice primum characterem invalidum aut litteralem male formatam prope locum nuntiatum."
 tags = ["legacy", "lexer", "fallback"]
 
-[messages.NPP1002]
+[messages.nr1002]
 severity = "error"
 phase = "parser"
 slug = "legacy_parser_error"
 title = "Error parseris (prisca)"
 summary = "Receptaculum compatibilitatis pro defectibus parsingis donec codices parseris subtiliores connectantur."
-default_message = "Fons grammaticis Neuron++ expectatis non respondet."
+default_message = "Fons grammaticis Neuron expectatis non respondet."
 recovery = "Inspice limitem tesserae nuntiatum, paria deliminatorum, et formam declarationis aut sententiae expectatam."
 tags = ["legacy", "parser", "fallback"]
 
@@ -37,7 +37,7 @@ slug = "invalid_character"
 title = "Character invalidus"
 summary = "Lexer characterem invenit qui in textu fontis praesenti non est validus."
 default_message = "Character invalidus in fonte inventus est."
-recovery = "Remove characterem aut eum syntaxi Neuron++ valida substitue."
+recovery = "Remove characterem aut eum syntaxi Neuron valida substitue."
 tags = ["lexer", "character", "syntax"]
 
 [messages.N1002]

@@ -1,0 +1,130 @@
+﻿{
+    "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+    "name": "Neuron",
+    "scopeName": "source.nr",
+    "patterns": [
+        {
+            "include": "#comments"
+        },
+        {
+            "include": "#strings"
+        },
+        {
+            "include": "#keywords"
+        },
+        {
+            "include": "#multiword-keywords"
+        },
+        {
+            "include": "#constants"
+        },
+        {
+            "include": "#identifiers"
+        },
+        {
+            "include": "#operators"
+        }
+    ],
+    "repository": {
+        "comments": {
+            "patterns": [
+                {
+                    "name": "comment.line.double-slash.nr",
+                    "match": "//.*"
+                },
+                {
+                    "name": "comment.block.nr",
+                    "begin": "/\\*",
+                    "end": "\\*/"
+                }
+            ]
+        },
+        "strings": {
+            "patterns": [
+                {
+                    "name": "string.quoted.double.nr",
+                    "begin": "\"",
+                    "end": "\"",
+                    "patterns": [
+                        {
+                            "name": "constant.character.escape.nr",
+                            "match": "\\\\."
+                        }
+                    ]
+                }
+            ]
+        },
+        "multiword-keywords": {
+            "patterns": [
+                {
+                    "name": "keyword.other.nr",
+                    "match": "\\b(address of|value of)\\b"
+                }
+            ]
+        },
+        "keywords": {
+            "patterns": [
+                {
+                    "name": "keyword.control.nr",
+                    "match": "\\b(if|else|switch|case|default|while|for|break|continue|return|try|catch|finally|throw|async|await|parallel|in)\\b"
+                },
+                {
+                    "name": "keyword.declaration.nr",
+                    "match": "\\b(method|class|constructor|module|macro|extern|shader)\\b"
+                },
+                {
+                    "name": "keyword.other.nr",
+                    "match": "\\b(is|another|as|then|maybe|move|inherits|this|public|private|thread|atomic|gpu|canvas|pass|unsafe|const|constexpr|typeof|static_assert)\\b"
+                }
+            ]
+        },
+        "constants": {
+            "patterns": [
+                {
+                    "name": "constant.language.boolean.nr",
+                    "match": "\\b(true|false)\\b"
+                },
+                {
+                    "name": "constant.numeric.float.nr",
+                    "match": "\\b[0-9]+\\.[0-9]+([eE][+-]?[0-9]+)?f?\\b"
+                },
+                {
+                    "name": "constant.numeric.integer.nr",
+                    "match": "\\b[0-9]+\\b"
+                }
+            ]
+        },
+        "identifiers": {
+            "patterns": [
+                {
+                    "name": "entity.name.function.nr",
+                    "match": "\\b([a-zA-Z_][a-zA-Z0-9_]*)\\b(?=\\s*\\()"
+                },
+                {
+                    "name": "variable.other.nr",
+                    "match": "\\b[a-zA-Z_][a-zA-Z0-9_]*\\b"
+                }
+            ]
+        },
+        "operators": {
+            "patterns": [
+                {
+                    "name": "keyword.operator.arithmetic.nr",
+                    "match": "\\+|\\-|\\*|/|@|\\+\\+|\\-\\-"
+                },
+                {
+                    "name": "keyword.operator.comparison.nr",
+                    "match": "==|!=|>=|<=|>|<"
+                },
+                {
+                    "name": "keyword.operator.logical.nr",
+                    "match": "&&|\\|\\||!"
+                },
+                {
+                    "name": "keyword.operator.assignment.nr",
+                    "match": "is"
+                }
+            ]
+        }
+    }
+}

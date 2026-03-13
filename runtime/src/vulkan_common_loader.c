@@ -1,7 +1,7 @@
 #include "vulkan_common_internal.h"
 #include "neuron_platform.h"
 
-#if NPP_VK_COMMON_HAS_HEADERS
+#if Neuron_VK_COMMON_HAS_HEADERS
 
 static void *load_loader_symbol(const char *name) {
   if (name == NULL || g_common.loader == NULL) {

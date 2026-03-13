@@ -1,4 +1,4 @@
-# Ownership Borrowing and Aliasing Specification
+﻿# Ownership Borrowing and Aliasing Specification
 
 ## Scope
 
@@ -11,11 +11,11 @@ This folder covers non-owning access patterns: alias-by-default `is`, pointer-st
 | `N3100-N3199` | invalid borrow/alias behavior |
 | `N3200-N3299` | alias escape that becomes a lifetime violation |
 | `W3000-W3099` | suspicious alias chains that remain legal |
-| `NPP2001` | current semantic fallback |
+| `NR2001` | current semantic fallback |
 
 ## Test List
 
-| Name | `.npp` input code | Expected output or error | Why important |
+| Name | `.nr` input code | Expected output or error | Why important |
 | --- | --- | --- | --- |
 | `borrow__alias_by_default` | `Init is method() { x is 10; y is x; y is 20; Print(x); }` | Compiles and prints `20` | Defines default alias semantics |
 | `borrow__copy_is_not_alias` | `Init is method() { x is 10; y is another x; y is 20; Print(x); }` | Compiles and prints `10` | Separates copy behavior from borrow behavior |

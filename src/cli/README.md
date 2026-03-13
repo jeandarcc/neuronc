@@ -1,4 +1,4 @@
-# CLI, Build, & Web Pipeline (`src/cli/`)
+﻿# CLI, Build, & Web Pipeline (`src/cli/`)
 
 Despite its name, `src/cli/` is the orchestrator for the entire compiler. It handles
 command parsing, project generation, package dependency fetching, macro expansion
@@ -9,7 +9,7 @@ in config files, and the `web` WASM build pipeline.
 | File/Subsystem | Purpose |
 |----------------|---------|
 | `CommandDispatcher.cpp` | The top-level router for `neuron build`, `neuron run`, etc. Routes to specific executors in `commands/`. |
-| `ProjectConfig.cpp`, `ProjectGenerator.cpp` | Parses the workspace layout, generates CMake/Ninja structures for C/C++ native modules, and invokes `neuronc` on the `.npp` source files. |
+| `ProjectConfig.cpp`, `ProjectGenerator.cpp` | Parses the workspace layout, generates CMake/Ninja structures for C/C++ native modules, and invokes `neuronc` on the `.nr` source files. |
 | `ProductBuilder.cpp`, `ProductSettings.cpp` | Manages the final output structure (`.exe`, `.so`, or the `pkg/` bundles). |
 
 ## Build & Module Management
@@ -17,14 +17,14 @@ in config files, and the `web` WASM build pipeline.
 | File/Subsystem | Purpose |
 |----------------|---------|
 | `PackageManager.cpp`, `PackageLock.cpp` | Handles fetching, verifying, and caching GitHub/HTTP dependencies into `%LOCALAPPDATA%`, using `neuron.lock`. |
-| `ModuleCppSupport.cpp`, `ModuleCppManifest.cpp` | Bridges external C/C++ libraries declared in `[modulecpp]` tables into the NPP build graph. |
+| `ModuleCppSupport.cpp`, `ModuleCppManifest.cpp` | Bridges external C/C++ libraries declared in `[modulecpp]` tables into the Neuron build graph. |
 
 ## Web Assembly Target (`neuron build --target=web`)
 
-NPP treats the web as a first-class target. The Emscripten integration is housed here:
+Neuron treats the web as a first-class target. The Emscripten integration is housed here:
 - `WebBuildPipeline.cpp`: Converts the project into `.wasm`, hooks up Emscripten (`em++`), and packages the `index.html`.
 - `WebDevServer.cpp`: An embedded HTTP server launched by `neuron run --target=web`. Injects SharedArrayBuffer isolation headers.
-- `WebShaderTranspiler.cpp`: Translates compiled Vulkan SPIR-V into WGSL so NPP graphics code can run on WebGPU seamlessly.
+- `WebShaderTranspiler.cpp`: Translates compiled Vulkan SPIR-V into WGSL so Neuron graphics code can run on WebGPU seamlessly.
 
 ## Settings Macro Engine
 

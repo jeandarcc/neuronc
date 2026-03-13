@@ -1,15 +1,15 @@
-# Project Rules
+﻿# Project Rules
 
-This document defines the project-specific constraints and workflows that apply to this Neuron++ project.
+This document defines the project-specific constraints and workflows that apply to this Neuron project.
 
 ---
 
 ## 1. Source Organization
 
 - All source code resides in the `src/` directory.
-- Each `.npp` file contains exactly **one class**.
+- Each `.nr` file contains exactly **one class**.
 - The class name must **match the filename** (case-sensitive).
-- The program entry point is the `Init` method in `src/Main.npp`.
+- The program entry point is the `Init` method in `src/Main.nr`.
 
 ---
 
@@ -58,9 +58,9 @@ When `ncon.hot_reload = true` in `neuron.toml`, source changes that are structur
 
 The `neuron release` command performs:
 
-1. **Build** — Full project compilation
-2. **Test** — Automated test execution
-3. **Package** — Creation of distributable bundle
+1. **Build** â€” Full project compilation
+2. **Test** â€” Automated test execution
+3. **Package** â€” Creation of distributable bundle
 
 ---
 
@@ -81,7 +81,7 @@ The following rules are enforced by `.neuronsettings` (see `agents/language/Deta
 
 The `.gitignore` excludes:
 
-- `build/` — Compiled output
-- `agents/` — Generated documentation (regenerated from templates)
+- `build/` â€” Compiled output
+- `agents/` â€” Generated documentation (regenerated from templates)
 
 All source code, configuration files, tests, and documentation should be committed.

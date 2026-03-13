@@ -1,8 +1,8 @@
-# Semantic Behavior Specification
+﻿# Semantic Behavior Specification
 
 ## Scope
 
-This folder covers meaning-level validation of `.npp` programs after successful parse. It specifies what source programs are well-typed, well-resolved, and semantically executable from the user’s perspective.
+This folder covers meaning-level validation of `.nr` programs after successful parse. It specifies what source programs are well-typed, well-resolved, and semantically executable from the userâ€™s perspective.
 
 Subfolders:
 
@@ -36,14 +36,14 @@ Excluded:
 | `N2300-N2399` | generic arity, substitution, and constraint failures |
 | `N2400-N2499` | overload resolution failures |
 | `W2000-W2099` | semantic warnings with stable user value |
-| `NPP2001` | current coarse semantic fallback |
+| `NR2001` | current coarse semantic fallback |
 
 ## Test List
 
-| Name | `.npp` input code | Expected output or error | Why important |
+| Name | `.nr` input code | Expected output or error | Why important |
 | --- | --- | --- | --- |
 | `semantic_baseline__valid_arithmetic_types` | `Init is method() { x is 1 + 2; Print(x); }` | Compiles and prints `3` | Baseline semantic success |
-| `semantic_baseline__invalid_addition_pair` | `Init is method() { x is "a" + 1; }` | `N2000-N2099` or `NPP2001` | Distinguishes semantic rejection from parse rejection |
+| `semantic_baseline__invalid_addition_pair` | `Init is method() { x is "a" + 1; }` | `N2000-N2099` or `NR2001` | Distinguishes semantic rejection from parse rejection |
 | `semantic_baseline__unknown_identifier` | `Init is method() { Print(missing); }` | `N2200-N2299` | Keeps name resolution strict |
 | `semantic_baseline__inference_from_literal` | `Init is method() { x is 42; Print(x); }` | Compiles and prints `42` | Pins obvious inference |
 | `semantic_baseline__generic_arity_failure` | `value as Array<int, string>;` | `N2300-N2399` | Prevents silent acceptance of malformed generic use |

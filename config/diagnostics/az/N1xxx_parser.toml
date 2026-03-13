@@ -5,12 +5,12 @@ display_name = "Parser diaqnostikası"
 inherits_contract = "N1xxx_parser"
 
 [contracts]
-allowed_exact_codes = ["NPP1001", "NPP1002"]
+allowed_exact_codes = ["NR1001", "NR1002"]
 allowed_n_range = "1000-1599"
 allowed_w_range = "1000-1099"
 future_addition_rule = "Bu faylda yalnız N1000-N1599, W1000-W1099 və yuxarıda sadalanan dəqiq köhnə parser kodları görünə bilər."
 
-[messages.NPP1001]
+[messages.nr1001]
 severity = "error"
 phase = "lexer"
 slug = "legacy_lexer_error"
@@ -20,13 +20,13 @@ default_message = "Mənbədə yanlış token, səhv formalaşdırılmış litera
 recovery = "Bildirilən mövqe yaxınlığındakı ilk yanlış simvolu və ya səhv formalaşdırılmış literalı yoxlayın."
 tags = ["legacy", "lexer", "fallback"]
 
-[messages.NPP1002]
+[messages.nr1002]
 severity = "error"
 phase = "parser"
 slug = "legacy_parser_error"
 title = "Parser xətası (köhnə)"
 summary = "Daha dəqiq parser kodları qoşulana qədər parsing uğursuzluqları üçün uyğunluq bölməsi."
-default_message = "Mənbə gözlənilən Neuron++ qrammatikasına uyğun gəlmir."
+default_message = "Mənbə gözlənilən Neuron qrammatikasına uyğun gəlmir."
 recovery = "Bildirilən token sərhədini, delimitator cütlüyünü və gözlənilən bəyanat və ya ifadə formasını yoxlayın."
 tags = ["legacy", "parser", "fallback"]
 
@@ -37,7 +37,7 @@ slug = "invalid_character"
 title = "Yanlış simvol"
 summary = "Lexer mövcud mənbə kontekstində yanlış olan simvolla qarşılaşdı."
 default_message = "Mənbədə yanlış simvol tapıldı."
-recovery = "Simvolu silin və ya onu hündür Neuron++ sintaksisi ilə əvəz edin."
+recovery = "Simvolu silin və ya onu hündür Neuron sintaksisi ilə əvəz edin."
 tags = ["lexer", "character", "syntax"]
 
 [messages.N1002]

@@ -1,6 +1,6 @@
-# Unsafe Blocks
+﻿# Unsafe Blocks
 
-The `unsafe` keyword allows low-level operations that bypass Neuron++'s safety guarantees.
+The `unsafe` keyword allows low-level operations that bypass Neuron's safety guarantees.
 
 ---
 
@@ -27,7 +27,7 @@ unsafe {
 ## Restrictions
 
 - `unsafe` blocks are **rejected** in NCON sandbox mode
-- Must be used sparingly — code inside is not safety-checked
+- Must be used sparingly â€” code inside is not safety-checked
 
 ---
 
@@ -41,4 +41,4 @@ unsafe {
 
 ## Next Steps
 
-- [Extern](extern.md) — Foreign function interface
+- [Extern](extern.md) â€” Foreign function interface

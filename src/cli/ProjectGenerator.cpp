@@ -219,7 +219,7 @@ bool ProjectGenerator::createProject(const std::string &projectName,
                      "source_dir = \"src\"\n"
                      "\n"
                      "[build]\n"
-                     "main = \"src/Main.npp\"\n"
+                     "main = \"src/Main.nr\"\n"
                      "build_dir = \"build\"\n"
                      "optimize = \"aggressive\"\n"
                      "emit_ir = \"optimized\"\n"
@@ -242,7 +242,7 @@ bool ProjectGenerator::createProject(const std::string &projectName,
     return false;
 
   // .neuronsettings
-  std::string settings = "# Neuron++ source rules\n"
+  std::string settings = "# Neuron source rules\n"
                          "max_classes_per_file = 1\n"
                          "max_lines_per_file = 1000\n"
                          "require_method_uppercase_start = true\n"
@@ -272,7 +272,7 @@ bool ProjectGenerator::createProject(const std::string &projectName,
       "product_version = \"1.0.0\"\n"
       "product_build_version = 1\n"
       "product_publisher = \"\"\n"
-      "product_description = \"A Neuron++ application\"\n"
+      "product_description = \"A Neuron application\"\n"
       "product_website = \"\"\n\n"
       "icon_windows = \"\"\n"
       "icon_linux = \"\"\n"
@@ -309,10 +309,10 @@ bool ProjectGenerator::createProject(const std::string &projectName,
   if (!writeFile(projectDir + "/.gitignore", gitignore))
     return false;
 
-  // Main.npp
+  // Main.nr
   std::string mainNpp;
   if (library) {
-    mainNpp = "// " + projectName + " - Neuron++ Library\n"
+    mainNpp = "// " + projectName + " - Neuron Library\n"
               "\n"
               "ComputeGreeting is method() -> string\n"
               "{\n"
@@ -320,14 +320,14 @@ bool ProjectGenerator::createProject(const std::string &projectName,
               "};\n";
   } else {
     mainNpp = "// " + projectName +
-              " - Neuron++ Project\n"
+              " - Neuron Project\n"
               "\n"
               "Init is method()\n"
               "{\n"
               "    Print(\"Hello Neuron!\");\n"
               "};\n";
   }
-  if (!writeFile(projectDir + "/src/Main.npp", mainNpp))
+  if (!writeFile(projectDir + "/src/Main.nr", mainNpp))
     return false;
 
   std::string readme = "# " + projectName + "\n\n";
@@ -342,14 +342,14 @@ bool ProjectGenerator::createProject(const std::string &projectName,
   if (!writeFile(projectDir + "/LICENSE", "MIT\n"))
     return false;
 
-  // docs/scripts/Main.md — from template
+  // docs/scripts/Main.md â€” from template
   if (!copyTemplateFile(
           templateDir / "docs" / "scripts" / "Main.md",
           projectDir + "/docs/scripts/Main.md",
           "# Main Script\n\n"
-          "This document describes `src/Main.npp`.\n\n"
+          "This document describes `src/Main.nr`.\n\n"
           "## Purpose\n"
-          "Entry point for the Neuron++ project. Runs the `Init` method on "
+          "Entry point for the Neuron project. Runs the `Init` method on "
           "startup.\n\n"
           "## Usage\n"
           "The `Init` method is automatically invoked by the runtime when the "
@@ -357,14 +357,14 @@ bool ProjectGenerator::createProject(const std::string &projectName,
           "is executed via `neuron run`. No manual call is required.\n"))
     return false;
 
-  // agents/language/LanguageGuide.md — from template
+  // agents/language/LanguageGuide.md â€” from template
   if (!copyTemplateFile(
           templateDir / "agents" / "language" / "LanguageGuide.md",
           projectDir + "/agents/language/LanguageGuide.md",
           "# Language Guide\n\nProject language conventions and examples.\n"))
     return false;
 
-  // agents/language/Details/*.md — from templates
+  // agents/language/Details/*.md â€” from templates
   if (!copyTemplateFile(
           templateDir / "agents" / "language" / "Details" / "RULES.md",
           projectDir + "/agents/language/Details/RULES.md",
@@ -396,7 +396,7 @@ bool ProjectGenerator::createProject(const std::string &projectName,
           "# Structure\n\nRecommended project and script structure.\n"))
     return false;
 
-  // agents/project/*.md — from templates
+  // agents/project/*.md â€” from templates
   if (!copyTemplateFile(templateDir / "agents" / "project" / "ARCHITECTURE.md",
                         projectDir + "/agents/project/ARCHITECTURE.md",
                         "# Architecture\n\nHigh-level architecture notes for "
@@ -420,7 +420,7 @@ bool ProjectGenerator::createProject(const std::string &projectName,
     return false;
   }
 
-  std::cout << "Created new Neuron++ project: " << projectName << std::endl;
+  std::cout << "Created new Neuron project: " << projectName << std::endl;
   std::cout << std::endl;
   std::cout << "  " << projectName << "/" << std::endl;
   std::cout << "  |- neuron.toml" << std::endl;
@@ -429,7 +429,7 @@ bool ProjectGenerator::createProject(const std::string &projectName,
   std::cout << "  |- .gitignore" << std::endl;
   std::cout << "  |- assets/" << std::endl;
   std::cout << "  |- src/" << std::endl;
-  std::cout << "  |  |- Main.npp" << std::endl;
+  std::cout << "  |  |- Main.nr" << std::endl;
   std::cout << "  |- docs/" << std::endl;
   std::cout << "  |  |- scripts/" << std::endl;
   std::cout << "  |     |- Main.md" << std::endl;

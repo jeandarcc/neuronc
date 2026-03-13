@@ -177,13 +177,13 @@ int main() {
   const auto toepFusedMs = benchFused(a, toep, bias, residual);
   const auto hybridFusedMs = benchFused(a, hybrid, bias, residual);
 
-  std::cout << "NPP_STRUCT_CIRC_MATMUL_MS\n" << roundMs(circMatMulMs) << "\n";
-  std::cout << "NPP_STRUCT_TOEP_MATMUL_MS\n" << roundMs(toepMatMulMs) << "\n";
-  std::cout << "NPP_STRUCT_HYBRID_MATMUL_MS\n" << roundMs(hybridMatMulMs)
+  std::cout << "Neuron_STRUCT_CIRC_MATMUL_MS\n" << roundMs(circMatMulMs) << "\n";
+  std::cout << "Neuron_STRUCT_TOEP_MATMUL_MS\n" << roundMs(toepMatMulMs) << "\n";
+  std::cout << "Neuron_STRUCT_HYBRID_MATMUL_MS\n" << roundMs(hybridMatMulMs)
             << "\n";
-  std::cout << "NPP_STRUCT_CIRC_FUSED_MS\n" << roundMs(circFusedMs) << "\n";
-  std::cout << "NPP_STRUCT_TOEP_FUSED_MS\n" << roundMs(toepFusedMs) << "\n";
-  std::cout << "NPP_STRUCT_HYBRID_FUSED_MS\n" << roundMs(hybridFusedMs)
+  std::cout << "Neuron_STRUCT_CIRC_FUSED_MS\n" << roundMs(circFusedMs) << "\n";
+  std::cout << "Neuron_STRUCT_TOEP_FUSED_MS\n" << roundMs(toepFusedMs) << "\n";
+  std::cout << "Neuron_STRUCT_HYBRID_FUSED_MS\n" << roundMs(hybridFusedMs)
             << "\n";
 
   neuron_tensor_free(residual);

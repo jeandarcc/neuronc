@@ -1,4 +1,4 @@
-#include "neuronc/ncon/Sandbox.h"
+﻿#include "neuronc/ncon/Sandbox.h"
 
 #include <algorithm>
 #include <cctype>
@@ -25,38 +25,38 @@ std::filesystem::path defaultCacheRoot() {
 #ifdef _WIN32
   const char *localAppData = std::getenv("LOCALAPPDATA");
   if (localAppData != nullptr && *localAppData != '\0') {
-    return std::filesystem::path(localAppData) / "NeuronPP" / "ncon" / "work";
+    return std::filesystem::path(localAppData) / "Neuron" / "ncon" / "work";
   }
 #else
   const char *xdgCache = std::getenv("XDG_CACHE_HOME");
   if (xdgCache != nullptr && *xdgCache != '\0') {
-    return std::filesystem::path(xdgCache) / "neuronpp" / "ncon" / "work";
+    return std::filesystem::path(xdgCache) / "Neuron" / "ncon" / "work";
   }
   const char *home = std::getenv("HOME");
   if (home != nullptr && *home != '\0') {
-    return std::filesystem::path(home) / ".cache" / "neuronpp" / "ncon" / "work";
+    return std::filesystem::path(home) / ".cache" / "Neuron" / "ncon" / "work";
   }
 #endif
-  return std::filesystem::temp_directory_path() / "neuronpp-ncon-work";
+  return std::filesystem::temp_directory_path() / "Neuron-ncon-work";
 }
 
 std::filesystem::path defaultNativeCacheRoot() {
 #ifdef _WIN32
   const char *localAppData = std::getenv("LOCALAPPDATA");
   if (localAppData != nullptr && *localAppData != '\0') {
-    return std::filesystem::path(localAppData) / "NeuronPP" / "ncon" / "native";
+    return std::filesystem::path(localAppData) / "Neuron" / "ncon" / "native";
   }
 #else
   const char *xdgCache = std::getenv("XDG_CACHE_HOME");
   if (xdgCache != nullptr && *xdgCache != '\0') {
-    return std::filesystem::path(xdgCache) / "neuronpp" / "ncon" / "native";
+    return std::filesystem::path(xdgCache) / "Neuron" / "ncon" / "native";
   }
   const char *home = std::getenv("HOME");
   if (home != nullptr && *home != '\0') {
-    return std::filesystem::path(home) / ".cache" / "neuronpp" / "ncon" / "native";
+    return std::filesystem::path(home) / ".cache" / "Neuron" / "ncon" / "native";
   }
 #endif
-  return std::filesystem::temp_directory_path() / "neuronpp-ncon-native";
+  return std::filesystem::temp_directory_path() / "Neuron-ncon-native";
 }
 
 std::string trimCopy(std::string text) {

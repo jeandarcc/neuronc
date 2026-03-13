@@ -1,6 +1,6 @@
-# Installation
+﻿# Installation
 
-This guide covers how to install the Neuron++ compiler and toolchain on your system.
+This guide covers how to install the Neuron compiler and toolchain on your system.
 
 ---
 
@@ -19,8 +19,8 @@ This guide covers how to install the Neuron++ compiler and toolchain on your sys
 
 ### Windows
 
-1. Download the latest Neuron++ release archive
-2. Extract to your preferred location (e.g., `C:\NeuronPP`)
+1. Download the latest Neuron release archive
+2. Extract to your preferred location (e.g., `C:\Neuron`)
 3. Add the `bin/` directory to your system `PATH`
 4. Verify the installation:
 
@@ -28,7 +28,7 @@ This guide covers how to install the Neuron++ compiler and toolchain on your sys
 neuron help
 ```
 
-The bundled toolchain includes MinGW GCC — no separate compiler installation is required.
+The bundled toolchain includes MinGW GCC â€” no separate compiler installation is required.
 
 ### Linux
 
@@ -36,8 +36,8 @@ The bundled toolchain includes MinGW GCC — no separate compiler installation i
 2. Extract and add to PATH:
 
 ```bash
-tar -xzf neuronpp-linux-x64.tar.gz
-export PATH="$HOME/neuronpp/bin:$PATH"
+tar -xzf Neuron-linux-x64.tar.gz
+export PATH="$HOME/Neuron/bin:$PATH"
 neuron help
 ```
 
@@ -47,8 +47,8 @@ neuron help
 2. Extract and add to PATH:
 
 ```bash
-tar -xzf neuronpp-macos-arm64.tar.gz
-export PATH="$HOME/neuronpp/bin:$PATH"
+tar -xzf Neuron-macos-arm64.tar.gz
+export PATH="$HOME/Neuron/bin:$PATH"
 neuron help
 ```
 
@@ -62,7 +62,7 @@ Run the following command to confirm everything works:
 neuron help
 ```
 
-You should see the Neuron++ ASCII banner and a list of available commands.
+You should see the Neuron ASCII banner and a list of available commands.
 
 ---
 
@@ -80,4 +80,4 @@ You should see the Neuron++ ASCII banner and a list of available commands.
 
 ## Next Steps
 
-- [Hello World](hello_world.md) — Create your first Neuron++ project
+- [Hello World](hello_world.md) â€” Create your first Neuron project

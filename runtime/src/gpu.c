@@ -9,19 +9,19 @@
 #include <stdlib.h>
 #include <string.h>
 
-#ifndef NPP_ENABLE_CUDA_BACKEND
-#define NPP_ENABLE_CUDA_BACKEND 1
+#ifndef Neuron_ENABLE_CUDA_BACKEND
+#define Neuron_ENABLE_CUDA_BACKEND 1
 #endif
 
-#ifndef NPP_ENABLE_VULKAN_BACKEND
-#define NPP_ENABLE_VULKAN_BACKEND 0
+#ifndef Neuron_ENABLE_VULKAN_BACKEND
+#define Neuron_ENABLE_VULKAN_BACKEND 0
 #endif
 
-#ifndef NPP_ENABLE_WEBGPU_BACKEND
-#define NPP_ENABLE_WEBGPU_BACKEND 0
+#ifndef Neuron_ENABLE_WEBGPU_BACKEND
+#define Neuron_ENABLE_WEBGPU_BACKEND 0
 #endif
 
-#if NPP_ENABLE_CUDA_BACKEND
+#if Neuron_ENABLE_CUDA_BACKEND
 typedef int CUresult;
 typedef int CUdevice;
 typedef struct CUctx_st *CUcontext;
@@ -69,7 +69,7 @@ typedef enum {
 typedef struct {
   int initialized;
   NeuronGpuBackend backend;
-#if NPP_ENABLE_CUDA_BACKEND
+#if Neuron_ENABLE_CUDA_BACKEND
   NeuronPlatformLibraryHandle handle;
   CUcontext context;
   PFN_cuInit cuInit;
@@ -156,7 +156,7 @@ static int is_valid_device_class(NeuronGpuDeviceClass device_class) {
          device_class == NEURON_GPU_DEVICE_CLASS_INTEGRATED;
 }
 
-#if NPP_ENABLE_CUDA_BACKEND
+#if Neuron_ENABLE_CUDA_BACKEND
 static void *load_cuda_symbol(const char *name) {
   if (g_gpu.handle == NULL || name == NULL) {
     return NULL;
@@ -281,7 +281,7 @@ static void close_cuda_driver_library(void) {}
 #endif
 
 static int try_enable_vulkan_backend(int forced) {
-#if NPP_ENABLE_VULKAN_BACKEND
+#if Neuron_ENABLE_VULKAN_BACKEND
   char error_message[512] = {0};
   if (neuron_gpu_vulkan_try_initialize(error_message, sizeof(error_message)) != 0) {
     g_gpu.backend = NEURON_GPU_BACKEND_VULKAN_COMPUTE;
@@ -305,7 +305,7 @@ static int try_enable_vulkan_backend(int forced) {
 }
 
 static int try_enable_webgpu_backend(int forced) {
-#if NPP_ENABLE_WEBGPU_BACKEND
+#if Neuron_ENABLE_WEBGPU_BACKEND
   char error_message[512] = {0};
   if (neuron_gpu_webgpu_try_initialize(error_message, sizeof(error_message)) !=
       0) {
@@ -330,7 +330,7 @@ static int try_enable_webgpu_backend(int forced) {
 }
 
 static int try_enable_cuda_backend(int forced) {
-#if NPP_ENABLE_CUDA_BACKEND
+#if Neuron_ENABLE_CUDA_BACKEND
   char error_message[512] = {0};
   if (initialize_cuda_backend(error_message, sizeof(error_message)) != 0) {
     g_gpu.backend = NEURON_GPU_BACKEND_CUDA_DRIVER;
@@ -379,7 +379,7 @@ static void initialize_backend_once(void) {
     (void)try_enable_webgpu_backend(1);
     return;
   case FORCED_BACKEND_VULKAN:
-#if NPP_ENABLE_VULKAN_BACKEND
+#if Neuron_ENABLE_VULKAN_BACKEND
     neuron_gpu_vulkan_set_scope_preference(g_pending_scope_mode,
                                            g_pending_device_class);
 #endif
@@ -401,13 +401,13 @@ static void initialize_backend_once(void) {
       (g_pending_scope_mode == NEURON_GPU_SCOPE_MODE_PREFER ||
        g_pending_scope_mode == NEURON_GPU_SCOPE_MODE_FORCE)) {
     if (g_pending_device_class == NEURON_GPU_DEVICE_CLASS_DISCRETE) {
-#if NPP_ENABLE_CUDA_BACKEND
+#if Neuron_ENABLE_CUDA_BACKEND
       if (try_enable_cuda_backend(
               g_pending_scope_mode == NEURON_GPU_SCOPE_MODE_FORCE ? 1 : 0)) {
         return;
       }
 #endif
-#if NPP_ENABLE_VULKAN_BACKEND
+#if Neuron_ENABLE_VULKAN_BACKEND
       neuron_gpu_vulkan_set_scope_preference(g_pending_scope_mode,
                                              g_pending_device_class);
       if (try_enable_vulkan_backend(
@@ -422,7 +422,7 @@ static void initialize_backend_once(void) {
         return;
       }
     } else if (g_pending_device_class == NEURON_GPU_DEVICE_CLASS_INTEGRATED) {
-#if NPP_ENABLE_VULKAN_BACKEND
+#if Neuron_ENABLE_VULKAN_BACKEND
       neuron_gpu_vulkan_set_scope_preference(g_pending_scope_mode,
                                              g_pending_device_class);
       if (try_enable_vulkan_backend(
@@ -439,18 +439,18 @@ static void initialize_backend_once(void) {
     }
   }
 
-#if NPP_ENABLE_VULKAN_BACKEND
+#if Neuron_ENABLE_VULKAN_BACKEND
   neuron_gpu_vulkan_set_scope_preference(NEURON_GPU_SCOPE_MODE_DEFAULT,
                                          NEURON_GPU_DEVICE_CLASS_ANY);
 #endif
 
-#if NPP_ENABLE_CUDA_BACKEND
+#if Neuron_ENABLE_CUDA_BACKEND
   if (try_enable_cuda_backend(0)) {
     return;
   }
 #endif
 
-#if NPP_ENABLE_VULKAN_BACKEND
+#if Neuron_ENABLE_VULKAN_BACKEND
   if (try_enable_vulkan_backend(0)) {
     return;
   }
@@ -618,7 +618,7 @@ int neuron_gpu_is_available(void) {
 int neuron_gpu_supports_op(NeuronGpuOpKind op) {
   initialize_backend_once();
   if (g_gpu.backend == NEURON_GPU_BACKEND_WEBGPU) {
-#if NPP_ENABLE_WEBGPU_BACKEND
+#if Neuron_ENABLE_WEBGPU_BACKEND
     return neuron_gpu_webgpu_supports_op(op);
 #else
     return 0;
@@ -626,7 +626,7 @@ int neuron_gpu_supports_op(NeuronGpuOpKind op) {
   }
 
   if (g_gpu.backend == NEURON_GPU_BACKEND_VULKAN_COMPUTE) {
-#if NPP_ENABLE_VULKAN_BACKEND
+#if Neuron_ENABLE_VULKAN_BACKEND
     return neuron_gpu_vulkan_supports_op(op);
 #else
     return 0;
@@ -634,7 +634,7 @@ int neuron_gpu_supports_op(NeuronGpuOpKind op) {
   }
 
   if (g_gpu.backend == NEURON_GPU_BACKEND_CUDA_DRIVER) {
-#if NPP_ENABLE_CUDA_BACKEND
+#if Neuron_ENABLE_CUDA_BACKEND
     return neuron_gpu_cuda_supports_op(op);
 #else
     return 0;
@@ -654,14 +654,14 @@ int neuron_gpu_dispatch_tensor_binary(NeuronGpuOpKind op, const float *a,
 
   initialize_backend_once();
   if (g_gpu.backend == NEURON_GPU_BACKEND_CUDA_DRIVER) {
-#if NPP_ENABLE_CUDA_BACKEND
+#if Neuron_ENABLE_CUDA_BACKEND
     char cuda_error[512] = {0};
     if (neuron_gpu_cuda_dispatch_binary(op, a, b, out, element_count,
                                         cuda_error, sizeof(cuda_error)) == 0) {
       clear_last_error();
       return 0;
     }
-#if NPP_ENABLE_VULKAN_BACKEND
+#if Neuron_ENABLE_VULKAN_BACKEND
     char vulkan_error[512] = {0};
     if (neuron_gpu_vulkan_try_initialize(vulkan_error, sizeof(vulkan_error)) !=
             0 &&
@@ -698,7 +698,7 @@ int neuron_gpu_dispatch_tensor_binary(NeuronGpuOpKind op, const float *a,
   }
 
   if (g_gpu.backend == NEURON_GPU_BACKEND_WEBGPU) {
-#if NPP_ENABLE_WEBGPU_BACKEND
+#if Neuron_ENABLE_WEBGPU_BACKEND
     if (neuron_gpu_webgpu_dispatch_binary(op, a, b, out, element_count,
                                           g_last_error,
                                           sizeof(g_last_error)) == 0) {
@@ -713,7 +713,7 @@ int neuron_gpu_dispatch_tensor_binary(NeuronGpuOpKind op, const float *a,
   }
 
   if (g_gpu.backend == NEURON_GPU_BACKEND_VULKAN_COMPUTE) {
-#if NPP_ENABLE_VULKAN_BACKEND
+#if Neuron_ENABLE_VULKAN_BACKEND
     if (neuron_gpu_vulkan_dispatch_binary(op, a, b, out, element_count,
                                           g_last_error,
                                           sizeof(g_last_error)) == 0) {
@@ -741,14 +741,14 @@ int neuron_gpu_dispatch_tensor_fma(const float *a, const float *b,
 
   initialize_backend_once();
   if (g_gpu.backend == NEURON_GPU_BACKEND_CUDA_DRIVER) {
-#if NPP_ENABLE_CUDA_BACKEND
+#if Neuron_ENABLE_CUDA_BACKEND
     char cuda_error[512] = {0};
     if (neuron_gpu_cuda_dispatch_fma(a, b, c, out, element_count, cuda_error,
                                      sizeof(cuda_error)) == 0) {
       clear_last_error();
       return 0;
     }
-#if NPP_ENABLE_VULKAN_BACKEND
+#if Neuron_ENABLE_VULKAN_BACKEND
     char vulkan_error[512] = {0};
     if (neuron_gpu_vulkan_try_initialize(vulkan_error, sizeof(vulkan_error)) !=
             0 &&
@@ -784,7 +784,7 @@ int neuron_gpu_dispatch_tensor_fma(const float *a, const float *b,
   }
 
   if (g_gpu.backend == NEURON_GPU_BACKEND_WEBGPU) {
-#if NPP_ENABLE_WEBGPU_BACKEND
+#if Neuron_ENABLE_WEBGPU_BACKEND
     if (neuron_gpu_webgpu_dispatch_fma(a, b, c, out, element_count, g_last_error,
                                        sizeof(g_last_error)) == 0) {
       clear_last_error();
@@ -798,7 +798,7 @@ int neuron_gpu_dispatch_tensor_fma(const float *a, const float *b,
   }
 
   if (g_gpu.backend == NEURON_GPU_BACKEND_VULKAN_COMPUTE) {
-#if NPP_ENABLE_VULKAN_BACKEND
+#if Neuron_ENABLE_VULKAN_BACKEND
     if (neuron_gpu_vulkan_dispatch_fma(a, b, c, out, element_count, g_last_error,
                                        sizeof(g_last_error)) == 0) {
       clear_last_error();
@@ -828,13 +828,13 @@ int neuron_gpu_dispatch_tensor_matmul(const NeuronGpuMatMulDispatchDesc *desc) {
 
   initialize_backend_once();
   if (g_gpu.backend == NEURON_GPU_BACKEND_CUDA_DRIVER) {
-#if NPP_ENABLE_CUDA_BACKEND
+#if Neuron_ENABLE_CUDA_BACKEND
     char cuda_error[512] = {0};
     if (neuron_gpu_cuda_dispatch_matmul(desc, cuda_error, sizeof(cuda_error)) == 0) {
       clear_last_error();
       return 0;
     }
-#if NPP_ENABLE_VULKAN_BACKEND
+#if Neuron_ENABLE_VULKAN_BACKEND
     char vulkan_error[512] = {0};
     if (neuron_gpu_vulkan_try_initialize(vulkan_error, sizeof(vulkan_error)) != 0 &&
         neuron_gpu_vulkan_dispatch_matmul(desc, vulkan_error,
@@ -868,7 +868,7 @@ int neuron_gpu_dispatch_tensor_matmul(const NeuronGpuMatMulDispatchDesc *desc) {
   }
 
   if (g_gpu.backend == NEURON_GPU_BACKEND_WEBGPU) {
-#if NPP_ENABLE_WEBGPU_BACKEND
+#if Neuron_ENABLE_WEBGPU_BACKEND
     if (neuron_gpu_webgpu_dispatch_matmul(desc, g_last_error,
                                           sizeof(g_last_error)) == 0) {
       clear_last_error();
@@ -882,7 +882,7 @@ int neuron_gpu_dispatch_tensor_matmul(const NeuronGpuMatMulDispatchDesc *desc) {
   }
 
   if (g_gpu.backend == NEURON_GPU_BACKEND_VULKAN_COMPUTE) {
-#if NPP_ENABLE_VULKAN_BACKEND
+#if Neuron_ENABLE_VULKAN_BACKEND
     if (neuron_gpu_vulkan_dispatch_matmul(desc, g_last_error,
                                           sizeof(g_last_error)) == 0) {
       clear_last_error();
@@ -910,7 +910,7 @@ int neuron_gpu_prepare_cpu_tensor(const float *host_data, int32_t element_count)
   }
 
   if (g_scope_backend == NEURON_GPU_BACKEND_VULKAN_COMPUTE) {
-#if NPP_ENABLE_VULKAN_BACKEND
+#if Neuron_ENABLE_VULKAN_BACKEND
     if (neuron_gpu_vulkan_materialize(
             host_data, (size_t)element_count * sizeof(float), g_last_error,
             sizeof(g_last_error)) == 0) {
@@ -955,7 +955,7 @@ int neuron_gpu_scope_begin_ex(NeuronGpuScopeMode mode,
 
   if (g_scope_depth == 0 &&
       g_scope_backend == NEURON_GPU_BACKEND_VULKAN_COMPUTE) {
-#if NPP_ENABLE_VULKAN_BACKEND
+#if Neuron_ENABLE_VULKAN_BACKEND
     if (neuron_gpu_vulkan_scope_begin(g_last_error, sizeof(g_last_error)) == 0) {
       g_scope_depth = 1;
       clear_last_error();
@@ -992,7 +992,7 @@ int neuron_gpu_scope_end(void) {
   }
 
   if (g_scope_backend == NEURON_GPU_BACKEND_VULKAN_COMPUTE) {
-#if NPP_ENABLE_VULKAN_BACKEND
+#if Neuron_ENABLE_VULKAN_BACKEND
     if (neuron_gpu_vulkan_scope_end(g_last_error, sizeof(g_last_error)) == 0) {
       g_scope_backend = NEURON_GPU_BACKEND_NONE;
       clear_last_error();
@@ -1020,7 +1020,7 @@ void *neuron_gpu_malloc(size_t bytes) {
 
   initialize_backend_once();
 
-#if NPP_ENABLE_CUDA_BACKEND
+#if Neuron_ENABLE_CUDA_BACKEND
   if (g_gpu.backend == NEURON_GPU_BACKEND_CUDA_DRIVER) {
     CUdeviceptr device_ptr = 0;
     CUresult result = g_gpu.cuMemAlloc(&device_ptr, bytes);
@@ -1056,7 +1056,7 @@ void neuron_gpu_free(void *ptr) {
   AllocationKind kind = unregister_allocation(ptr, &bytes);
   (void)bytes;
 
-#if NPP_ENABLE_CUDA_BACKEND
+#if Neuron_ENABLE_CUDA_BACKEND
   if (kind == ALLOC_KIND_DEVICE &&
       g_gpu.backend == NEURON_GPU_BACKEND_CUDA_DRIVER && g_gpu.cuMemFree) {
     CUresult result = g_gpu.cuMemFree((CUdeviceptr)(uintptr_t)ptr);
@@ -1100,7 +1100,7 @@ int neuron_gpu_memcpy(void *dst, const void *src, size_t bytes,
     effective_kind = infer_copy_kind(dst, src);
   }
 
-#if NPP_ENABLE_CUDA_BACKEND
+#if Neuron_ENABLE_CUDA_BACKEND
   if (g_gpu.backend == NEURON_GPU_BACKEND_CUDA_DRIVER) {
     CUresult result = CUDA_SUCCESS;
     switch (effective_kind) {
@@ -1180,7 +1180,7 @@ void neuron_gpu_reset(void) {
   AllocationNode *node = g_allocations;
   while (node != NULL) {
     AllocationNode *next = node->next;
-#if NPP_ENABLE_CUDA_BACKEND
+#if Neuron_ENABLE_CUDA_BACKEND
     if (node->kind == ALLOC_KIND_DEVICE &&
         g_gpu.backend == NEURON_GPU_BACKEND_CUDA_DRIVER && g_gpu.cuMemFree) {
       g_gpu.cuMemFree((CUdeviceptr)(uintptr_t)node->ptr);
@@ -1195,23 +1195,23 @@ void neuron_gpu_reset(void) {
   g_allocations = NULL;
   memset(&g_memory_stats, 0, sizeof(g_memory_stats));
 
-#if NPP_ENABLE_VULKAN_BACKEND
+#if Neuron_ENABLE_VULKAN_BACKEND
   if (g_gpu.backend == NEURON_GPU_BACKEND_VULKAN_COMPUTE) {
     neuron_gpu_vulkan_shutdown();
   }
 #endif
 
-#if NPP_ENABLE_WEBGPU_BACKEND
+#if Neuron_ENABLE_WEBGPU_BACKEND
   if (g_gpu.backend == NEURON_GPU_BACKEND_WEBGPU) {
     neuron_gpu_webgpu_shutdown();
   }
 #endif
 
-#if NPP_ENABLE_CUDA_BACKEND
+#if Neuron_ENABLE_CUDA_BACKEND
   neuron_gpu_cuda_shutdown();
 #endif
 
-#if NPP_ENABLE_CUDA_BACKEND
+#if Neuron_ENABLE_CUDA_BACKEND
   if (g_gpu.backend == NEURON_GPU_BACKEND_CUDA_DRIVER && g_gpu.context &&
       g_gpu.cuCtxDestroy) {
     g_gpu.cuCtxDestroy(g_gpu.context);

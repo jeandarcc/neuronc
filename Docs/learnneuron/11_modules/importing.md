@@ -1,4 +1,4 @@
-# Importing Modules
+﻿# Importing Modules
 
 The `module` keyword imports external code into the current file.
 
@@ -18,9 +18,9 @@ Place `module` statements at the top of the file, before any code.
 
 ## Module Resolution Order
 
-1. **`src/` directory** — Searches recursively for `<Name>.npp`
-2. **`modules/` directory** — Installed package dependencies
-3. **Standard library** — Built-in modules (`System`, `Math`, etc.)
+1. **`src/` directory** â€” Searches recursively for `<Name>.nr`
+2. **`modules/` directory** â€” Installed package dependencies
+3. **Standard library** â€” Built-in modules (`System`, `Math`, etc.)
 
 ---
 
@@ -39,13 +39,13 @@ Init method() {
 
 ## Self-Import Prohibition
 
-A file cannot import itself — the compiler reports an error.
+A file cannot import itself â€” the compiler reports an error.
 
 ---
 
 ## Real Example
 
-From `TensorTest.npp`:
+From `TensorTest.nr`:
 
 ```npp
 module System;
@@ -62,5 +62,5 @@ Init method() {
 
 ## Next Steps
 
-- [ModuleCpp](modulecpp.md) — C++ interop
-- [Standard Library](standard_library.md) — Built-in modules
+- [ModuleCpp](modulecpp.md) â€” C++ interop
+- [Standard Library](standard_library.md) â€” Built-in modules

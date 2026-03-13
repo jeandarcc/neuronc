@@ -1,6 +1,6 @@
-# Neuron++ Compiler Source (`src/`)
+﻿# Neuron Compiler Source (`src/`)
 
-This directory contains the core implementation of the Neuron++ compiler pipeline,
+This directory contains the core implementation of the Neuron compiler pipeline,
 the Language Server Protocol (LSP) server, and the `ncon` package manager.
 
 ## Architecture Pipeline
@@ -32,7 +32,7 @@ specific compiler pass or subsystem:
 
 1. **ABI Boundary:** No public headers exist here. All `.h` files in `src/` are
    internal implementation details. The public API lives in `include/neuronc/`.
-2. **No Cycles:** Dependencies flow downwards: `codegen` → `mir` → `nir` → `sema` → `parser` → `lexer`.
+2. **No Cycles:** Dependencies flow downwards: `codegen` â†’ `mir` â†’ `nir` â†’ `sema` â†’ `parser` â†’ `lexer`.
    A lower layer must never `#include` a header from a higher layer.
 3. **Diagnostics:** Never use `std::cerr` or `printf` for errors. Alwasy use the
    `DiagnosticEmitter` with a locale-aware code (e.g., `N2042`).

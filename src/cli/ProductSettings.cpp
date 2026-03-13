@@ -1,4 +1,4 @@
-#include "neuronc/cli/ProductSettings.h"
+﻿#include "neuronc/cli/ProductSettings.h"
 
 #include <algorithm>
 #include <cctype>
@@ -111,7 +111,7 @@ bool parseProductSettings(const std::filesystem::path &path,
     std::string value = trim(trimmed.substr(eq + 1));
     std::string strValue = unquote(value);
 
-    // ── Identity ──
+    // â”€â”€ Identity â”€â”€
     if (key == "product_name") {
       settings.productName = strValue;
     } else if (key == "product_version") {
@@ -131,7 +131,7 @@ bool parseProductSettings(const std::filesystem::path &path,
     } else if (key == "product_website") {
       settings.productWebsite = strValue;
     }
-    // ── Branding ──
+    // â”€â”€ Branding â”€â”€
     else if (key == "icon_windows") {
       settings.iconWindows = strValue;
     } else if (key == "icon_linux") {
@@ -141,13 +141,13 @@ bool parseProductSettings(const std::filesystem::path &path,
     } else if (key == "splash_image") {
       settings.splashImage = strValue;
     }
-    // ── Output ──
+    // â”€â”€ Output â”€â”€
     else if (key == "output_name") {
       settings.outputName = strValue;
     } else if (key == "output_dir") {
       settings.outputDir = strValue;
     }
-    // ── Installer ──
+    // â”€â”€ Installer â”€â”€
     else if (key == "installer_enabled") {
       if (!parseBool(strValue, &settings.installerEnabled)) {
         if (errors) {
@@ -185,7 +185,7 @@ bool parseProductSettings(const std::filesystem::path &path,
     } else if (key == "file_associations") {
       settings.fileAssociations = parseStringArray(value);
     }
-    // ── Update System ──
+    // â”€â”€ Update System â”€â”€
     else if (key == "update_enabled") {
       if (!parseBool(strValue, &settings.updateEnabled)) {
         if (errors) {
@@ -210,7 +210,7 @@ bool parseProductSettings(const std::filesystem::path &path,
     } else if (key == "update_public_key") {
       settings.updatePublicKey = strValue;
     }
-    // ── Uninstaller ──
+    // â”€â”€ Uninstaller â”€â”€
     else if (key == "uninstaller_enabled") {
       if (!parseBool(strValue, &settings.uninstallerEnabled)) {
         if (errors) {
@@ -222,7 +222,7 @@ bool parseProductSettings(const std::filesystem::path &path,
     } else if (key == "uninstaller_name") {
       settings.uninstallerName = strValue;
     }
-    // ── Unknown ──
+    // â”€â”€ Unknown â”€â”€
     else {
       if (errors) {
         errors->push_back({lineNo, "Unknown setting: " + key});
@@ -295,25 +295,25 @@ std::string generateDefaultProductSettings(const std::string &projectName) {
   std::ostringstream ss;
   ss << "# Product build settings for " << projectName << "\n"
      << "\n"
-     << "# ── Identity ──\n"
+     << "# â”€â”€ Identity â”€â”€\n"
      << "product_name = \"" << projectName << "\"\n"
      << "product_version = \"1.0.0\"\n"
      << "product_build_version = 1\n"
      << "product_publisher = \"\"\n"
-     << "product_description = \"A Neuron++ application\"\n"
+     << "product_description = \"A Neuron application\"\n"
      << "product_website = \"\"\n"
      << "\n"
-     << "# ── Branding ──\n"
+     << "# â”€â”€ Branding â”€â”€\n"
      << "icon_windows = \"assets/icon.ico\"\n"
      << "icon_linux = \"assets/icon.png\"\n"
      << "icon_macos = \"assets/icon.icns\"\n"
      << "splash_image = \"\"\n"
      << "\n"
-     << "# ── Output ──\n"
+     << "# â”€â”€ Output â”€â”€\n"
      << "output_name = \"" << projectName << "\"\n"
      << "output_dir = \"build/product\"\n"
      << "\n"
-     << "# ── Installer ──\n"
+     << "# â”€â”€ Installer â”€â”€\n"
      << "installer_enabled = true\n"
      << "installer_style = \"modern\"\n"
      << "installer_license_file = \"\"\n"
@@ -325,14 +325,14 @@ std::string generateDefaultProductSettings(const std::string &projectName) {
      << "create_start_menu_entry = true\n"
      << "file_associations = []\n"
      << "\n"
-     << "# ── Update System ──\n"
+     << "# â”€â”€ Update System â”€â”€\n"
      << "update_enabled = false\n"
      << "update_url = \"\"\n"
      << "update_check_interval_hours = 24\n"
      << "update_channel = \"stable\"\n"
      << "update_public_key = \"\"\n"
      << "\n"
-     << "# ── Uninstaller ──\n"
+     << "# â”€â”€ Uninstaller â”€â”€\n"
      << "uninstaller_enabled = true\n"
      << "uninstaller_name = \"Uninstall " << projectName << "\"\n";
   return ss.str();

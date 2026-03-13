@@ -1,6 +1,6 @@
-# Variable Declaration
+﻿# Variable Declaration
 
-Variables in Neuron++ are declared using the `is` keyword, or optionally without it using bare declaration syntax.
+Variables in Neuron are declared using the `is` keyword, or optionally without it using bare declaration syntax.
 
 ---
 
@@ -19,14 +19,14 @@ active is true;
 
 ## The `is` Keyword Is Optional
 
-In Neuron++, `is` is **optional**. You can declare variables without it:
+In Neuron, `is` is **optional**. You can declare variables without it:
 
 ```npp
-// With 'is' — recommended for variables
+// With 'is' â€” recommended for variables
 x is 10;
 name is "hello";
 
-// Without 'is' — shorthand form
+// Without 'is' â€” shorthand form
 y 20;
 count 0;
 ```
@@ -35,10 +35,10 @@ count 0;
 
 | Context | Recommendation |
 |---------|---------------|
-| Variable declaration | **Use `is`** — e.g., `x is 10;` |
-| Variable reassignment | **Use `is`** — e.g., `x is 20;` |
-| Method declaration | **Omit `is`** — e.g., `Run method() { }` |
-| Class declaration | **Omit `is`** — e.g., `Player class { }` |
+| Variable declaration | **Use `is`** â€” e.g., `x is 10;` |
+| Variable reassignment | **Use `is`** â€” e.g., `x is 20;` |
+| Method declaration | **Omit `is`** â€” e.g., `Run method() { }` |
+| Class declaration | **Omit `is`** â€” e.g., `Player class { }` |
 
 Both forms compile identically. The convention improves readability.
 
@@ -75,13 +75,13 @@ When `as` is omitted, the compiler infers the type from the assigned value.
 ## Examples from Real Code
 
 ```npp
-// From Hello.npp
+// From Hello.nr
 x is 10;
 Init is method() {
     Print(x);
 };
 
-// From IsOptionalDynamic.npp — all valid declarations
+// From IsOptionalDynamic.nr â€” all valid declarations
 a;              // bare declaration (dynamic)
 b 10;           // shorthand (int, value 10)
 c as dynamic;   // typed declaration (dynamic, no value)
@@ -92,6 +92,6 @@ d is 0 as dynamic;  // full form
 
 ## Next Steps
 
-- [Assignment](assignment.md) — Reassigning variables and alias semantics
-- [Copying](copying.md) — Creating independent copies with `another`
-- [Move](move.md) — Transferring ownership with `move`
+- [Assignment](assignment.md) â€” Reassigning variables and alias semantics
+- [Copying](copying.md) â€” Creating independent copies with `another`
+- [Move](move.md) â€” Transferring ownership with `move`

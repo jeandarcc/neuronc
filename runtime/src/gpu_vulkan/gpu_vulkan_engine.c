@@ -17,7 +17,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-#if NPP_VK_COMMON_HAS_HEADERS
+#if Neuron_VK_COMMON_HAS_HEADERS
 
 typedef struct {
   VkBuffer buffer;
@@ -246,20 +246,20 @@ typedef struct {
 
 static VulkanState g_vulkan = {0};
 
-#define NPP_VK_SCOPE_MAX_SETS 8192u
-#define NPP_VK_SCOPE_MAX_DESCRIPTORS (NPP_VK_SCOPE_MAX_SETS * 8u)
-#define NPP_VK_MAX_DISPATCH_BUFFERS 8u
-#define NPP_VK_SCOPE_BUFFER_POOL_MAX_COUNT 2048u
-#define NPP_VK_HOST_INPUT_CACHE_MAX_COUNT 1024u
-#define NPP_VK_MEMORY_HOST_VISIBLE 1
-#define NPP_VK_MEMORY_DEVICE_LOCAL 2
-#define NPP_VK_UPLOAD_RING_DEFAULT_CHUNK (8u * 1024u * 1024u)
-#define NPP_VK_UPLOAD_ALIGNMENT 16u
-#define NPP_VK_USAGE_STORAGE                                                    \
+#define Neuron_VK_SCOPE_MAX_SETS 8192u
+#define Neuron_VK_SCOPE_MAX_DESCRIPTORS (Neuron_VK_SCOPE_MAX_SETS * 8u)
+#define Neuron_VK_MAX_DISPATCH_BUFFERS 8u
+#define Neuron_VK_SCOPE_BUFFER_POOL_MAX_COUNT 2048u
+#define Neuron_VK_HOST_INPUT_CACHE_MAX_COUNT 1024u
+#define Neuron_VK_MEMORY_HOST_VISIBLE 1
+#define Neuron_VK_MEMORY_DEVICE_LOCAL 2
+#define Neuron_VK_UPLOAD_RING_DEFAULT_CHUNK (8u * 1024u * 1024u)
+#define Neuron_VK_UPLOAD_ALIGNMENT 16u
+#define Neuron_VK_USAGE_STORAGE                                                    \
   (VK_BUFFER_USAGE_STORAGE_BUFFER_BIT | VK_BUFFER_USAGE_TRANSFER_SRC_BIT |    \
    VK_BUFFER_USAGE_TRANSFER_DST_BIT)
-#define NPP_VK_USAGE_STAGING_DST VK_BUFFER_USAGE_TRANSFER_DST_BIT
-#define NPP_VK_USAGE_STAGING_SRC VK_BUFFER_USAGE_TRANSFER_SRC_BIT
+#define Neuron_VK_USAGE_STAGING_DST VK_BUFFER_USAGE_TRANSFER_DST_BIT
+#define Neuron_VK_USAGE_STAGING_SRC VK_BUFFER_USAGE_TRANSFER_SRC_BIT
 
 static int create_host_visible_storage_buffer(VkDeviceSize byte_size,
                                               VulkanBuffer *out_buffer);
@@ -599,7 +599,7 @@ static void scope_pool_release(VulkanBuffer *buffer, VkDeviceSize size,
     return;
   }
 
-  if (g_vulkan.scope_buffer_pool_count >= NPP_VK_SCOPE_BUFFER_POOL_MAX_COUNT ||
+  if (g_vulkan.scope_buffer_pool_count >= Neuron_VK_SCOPE_BUFFER_POOL_MAX_COUNT ||
       !scope_pool_reserve(g_vulkan.scope_buffer_pool_count + 1u)) {
     destroy_buffer(buffer);
     return;
@@ -706,7 +706,7 @@ static void host_input_cache_remove_at(uint32_t index, int destroy_buffer_entry)
 }
 
 static int host_input_cache_make_room(void) {
-  if (g_vulkan.host_input_cache_count < NPP_VK_HOST_INPUT_CACHE_MAX_COUNT) {
+  if (g_vulkan.host_input_cache_count < Neuron_VK_HOST_INPUT_CACHE_MAX_COUNT) {
     return host_input_cache_reserve(g_vulkan.host_input_cache_count + 1u);
   }
 
@@ -845,7 +845,7 @@ static int scope_upload_ring_acquire(VkDeviceSize size, VulkanBuffer **out_buffe
     return 0;
   }
   if (g_vulkan.scope_upload_ring_chunk_size == 0) {
-    g_vulkan.scope_upload_ring_chunk_size = (VkDeviceSize)NPP_VK_UPLOAD_RING_DEFAULT_CHUNK;
+    g_vulkan.scope_upload_ring_chunk_size = (VkDeviceSize)Neuron_VK_UPLOAD_RING_DEFAULT_CHUNK;
   }
 
   for (uint32_t pass = 0; pass < 2u; ++pass) {
@@ -854,8 +854,8 @@ static int scope_upload_ring_acquire(VkDeviceSize size, VulkanBuffer **out_buffe
           (g_vulkan.scope_upload_ring_cursor + i) % g_vulkan.scope_upload_ring_count;
       VulkanUploadRingBuffer *ring = &g_vulkan.scope_upload_ring[idx];
       const VkDeviceSize aligned =
-          (ring->write_offset + (VkDeviceSize)(NPP_VK_UPLOAD_ALIGNMENT - 1u)) &
-          ~((VkDeviceSize)NPP_VK_UPLOAD_ALIGNMENT - 1u);
+          (ring->write_offset + (VkDeviceSize)(Neuron_VK_UPLOAD_ALIGNMENT - 1u)) &
+          ~((VkDeviceSize)Neuron_VK_UPLOAD_ALIGNMENT - 1u);
       if (aligned <= ring->size && size <= ring->size - aligned) {
         ring->write_offset = aligned + size;
         g_vulkan.scope_upload_ring_cursor = idx;
@@ -880,7 +880,7 @@ static int scope_upload_ring_acquire(VkDeviceSize size, VulkanBuffer **out_buffe
       ring->buffer.mapped_host = NULL;
       ring->size = 0;
       ring->write_offset = 0;
-      if (!create_host_visible_buffer(alloc_size, NPP_VK_USAGE_STAGING_SRC,
+      if (!create_host_visible_buffer(alloc_size, Neuron_VK_USAGE_STAGING_SRC,
                                       &ring->buffer)) {
         return 0;
       }
@@ -1126,8 +1126,8 @@ static void scope_destroy_tracking_buffers(void) {
     for (uint32_t i = 0; i < g_vulkan.scope_entry_count; ++i) {
       if (!g_vulkan.scope_entries[i].from_host_cache) {
         scope_pool_release(&g_vulkan.scope_entries[i].buffer,
-                           g_vulkan.scope_entries[i].size, NPP_VK_USAGE_STORAGE,
-                           NPP_VK_MEMORY_DEVICE_LOCAL);
+                           g_vulkan.scope_entries[i].size, Neuron_VK_USAGE_STORAGE,
+                           Neuron_VK_MEMORY_DEVICE_LOCAL);
       }
       g_vulkan.scope_entries[i].host_ptr = NULL;
       g_vulkan.scope_entries[i].size = 0;
@@ -1143,7 +1143,7 @@ static void scope_destroy_tracking_buffers(void) {
       scope_pool_release(&g_vulkan.scope_transient_buffers[i].buffer,
                          g_vulkan.scope_transient_buffers[i].size,
                          g_vulkan.scope_transient_buffers[i].usage,
-                         NPP_VK_MEMORY_DEVICE_LOCAL);
+                         Neuron_VK_MEMORY_DEVICE_LOCAL);
       g_vulkan.scope_transient_buffers[i].size = 0;
       g_vulkan.scope_transient_buffers[i].usage = 0;
     }
@@ -1152,7 +1152,7 @@ static void scope_destroy_tracking_buffers(void) {
 
   if (g_vulkan.scope_has_zero_buffer) {
     scope_pool_release(&g_vulkan.scope_zero_buffer, sizeof(uint32_t),
-                       NPP_VK_USAGE_STORAGE, NPP_VK_MEMORY_DEVICE_LOCAL);
+                       Neuron_VK_USAGE_STORAGE, Neuron_VK_MEMORY_DEVICE_LOCAL);
   }
   g_vulkan.scope_zero_buffer.buffer = VK_NULL_HANDLE;
   g_vulkan.scope_zero_buffer.memory = VK_NULL_HANDLE;
@@ -1263,7 +1263,7 @@ static int scope_track_descriptor_update(VkDescriptorSet descriptor_set,
                                          const VulkanBuffer *buffers,
                                          uint32_t buffer_count) {
   if (descriptor_set == VK_NULL_HANDLE || buffers == NULL || buffer_count == 0 ||
-      buffer_count > NPP_VK_MAX_DISPATCH_BUFFERS) {
+      buffer_count > Neuron_VK_MAX_DISPATCH_BUFFERS) {
     set_errorf("Invalid Vulkan scoped descriptor update");
     return 0;
   }
@@ -1419,8 +1419,8 @@ static int scope_get_zero_buffer(VulkanBuffer *out_buffer, const char *label) {
   if (!g_vulkan.scope_has_zero_buffer) {
     VulkanBuffer zero = {0};
     uint32_t zero_value = 0;
-    if ((!scope_pool_take(sizeof(uint32_t), NPP_VK_USAGE_STORAGE,
-                          NPP_VK_MEMORY_DEVICE_LOCAL, &zero) &&
+    if ((!scope_pool_take(sizeof(uint32_t), Neuron_VK_USAGE_STORAGE,
+                          Neuron_VK_MEMORY_DEVICE_LOCAL, &zero) &&
          !create_device_local_storage_buffer(sizeof(uint32_t), &zero)) ||
 
 
@@ -1482,7 +1482,7 @@ static int scope_resolve_input_buffer(const void *host_ptr, VkDeviceSize size,
   }
 
   VulkanBuffer uploaded = {0};
-  if ((!scope_pool_take(size, NPP_VK_USAGE_STORAGE, NPP_VK_MEMORY_DEVICE_LOCAL,
+  if ((!scope_pool_take(size, Neuron_VK_USAGE_STORAGE, Neuron_VK_MEMORY_DEVICE_LOCAL,
                         &uploaded) &&
        !create_device_local_storage_buffer(size, &uploaded)) ||
       !scope_upload_host_to_device(host_ptr, size, &uploaded, label)) {
@@ -1513,7 +1513,7 @@ static int scope_resolve_input_buffer(const void *host_ptr, VkDeviceSize size,
       return 0;
     }
   } else {
-    if (!scope_track_transient(&uploaded, size, NPP_VK_USAGE_STORAGE)) {
+    if (!scope_track_transient(&uploaded, size, Neuron_VK_USAGE_STORAGE)) {
       destroy_buffer(&uploaded);
       return 0;
     }
@@ -1555,7 +1555,7 @@ static int scope_resolve_output_buffer(void *host_ptr, VkDeviceSize size,
   host_input_cache_invalidate(host_ptr, size);
 
   VulkanBuffer output = {0};
-  if (!scope_pool_take(size, NPP_VK_USAGE_STORAGE, NPP_VK_MEMORY_DEVICE_LOCAL,
+  if (!scope_pool_take(size, Neuron_VK_USAGE_STORAGE, Neuron_VK_MEMORY_DEVICE_LOCAL,
                        &output) &&
       !create_device_local_storage_buffer(size, &output)) {
     set_errorf("Failed to allocate Vulkan scope output buffer for %s", label);
@@ -1581,11 +1581,11 @@ static int scope_begin_recording(void) {
 
   VkDescriptorPoolSize pool_size = {0};
   pool_size.type = VK_DESCRIPTOR_TYPE_STORAGE_BUFFER;
-  pool_size.descriptorCount = NPP_VK_SCOPE_MAX_DESCRIPTORS;
+  pool_size.descriptorCount = Neuron_VK_SCOPE_MAX_DESCRIPTORS;
 
   VkDescriptorPoolCreateInfo pool_info = {0};
   pool_info.sType = VK_STRUCTURE_TYPE_DESCRIPTOR_POOL_CREATE_INFO;
-  pool_info.maxSets = NPP_VK_SCOPE_MAX_SETS;
+  pool_info.maxSets = Neuron_VK_SCOPE_MAX_SETS;
   pool_info.poolSizeCount = 1;
   pool_info.pPoolSizes = &pool_size;
   if (g_vulkan.vkCreateDescriptorPool(g_vulkan.device, &pool_info, NULL,
@@ -1732,9 +1732,9 @@ static int scope_flush_and_end_recording(void) {
   }
 
   if (ok && region_count > 0 &&
-      !scope_pool_take(staging_bytes, NPP_VK_USAGE_STAGING_DST,
-                       NPP_VK_MEMORY_HOST_VISIBLE, &staging) &&
-      !create_host_visible_buffer(staging_bytes, NPP_VK_USAGE_STAGING_DST,
+      !scope_pool_take(staging_bytes, Neuron_VK_USAGE_STAGING_DST,
+                       Neuron_VK_MEMORY_HOST_VISIBLE, &staging) &&
+      !create_host_visible_buffer(staging_bytes, Neuron_VK_USAGE_STAGING_DST,
                                   &staging)) {
     ok = 0;
   }
@@ -1840,8 +1840,8 @@ static int scope_flush_and_end_recording(void) {
     }
   }
 
-  scope_pool_release(&staging, staging_bytes, NPP_VK_USAGE_STAGING_DST,
-                     NPP_VK_MEMORY_HOST_VISIBLE);
+  scope_pool_release(&staging, staging_bytes, Neuron_VK_USAGE_STAGING_DST,
+                     Neuron_VK_MEMORY_HOST_VISIBLE);
   if (regions != NULL) {
     free(regions);
   }
@@ -2040,13 +2040,13 @@ static int create_host_visible_buffer(VkDeviceSize byte_size,
 
 static int create_host_visible_storage_buffer(VkDeviceSize byte_size,
                                               VulkanBuffer *out_buffer) {
-  return create_host_visible_buffer(byte_size, NPP_VK_USAGE_STORAGE, out_buffer);
+  return create_host_visible_buffer(byte_size, Neuron_VK_USAGE_STORAGE, out_buffer);
 }
 
 static int create_device_local_storage_buffer(VkDeviceSize byte_size,
                                               VulkanBuffer *out_buffer) {
   return create_buffer_with_properties(
-      byte_size, NPP_VK_USAGE_STORAGE, VK_MEMORY_PROPERTY_DEVICE_LOCAL_BIT, 0,
+      byte_size, Neuron_VK_USAGE_STORAGE, VK_MEMORY_PROPERTY_DEVICE_LOCAL_BIT, 0,
       out_buffer);
 }
 
@@ -2354,7 +2354,7 @@ static int dispatch_compute(VkPipeline pipeline, VkPipelineLayout pipeline_layou
   const int scoped_batch = scope_batch_active();
 
   if (buffers == NULL || buffer_count == 0 ||
-      buffer_count > NPP_VK_MAX_DISPATCH_BUFFERS) {
+      buffer_count > Neuron_VK_MAX_DISPATCH_BUFFERS) {
     set_errorf("Invalid Vulkan dispatch buffer configuration");
     return 0;
   }
@@ -2399,8 +2399,8 @@ static int dispatch_compute(VkPipeline pipeline, VkPipelineLayout pipeline_layou
       goto cleanup;
     }
   } else {
-    VkDescriptorBufferInfo descriptor_buffer_info[NPP_VK_MAX_DISPATCH_BUFFERS];
-    VkWriteDescriptorSet descriptor_writes[NPP_VK_MAX_DISPATCH_BUFFERS];
+    VkDescriptorBufferInfo descriptor_buffer_info[Neuron_VK_MAX_DISPATCH_BUFFERS];
+    VkWriteDescriptorSet descriptor_writes[Neuron_VK_MAX_DISPATCH_BUFFERS];
     memset(descriptor_buffer_info, 0, sizeof(descriptor_buffer_info));
     memset(descriptor_writes, 0, sizeof(descriptor_writes));
     for (uint32_t i = 0; i < buffer_count; ++i) {
@@ -3483,7 +3483,7 @@ int npp_gpu_vulkan_engine_materialize(const void *host_ptr, size_t byte_size,
 
 
 
-#if NPP_VK_COMMON_HAS_HEADERS
+#if Neuron_VK_COMMON_HAS_HEADERS
 
 static int scope_sync_for_external_interop(void) {
   if (!scope_batch_active()) {

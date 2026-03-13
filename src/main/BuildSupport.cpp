@@ -295,9 +295,9 @@ std::string sharedRuntimeCommonFlags(
     const neuron::LLVMCodeGenOptions &options) {
   std::string flags = runtimeOptimizationFlags(options);
   flags += " -DNEURON_RUNTIME_BUILD_SHARED";
-  flags += " -DNPP_ENABLE_CUDA_BACKEND=1";
-  flags += " -DNPP_ENABLE_VULKAN_BACKEND=1";
-  flags += " -DNPP_ENABLE_WEBGPU_BACKEND=0";
+  flags += " -DNeuron_ENABLE_CUDA_BACKEND=1";
+  flags += " -DNeuron_ENABLE_VULKAN_BACKEND=1";
+  flags += " -DNeuron_ENABLE_WEBGPU_BACKEND=0";
 #ifndef _WIN32
   flags += " -fPIC";
 #endif

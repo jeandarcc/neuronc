@@ -1,24 +1,24 @@
-# Neuron++ Language Rules
+﻿﻿# Neuron Language Rules
 
-This document defines the core language rules enforced by the Neuron++ compiler and the `.neuronsettings` configuration file. All contributors and automated agents **must** follow these rules when writing or generating Neuron++ code.
+This document defines the core language rules enforced by the Neuron compiler and the `.neuronsettings` configuration file. All contributors and automated agents **must** follow these rules when writing or generating Neuron code.
 
 ---
 
 ## 1. One Class Per File
 
-Every `.npp` source file may contain **at most one class definition**. The class name must exactly match the filename (without extension).
+Every `.nr` source file may contain **at most one class definition**. The class name must exactly match the filename (without extension).
 
 ```
-✅  Vector2.npp  →  Vector2 is public class { ... }
-❌  Vector2.npp  →  Vec2 is public class { ... }      // name mismatch
-❌  Shapes.npp   →  Circle is public class { ... }
+âœ…  Vector2.nr  â†’  Vector2 is public class { ... }
+âŒ  Vector2.nr  â†’  Vec2 is public class { ... }      // name mismatch
+âŒ  Shapes.nr   â†’  Circle is public class { ... }
                     Square is public class { ... }     // multiple classes
 ```
 
 **Compiler error:**
 ```
 ERROR: Class name must match module filename. Expected: Vector2, Found: Vec2
-ERROR: Multiple classes defined in module. Each .npp file may contain only one class.
+ERROR: Multiple classes defined in module. Each .nr file may contain only one class.
 ```
 
 ---
@@ -27,7 +27,7 @@ ERROR: Multiple classes defined in module. Each .npp file may contain only one c
 
 Every statement must end with a semicolon (`;`):
 
-```npp
+```nr
 x is 10;
 y is another x;
 Print(y);
@@ -37,10 +37,10 @@ Print(y);
 
 ## 3. Entry Point
 
-The program entry point is the `Init` method defined in `src/Main.npp`. When a project is run, the compiler locates `Main.npp`, finds `Init`, and executes it.
+The program entry point is the `Init` method defined in `src/Main.nr`. When a project is run, the compiler locates `Main.nr`, finds `Init`, and executes it.
 
-```npp
-// src/Main.npp
+```nr
+// src/Main.nr
 Init is method() {
     Print("Program started");
 };
@@ -51,11 +51,11 @@ Init is method() {
 ## 4. Module Import Rules
 
 - Use `module <Name>;` to import external modules.
-- A file **must not** import itself. For example, `Box.npp` must not contain `module Box;`.
+- A file **must not** import itself. For example, `Box.nr` must not contain `module Box;`.
 - The compiler reports a semantic error for self-import attempts.
 
-```npp
-// In Main.npp — valid
+```nr
+// In Main.nr â€” valid
 module Vector2;
 module Math;
 ```
@@ -85,9 +85,9 @@ Method names are validated with the following rules:
 - When `require_method_uppercase_start = true` in `.neuronsettings`, method names must start with an uppercase letter.
 
 ```
-✅  CalculateLength, Init, ProcessData
-❌  calculateLength      (if uppercase start required)
-❌  2ndPass              (starts with digit)
+âœ…  CalculateLength, Init, ProcessData
+âŒ  calculateLength      (if uppercase start required)
+âŒ  2ndPass              (starts with digit)
 ```
 
 ---
@@ -101,10 +101,10 @@ Variable names follow these conventions:
 - Remaining characters must be letters or digits.
 
 ```
-✅  testObject, _testObject, counter, xPos
-❌  TestObject         (starts with uppercase)
-❌  test_Object        (underscore in the middle)
-❌  __cache            (double underscore)
+âœ…  testObject, _testObject, counter, xPos
+âŒ  TestObject         (starts with uppercase)
+âŒ  test_Object        (underscore in the middle)
+âŒ  __cache            (double underscore)
 ```
 
 ---
@@ -113,7 +113,7 @@ Variable names follow these conventions:
 
 When `require_const_uppercase = true` in `.neuronsettings`, compile-time constant identifiers must use UPPER_CASE naming.
 
-```npp
+```nr
 MAX_SIZE is 1024;
 PI is 3.14159;
 ```
@@ -126,7 +126,7 @@ The following limits can be configured in `.neuronsettings`:
 
 | Setting                   | Default | Description                            |
 |---------------------------|---------|----------------------------------------|
-| `max_lines_per_file`      | `1000`  | Maximum total lines per `.npp` file    |
+| `max_lines_per_file`      | `1000`  | Maximum total lines per `.nr` file    |
 | `max_lines_per_method`    | `50`    | Maximum lines per method body          |
 | `max_lines_per_block_statement` | `20` | Maximum lines per control block     |
 | `max_nesting_depth`       | `3`     | Maximum nesting depth of blocks        |
@@ -149,13 +149,13 @@ When `require_script_docs = true`:
 
 Assignments create aliases (shared memory) by default. Use `another` to create an independent copy:
 
-```npp
+```nr
 x is 10;
-y is x;            // alias — y shares memory with x
-z is another x;    // copy — z has its own memory
+y is x;            // alias â€” y shares memory with x
+z is another x;    // copy â€” z has its own memory
 ```
 
-This behavior is fundamental to Neuron++. Misunderstanding it is a common source of bugs.
+This behavior is fundamental to Neuron. Misunderstanding it is a common source of bugs.
 
 ---
 

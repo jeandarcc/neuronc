@@ -1,5 +1,5 @@
-#ifndef NPP_RUNTIME_TENSOR_MATH_INTERNAL_H
-#define NPP_RUNTIME_TENSOR_MATH_INTERNAL_H
+#ifndef Neuron_RUNTIME_TENSOR_MATH_INTERNAL_H
+#define Neuron_RUNTIME_TENSOR_MATH_INTERNAL_H
 
 #include "tensor_core_internal.h"
 #include <stdint.h>

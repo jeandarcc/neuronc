@@ -1,4 +1,4 @@
-// ProjectHelpers.cpp — Proje yapılandırma yardımcıları implementasyonu.
+﻿// ProjectHelpers.cpp â€” Proje yapÄ±landÄ±rma yardÄ±mcÄ±larÄ± implementasyonu.
 // Bkz. ProjectHelpers.h
 #include "ProjectHelpers.h"
 #include "AppGlobals.h"
@@ -16,7 +16,7 @@
 #include <unordered_map>
 #include <unordered_set>
 
-// ── Internal helpers ────────────────────────────────────────────────────────
+// â”€â”€ Internal helpers â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
 static std::string normalizeName(std::string text) {
   std::transform(text.begin(), text.end(), text.begin(), [](unsigned char c) {
@@ -31,14 +31,14 @@ static void collectModulesFromDir(const fs::path &dir,
     return;
   }
   for (const auto &entry : fs::recursive_directory_iterator(dir)) {
-    if (!entry.is_regular_file() || entry.path().extension() != ".npp") {
+    if (!entry.is_regular_file() || entry.path().extension() != ".nr") {
       continue;
     }
     out->insert(normalizeName(entry.path().stem().string()));
   }
 }
 
-// ── Source file reading ─────────────────────────────────────────────────────
+// â”€â”€ Source file reading â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
 std::string readFile(const std::string &path, const NeuronSettings &settings) {
   if (!validateScriptPolicy(fs::path(path), settings)) {
@@ -83,7 +83,7 @@ std::string readFile(const std::string &path, const NeuronSettings &settings) {
   return ss.str();
 }
 
-// ── Project configuration ───────────────────────────────────────────────────
+// â”€â”€ Project configuration â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
 bool loadProjectConfigFromCwd(neuron::ProjectConfig *outConfig,
                               std::vector<std::string> *outErrors) {
@@ -119,7 +119,7 @@ std::optional<neuron::ProjectConfig> tryLoadProjectConfigFromCwd() {
   return cfg;
 }
 
-// ── Module collection ───────────────────────────────────────────────────────
+// â”€â”€ Module collection â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
 std::unordered_set<std::string>
 collectImportedModuleCppModules(const neuron::ProgramNode *program) {
@@ -177,7 +177,7 @@ collectAvailableModules(const fs::path &sourceFile,
   return modules;
 }
 
-// ── SemanticAnalyzer configuration ──────────────────────────────────────────
+// â”€â”€ SemanticAnalyzer configuration â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
 void configureSemanticAnalyzerModules(
     neuron::SemanticAnalyzer *sema, const fs::path &sourceFile,
@@ -223,7 +223,7 @@ void configureSemanticAnalyzerModules(
   sema->setModuleCppModules(moduleCppModules);
 }
 
-// ── NIR helpers ─────────────────────────────────────────────────────────────
+// â”€â”€ NIR helpers â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
 std::size_t countNIRInstructions(const neuron::nir::Module *module) {
   if (module == nullptr) {

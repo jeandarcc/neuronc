@@ -1,6 +1,6 @@
-# Build Pipeline
+﻿# Build Pipeline
 
-Neuron++ supports two compilation paths.
+Neuron supports two compilation paths.
 
 ---
 
@@ -9,15 +9,15 @@ Neuron++ supports two compilation paths.
 For production builds with maximum performance:
 
 ```
-Source (.npp)
-   │
-   ├── Lexer → Tokens
-   ├── Parser → AST
-   ├── Semantic Analysis → Validated AST
-   ├── NIR Builder → NIR (Neuron IR)
-   ├── LLVM CodeGen → LLVM IR
-   ├── LLVM Optimizer → Optimized IR
-   └── LLVM Backend → Native Binary (.exe)
+Source (.nr)
+   â”‚
+   â”œâ”€â”€ Lexer â†’ Tokens
+   â”œâ”€â”€ Parser â†’ AST
+   â”œâ”€â”€ Semantic Analysis â†’ Validated AST
+   â”œâ”€â”€ NIR Builder â†’ NIR (Neuron IR)
+   â”œâ”€â”€ LLVM CodeGen â†’ LLVM IR
+   â”œâ”€â”€ LLVM Optimizer â†’ Optimized IR
+   â””â”€â”€ LLVM Backend â†’ Native Binary (.exe)
 ```
 
 Command: `neuron build`
@@ -29,14 +29,14 @@ Command: `neuron build`
 For development, portability, and hot-reload:
 
 ```
-Source (.npp)
-   │
-   ├── Lexer → Tokens
-   ├── Parser → AST
-   ├── Semantic Analysis → Validated AST
-   ├── NIR Builder → NIR
-   ├── Bytecode Lowerer → NCON Bytecode
-   └── Builder → .ncon Container → VM Execution
+Source (.nr)
+   â”‚
+   â”œâ”€â”€ Lexer â†’ Tokens
+   â”œâ”€â”€ Parser â†’ AST
+   â”œâ”€â”€ Semantic Analysis â†’ Validated AST
+   â”œâ”€â”€ NIR Builder â†’ NIR
+   â”œâ”€â”€ Bytecode Lowerer â†’ NCON Bytecode
+   â””â”€â”€ Builder â†’ .ncon Container â†’ VM Execution
 ```
 
 Command: `neuron run` or `neuron ncon build`
@@ -51,8 +51,8 @@ Command: `neuron run` or `neuron ncon build`
 | Output | `.exe` binary | `.ncon` container |
 | Performance | Maximum | Good |
 | Portability | Platform-specific | Cross-platform |
-| Hot Reload | ❌ | ✅ |
-| Sandbox | ❌ | ✅ |
+| Hot Reload | âŒ | âœ… |
+| Sandbox | âŒ | âœ… |
 
 ---
 
@@ -61,14 +61,14 @@ Command: `neuron run` or `neuron ncon build`
 For compiler development and debugging:
 
 ```bash
-neuron lex file.npp        # Stage 1: Tokens
-neuron parse file.npp      # Stage 2: AST
-neuron nir file.npp        # Stage 3: NIR
-neuron compile file.npp    # Stage 4: LLVM IR
+neuron lex file.nr        # Stage 1: Tokens
+neuron parse file.nr      # Stage 2: AST
+neuron nir file.nr        # Stage 3: NIR
+neuron compile file.nr    # Stage 4: LLVM IR
 ```
 
 ---
 
 ## Next Steps
 
-- [Advanced](../20_advanced/unsafe.md) — Low-level features
+- [Advanced](../20_advanced/unsafe.md) â€” Low-level features

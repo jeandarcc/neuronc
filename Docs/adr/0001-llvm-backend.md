@@ -1,15 +1,15 @@
-# Architecture Decision Record 0001: Use LLVM as the Code Generation Backend
+﻿# Architecture Decision Record 0001: Use LLVM as the Code Generation Backend
 
 **Status:** Accepted  
 **Date:** 2025 (initial implementation)  
-**Deciders:** NPP core team  
+**Deciders:** Neuron core team  
 **Categories:** Compiler, Codegen
 
 ---
 
 ## Context
 
-Neuron++ requires native code generation targeting x86-64 (Windows/Linux/macOS),
+Neuron requires native code generation targeting x86-64 (Windows/Linux/macOS),
 WebAssembly, and future RISC-V targets. The compiler needs:
 
 1. A mature, battle-tested optimizer (dead code elimination, inlining, LICM, etc.)
@@ -30,7 +30,7 @@ Alternative backends considered:
 
 **Use LLVM** as the exclusive code generation backend.
 
-- NPP emits LLVM IR from `src/codegen/LLVMCodeGen.cpp`
+- Neuron emits LLVM IR from `src/codegen/LLVMCodeGen.cpp`
 - JIT execution uses LLVM's OrcJIT (`src/codegen/JITEngine.cpp`)
 - LLVM components are resolved at configure time via `LLVMConfig.cmake`
 - The MinGW/MSYS2-distributed LLVM is the canonical build toolchain on Windows
@@ -38,7 +38,7 @@ Alternative backends considered:
 ## Consequences
 
 **Positive:**
-- Access to LLVM's full optimizer pipeline (O0–O3, LTO)
+- Access to LLVM's full optimizer pipeline (O0â€“O3, LTO)
 - Multi-target support (x86, WASM, future RISC-V) via `llvm-config --targets-built`
 - OrcJIT enables `ncon`'s hot-reload feature
 

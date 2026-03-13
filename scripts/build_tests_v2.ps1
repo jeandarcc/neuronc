@@ -1,4 +1,4 @@
-param(
+﻿param(
   [string]$BuildDir = "",
   [int]$PerTestTimeoutSec = 20,
   [int]$DiscoveryTimeoutSec = 10,
@@ -30,7 +30,7 @@ function Get-WorkspaceStateRoot {
   }
 
   $repoName = Split-Path -Path $RepoPath -Leaf
-  return [System.IO.Path]::GetFullPath((Join-Path $baseRoot ("NeuronPP\workspaces\" + $repoName)))
+  return [System.IO.Path]::GetFullPath((Join-Path $baseRoot ("Neuron\workspaces\" + $repoName)))
 }
 
 function Resolve-PathFromRepo {
@@ -152,7 +152,7 @@ function Write-Summary {
   $summaryPath = Join-Path $ResultsDir 'summary.txt'
   $jsonPath = Join-Path $ResultsDir 'summary.json'
   $lines = New-Object System.Collections.Generic.List[string]
-  $lines.Add('Neuron++ test summary')
+  $lines.Add('Neuron test summary')
   $lines.Add("Results directory: $ResultsDir")
   $lines.Add('')
   foreach ($result in $Results) {

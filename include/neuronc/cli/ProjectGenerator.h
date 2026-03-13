@@ -1,10 +1,10 @@
-#pragma once
+﻿#pragma once
 #include <filesystem>
 #include <string>
 
 namespace neuron {
 
-/// Generates a new Neuron++ project at the given path.
+/// Generates a new Neuron project at the given path.
 class ProjectGenerator {
 public:
   /// Create a new project with the given name in the current directory.

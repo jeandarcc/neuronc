@@ -1,4 +1,4 @@
-# Standard Library I/O Specification
+﻿# Standard Library I/O Specification
 
 ## Scope
 
@@ -18,11 +18,11 @@ Covered behavior:
 | `N4000-N4099` | missing I/O module or invalid module usage |
 | `N2000-N2499` | compile-time misuse of I/O APIs |
 | `N5000-N5099` | runtime-visible I/O failure |
-| `NPP2001`, `NPP4001`, `NPP0001` | current fallbacks |
+| `NR2001`, `NR4001`, `NR0001` | current fallbacks |
 
 ## Test List
 
-| Name | `.npp` input code | Expected output or error | Why important |
+| Name | `.nr` input code | Expected output or error | Why important |
 | --- | --- | --- | --- |
 | `io__print_string` | `module System; Init is method() { Print("hello"); }` | Prints `hello` | Smallest observable runtime test in the whole tree |
 | `io__print_multiple_lines` | `module System; Init is method() { Print("a"); Print("b"); }` | Prints `a` then `b` on separate normalized lines | Locks output ordering and newline rules |

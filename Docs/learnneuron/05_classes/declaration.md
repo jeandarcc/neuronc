@@ -1,6 +1,6 @@
-# Class Declaration
+﻿# Class Declaration
 
-Classes in Neuron++ define objects with fields and methods.
+Classes in Neuron define objects with fields and methods.
 
 ---
 
@@ -31,13 +31,13 @@ Both forms compile identically. Omitting `is` is the recommended style.
 
 ## One Class Per File
 
-Neuron++ enforces a strict **one-class-per-file** rule. The class name must match the filename:
+Neuron enforces a strict **one-class-per-file** rule. The class name must match the filename:
 
 | File | Class Name |
 |------|-----------|
-| `Player.npp` | `Player class { }` |
-| `Vector2.npp` | `Vector2 class { }` |
-| `Main.npp` | Contains `Init` method (no class required) |
+| `Player.nr` | `Player class { }` |
+| `Vector2.nr` | `Vector2 class { }` |
+| `Main.nr` | Contains `Init` method (no class required) |
 
 This is enforced by the compiler when `max_classes_per_file = 1` in `.neuronsettings`.
 
@@ -84,6 +84,6 @@ See [Generic Classes](../13_generics/generic_classes.md).
 
 ## Next Steps
 
-- [Fields](fields.md) — Class fields and `this`
-- [Constructors](constructors.md) — Initialization methods
-- [Inheritance](inheritance.md) — Extending classes
+- [Fields](fields.md) â€” Class fields and `this`
+- [Constructors](constructors.md) â€” Initialization methods
+- [Inheritance](inheritance.md) â€” Extending classes

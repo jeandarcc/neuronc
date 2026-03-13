@@ -1,4 +1,4 @@
-#include "main/DiagnosticEngine.h"
+﻿#include "main/DiagnosticEngine.h"
 #include "main/AppGlobals.h"
 #include "main/UserProfileSettings.h"
 
@@ -46,9 +46,9 @@ struct ScopedToolRootForDiagnosticEngineTest {
 
 TEST(DiagnosticEnginePrintsLocalizedCliDiagnostics) {
   const std::filesystem::path root =
-      std::filesystem::temp_directory_path() / "npp_diagnostic_engine_tests";
+      std::filesystem::temp_directory_path() / "neuron_diagnostic_engine_tests";
   std::filesystem::remove_all(root);
-  std::filesystem::create_directories(root / "NeuronPP");
+  std::filesystem::create_directories(root / "Neuron");
   ScopedAppDataEnvVarForDiagnosticEngineTest env(root.string());
   ScopedToolRootForDiagnosticEngineTest toolRoot(
       std::filesystem::absolute(std::filesystem::path(__FILE__))
@@ -61,21 +61,21 @@ TEST(DiagnosticEnginePrintsLocalizedCliDiagnostics) {
   ASSERT_TRUE(neuron::saveUserProfileSettings(settings));
 
   ScopedStderrCapture capture;
-  reportStringDiagnostics("semantic", "demo.npp", "let x = 1;",
-                          {"demo.npp:1:1: warning: Unused variable: x"});
+  reportStringDiagnostics("semantic", "demo.nr", "let x = 1;",
+                          {"demo.nr:1:1: warning: Unused variable: x"});
 
   ASSERT_TRUE(capture.stream.str().find("Bildirilen baglama hic okunmuyor.") !=
               std::string::npos);
-  ASSERT_TRUE(capture.stream.str().find("NPP9002") != std::string::npos);
+  ASSERT_TRUE(capture.stream.str().find("NR9002") != std::string::npos);
   std::filesystem::remove_all(root);
   return true;
 }
 
 TEST(DiagnosticEngineRendersParserTemplatesWithoutRawEnglishTail) {
   const std::filesystem::path root =
-      std::filesystem::temp_directory_path() / "npp_diagnostic_engine_tests";
+      std::filesystem::temp_directory_path() / "neuron_diagnostic_engine_tests";
   std::filesystem::remove_all(root);
-  std::filesystem::create_directories(root / "NeuronPP");
+  std::filesystem::create_directories(root / "Neuron");
   ScopedAppDataEnvVarForDiagnosticEngineTest env(root.string());
   ScopedToolRootForDiagnosticEngineTest toolRoot(
       std::filesystem::absolute(std::filesystem::path(__FILE__))
@@ -88,8 +88,8 @@ TEST(DiagnosticEngineRendersParserTemplatesWithoutRawEnglishTail) {
   ASSERT_TRUE(neuron::saveUserProfileSettings(settings));
 
   ScopedStderrCapture capture;
-  reportStringDiagnostics("parser", "demo.npp", ".", 
-                          {"demo.npp:1:1: error: Unexpected token: '.'"});
+  reportStringDiagnostics("parser", "demo.nr", ".",
+                          {"demo.nr:1:1: error: Unexpected token: '.'"});
 
   ASSERT_TRUE(capture.stream.str().find("Beklenmeyen token: '.'") !=
               std::string::npos);
@@ -101,9 +101,9 @@ TEST(DiagnosticEngineRendersParserTemplatesWithoutRawEnglishTail) {
 
 TEST(DiagnosticEngineRendersSemanticTemplatesWithoutRawEnglishTail) {
   const std::filesystem::path root =
-      std::filesystem::temp_directory_path() / "npp_diagnostic_engine_tests";
+      std::filesystem::temp_directory_path() / "neuron_diagnostic_engine_tests";
   std::filesystem::remove_all(root);
-  std::filesystem::create_directories(root / "NeuronPP");
+  std::filesystem::create_directories(root / "Neuron");
   ScopedAppDataEnvVarForDiagnosticEngineTest env(root.string());
   ScopedToolRootForDiagnosticEngineTest toolRoot(
       std::filesystem::absolute(std::filesystem::path(__FILE__))
@@ -119,10 +119,10 @@ TEST(DiagnosticEngineRendersSemanticTemplatesWithoutRawEnglishTail) {
   error.message = "Variable is used before it is initialized: h";
   error.code = "N2204";
   error.arguments = {{"name", "h"}};
-  error.location = {1, 1, "demo.npp"};
+  error.location = {1, 1, "demo.nr"};
 
   ScopedStderrCapture capture;
-  reportSemanticDiagnostics("demo.npp", "h.x();", {error});
+  reportSemanticDiagnostics("demo.nr", "h.x();", {error});
 
   ASSERT_TRUE(capture.stream.str().find(
                   "Degisken baslatilmadan once kullaniliyor: h.") !=
@@ -136,9 +136,9 @@ TEST(DiagnosticEngineRendersSemanticTemplatesWithoutRawEnglishTail) {
 
 TEST(DiagnosticEngineRendersUnknownIdentifierTemplatesWithoutFallback) {
   const std::filesystem::path root =
-      std::filesystem::temp_directory_path() / "npp_diagnostic_engine_tests";
+      std::filesystem::temp_directory_path() / "neuron_diagnostic_engine_tests";
   std::filesystem::remove_all(root);
-  std::filesystem::create_directories(root / "NeuronPP");
+  std::filesystem::create_directories(root / "Neuron");
   ScopedAppDataEnvVarForDiagnosticEngineTest env(root.string());
   ScopedToolRootForDiagnosticEngineTest toolRoot(
       std::filesystem::absolute(std::filesystem::path(__FILE__))
@@ -154,15 +154,15 @@ TEST(DiagnosticEngineRendersUnknownIdentifierTemplatesWithoutFallback) {
   error.message = "Undefined identifier: f";
   error.code = "N2201";
   error.arguments = {{"name", "f"}};
-  error.location = {1, 1, "demo.npp"};
+  error.location = {1, 1, "demo.nr"};
 
   ScopedStderrCapture capture;
-  reportSemanticDiagnostics("demo.npp", "f.x();", {error});
+  reportSemanticDiagnostics("demo.nr", "f.x();", {error});
 
   ASSERT_TRUE(capture.stream.str().find(
                   "Basvurulan tanimlayici mevcut kapsamda tanimli degil: f.") !=
               std::string::npos);
-  ASSERT_TRUE(capture.stream.str().find("NPP2001") == std::string::npos);
+  ASSERT_TRUE(capture.stream.str().find("NR2001") == std::string::npos);
   ASSERT_TRUE(capture.stream.str().find("Raw:") == std::string::npos);
   ASSERT_TRUE(capture.stream.str().find("Undefined identifier") ==
               std::string::npos);

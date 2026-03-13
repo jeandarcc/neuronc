@@ -1,6 +1,6 @@
-# Primitive Types
+﻿# Primitive Types
 
-Neuron++ provides four fundamental primitive types.
+Neuron provides four fundamental primitive types.
 
 ---
 
@@ -10,7 +10,7 @@ Neuron++ provides four fundamental primitive types.
 |------|-------------|---------|
 | `int` | Integer numbers | `42`, `-7`, `0` |
 | `float` | Floating-point numbers | `3.14`, `-0.5`, `1.0` |
-| `string` | Text strings | `"hello"`, `"Neuron++"` |
+| `string` | Text strings | `"hello"`, `"Neuron"` |
 | `bool` | Boolean values | `true`, `false` |
 
 ---
@@ -45,7 +45,7 @@ Text enclosed in double quotes:
 
 ```npp
 name is "Alice" as string;
-greeting is "Hello, Neuron++!";
+greeting is "Hello, Neuron!";
 empty is "";
 ```
 
@@ -88,5 +88,5 @@ When no `as` annotation is provided, the compiler infers the type:
 
 ## Next Steps
 
-- [Type Annotation](type_annotation.md) — Explicitly specifying types with `as`
-- [Dynamic](dynamic.md) — Untyped / late-bound variables
+- [Type Annotation](type_annotation.md) â€” Explicitly specifying types with `as`
+- [Dynamic](dynamic.md) â€” Untyped / late-bound variables

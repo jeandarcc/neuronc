@@ -138,9 +138,9 @@ int runCmd(const std::string &cmd, bool verbose) {
 
 } // namespace
 
-// ─────────────────────────────────────────────
+// â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 // CLI argument parsing
-// ─────────────────────────────────────────────
+// â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
 bool parseProductBuildArgs(const std::vector<std::string> &args,
                            const std::string &hostPlatformId,
@@ -206,9 +206,9 @@ bool parseProductBuildArgs(const std::vector<std::string> &args,
   return true;
 }
 
-// ─────────────────────────────────────────────
+// â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 // NCON Embedding (self-extracting pattern)
-// ─────────────────────────────────────────────
+// â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
 bool embedNconInBinary(const std::filesystem::path &binaryPath,
                        const std::filesystem::path &nconPath,
@@ -338,9 +338,9 @@ bool extractEmbeddedNcon(const std::filesystem::path &binaryPath,
   return true;
 }
 
-// ─────────────────────────────────────────────
+// â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 // Full product build pipeline
-// ─────────────────────────────────────────────
+// â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
 ProductBuildResult buildProduct(ProductSettings &settings,
                                 const ProductBuildOptions &options,
@@ -376,7 +376,7 @@ ProductBuildResult buildProduct(ProductSettings &settings,
   fs::create_directories(outputDir);
 
   std::cout << "======================================" << std::endl;
-  std::cout << "    Neuron++ Product Build" << std::endl;
+  std::cout << "    Neuron Product Build" << std::endl;
   std::cout << "======================================" << std::endl;
   std::cout << "  Product: " << settings.productName << std::endl;
   std::cout << "  Version: " << versionTag << std::endl;

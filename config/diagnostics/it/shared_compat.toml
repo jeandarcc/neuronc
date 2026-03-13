@@ -5,10 +5,10 @@ display_name = "Diagnostica di compatibilità condivisa"
 inherits_contract = "shared_compat"
 
 [contracts]
-allowed_exact_codes = ["NPP0001", "NPP3001", "NPP9000", "NPP9001", "NPP9002"]
+allowed_exact_codes = ["NR0001", "NR3001", "NR9000", "NR9001", "NR9002"]
 future_addition_rule = "In questo file possono apparire solo gli esatti codici di compatibilità elencati sopra."
 
-[messages.NPP0001]
+[messages.nr0001]
 severity = "error"
 phase = "generic"
 slug = "legacy_generic_error"
@@ -18,7 +18,7 @@ default_message = "Il compilatore è fallito, ma non è stata ancora assegnata a
 recovery = "Ispezionare prima la posizione sorgente riportata, quindi spostare la diagnostica in una famiglia specifica quando l'implementazione diventerà più precisa."
 tags = ["legacy", "fallback", "generic"]
 
-[messages.NPP3001]
+[messages.nr3001]
 severity = "error"
 phase = "config"
 slug = "legacy_project_configuration_error"
@@ -28,7 +28,7 @@ default_message = "La configurazione del progetto è non valida o incompleta per
 recovery = "Rivedere neuron.toml, le impostazioni del modulo e qualsiasi configurazione di build o runtime richiesta vicino alla posizione riportata."
 tags = ["legacy", "config", "fallback"]
 
-[messages.NPP9000]
+[messages.nr9000]
 severity = "warning"
 phase = "generic"
 slug = "legacy_generic_warning"
@@ -38,7 +38,7 @@ default_message = "Il compilatore ha accettato il programma, ma ha rilevato un a
 recovery = "Leggere il testo dell'avviso e migrarlo in una famiglia di avvisi specifica una volta che l'implementazione ne espone una."
 tags = ["legacy", "warning", "fallback"]
 
-[messages.NPP9001]
+[messages.nr9001]
 severity = "warning"
 phase = "config"
 slug = "legacy_project_configuration_warning"
@@ -48,7 +48,7 @@ default_message = "La configurazione del progetto è stata accettata con un avvi
 recovery = "Rivedere l'impostazione segnalata e restringere la configurazione se è richiesto un comportamento deterministico."
 tags = ["legacy", "warning", "config"]
 
-[messages.NPP9002]
+[messages.nr9002]
 severity = "warning"
 phase = "semantic"
 slug = "unused_binding_warning"

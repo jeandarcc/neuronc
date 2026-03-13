@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 #include "neuronc/sema/TypeSystem.h"
 #include <memory>
@@ -81,7 +81,7 @@ enum class InstKind {
   GpuScopeBegin,
   GpuScopeEnd,
 
-  // Neuron++ specific
+  // Neuron specific
   TensorAdd,
   TensorSub,
   TensorMul,

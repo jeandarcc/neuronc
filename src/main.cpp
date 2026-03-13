@@ -1,4 +1,4 @@
-// main.cpp — Neuron++ compiler entry point.
+﻿// main.cpp â€” Neuron compiler entry point.
 //
 // This file ONLY performs the following:
 //   1. Initializes global state (trace, color, toolRoot, toolchain)
@@ -29,7 +29,7 @@
 namespace fs = std::filesystem;
 
 int main(int argc, char *argv[]) {
-  // ── Environment initialization ──────────────────────────────────────────
+  // â”€â”€ Environment initialization â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
   initializeTraceErrorsFromEnv();
   initializeDiagnosticColorFromEnv();
@@ -48,7 +48,7 @@ int main(int argc, char *argv[]) {
   }
   initializeToolchainBinDir();
 
-  // ── Application context ──────────────────────────────────────────────────
+  // â”€â”€ Application context â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
   neuron::cli::AppContext appContext;
   appContext.toolRoot = g_toolRoot;
@@ -64,7 +64,7 @@ int main(int argc, char *argv[]) {
       userSettings.has_value() ? userSettings->language : "auto",
       appContext.supportedDiagnosticLocales);
 
-  // ── Service bindings ────────────────────────────────────────────────────
+  // â”€â”€ Service bindings â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
   neuron::cli::AppServices services;
   services.parseFileArgWithTraceFlags = parseFileArgWithTraceFlags;
@@ -113,12 +113,12 @@ int main(int argc, char *argv[]) {
                                                           supportedLocales);
   };
 
-  // ── Command dispatching ─────────────────────────────────────────────────
+  // â”€â”€ Command dispatching â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
   const int result =
       neuron::cli::dispatchCommand(appContext, services, argc, argv);
 
-  // Dispatcher might have updated the context — synchronize global state.
+  // Dispatcher might have updated the context â€” synchronize global state.
   g_toolRoot = appContext.toolRoot;
   g_runtimeObjectDir = appContext.runtimeObjectDir;
   g_toolchainBinDir = appContext.toolchainBinDir;

@@ -1,4 +1,4 @@
-#include <cmath>
+﻿#include <cmath>
 #include <filesystem>
 
 extern "C" {
@@ -483,7 +483,7 @@ TEST(AdamOptimizerTrainsSoftmaxClassifier) {
 
 TEST(ModelSaveLoadRoundTripsParameters) {
   const fs::path modelPath =
-      fs::temp_directory_path() / "npp_nn_roundtrip_test.nppmodel";
+      fs::temp_directory_path() / "neuron_nn_roundtrip_test.nrmodel";
   fs::remove(modelPath);
 
   NeuronSequentialModel *model = neuron_model_create();
@@ -762,7 +762,7 @@ TEST(ModelSupportsConvPoolDropoutPipeline) {
 
 TEST(ModelSaveLoadRoundTripsCompositePhase2Model) {
   const fs::path modelPath =
-      fs::temp_directory_path() / "npp_nn_phase2_roundtrip.nppmodel";
+      fs::temp_directory_path() / "neuron_nn_phase2_roundtrip.nrmodel";
   fs::remove(modelPath);
 
   NeuronSequentialModel *model = neuron_model_create();

@@ -1,11 +1,11 @@
-# How to Add a Diagnostic Error Code
+﻿# How to Add a Diagnostic Error Code
 
-Neuron++ uses a multi-locale diagnostic system. Error codes are defined in TOML
+Neuron uses a multi-locale diagnostic system. Error codes are defined in TOML
 files under `config/diagnostics/<locale>/` and referenced by numeric ID from C++.
 
 ---
 
-## Step 1 — Claim a Code Number
+## Step 1 â€” Claim a Code Number
 
 Open `config/diagnostics/catalog.toml`. Find the appropriate range for your error:
 
@@ -31,7 +31,7 @@ severity = "error"
 
 ---
 
-## Step 2 — Add the Diagnostic to Each Locale
+## Step 2 â€” Add the Diagnostic to Each Locale
 
 For every locale directory in `config/diagnostics/` (currently: `de/`, `en/`, `it/`, `ko/`, `la/`, `zh/`),
 find the file matching your code range (e.g. `N2xxx_semantic.toml`) and add:
@@ -56,7 +56,7 @@ See `config/diagnostics/plugger/README.md` for full plugger usage.
 
 ---
 
-## Step 3 — Reference the Code from C++
+## Step 3 â€” Reference the Code from C++
 
 In the appropriate semantic/parser source file, emit the diagnostic:
 
@@ -74,9 +74,9 @@ the locale at runtime using `config/diagnostics/<locale>/` TOML files.
 
 ---
 
-## Step 4 — Write a Test
+## Step 4 â€” Write a Test
 
-Add a test that compiles a `.npp` snippet and asserts the diagnostic fires:
+Add a test that compiles a `.nr` snippet and asserts the diagnostic fires:
 
 ```cpp
 // In tests/sema/<something>.cpp
@@ -88,7 +88,7 @@ TEST("N2042 fires on type mismatch") {
 
 ---
 
-## Step 5 — Verify
+## Step 5 â€” Verify
 
 ```powershell
 scripts\build.bat

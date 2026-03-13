@@ -1,4 +1,4 @@
-# Runtime Optimization Semantics Specification
+﻿# Runtime Optimization Semantics Specification
 
 ## Scope
 
@@ -10,11 +10,11 @@ This folder covers programs whose meaning must remain unchanged even when the co
 | --- | --- |
 | `N5000-N5099` | wrong-code, dropped side effect, or runtime failure caused by optimized lowering |
 | `W5000-W5099` | backend falls back to a less optimized but still correct path |
-| `NPP0001` | current generic fallback |
+| `NR0001` | current generic fallback |
 
 ## Test List
 
-| Name | `.npp` input code | Expected output or error | Why important |
+| Name | `.nr` input code | Expected output or error | Why important |
 | --- | --- | --- | --- |
 | `opt__constant_fold_preserves_result` | `module System; Init is method() { Print((2 * 3) + 4); }` | Prints `10` | Smallest optimization-sensitive arithmetic case |
 | `opt__dead_branch_does_not_run_side_effect` | `module System; Init is method() { if(false) { Print("dead"); } Print("live"); }` | Prints only `live` | Guards branch simplification correctness |

@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 #include "neuronc/ncon/Permissions.h"
 
@@ -84,7 +84,7 @@ struct DependencySpec {
 struct ProjectConfig {
   std::string name;
   std::string version = "0.1.0";
-  std::string mainFile = "src/Main.npp";
+  std::string mainFile = "src/Main.nr";
   std::string buildDir = "build";
   BuildOptimizeLevel optimizeLevel = BuildOptimizeLevel::Aggressive;
   BuildEmitIR emitIR = BuildEmitIR::Optimized;

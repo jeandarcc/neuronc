@@ -1,6 +1,6 @@
-# Copying with `another`
+﻿# Copying with `another`
 
-The `another` keyword creates an **independent deep copy** of a value. The copy has its own memory — changes to one do not affect the other.
+The `another` keyword creates an **independent deep copy** of a value. The copy has its own memory â€” changes to one do not affect the other.
 
 ---
 
@@ -19,12 +19,12 @@ Print(copied);    // 100
 
 ## Why `another`?
 
-In Neuron++, `is` creates an alias by default. To get a true copy, you must request one explicitly:
+In Neuron, `is` creates an alias by default. To get a true copy, you must request one explicitly:
 
 | Statement | Behavior |
 |-----------|----------|
-| `y is x;` | Alias — `y` and `x` share memory |
-| `y is another x;` | Copy — `y` gets its own memory |
+| `y is x;` | Alias â€” `y` and `x` share memory |
+| `y is another x;` | Copy â€” `y` gets its own memory |
 
 ---
 
@@ -64,7 +64,7 @@ b another a;    // copy without 'is'
 
 ## C++ Equivalent
 
-| Neuron++ | C++ |
+| Neuron | C++ |
 |----------|-----|
 | `y is x;` | `T& y = x;` (reference) |
 | `y is another x;` | `T y = x;` (value copy) |
@@ -73,4 +73,4 @@ b another a;    // copy without 'is'
 
 ## Next Steps
 
-- [Move](move.md) — Transfer ownership instead of copying
+- [Move](move.md) â€” Transfer ownership instead of copying

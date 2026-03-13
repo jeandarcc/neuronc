@@ -1,4 +1,4 @@
-# Generic Classes
+﻿# Generic Classes
 
 Generic classes accept type parameters, enabling type-safe reusable containers.
 
@@ -29,7 +29,7 @@ s.value is "hello";
 
 ## Real Example
 
-From `Box.npp`:
+From `Box.nr`:
 
 ```npp
 Box class<T> {

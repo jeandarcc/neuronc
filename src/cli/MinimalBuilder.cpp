@@ -200,7 +200,7 @@ std::string buildMinimalCompileCommand(const std::string &compilerPath,
   }
   cmd << " -c " << quotePath(sourcePath) << " -o " << quotePath(objectPath);
   cmd << " -O2 -ffunction-sections -fdata-sections";
-  cmd << " -DNPP_ENABLE_CUDA_BACKEND=1 -DNPP_ENABLE_VULKAN_BACKEND=1";
+  cmd << " -DNeuron_ENABLE_CUDA_BACKEND=1 -DNeuron_ENABLE_VULKAN_BACKEND=1";
   cmd << " -I" << quotePath(toolRoot / "include");
   cmd << " -I" << quotePath(toolRoot / "runtime" / "include");
   cmd << " -I" << quotePath(toolRoot / "runtime" / "src");

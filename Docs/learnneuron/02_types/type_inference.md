@@ -1,6 +1,6 @@
-# Type Inference
+﻿# Type Inference
 
-Neuron++ can automatically deduce the type of a variable from its assigned value, so you don't always need to write `as <type>`.
+Neuron can automatically deduce the type of a variable from its assigned value, so you don't always need to write `as <type>`.
 
 ---
 
@@ -62,5 +62,5 @@ c is a * 2.0;    // float (int * float = float)
 
 ## Next Steps
 
-- [Dynamic](dynamic.md) — Runtime-typed variables
-- [Type Casting](type_casting.md) — Converting between types
+- [Dynamic](dynamic.md) â€” Runtime-typed variables
+- [Type Casting](type_casting.md) â€” Converting between types

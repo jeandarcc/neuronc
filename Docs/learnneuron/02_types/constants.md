@@ -1,10 +1,10 @@
-# Constants
+﻿# Constants
 
-Neuron++ provides `const` and `constexpr` for declaring immutable values.
+Neuron provides `const` and `constexpr` for declaring immutable values.
 
 ---
 
-## `const` — Runtime Constant
+## `const` â€” Runtime Constant
 
 A `const` binding cannot be reassigned after initialization:
 
@@ -17,7 +17,7 @@ Attempting to reassign a constant produces a compiler error.
 
 ---
 
-## `constexpr` — Compile-Time Constant
+## `constexpr` â€” Compile-Time Constant
 
 A `constexpr` value is evaluated entirely at compile time:
 
@@ -36,8 +36,8 @@ constexpr ComputeMax method() as int {
 Constants must use `UPPER_CASE` naming when `require_const_uppercase = true` in `.neuronsettings`:
 
 ```npp
-const MAX_SPEED is 100;       // ✅ correct
-const maxSpeed is 100;        // ❌ compiler warning/error
+const MAX_SPEED is 100;       // âœ… correct
+const maxSpeed is 100;        // âŒ compiler warning/error
 ```
 
 ---
@@ -47,12 +47,12 @@ const maxSpeed is 100;        // ❌ compiler warning/error
 | Feature | `const` | `constexpr` |
 |---------|---------|-------------|
 | Evaluated | Runtime | Compile time |
-| Reassignment | ❌ Not allowed | ❌ Not allowed |
-| Used in methods | ✅ Yes | ✅ Yes (pure methods only) |
-| Can call functions | ✅ Any | Only `constexpr` functions |
+| Reassignment | âŒ Not allowed | âŒ Not allowed |
+| Used in methods | âœ… Yes | âœ… Yes (pure methods only) |
+| Can call functions | âœ… Any | Only `constexpr` functions |
 
 ---
 
 ## Next Steps
 
-- [Operators](../03_operators/arithmetic.md) — Arithmetic and comparison operators
+- [Operators](../03_operators/arithmetic.md) â€” Arithmetic and comparison operators

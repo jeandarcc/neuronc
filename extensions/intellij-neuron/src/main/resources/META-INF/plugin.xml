@@ -1,0 +1,17 @@
+﻿<idea-plugin>
+    <id>com.Neuron.intellij</id>
+    <name>Neuron</name>
+    <vendor>yusuf</vendor>
+
+    <depends>com.intellij.modules.platform</depends>
+    <depends>com.intellij.platform.lsp</depends>
+
+    <extensions defaultExtensionNs="com.intellij">
+        <fileType name="Neuron"
+                  implementationClass="com.Neuron.jetbrains.nrFileType"
+                  fieldName="INSTANCE"
+                  extensions="nr"/>
+
+        <platform.lsp.serverSupportProvider implementation="com.Neuron.jetbrains.nrLspServerSupportProvider"/>
+    </extensions>
+</idea-plugin>

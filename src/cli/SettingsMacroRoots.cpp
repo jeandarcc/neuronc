@@ -1,4 +1,4 @@
-#include "SettingsMacroInternal.h"
+﻿#include "SettingsMacroInternal.h"
 
 #include "neuronc/cli/ProjectConfig.h"
 
@@ -20,7 +20,7 @@ std::vector<std::string> collectModuleNamesFromDir(const fs::path &dir) {
 
   for (fs::recursive_directory_iterator it(dir, ec), end; it != end;
        it.increment(ec)) {
-    if (ec || !it->is_regular_file() || it->path().extension() != ".npp") {
+    if (ec || !it->is_regular_file() || it->path().extension() != ".nr") {
       continue;
     }
     names.push_back(lowerAscii(it->path().stem().string()));
@@ -183,7 +183,7 @@ collectOwnedSectionsForRoot(const fs::path &root) {
   std::error_code ec;
   if (fs::exists(root, ec) && fs::is_directory(root, ec)) {
     for (const auto &entry : fs::directory_iterator(root, ec)) {
-      if (ec || !entry.is_regular_file() || entry.path().extension() != ".npp") {
+      if (ec || !entry.is_regular_file() || entry.path().extension() != ".nr") {
         continue;
       }
       sections.insert(lowerAscii(entry.path().stem().string()));

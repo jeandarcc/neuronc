@@ -1,4 +1,4 @@
-#include "neuronc/cli/CommandDispatcher.h"
+﻿#include "neuronc/cli/CommandDispatcher.h"
 
 #include <cctype>
 #include <iostream>
@@ -278,7 +278,7 @@ int dispatchCommand(AppContext &context, const AppServices &services, int argc,
   if (command == "lex") {
     const auto fileArg = services.parseFileArgWithTraceFlags(
         argc, argv, 2,
-        "Usage: neuron lex <file.npp> [--trace-errors] [--bypass-rules]");
+        "Usage: neuron lex <file.nr> [--trace-errors] [--bypass-rules]");
     if (!fileArg.has_value()) {
       return 1;
     }
@@ -288,7 +288,7 @@ int dispatchCommand(AppContext &context, const AppServices &services, int argc,
   if (command == "parse") {
     const auto fileArg = services.parseFileArgWithTraceFlags(
         argc, argv, 2,
-        "Usage: neuron parse <file.npp> [--trace-errors] [--bypass-rules]");
+        "Usage: neuron parse <file.nr> [--trace-errors] [--bypass-rules]");
     if (!fileArg.has_value()) {
       return 1;
     }
@@ -298,7 +298,7 @@ int dispatchCommand(AppContext &context, const AppServices &services, int argc,
   if (command == "nir") {
     const auto fileArg = services.parseFileArgWithTraceFlags(
         argc, argv, 2,
-        "Usage: neuron nir <file.npp> [--trace-errors] [--bypass-rules]");
+        "Usage: neuron nir <file.nr> [--trace-errors] [--bypass-rules]");
     if (!fileArg.has_value()) {
       return 1;
     }
@@ -332,7 +332,7 @@ int dispatchCommand(AppContext &context, const AppServices &services, int argc,
   if (command == "compile") {
     const auto fileArg = services.parseFileArgWithTraceFlags(
         argc, argv, 2,
-        "Usage: neuron compile <file.npp> [--trace-errors] [--bypass-rules]");
+        "Usage: neuron compile <file.nr> [--trace-errors] [--bypass-rules]");
     if (!fileArg.has_value()) {
       return 1;
     }

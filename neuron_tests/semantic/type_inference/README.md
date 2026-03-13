@@ -1,4 +1,4 @@
-# Semantic Type Inference Specification
+﻿# Semantic Type Inference Specification
 
 ## Scope
 
@@ -11,11 +11,11 @@ This folder covers cases where the compiler deduces types from literals, express
 | `N2100-N2199` | inference ambiguity, conflicting branch inference, or missing context |
 | `N2000-N2099` | downstream mismatch after an inferred type is established |
 | `W2000-W2099` | suspicious but accepted inference outcomes |
-| `NPP2001` | current coarse semantic fallback |
+| `NR2001` | current coarse semantic fallback |
 
 ## Test List
 
-| Name | `.npp` input code | Expected output or error | Why important |
+| Name | `.nr` input code | Expected output or error | Why important |
 | --- | --- | --- | --- |
 | `infer__literal_int` | `Init is method() { x is 42; Print(x); }` | Compiles and prints `42`; inferred type is `int` | Baseline literal inference |
 | `infer__literal_float` | `Init is method() { x is 3.14; Print(x); }` | Compiles and prints normalized float output | Confirms float inference stays distinct from `int` |

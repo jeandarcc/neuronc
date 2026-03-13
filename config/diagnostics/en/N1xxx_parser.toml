@@ -1,16 +1,16 @@
-[catalog]
+﻿[catalog]
 locale = "en"
 bucket = "N1xxx_parser"
 display_name = "Parser diagnostics"
 inherits_contract = "N1xxx_parser"
 
 [contracts]
-allowed_exact_codes = ["NPP1001", "NPP1002"]
+allowed_exact_codes = ["NR1001", "NR1002"]
 allowed_n_range = "1000-1599"
 allowed_w_range = "1000-1099"
 future_addition_rule = "Only N1000-N1599, W1000-W1099, and the exact legacy parser codes listed above may appear in this file."
 
-[messages.NPP1001]
+[messages.nr1001]
 severity = "error"
 phase = "lexer"
 slug = "legacy_lexer_error"
@@ -20,13 +20,13 @@ default_message = "The source contains an invalid token, malformed literal, or i
 recovery = "Inspect the first invalid character or malformed literal near the reported location."
 tags = ["legacy", "lexer", "fallback"]
 
-[messages.NPP1002]
+[messages.nr1002]
 severity = "error"
 phase = "parser"
 slug = "legacy_parser_error"
 title = "Legacy parser error"
 summary = "Compatibility bucket for parse failures until finer parser codes are wired."
-default_message = "The source does not match the expected Neuron++ grammar."
+default_message = "The source does not match the expected Neuron grammar."
 recovery = "Inspect the reported token boundary, delimiter pairing, and the expected statement or declaration form."
 tags = ["legacy", "parser", "fallback"]
 
@@ -37,7 +37,7 @@ slug = "invalid_character"
 title = "Invalid character"
 summary = "The lexer encountered a character that is not valid in the current source context."
 default_message = "An invalid character was found in the source."
-recovery = "Remove the character or replace it with valid Neuron++ syntax."
+recovery = "Remove the character or replace it with valid Neuron syntax."
 tags = ["lexer", "character", "syntax"]
 
 [messages.N1002]

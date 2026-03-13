@@ -1,5 +1,5 @@
-#ifndef NPP_RUNTIME_CUDA_KERNELS_H
-#define NPP_RUNTIME_CUDA_KERNELS_H
+#ifndef Neuron_RUNTIME_CUDA_KERNELS_H
+#define Neuron_RUNTIME_CUDA_KERNELS_H
 
 static const char kCudaTensorOpsPtx[] =
     "//\n"
@@ -786,4 +786,4 @@ static const char kCudaTensorOpsPtx[] =
     "\n"
     ;
 
-#endif // NPP_RUNTIME_CUDA_KERNELS_H
+#endif // Neuron_RUNTIME_CUDA_KERNELS_H

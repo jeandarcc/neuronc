@@ -1,4 +1,4 @@
----
+﻿---
 name: Bug Report
 about: Report a reproducible bug in neuronc, ncon, neuron-lsp, or the runtime
 title: '[BUG] <short description>'
@@ -11,7 +11,7 @@ assignees: ''
 | Field | Value |
 |-------|-------|
 | OS | <!-- e.g. Windows 11, Ubuntu 24.04 --> |
-| Neuron++ version | <!-- `neuron --version` output --> |
+| Neuron version | <!-- `neuron --version` output --> |
 | LLVM version | <!-- `llvm-config --version` --> |
 | Affected component | <!-- neuronc / ncon / neuron-lsp / runtime / extensions --> |
 
@@ -30,7 +30,7 @@ assignees: ''
 ## Minimal Reproducer
 
 ```neuron
-// Paste the smallest .npp snippet that triggers the bug
+// Paste the smallest .nr snippet that triggers the bug
 ```
 
 ## Expected Behavior

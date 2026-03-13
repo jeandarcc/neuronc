@@ -1,4 +1,4 @@
-#include "neuronc/cli/PackageManager.h"
+﻿#include "neuronc/cli/PackageManager.h"
 
 #include <algorithm>
 #include <array>
@@ -273,23 +273,23 @@ fs::path globalPackageRoot() {
   wchar_t buffer[MAX_PATH] = {0};
   DWORD length = GetEnvironmentVariableW(L"LOCALAPPDATA", buffer, MAX_PATH);
   if (length != 0 && length < MAX_PATH) {
-    return fs::path(buffer) / "NeuronPP" / "packages";
+    return fs::path(buffer) / "Neuron" / "packages";
   }
   const char *fallback = std::getenv("LOCALAPPDATA");
   if (fallback != nullptr && *fallback != '\0') {
-    return fs::path(fallback) / "NeuronPP" / "packages";
+    return fs::path(fallback) / "Neuron" / "packages";
   }
-  return fs::temp_directory_path() / "NeuronPP" / "packages";
+  return fs::temp_directory_path() / "Neuron" / "packages";
 #else
   const char *xdgCache = std::getenv("XDG_CACHE_HOME");
   if (xdgCache != nullptr && *xdgCache != '\0') {
-    return fs::path(xdgCache) / "neuronpp" / "packages";
+    return fs::path(xdgCache) / "Neuron" / "packages";
   }
   const char *home = std::getenv("HOME");
   if (home != nullptr && *home != '\0') {
-    return fs::path(home) / ".cache" / "neuronpp" / "packages";
+    return fs::path(home) / ".cache" / "Neuron" / "packages";
   }
-  return fs::temp_directory_path() / "neuronpp" / "packages";
+  return fs::temp_directory_path() / "Neuron" / "packages";
 #endif
 }
 
@@ -944,7 +944,7 @@ bool collectPackageSourceFiles(const fs::path &packageRoot,
       }
       return false;
     }
-    if (!it->is_regular_file() || it->path().extension() != ".npp") {
+    if (!it->is_regular_file() || it->path().extension() != ".nr") {
       continue;
     }
     outFiles->push_back(it->path());
@@ -970,7 +970,7 @@ bool collectExportedModules(const fs::path &packageRoot,
   }
   if (sourceFiles.empty()) {
     if (outError != nullptr) {
-      *outError = "package source directory contains no .npp files";
+      *outError = "package source directory contains no .nr files";
     }
     return false;
   }
@@ -2269,7 +2269,7 @@ bool PackageManager::publishProject(const std::string &projectRoot,
   }
   manifest << "\n";
 
-  const fs::path artifactPath = packagesRoot / (config.name + "-" + config.version + ".nppkg");
+  const fs::path artifactPath = packagesRoot / (config.name + "-" + config.version + ".nrkg");
   if (!writeTextFile(artifactPath, manifest.str(), outMessage)) {
     return false;
   }

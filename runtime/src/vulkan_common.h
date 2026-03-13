@@ -1,5 +1,5 @@
-#ifndef NPP_RUNTIME_VULKAN_COMMON_H
-#define NPP_RUNTIME_VULKAN_COMMON_H
+#ifndef Neuron_RUNTIME_VULKAN_COMMON_H
+#define Neuron_RUNTIME_VULKAN_COMMON_H
 
 #include "neuron_gpu.h"
 
@@ -8,19 +8,19 @@
 
 #if defined(__has_include)
 #if __has_include(<vulkan/vulkan.h>)
-#define NPP_VK_COMMON_HAS_HEADERS 1
+#define Neuron_VK_COMMON_HAS_HEADERS 1
 #if defined(_WIN32) && !defined(VK_USE_PLATFORM_WIN32_KHR)
 #define VK_USE_PLATFORM_WIN32_KHR 1
 #endif
 #include <vulkan/vulkan.h>
 #else
-#define NPP_VK_COMMON_HAS_HEADERS 0
+#define Neuron_VK_COMMON_HAS_HEADERS 0
 #endif
 #else
-#define NPP_VK_COMMON_HAS_HEADERS 0
+#define Neuron_VK_COMMON_HAS_HEADERS 0
 #endif
 
-#if !NPP_VK_COMMON_HAS_HEADERS
+#if !Neuron_VK_COMMON_HAS_HEADERS
 typedef void *VkInstance;
 typedef void *VkPhysicalDevice;
 typedef void *VkDevice;
@@ -76,4 +76,4 @@ int neuron_vk_common_pick_present_queue(VkSurfaceKHR surface,
 }
 #endif
 
-#endif // NPP_RUNTIME_VULKAN_COMMON_H
+#endif // Neuron_RUNTIME_VULKAN_COMMON_H

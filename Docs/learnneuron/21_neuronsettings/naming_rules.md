@@ -1,4 +1,4 @@
-# Naming Rules
+﻿# Naming Rules
 
 Rules that enforce consistent naming conventions across the project.
 
@@ -20,8 +20,8 @@ Rules that enforce consistent naming conventions across the project.
 All method names must start with an uppercase letter (PascalCase convention):
 
 ```npp
-CalculateSum method(a as int, b as int) as int { }    // ✅
-calculateSum method(a as int, b as int) as int { }    // ❌ rejected
+CalculateSum method(a as int, b as int) as int { }    // âœ…
+calculateSum method(a as int, b as int) as int { }    // âŒ rejected
 ```
 
 **Why:** PascalCase distinguishes methods from variables at a glance:
@@ -37,22 +37,22 @@ score is player.score;          // score = field (lowercase)
 
 Three rules enforced together:
 
-1. **Filename starts uppercase**: `player.npp` ❌ → `Player.npp` ✅
-2. **No underscores**: `my_class.npp` ❌ → `MyClass.npp` ✅
-3. **Class name matches filename**: `Warrior.npp` with `Fighter class` inside ❌
+1. **Filename starts uppercase**: `player.nr` âŒ â†’ `Player.nr` âœ…
+2. **No underscores**: `my_class.nr` âŒ â†’ `MyClass.nr` âœ…
+3. **Class name matches filename**: `Warrior.nr` with `Fighter class` inside âŒ
 
 ```
-neuronc: error: Invalid .npp filename 'player.npp': filename must start
+neuronc: error: Invalid .nr filename 'player.nr': filename must start
 with an uppercase letter.
 
-neuronc: error: Invalid .npp filename 'my_class.npp': filename cannot
+neuronc: error: Invalid .nr filename 'my_class.nr': filename cannot
 include '_'.
 
 neuronc: error: Class name must match module filename.
 Expected: Warrior  Found: Fighter
 ```
 
-**Why:** O(1) class lookup. You can find any class by its filename — no searching necessary. Critical for both humans and AI agents navigating the project.
+**Why:** O(1) class lookup. You can find any class by its filename â€” no searching necessary. Critical for both humans and AI agents navigating the project.
 
 ---
 
@@ -61,9 +61,9 @@ Expected: Warrior  Found: Fighter
 Method names must be at least 4 characters:
 
 ```npp
-Init method() { }         // ✅ (4 characters)
-Run method() { }          // ❌ (3 characters — too short)
-Go method() { }           // ❌ (2 characters — too short)
+Init method() { }         // âœ… (4 characters)
+Run method() { }          // âŒ (3 characters â€” too short)
+Go method() { }           // âŒ (2 characters â€” too short)
 ```
 
 **Why:** Prevents meaningless abbreviations like `fn()`, `do()`, `op()`. Method names should describe what they do.
@@ -75,8 +75,8 @@ Go method() { }           // ❌ (2 characters — too short)
 Constants must use UPPER_CASE naming:
 
 ```npp
-const MAX_SPEED is 100;     // ✅
-const maxSpeed is 100;      // ❌ rejected
+const MAX_SPEED is 100;     // âœ…
+const maxSpeed is 100;      // âŒ rejected
 ```
 
 **Why:** Constants stand out visually from regular variables, making code easier to scan.

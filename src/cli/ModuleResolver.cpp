@@ -1,4 +1,4 @@
-#include "neuronc/cli/ModuleResolver.h"
+﻿#include "neuronc/cli/ModuleResolver.h"
 
 #include "neuronc/cli/PackageManager.h"
 
@@ -164,7 +164,7 @@ void collectBuiltinNativeLibraryContracts(
       continue;
     }
     const std::string moduleName = entry.path().filename().string();
-    const fs::path contractPath = entry.path() / (moduleName + ".npp");
+    const fs::path contractPath = entry.path() / (moduleName + ".nr");
     const fs::path manifestPath = entry.path() / "native.toml";
     if (!fs::exists(contractPath, ec) || !fs::is_regular_file(contractPath, ec)) {
       if (outErrors != nullptr) {
@@ -202,7 +202,7 @@ void collectModuleFiles(const fs::path &root, const std::string &sourceDir,
 
   for (fs::recursive_directory_iterator it(sourceRoot, ec), end; it != end;
        it.increment(ec)) {
-    if (ec || !it->is_regular_file() || it->path().extension() != ".npp") {
+    if (ec || !it->is_regular_file() || it->path().extension() != ".nr") {
       continue;
     }
     recordModuleIndexEntry(it->path().stem().string(),
@@ -229,7 +229,7 @@ void collectBuiltinLibraryFacadeModules(
       continue;
     }
     const std::string moduleName = entry.path().filename().string();
-    const fs::path facadePath = entry.path() / (moduleName + ".npp");
+    const fs::path facadePath = entry.path() / (moduleName + ".nr");
     if (!fs::exists(facadePath, ec) || !fs::is_regular_file(facadePath, ec)) {
       if (outErrors != nullptr) {
         outErrors->push_back("builtin library facade not found for '" +

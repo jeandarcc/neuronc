@@ -1,8 +1,8 @@
-# Ownership Behavior Specification
+﻿# Ownership Behavior Specification
 
 ## Scope
 
-This folder covers `.npp` ownership, aliasing, copying, borrowing, and lifetime rules that are visible through compilation or program execution.
+This folder covers `.nr` ownership, aliasing, copying, borrowing, and lifetime rules that are visible through compilation or program execution.
 
 Subfolders:
 
@@ -31,13 +31,13 @@ Excluded:
 | `N3100-N3199` | invalid borrow or alias behavior |
 | `N3200-N3299` | invalid lifetime extension or escape |
 | `W3000-W3099` | suspicious but legal ownership patterns |
-| `NPP2001` | current semantic fallback when ownership-specific codes are absent |
+| `NR2001` | current semantic fallback when ownership-specific codes are absent |
 
 ## Test List
 
-| Name | `.npp` input code | Expected output or error | Why important |
+| Name | `.nr` input code | Expected output or error | Why important |
 | --- | --- | --- | --- |
-| `ownership_baseline__alias_by_default` | `Init is method() { x is 10; y is x; y is 20; Print(x); }` | Compiles and prints `20` | Documents the language’s alias-by-default contract |
+| `ownership_baseline__alias_by_default` | `Init is method() { x is 10; y is x; y is 20; Print(x); }` | Compiles and prints `20` | Documents the languageâ€™s alias-by-default contract |
 | `ownership_baseline__deep_copy_via_another` | `Init is method() { x is 10; y is another x; y is 20; Print(x); }` | Compiles and prints `10` | Distinguishes copy from alias |
 | `ownership_baseline__use_after_move` | `Init is method() { x is 10; y is move x; Print(x); }` | `N3000-N3099` | Core ownership safety rule |
 | `ownership_baseline__return_valid_owner` | return moved or copied value from helper | Compiles and returns/prints expected value | Validates transfer across call boundaries |

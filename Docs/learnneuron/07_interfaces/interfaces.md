@@ -1,6 +1,6 @@
-# Interfaces
+﻿# Interfaces
 
-An `interface` defines a contract — a set of methods that implementing classes must provide.
+An `interface` defines a contract â€” a set of methods that implementing classes must provide.
 
 ---
 
@@ -41,7 +41,7 @@ Player class inherits Drawable, Serializable {
 
 ## Real Example
 
-From `CSharpFeatures.npp`:
+From `CSharpFeatures.nr`:
 
 ```npp
 CSharpFeatures interface {
@@ -55,9 +55,9 @@ CSharpFeatures interface {
 
 | Feature | Interface | Abstract Class |
 |---------|-----------|---------------|
-| Fields | ❌ No | ✅ Yes |
-| Method bodies | ❌ No (declaration only) | ✅ Yes (mixed) |
-| Multiple inheritance | ✅ Yes | ✅ Yes |
+| Fields | âŒ No | âœ… Yes |
+| Method bodies | âŒ No (declaration only) | âœ… Yes (mixed) |
+| Multiple inheritance | âœ… Yes | âœ… Yes |
 
 ---
 

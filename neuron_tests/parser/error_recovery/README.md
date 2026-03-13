@@ -1,4 +1,4 @@
-# Parser Error Recovery Specification
+﻿# Parser Error Recovery Specification
 
 ## Scope
 
@@ -11,11 +11,11 @@ This folder specifies how the parser behaves after syntax errors. The oracle is 
 | `N1500-N1599` | recovery and incomplete-source failures |
 | `N1100-N1499` | primary syntax error categories that recovery starts from |
 | `W1000-W1099` | recovery warnings when the parser continues |
-| `NPP1002` | current parser fallback |
+| `NR1002` | current parser fallback |
 
 ## Test List
 
-| Name | `.npp` input code | Expected output or error | Why important |
+| Name | `.nr` input code | Expected output or error | Why important |
 | --- | --- | --- | --- |
 | `recover__missing_semicolon_then_valid_binding` | `x is 1\ny is 2;` | Error on first binding, second binding still parseable | Baseline recovery contract |
 | `recover__unclosed_block_then_next_decl` | `Init is method() { Print("x");\nNext method() { return; }` | Error on missing `}`, later declaration still surfaced if recoverable | Proves top-level synchronization |

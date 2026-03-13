@@ -1,4 +1,4 @@
-name: Nightly
+﻿name: Nightly
 
 on:
   schedule:
@@ -36,7 +36,7 @@ jobs:
         shell: powershell
         run: |
           powershell -NoProfile -ExecutionPolicy Bypass -File scripts/build_tests.ps1 `
-            -BuildDir "$env:LOCALAPPDATA\NeuronPP\workspaces\NPP\build-mingw" `
+            -BuildDir "$env:LOCALAPPDATA\Neuron\workspaces\Neuron\build-mingw" `
             -Filter "*" `
             -LlvmDir "$env:LLVM_DIR"
 

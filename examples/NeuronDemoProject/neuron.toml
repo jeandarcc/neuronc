@@ -1,9 +1,9 @@
-[project]
+﻿[project]
 name = "NeuronDemoProject"
 version = "0.1.0"
 
 [build]
-main = "src/Main.npp"
+main = "src/Main.nr"
 build_dir = "build"
 optimize = "aggressive"
 emit_ir = "both"

@@ -3,7 +3,7 @@
 // Bu modül şu işlemleri sağlar:
 //   - ANSI renklendirme (g_colorDiagnostics'e göre)
 //   - Tanı konumu (dosya:satır:sütun) ayrıştırma
-//   - Hata/uyarı kodları üretme (NPP1001, NPP2001 ...)
+//   - Hata/uyarı kodları üretme (NR1001, NR2001 ...)
 //   - Standart hata akışına biçimli tanı yazdırma
 //   - Lexer/parser/semantic hata listeleri için toplu raporlama
 //
@@ -45,7 +45,7 @@ DiagnosticLocation parseDiagnosticLocation(const std::string &diagnostic);
 
 // ── Code generation ─────────────────────────────────────────────────────────
 
-/// Verilen faz ve şiddet için hata/uyarı kodu üretir (örn. "NPP1001").
+/// Verilen faz ve şiddet için hata/uyarı kodu üretir (örn. "NR1001").
 std::string diagnosticCodeForPhase(const std::string &phase,
                                    DiagnosticSeverity severity);
 

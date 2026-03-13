@@ -137,7 +137,7 @@ using WorkspaceFileReader =
 
 inline constexpr std::array<const char *, 6> kSemanticTokenLegend = {
     "namespace", "type", "function", "parameter", "variable", "property"};
-inline constexpr std::string_view kUnusedVariableDiagnosticCode = "NPP9002";
+inline constexpr std::string_view kUnusedVariableDiagnosticCode = "NR9002";
 inline constexpr std::string_view kUnusedVariableDiagnosticPrefix =
     "Unused variable: ";
 inline constexpr std::size_t kMaxWorkspaceSymbolResults = 512;

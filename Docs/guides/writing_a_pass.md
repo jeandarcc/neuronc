@@ -1,6 +1,6 @@
-# How to Write a Compiler Pass
+﻿# How to Write a Compiler Pass
 
-Passes in Neuron++ operate at two levels: **NIR passes** (optimizer) and
+Passes in Neuron operate at two levels: **NIR passes** (optimizer) and
 **Sema passes** (semantic analysis). This guide covers both.
 
 ---
@@ -16,7 +16,7 @@ Create `src/nir/OptimizerMyPass.cpp`:
 ```cpp
 #include "OptimizerInternal.h"
 
-// Entry point — called by the pass manager on every NIR function
+// Entry point â€” called by the pass manager on every NIR function
 void runMyPass(NIRFunction& fn, OptimizerContext& ctx) {
     for (auto& bb : fn.basicBlocks()) {
         for (auto& instr : bb.instructions()) {
@@ -51,7 +51,7 @@ target_sources(neuronc_nir PRIVATE
 The pass can be tested by dumping NIR before/after:
 
 ```powershell
-neuron nir path/to/test.npp   # dumps NIR to stdout
+neuron nir path/to/test.nr   # dumps NIR to stdout
 ```
 
 Use `src/nir/OptimizerUtils.cpp` utilities for common patterns (instruction
@@ -123,7 +123,7 @@ Add a test in `tests/sema/` or `tests/nir/`:
 
 ```cpp
 TEST("MyPass: <description>") {
-    auto result = compile("... .npp snippet ...");
+    auto result = compile("... .nr snippet ...");
     // Assert no diagnostics, or specific diagnostics
     EXPECT_CLEAN(result);
 }
@@ -139,6 +139,6 @@ powershell -File scripts/build_tests.ps1 -Filter "nir*my_pass*" ...
 ## Design Principles
 
 - **Passes must be incremental:** avoid re-analyzing nodes that haven't changed.
-- **Never mutate the AST from an NIR pass** — work on NIR instructions only.
-- **Emit diagnostics via `ctx_.emitter`** — never use `printf`/`std::cerr` directly.
+- **Never mutate the AST from an NIR pass** â€” work on NIR instructions only.
+- **Emit diagnostics via `ctx_.emitter`** â€” never use `printf`/`std::cerr` directly.
 - **Consult `AnalysisContext`** for all shared state; never hold raw pointers across pass boundaries.

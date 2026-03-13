@@ -1,5 +1,5 @@
-#ifndef NPP_RUNTIME_GPU_INTERNAL_H
-#define NPP_RUNTIME_GPU_INTERNAL_H
+#ifndef Neuron_RUNTIME_GPU_INTERNAL_H
+#define Neuron_RUNTIME_GPU_INTERNAL_H
 
 #include "neuron_gpu.h"
 
@@ -107,4 +107,4 @@ int neuron_gpu_webgpu_dispatch_matmul(const NeuronGpuMatMulDispatchDesc *desc,
 }
 #endif
 
-#endif // NPP_RUNTIME_GPU_INTERNAL_H
+#endif // Neuron_RUNTIME_GPU_INTERNAL_H

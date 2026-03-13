@@ -1,4 +1,4 @@
-// Package manager tests - included from tests/test_main.cpp
+﻿// Package manager tests - included from tests/test_main.cpp
 #include "neuronc/cli/PackageManager.h"
 #include "neuronc/cli/ProjectConfig.h"
 
@@ -45,7 +45,7 @@ static fs::path createTempProjectDir(const std::string &name) {
   toml << "license = \"MIT\"\n";
   toml << "source_dir = \"src\"\n\n";
   toml << "[build]\n";
-  toml << "main = \"src/Main.npp\"\n";
+  toml << "main = \"src/Main.nr\"\n";
   toml << "build_dir = \"build\"\n\n";
   toml << "optimize = \"O1\"\n";
   toml << "emit_ir = \"optimized\"\n";
@@ -53,7 +53,7 @@ static fs::path createTempProjectDir(const std::string &name) {
   toml << "[dependencies]\n";
   toml.close();
 
-  std::ofstream mainFile(dir / "src/Main.npp");
+  std::ofstream mainFile(dir / "src/Main.nr");
   mainFile << "Init is method() { Print(\"ok\"); }\n";
   mainFile.close();
 
@@ -86,7 +86,7 @@ static fs::path createPackageRepo(const std::string &name) {
     toml << "[dependencies]\n";
   }
   {
-    std::ofstream source(dir / "src/TensorPkg.npp");
+    std::ofstream source(dir / "src/TensorPkg.nr");
     source << "TensorValue is method() -> string { return \"tensor\"; }\n";
   }
   {
@@ -119,7 +119,7 @@ TEST(PackageManagerAddRemoveAndPublish) {
   ASSERT_TRUE(PackageManager::addDependency(dir.string(), repo.string(), options,
                                             &message));
   ASSERT_TRUE(fs::exists(dir / "modules" / "tensorpkg" / "src" /
-                         "TensorPkg.npp"));
+                         "TensorPkg.nr"));
   ASSERT_TRUE(fs::exists(dir / "neuron.lock"));
 
   ProjectConfig cfg;

@@ -1,4 +1,4 @@
-// RuntimePaths.cpp — Runtime dizin ve platform yardımcılarının implementasyonu.
+﻿// RuntimePaths.cpp â€” Runtime dizin ve platform yardÄ±mcÄ±larÄ±nÄ±n implementasyonu.
 // Bkz. RuntimePaths.h
 #include "RuntimePaths.h"
 #include "AppGlobals.h"
@@ -12,7 +12,7 @@
 #include <string>
 #include <vector>
 
-// ── Directory helpers ───────────────────────────────────────────────────────
+// â”€â”€ Directory helpers â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
 fs::path defaultRuntimeObjectCacheDir() {
   const char *overridePath = std::getenv("NEURON_RUNTIME_CACHE_DIR");
@@ -23,16 +23,16 @@ fs::path defaultRuntimeObjectCacheDir() {
 #ifdef _WIN32
   const char *localAppData = std::getenv("LOCALAPPDATA");
   if (localAppData != nullptr && *localAppData != '\0') {
-    return fs::path(localAppData) / "NeuronPP" / "runtime";
+    return fs::path(localAppData) / "Neuron" / "runtime";
   }
 #else
   const char *xdgCache = std::getenv("XDG_CACHE_HOME");
   if (xdgCache != nullptr && *xdgCache != '\0') {
-    return fs::path(xdgCache) / "neuronpp" / "runtime";
+    return fs::path(xdgCache) / "Neuron" / "runtime";
   }
   const char *home = std::getenv("HOME");
   if (home != nullptr && *home != '\0') {
-    return fs::path(home) / ".cache" / "neuronpp" / "runtime";
+    return fs::path(home) / ".cache" / "Neuron" / "runtime";
   }
 #endif
 
@@ -78,7 +78,7 @@ fs::path runtimeObjectDirectory() {
   return g_runtimeObjectDir;
 }
 
-// ── Platform detection ──────────────────────────────────────────────────────
+// â”€â”€ Platform detection â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
 std::string currentHostPlatform() {
 #if defined(_WIN32) && (defined(_M_X64) || defined(__x86_64__))
@@ -92,7 +92,7 @@ std::string currentHostPlatform() {
 #endif
 }
 
-// ── Artifact discovery ──────────────────────────────────────────────────────
+// â”€â”€ Artifact discovery â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
 std::vector<fs::path> candidateLibraryNames(const std::string &targetName) {
   if (targetName.empty()) {
@@ -143,7 +143,7 @@ bool findBuiltNativeArtifact(const fs::path &buildDir,
   return false;
 }
 
-// ── ModuleCpp compilation ───────────────────────────────────────────────────
+// â”€â”€ ModuleCpp compilation â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
 bool buildModuleCppFromSource(const fs::path &projectRoot,
                               const neuron::LoadedModuleCppModule &module,

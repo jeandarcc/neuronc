@@ -1,4 +1,4 @@
-#include "neuronc/cli/repl/ReplPipeline.h"
+﻿#include "neuronc/cli/repl/ReplPipeline.h"
 
 #include "neuronc/codegen/JITEngine.h"
 #include "neuronc/lexer/Lexer.h"
@@ -49,7 +49,7 @@ std::string normalizeReplCellSourceForParse(std::string source) {
 }
 
 fs::path replSettingsAnchorPath() {
-  return fs::current_path() / "ReplSession.npp";
+  return fs::current_path() / "ReplSession.nr";
 }
 
 NeuronSettings replSettingsFrom(const NeuronSettings &settings) {

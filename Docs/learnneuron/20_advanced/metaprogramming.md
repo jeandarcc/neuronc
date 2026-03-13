@@ -1,6 +1,6 @@
-# Metaprogramming
+﻿# Metaprogramming
 
-Neuron++ provides `macro`, `typeof`, and `static_assert` for compile-time code generation and validation.
+Neuron provides `macro`, `typeof`, and `static_assert` for compile-time code generation and validation.
 
 ---
 
@@ -17,7 +17,7 @@ t is typeof(x);    // "int"
 
 ## `static_assert`
 
-Assert a condition at compile time — compilation fails if the condition is false:
+Assert a condition at compile time â€” compilation fails if the condition is false:
 
 ```npp
 static_assert(sizeof(int) == 4, "int must be 4 bytes");
@@ -55,4 +55,4 @@ macro DebugPrint(expr) {
 
 ## Next Steps
 
-- [NIR](nir.md) — Neuron Intermediate Representation
+- [NIR](nir.md) â€” Neuron Intermediate Representation

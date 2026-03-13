@@ -26,8 +26,8 @@
 /src/lsp/                   @your-org/tooling-team
 
 # --- Extensions ---
-/extensions/vscode-npp/     @your-org/tooling-team
-/extensions/intellij-npp/   @your-org/tooling-team
+/extensions/vscode-neuron/     @your-org/tooling-team
+/extensions/intellij-neuron/   @your-org/tooling-team
 
 # --- Build & CI ---
 /scripts/                   @your-org/infra-team

@@ -1,4 +1,4 @@
-# Runtime Arithmetic Specification
+﻿# Runtime Arithmetic Specification
 
 ## Scope
 
@@ -18,11 +18,11 @@ Covered behavior:
 | --- | --- |
 | `N5000-N5099` | runtime-visible arithmetic lowering failure or trap |
 | `N2000-N2099` | semantic rejection before codegen for invalid operand pairs |
-| `NPP0001`, `NPP2001` | current fallbacks |
+| `NR0001`, `NR2001` | current fallbacks |
 
 ## Test List
 
-| Name | `.npp` input code | Expected output or error | Why important |
+| Name | `.nr` input code | Expected output or error | Why important |
 | --- | --- | --- | --- |
 | `arith__int_precedence` | `module System; Init is method() { Print(1 + 2 * 3); }` | Prints `7` | Baseline arithmetic precedence at runtime |
 | `arith__grouped_expression` | `module System; Init is method() { Print((1 + 2) * 3); }` | Prints `9` | Confirms grouping survives lowering |

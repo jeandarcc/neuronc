@@ -1,4 +1,4 @@
-# Standard Library String Specification
+﻿# Standard Library String Specification
 
 ## Scope
 
@@ -17,11 +17,11 @@ Covered behavior:
 | --- | --- |
 | `N2000-N2099` | invalid string operation or member access |
 | `N5000-N5099` | runtime-visible string handling failure |
-| `NPP2001`, `NPP0001` | current fallbacks |
+| `NR2001`, `NR0001` | current fallbacks |
 
 ## Test List
 
-| Name | `.npp` input code | Expected output or error | Why important |
+| Name | `.nr` input code | Expected output or error | Why important |
 | --- | --- | --- | --- |
 | `string__literal_print_roundtrip` | `module System; Init is method() { value is "Neuron"; Print(value); }` | Prints `Neuron` | Baseline string value propagation |
 | `string__concatenation` | `module System; Init is method() { Print("hello" + " world"); }` | Prints `hello world` if concatenation is a defined language feature | Makes string `+` semantics explicit |

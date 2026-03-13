@@ -1,6 +1,6 @@
-# Lexer (`src/lexer/`)
+﻿# Lexer (`src/lexer/`)
 
-The Lexer is the first stage of the Neuron++ compiler pipeline. It converts raw
+The Lexer is the first stage of the Neuron compiler pipeline. It converts raw
 UTF-8 source bytes into a linear stream of `Token`s.
 
 ## Files

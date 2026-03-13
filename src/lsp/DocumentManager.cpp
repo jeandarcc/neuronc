@@ -1,4 +1,4 @@
-#include "DocumentManager.h"
+﻿#include "DocumentManager.h"
 
 #include "lsp/LspDebugViews.h"
 #include "lsp/LspDocumentQueries.h"
@@ -253,7 +253,7 @@ std::vector<fs::path>
 DocumentManager::collectWorkspaceFiles(const fs::path &workspaceRoot) const {
   std::unordered_map<std::string, fs::path> uniquePaths;
   const auto addPath = [&](const fs::path &path) {
-    if (path.extension() != ".npp") {
+    if (path.extension() != ".nr") {
       return;
     }
     const fs::path normalized = detail::normalizePath(path);
@@ -279,7 +279,7 @@ DocumentManager::collectWorkspaceFiles(const fs::path &workspaceRoot) const {
         }
         continue;
       }
-      if (it->is_regular_file() && it->path().extension() == ".npp") {
+      if (it->is_regular_file() && it->path().extension() == ".nr") {
         addPath(it->path());
       }
     }

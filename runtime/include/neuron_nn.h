@@ -265,7 +265,7 @@ NEURON_RUNTIME_API int
 neuron_dataloader_next(NeuronDataLoader *loader, NeuronTensor **out_features,
                        NeuronTensor **out_targets, int32_t *out_count);
 
-// End-to-end runtime smoke test helper for NPP integration.
+// End-to-end runtime smoke test helper for Neuron integration.
 NEURON_RUNTIME_API int64_t neuron_nn_self_test(void);
 
 #ifdef __cplusplus
