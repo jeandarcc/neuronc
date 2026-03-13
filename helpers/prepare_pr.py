@@ -8,17 +8,23 @@ def run_git(cmd):
 
 def main():
     if len(sys.argv) < 3:
-        print("Usage: python fixers/prepare_pr.py <branch_name> \"<commit_message>\" [base_branch]")
-        print('Example: python fixers/prepare_pr.py feature/clean-ui "Refactor UI and fix styles"')
+        print("Usage: python helpers/prepare_pr.py <branch_name> \"<message>\" [issue_id] [base_branch]")
+        print('Example: python helpers/prepare_pr.py feature/rebranding "Project Rebranding" 1')
         return
 
     branch_name = sys.argv[1]
-    commit_message = sys.argv[2]
-    # Try to find the best base branch
-    base_branch = sys.argv[3] if len(sys.argv) > 3 else None
+    raw_message = sys.argv[2]
+    issue_id = sys.argv[3] if len(sys.argv) > 3 else None
+    base_branch = sys.argv[4] if len(sys.argv) > 4 else None
     
+    # Format according to your pipeline: [ISSUE#1] Project Rebranding
+    if issue_id:
+        clean_id = str(issue_id).strip().replace('#', '')
+        commit_message = f"[ISSUE#{clean_id}] {raw_message}"
+    else:
+        commit_message = raw_message
+
     if not base_branch:
-        # Check standard remotes
         remotes = run_git(['remote']).stdout.split()
         if 'public-repo' in remotes:
             base_branch = 'public-repo/main'
@@ -28,50 +34,40 @@ def main():
             base_branch = 'main'
 
     print(f"--- Automated Clean PR Creation ---")
-    print(f"Source: (Current State) -> Target Branch: {branch_name}")
-    print(f"Base: {base_branch}")
+    print(f"Branch: {branch_name}")
+    print(f"Commit/PR Title: {commit_message}")
 
-    # 1. Stash any uncommitted work temporarily
-    print("Saving current uncommitted work...")
+    # 1. Save state
     run_git(['add', '-A'])
     run_git(['stash'])
 
-    # 2. Get current branch name to return later or squash from
     source_branch = run_git(['rev-parse', '--abbrev-ref', 'HEAD']).stdout.strip()
 
-    # 3. Go to base branch and create NEW branch
-    print(f"Creating fresh branch from {base_branch}...")
+    # 2. Fresh start from base
     run_git(['fetch', base_branch.split('/')[0] if '/' in base_branch else 'origin'])
     res = run_git(['checkout', '-b', branch_name, base_branch])
     
     if res.returncode != 0:
-        print(f"Error: Could not create branch {branch_name}. Maybe it exists?")
+        print(f"Error: Could not create branch {branch_name}.")
         run_git(['stash', 'pop'])
         return
 
-    # 4. Pull ALL changes from source branch as a single squash
-    print(f"Squashing all work from {source_branch} into {branch_name}...")
+    # 3. Bring changes
+    print(f"Merging changes from {source_branch} into one clean commit...")
     run_git(['merge', '--squash', source_branch])
-
-    # 5. Re-apply any uncommitted work that was stashed
-    print("Applying extra stashed changes...")
     run_git(['stash', 'pop'])
     
-    # 6. Final Stage & Commit
+    # 4. Final Commit (This becomes the PR default title)
     run_git(['add', '-A'])
     res = run_git(['commit', '-m', commit_message])
 
     if res.returncode == 0:
-        print(f"\n✅ SUCCESS! Branch '{branch_name}' is ready with ONE clean commit.")
+        print(f"\n✅ Ready! PR title will default to: {commit_message}")
         print("-" * 40)
-        print(f"To submit your PR, run:")
-        remote_target = base_branch.split('/')[0] if '/' in base_branch else 'origin'
-        print(f"git push {remote_target} {branch_name}")
+        print(f"Run this to push: python helpers/push_pr.py {branch_name}")
     else:
-        print("\n❌ FAILED: No changes detected to commit.")
-        # Cleanup if failed
+        print("\n❌ Failed: No unique changes found.")
         run_git(['checkout', source_branch])
-        run_git(['branch', '-D', branch_name])
 
 if __name__ == "__main__":
     main()
