@@ -26,13 +26,16 @@ assignees: jeandarcc
 ## Affected Components
 
 - [ ] Language / Syntax
-- [ ] Compiler (`neuronc`)
+- [ ] Tests
+- [ ] Compiler Frontend
+- [ ] Compiler Backend
 - [ ] NIR / MIR / Optimizer
 - [ ] LLVM backend / codegen
 - [ ] Runtime (nn, tensor, graphics, platform)
 - [ ] `ncon` containers
 - [ ] LSP / IDE extensions
 - [ ] Docs / examples
+- [ ] CI Pipeline
 
 ## Additional Context
 
